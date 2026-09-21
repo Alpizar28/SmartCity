@@ -1,0 +1,18 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Local persistent-data workspace (Docker uses named volumes)
+data/*
+!data/.gitkeep
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Docker Compose overrides
+compose.override.yaml
+compose.override.yml
