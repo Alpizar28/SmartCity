@@ -55,9 +55,9 @@ docker compose down -v
 
 ## Configuration
 
-All credentials and host ports come from `.env`, which is ignored by Git. `POSTGRES_PORT` defaults to `5433` to avoid a common local PostgreSQL collision; `MONGODB_PORT` defaults to `27017`.
+All credentials and host ports come from `.env`, which is ignored by Git. `POSTGRES_PORT` defaults to `5433` to avoid a common local PostgreSQL collision; `MONGODB_PORT` defaults to `27017`. Both ports bind to `127.0.0.1` by default, so they are reachable from the local host but not publicly exposed. Keep `POSTGRES_BIND_ADDRESS` and `MONGODB_BIND_ADDRESS` set to `127.0.0.1` in Coolify.
 
-Both databases use named Docker volumes (`postgres_data` and `mongodb_data`) and share the isolated `smartcity-network` bridge network. The `data/` directory is reserved for local datasets later in the project and is ignored except for its `.gitkeep` marker.
+Both databases use named Docker volumes (`postgres_data` and `mongodb_data`) and share the isolated `smartcity-network` bridge network. Docker Compose scopes the network and volumes to its project, preventing collisions between local projects and Coolify deployments. The `data/` directory is reserved for local datasets later in the project and is ignored except for its `.gitkeep` marker.
 
 The services have a 512 MiB memory limit and a 0.25 CPU limit each, plus healthchecks. Initialization directories are intentionally empty in this phase:
 
