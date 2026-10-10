@@ -1,6 +1,6 @@
-# Preguntas priorizadas al profesor
+# Preguntas priorizadas al profesor — seguimiento detallado
 
-**Sin respuestas acreditadas.** Fernanda coordina la consulta; cada respuesta debe conservar fecha, medio, alcance y referencia. E/P/I y páginas están en [requisitos](../../research/datasets/00_requirements.md). Esta lista no autoriza implementación ni sustituye acuerdos del equipo.
+**Sin respuestas acreditadas.** La versión canónica, breve y lista para enviar es [`PREGUNTAS_PROFESOR.md`](../../PREGUNTAS_PROFESOR.md). Este documento conserva contexto, impacto y seguimiento; no debe introducir preguntas contradictorias. Fernanda coordina la consulta; cada respuesta debe conservar fecha, medio, alcance y referencia. E/P/I y páginas están en [requisitos](../../research/datasets/00_requirements.md). Esta lista no autoriza implementación ni sustituye acuerdos del equipo.
 
 ## Prioridad 1 — bloqueos de modelo y consultas
 
@@ -11,6 +11,8 @@
 
 ## Prioridad 2 — volumen y alcance de fuentes/KPIs
 
+Las preguntas de esta sección son contexto para el equipo. No forman parte de la lista corta oficial hasta que el equipo acuerde que necesita elevarlas al profesor.
+
 5. **Mínimos:** ¿100.000 hechos relacionales y 500.000 intervalos multivariables únicos son unidades aceptadas? ¿Cómo se computan los 100 MB propuestos: globales, comprimidos o lógicos? Para Spark se ampliará historia real y se probará ≥1 millón; no se presenta enero como suficiente.
 6. **Sintéticos:** si se autorizan, ¿qué entidades/consultas pueden demostrarse con fixtures y qué declaración se exige? Preferimos fuentes reales y NULL explícitos; la autorización de E no implica permiso del equipo/usuario para generación masiva.
 7. **KPIs sin fuente:** ¿se exigen todos los indicadores estrictos o puede declararse alcance parcial? No hay CO₂ ambiental ni tiempos de recorrido acreditados; energía municipal mensual no equivale a horaria. No sustituiremos CO₂ por CO/NO₂/CO₂e ni recorridos por velocidad.
@@ -18,7 +20,7 @@
 
 ## Prioridad 3 — entrega y transparencia
 
-9. **Fecha/rúbrica del avance:** ¿se confirma el 28 de octubre de 2026 y una rúbrica específica? E fija 25 de noviembre; la fecha de avance procede de P. Confirmar también CE-3191 frente al nombre CE3101 del PDF.
+9. **Fecha/rúbrica del avance:** ¿se confirma el 28 de octubre de 2026 y una rúbrica específica? E fija 25 de noviembre; la fecha de avance procede de P. El código administrativo del curso también está pendiente; en documentación general se usa «Bases de Datos — II Semestre 2026» hasta confirmación.
 10. **Uso de IA:** ¿qué formato, identificación de herramientas, anexos o registro de prompts exige la normativa? Se declarará asistencia automatizada, sin atribuir análisis manual independiente ni aprobación humana inexistente.
 
 ## Decisiones internas que no debe resolver el profesor por el equipo

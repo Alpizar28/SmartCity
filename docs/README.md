@@ -15,8 +15,9 @@
 | Revisar PostgreSQL y MongoDB | [Modelos preliminares](arquitectura/modelos.md) |
 | Ver arquitectura, ETL y E-R | [Cinco diagramas Mermaid](arquitectura/diagramas.md) |
 | Reproducir procedimientos existentes | [Pipeline y reproducción](arquitectura/pipeline.md) |
-| Resolver bloqueos académicos | [Preguntas al profesor](equipo/preguntas_profesor.md) |
+| Resolver bloqueos académicos | [Preguntas oficiales breves](../PREGUNTAS_PROFESOR.md) y [seguimiento detallado](equipo/preguntas_profesor.md) |
 | Coordinar trabajo individual | [Guía de integrantes](equipo/guia_integrantes.md) |
+| Ver alcance real del Sprint 1 | [Estado Sprint 1](equipo/ESTADO_SPRINT1.md) |
 | Revisar Git, secretos y publicación | [Revisión del repositorio](equipo/revision_repositorio.md) |
 | Consultar auditoría final antes de publicar | [Auditoría de publicación de Fase 6](equipo/auditoria_publicacion_fase6.md) |
 
@@ -27,6 +28,6 @@
 - **Condicionado:** requiere cierre técnico o aceptación explícita de alcance.
 - **Pendiente:** no existe ejecución, fuente o aprobación suficiente.
 
-Los conteos actuales corresponden a enero de 2025 y al contrato `madrid-draft-v1`; las métricas comparativas de Fase 4 conservan las ventanas anteriores. No actualizar silenciosamente sus puntuaciones con pruebas posteriores. Madrid continúa recomendado, pendiente de José, Daniel, Kembly, Fernanda y las decisiones docentes pertinentes.
+Los conteos y resultados históricos corresponden a enero de 2025 y al contrato `madrid-draft-v1`. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../CONTRATO_PROVISIONAL_DATASET.md). No actualizar silenciosamente puntuaciones o resultados históricos con pruebas posteriores. Madrid continúa recomendado, pendiente de decisiones técnicas, del equipo y docentes.
 
 Volver al [README principal](../README.md). La evidencia detallada sigue en [research/datasets](../research/datasets/); no se movieron ni eliminaron sus archivos.
