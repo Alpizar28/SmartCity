@@ -1,0 +1,42 @@
+[
+  {
+    "path": "00_query_matrix.csv",
+    "rows": 35,
+    "sha256": "6ba0bfb40da9f0f68d6788547d18fa56936437f37a3fd850327e702800186b07"
+  },
+  {
+    "path": "01_http_evidence.csv",
+    "rows": 93,
+    "sha256": "627157c899ea0cee661332b8d77d2172728d78278a5cf58be19b8174d0b8d30f"
+  },
+  {
+    "path": "01_sources_catalog.csv",
+    "rows": 30,
+    "sha256": "12f4fc010a281c88725877ee11864c487eee8e8bc7e49cbf563f55f6344f47e9"
+  },
+  {
+    "path": "02_artifact_manifest.csv",
+    "rows": 5,
+    "sha256": "fa6a3be7d2591bcc87f44804ebc41b532c20ec0cfac018f5998e3611eebbd20c"
+  },
+  {
+    "path": "02_download_manifest.csv",
+    "rows": 168,
+    "sha256": "fa814f2051306dbca7e29a6e798b516be534e10e06f63dddf65d725e8c523b6a"
+  },
+  {
+    "path": "02_quality_metrics.csv",
+    "rows": 329,
+    "sha256": "614a92fd0f4a31c2083cdb46f83fe6f45299b448f1d5584061576fdbb6ffb7d2"
+  },
+  {
+    "path": "03_compliance_matrix.csv",
+    "rows": 153,
+    "sha256": "f6ba259cd155607a1936ee3da2bf58ec8b8ebc08da6e3591a54c8f5d0a2b5900"
+  },
+  {
+    "path": "03_data_origin_matrix.csv",
+    "rows": 39,
+    "sha256": "92f49c8db0dd796c3ea9872d9f679b5450588a8a772d2a9a6dc4b547cfa1d56c"
+  }
+]

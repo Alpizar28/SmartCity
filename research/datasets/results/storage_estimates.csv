@@ -1,0 +1,9 @@
+source,measured_parquet_rows,measured_parquet_bytes,serialization_sample_rows,estimated_json_bytes_per_document,estimated_json_bytes_500k,assumptions
+MAD-AIR,187464,276212,1000,187.818,93909000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+MAD-METEO,138960,224910,1000,190.93,95465000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+MAD-TRAFFIC,677724,1565770,1000,207.047,103523500,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+NYC-COUNTS,85106,449526,1000,197.278,98639000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+NYC-AIR,38290,188214,1000,217.284,108642000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+NYC-311,124130,3485399,1000,217.209,108604500,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+LON-AIR,7440,36307,1000,182.26,91130000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"
+LON-ENERGY,347547,727459,1000,192.896,96448000,"uniform index1000selected normalized records; JSONUTF8, noBSON/index/replica overhead; not measuredDBstorage"

@@ -1,0 +1,44 @@
+UTC 2026-10-10T05:01:44.055050+00:00
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/phase3_validate.py
+Offline Phase3 validation finished; original files not modified.
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/phase3_enrich.py
+Semantic catalog, units/history and incident checks completed.
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/phase3_postgres.py
+{
+  "native_executed": true,
+  "container_removed": true,
+  "loaded_rows": {
+    "Madrid": 993374,
+    "NYC": 112070,
+    "London": 354637
+  }
+}
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python -m pytest tests/test_audit.py tests/test_saved_evidence.py -q --basetemp=/tmp/opencode/smartcity-phase3-legacy --junitxml=results/phase3/legacy_tests.xml
+......................                                                   [100%]
+- generated xml file: /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/results/phase3/legacy_tests.xml -
+22 passed in 0.64s
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python -m pytest tests/test_phase3.py -q --basetemp=/tmp/opencode/smartcity-phase3-tests --junitxml=results/phase3/tests.xml
+....................                                                     [100%]
+- generated xml file: /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/results/phase3/tests.xml -
+20 passed in 7.92s
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/phase3_reports.py
+Eight Phase3 deliverables and machine-readable compliance matrix generated.
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/phase3_finalize.py
+{
+  "checked_at_utc": "2026-10-10T05:04:12.916560+00:00",
+  "required_deliverables": 8,
+  "compliance_matrix_rows": 153,
+  "origin_matrix_rows": 39,
+  "all_prior_inputs_unchanged": true,
+  "native_postgresql_executed": true,
+  "container_and_anonymous_volumes_removed": true,
+  "python_compilation_passed": true,
+  "all_checks_passed": true
+}
+Exit code: 0

@@ -1,0 +1,3 @@
+source,variable,unit,count,min,max,mean
+NYC-AIR,88101,Micrograms/cubic meter (LC),36498,0.3,92.1,8.588665132336018
+NYC-COUNTS,volume,vehicles/15min,75572,0.0,1698.0,159.75029111311068

@@ -1,0 +1,73 @@
+{
+  "Madrid": {
+    "air_units_evidence": "madrid_air_dictionary.txt AnexoII:8NO2 ug/m3,9PM25 ug/m3,6CO mg/m3",
+    "air_unit_mapping_consistent_with_dictionary": true,
+    "meteo_units_dictionary_full_verification": false,
+    "meteo_provisional_units": {
+      "83": "degC",
+      "86": "percent",
+      "81": "m/s",
+      "82": "degrees",
+      "87": "hPa",
+      "88": "W/m2",
+      "89": "mm"
+    },
+    "historical_site_rows": [
+      "28079001    Pº. Recoletos             Baja.- 04/05/2009",
+      "28079002    Glta. de Carlos V         Baja.- 04/12/2006",
+      "28079035*   Pza. del Carmen           Alta.-              *Desde enero 2010.Código anterior 28079003",
+      "28079004    Pza. de España            Alta.-",
+      "28079039*   Barrio del Pilar          Alta.-              *Desde enero 2010.Código anterior 28079005",
+      "28079006    Pza. Dr. Marañón          Baja.- 27/11/2009",
+      "28079007    Pza. M. de Salamanca      Baja.- 30/12/2009",
+      "28079008    Escuelas Aguirre          Alta.-",
+      "28079009    Pza. Luca de Tena         Baja.- 07/12/2009",
+      "28079038*   Cuatro Caminos            Alta.-              *Desde enero 2010.Código anterior 28079010",
+      "28079011    Av. Ramón y Cajal         Alta.-",
+      "28079012    Pza. Manuel Becerra       Baja.- 30/12/2009",
+      "28079040*   Vallecas                  Alta.-              *Desde enero 2010.Código anterior 28079013",
+      "28079014    Pza. Fdez. Ladreda        Baja.- 02/12/2009",
+      "28079015    Pza. Castilla             Baja.- 17/10/2008",
+      "28079016    Arturo Soria              Alta.-",
+      "28079017    Villaverde Alto           Alta.-",
+      "28079018    C/ Farolillo              Alta.-",
+      "28079019    Huerta Castañeda          Baja.- 30/12/2009",
+      "28079036*   Moratalaz                 Alta.-              *Desde enero 2010.Código anterior 28079020",
+      "28079021    Pza. Cristo Rey           Baja.- 04/12/2009",
+      "28079022    Pº. Pontones              Baja.- 20/11/2009",
+      "28079023    Final C/ Alcalá           Baja.- 30/12/2009",
+      "28079024    Casa de Campo             Alta.-",
+      "28079025    Santa Eugenia             Baja.- 16/11/2009",
+      "28079026    Urb. Embajada (Barajas)   Baja.- 11/01/2010",
+      "28079027    Barajas                   Alta.-",
+      "28079047    Méndez Álvaro             Alta.- 21/12/2009",
+      "28079048    Pº. Castellana            Alta.- 01/06/2010",
+      "28079049    Retiro                    Alta.- 01/01/2010",
+      "28079050    Pza. Castilla             Alta.- 08/02/2010",
+      "28079054    Ensanche Vallecas         Alta.- 11/12/2009",
+      "28079055    Urb. Embajada (Barajas)   Alta.- 20/01/2010",
+      "28079056    Plaza Elíptica            Alta.- 18/01/2010",
+      "28079057    Sanchinarro               Alta.- 24/11/2009",
+      "28079058    El Pardo                  Alta.- 30/11/2009",
+      "28079059    Parque Juan Carlos I      Alta.- 14/12/2009",
+      "28079060    Tres Olivos               Alta.-14/01/2010"
+    ],
+    "history_scope": "site code/alta/baja, NOT installation per analyzer",
+    "meteo_historical_inventory_complete": false,
+    "traffic_historical_inventory_Jan2025_complete": false
+  },
+  "NYC": {
+    "EPA_datum": [
+      "WGS84"
+    ],
+    "EPA_units": [
+      "Micrograms/cubic meter (LC)"
+    ],
+    "DOT_CRS_verified": false
+  },
+  "London": {
+    "LAQN_GMT_field": true,
+    "LCL_timezone_verified": false,
+    "household_coordinates_available": false
+  }
+}

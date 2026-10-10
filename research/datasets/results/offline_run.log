@@ -1,0 +1,41 @@
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/verify.py
+{
+  "http_attempt_records": 168,
+  "files_hash_verified": 165,
+  "downloaded_entity_bytes": 311375862,
+  "budget_bytes": 1000000000,
+  "remaining_bytes": 688624138,
+  "prior_phase_files": 10,
+  "derived_raw_artifacts": 5,
+  "all_checks_passed": true
+}
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/audit.py all
+INFO:root:Auditing madrid
+INFO:root:Auditing traffic
+INFO:root:Auditing epa
+INFO:root:Auditing nyc
+INFO:root:Auditing london
+INFO:root:Auditing complements
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/integrate.py
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python -m pytest tests -q --basetemp=/tmp/opencode/smartcity-phase2-tests --junitxml=results/tests.xml
+......................                                                   [100%]
+- generated xml file: /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/results/tests.xml -
+22 passed in 0.67s
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/verify.py
+{
+  "http_attempt_records": 168,
+  "files_hash_verified": 165,
+  "downloaded_entity_bytes": 311375862,
+  "budget_bytes": 1000000000,
+  "remaining_bytes": 688624138,
+  "prior_phase_files": 10,
+  "derived_raw_artifacts": 5,
+  "all_checks_passed": true
+}
+Exit code: 0
+$ /home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/.venv/bin/python scripts/build_reports.py
+Exit code: 0

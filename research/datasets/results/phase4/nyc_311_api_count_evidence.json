@@ -1,0 +1,14 @@
+[
+  {
+    "id": "311-count-2023-01-01",
+    "path": "raw/311-count-2023-01-01.record66.bin",
+    "unique_ids": 242173,
+    "sha256": "e807142c3cbc1f5d664842b99b0cda47fe765325c7fe3d0313187c3976a47bf4"
+  },
+  {
+    "id": "311-count-2023-07-01",
+    "path": "raw/311-count-2023-07-01.record77.bin",
+    "unique_ids": 289330,
+    "sha256": "e749cf261aab7372c4b2ebbbfd6a3a51caf5dab9d6d3c574085cfb3a4a861afd"
+  }
+]

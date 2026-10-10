@@ -1,0 +1,30 @@
+{
+  "weights": [
+    20,
+    15,
+    15,
+    10,
+    10,
+    10,
+    10,
+    10
+  ],
+  "totals": {
+    "Madrid": 63.665,
+    "NYC": 46.345,
+    "London": 49.345
+  },
+  "rubric_source": "I p1; not E grading rubric",
+  "query_credits": {
+    "CUMPLE_VERIFICADO": 1,
+    "FACTIBLE_NO_EJECUTADO": 0.75,
+    "PARCIAL": 0.25,
+    "NO_CUMPLE": 0,
+    "NO_VERIFICADO": 0
+  },
+  "dashboard_partial_credit": 0.4,
+  "spark_feasible_credit": 0.6,
+  "decision": "Madrid preferred conditional core",
+  "team_approval": false,
+  "phase5_started": false
+}

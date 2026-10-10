@@ -1,0 +1,16 @@
+{
+  "raw_rows": 76513,
+  "hourly_slots": 1836312,
+  "flags_full_year": {
+    "V": 1795279,
+    "N": 41030,
+    "M": 3
+  },
+  "raw_duplicate_keys": 0,
+  "stations": 23,
+  "channel_station_magnitude_pairs": 126,
+  "first_day": "2025-01-01 00:00:00",
+  "last_day": "2026-08-31 00:00:00",
+  "timezone": "Europe/Madrid; hourly endpoint H24 goes to next midnight; DST duplicated hour removed by publisher",
+  "unknown_station_ids": []
+}

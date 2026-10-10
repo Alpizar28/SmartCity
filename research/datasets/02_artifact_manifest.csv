@@ -1,0 +1,6 @@
+path,file_bytes,sha256,kind
+raw/EPA-2023-assembled.zip,76998372,32ec38a1dce00d2ea055d43f84b9abf5e09c5a11738c844d2afd294fe896b99f,assembled from range responses
+raw/lcl_members/LCL-June2015v2_0.csv,50755532,4997141df1efb62488305936c3d2aee395c456f475542bfbdcd5a2145479bd61,complete CRC-verified LCL member
+raw/lcl_members/LCL-June2015v2_1.csv,50736845,e2d9a8b89289edc7c6a25290b90635ac744cef347b7e0164f8c4bc2b8c0b55bd,complete CRC-verified LCL member
+raw/lcl_members/LCL-June2015v2_10.csv,50901009,b331bd5d216d02d0a17e2fef63ad7c14a84170dc0cb8be0c661acfcd66b1c844,complete CRC-verified LCL member
+raw/lcl_members/LCL-June2015v2_100.csv,50869633,3b27bcb63aca48dcd97b520930b8c3c7c8d6f5f76bf1da66f7050e350f2f2dd0,complete CRC-verified LCL member

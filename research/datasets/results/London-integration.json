@@ -1,0 +1,42 @@
+{
+  "air_normalization": {
+    "input_rows": 7440,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 7323
+  },
+  "energy_normalization": {
+    "input_rows": 347547,
+    "identical_extra_rows": 233,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 347314
+  },
+  "coverage": {
+    "label": "London energy cohort/hour vs NO2 site mean/hour",
+    "left_groups": 1488,
+    "right_groups": 1488,
+    "matched_groups": 1488,
+    "left_unmatched": 0,
+    "right_unmatched": 0,
+    "left_match_pct": 100.0,
+    "right_match_pct": 100.0,
+    "keys": [
+      "time"
+    ]
+  },
+  "households_selected": 120,
+  "partial_household_hours_excluded": 44,
+  "cohort_households_per_matched_hour_min": 108,
+  "cohort_households_per_matched_hour_max": 119,
+  "sample_sites": 5,
+  "sites_opened_beforeJan2013": 5,
+  "sites_closed_before2013": 0,
+  "geographic_granularity": "London city context only; no household coordinate or borough",
+  "household_fine_zone_mapping_pct": 0,
+  "fine_zone_mapping_failure": true,
+  "city_context_mapping_pct": 100,
+  "city_context_is_sampling_area_not_measured_household_location": true,
+  "timezone_assumption": "Jan2013 UKGMT; July2013 LCLclock not declared timezone -> joining to LAQN GMT conditional. No UTC assertion forLCL",
+  "lost": "individual half-hour values/households, site-level concentrations and geographic variation; cohort total not London total",
+  "redistribution": "rawLAQN and integrated numeric data kept ignored locally; only aggregate audit metrics/report versioned"
+}

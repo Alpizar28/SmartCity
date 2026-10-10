@@ -1,0 +1,25 @@
+{
+  "by_source": {
+    "MAD-AIR": {
+      "count": 1000,
+      "min": 0.1,
+      "max": 832.0,
+      "sum": 41064.09999999993
+    },
+    "MAD-METEO": {
+      "count": 1000,
+      "min": 0.0,
+      "max": 345.0,
+      "sum": 47231.7
+    },
+    "MAD-TRAFFIC": {
+      "count": 3000,
+      "min": 0.0,
+      "max": 5088.0,
+      "sum": 6532851.0
+    }
+  },
+  "ids": 5000,
+  "first_channel": "channel:ab914056374bd60014a9dc19dfcd21e65656f3046e1c891b7c5868414aa14dc2",
+  "channel_count": 738
+}

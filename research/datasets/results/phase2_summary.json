@@ -1,0 +1,24 @@
+{
+  "main_sources": 8,
+  "observation_sources_with_complements": 12,
+  "reference_inventories": 4,
+  "profiled_sources": 16,
+  "downloaded_bytes": 311375862,
+  "primary_raw_rows_audited": {
+    "Madrid": 13351700,
+    "NYC": 247526,
+    "London": 4007440
+  },
+  "tests": {
+    "name": "pytest",
+    "errors": "0",
+    "failures": "0",
+    "skipped": "0",
+    "tests": "22",
+    "time": "0.667",
+    "timestamp": "2026-10-09T22:21:30.462514-06:00",
+    "hostname": "jp"
+  },
+  "no_winner_selected": true,
+  "phase3_started": false
+}

@@ -1,0 +1,22 @@
+{
+  "campaigns": 26,
+  "segments": 127,
+  "days": 219,
+  "rows_by_month": {
+    "1": 2880,
+    "2": 1728,
+    "3": 11328,
+    "4": 5376,
+    "5": 16243,
+    "6": 15320,
+    "7": 2208,
+    "8": 3456,
+    "9": 3648,
+    "10": 14279,
+    "11": 5184,
+    "12": 3456
+  },
+  "projected_coordinates_available_rows": 85106,
+  "interval_bad_minute_rows": 0,
+  "negative_volume_rows": 0
+}

@@ -1,0 +1,11 @@
+.pytest_cache/
+research/datasets/.pytest_cache/
+research/datasets/.venv/
+research/datasets/private_results/
+research/datasets/raw/
+research/datasets/results/phase3/academic_original.txt
+research/datasets/results/phase4/E_original.txt
+research/datasets/results/phase4/I_original.txt
+research/datasets/results/phase4/P_original.txt
+research/datasets/scripts/__pycache__/
+research/datasets/tests/__pycache__/

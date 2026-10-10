@@ -1,0 +1,47 @@
+{
+  "checked_at_utc": "2026-10-10T05:34:11.173163+00:00",
+  "hash_checks": [
+    {
+      "manifest": "results/phase3/inputs_manifest.csv",
+      "verified_files": 281
+    },
+    {
+      "manifest": "results/phase3/outputs_manifest.csv",
+      "verified_files": 52
+    },
+    {
+      "document": "E",
+      "path": "/home/jp/Descargas/Proyectos_CE3101_Enunciado_Proyecto_II_Semestre_2026.pdf",
+      "sha256": "362210fab6ae08f8d4f333293edb7037371d2dcdd904d3a3fcafbe7cce3e45a3",
+      "pages": 28
+    },
+    {
+      "document": "P",
+      "path": "/home/jp/Descargas/Plan_de_trabajo.pdf",
+      "sha256": "e72a2b2135d2892cb46e40c6929a43bb51e60f1bcc1c50a335c80df18b421107",
+      "pages": 6
+    },
+    {
+      "document": "I",
+      "path": "/home/jp/Descargas/Informe_Datasets_SmartCity_Jose.pdf",
+      "sha256": "5e7f90c7f40738b85704ae94816428119ab030b816ded1f806c6df898759af78",
+      "pages": 5
+    }
+  ],
+  "previous_tests": [
+    {
+      "path": "results/phase3/legacy_tests.xml",
+      "tests": 22
+    },
+    {
+      "path": "results/phase3/tests.xml",
+      "tests": 20
+    }
+  ],
+  "counts_and_matrix_agree": true,
+  "originals_unchanged": true,
+  "native_mongodb_executed": false,
+  "audit_or_load_repeated": false,
+  "network_requests": 0,
+  "all_checks_passed": true
+}

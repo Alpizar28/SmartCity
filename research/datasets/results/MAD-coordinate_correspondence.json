@@ -1,0 +1,18 @@
+{
+  "common_short_codes": [
+    "16",
+    "18",
+    "24",
+    "35",
+    "36",
+    "38",
+    "39",
+    "4",
+    "54",
+    "56",
+    "58",
+    "59",
+    "8"
+  ],
+  "rule": "same numeric code alone is not equivalence; coordinate match must also be verified; separate network entities retained"
+}

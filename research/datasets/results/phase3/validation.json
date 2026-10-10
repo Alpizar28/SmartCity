@@ -1,0 +1,504 @@
+{
+  "Madrid": {
+    "MAD-AIR": {
+      "input_rows": 187464,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 183659,
+      "raw_keys": 187464,
+      "null_dates": 0,
+      "units": [
+        "mg/m3",
+        "ug/m3"
+      ],
+      "entities": 23,
+      "months": [
+        "2025-01",
+        "2025-02",
+        "2025-07",
+        "2025-08"
+      ],
+      "raw_period": [
+        "2025-01-01 00:00:00",
+        "2026-08-31 00:00:00"
+      ],
+      "raw_daily_duplicates": 0,
+      "raw_year_month_rows": [
+        {
+          "ANO": "2025",
+          "MES": "01",
+          "rows": 3905
+        },
+        {
+          "ANO": "2025",
+          "MES": "02",
+          "rows": 3528
+        },
+        {
+          "ANO": "2025",
+          "MES": "03",
+          "rows": 3906
+        },
+        {
+          "ANO": "2025",
+          "MES": "04",
+          "rows": 3774
+        },
+        {
+          "ANO": "2025",
+          "MES": "05",
+          "rows": 3900
+        },
+        {
+          "ANO": "2025",
+          "MES": "06",
+          "rows": 3780
+        },
+        {
+          "ANO": "2025",
+          "MES": "07",
+          "rows": 3906
+        },
+        {
+          "ANO": "2025",
+          "MES": "08",
+          "rows": 3906
+        },
+        {
+          "ANO": "2025",
+          "MES": "09",
+          "rows": 3774
+        },
+        {
+          "ANO": "2025",
+          "MES": "10",
+          "rows": 3906
+        },
+        {
+          "ANO": "2025",
+          "MES": "11",
+          "rows": 3777
+        },
+        {
+          "ANO": "2025",
+          "MES": "12",
+          "rows": 3906
+        },
+        {
+          "ANO": "2026",
+          "MES": "01",
+          "rows": 3900
+        },
+        {
+          "ANO": "2026",
+          "MES": "02",
+          "rows": 3526
+        },
+        {
+          "ANO": "2026",
+          "MES": "03",
+          "rows": 3906
+        },
+        {
+          "ANO": "2026",
+          "MES": "04",
+          "rows": 3780
+        },
+        {
+          "ANO": "2026",
+          "MES": "05",
+          "rows": 3906
+        },
+        {
+          "ANO": "2026",
+          "MES": "06",
+          "rows": 3780
+        },
+        {
+          "ANO": "2026",
+          "MES": "07",
+          "rows": 3904
+        },
+        {
+          "ANO": "2026",
+          "MES": "08",
+          "rows": 3843
+        }
+      ]
+    },
+    "MAD-METEO": {
+      "input_rows": 138960,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 135011,
+      "raw_keys": 138960,
+      "null_dates": 0,
+      "units": [
+        "W/m2",
+        "degC",
+        "degrees",
+        "hPa",
+        "m/s",
+        "mm",
+        "percent"
+      ],
+      "entities": 26,
+      "months": [
+        "2025-01",
+        "2025-02",
+        "2025-07",
+        "2025-08"
+      ],
+      "raw_period": [
+        "2025-01-01 00:00:00",
+        "2026-08-31 00:00:00"
+      ],
+      "raw_daily_duplicates": 0,
+      "raw_year_month_rows": [
+        {
+          "ANO": "2025",
+          "MES": "01",
+          "rows": 2892
+        },
+        {
+          "ANO": "2025",
+          "MES": "02",
+          "rows": 2618
+        },
+        {
+          "ANO": "2025",
+          "MES": "03",
+          "rows": 2864
+        },
+        {
+          "ANO": "2025",
+          "MES": "04",
+          "rows": 2750
+        },
+        {
+          "ANO": "2025",
+          "MES": "05",
+          "rows": 2800
+        },
+        {
+          "ANO": "2025",
+          "MES": "06",
+          "rows": 2791
+        },
+        {
+          "ANO": "2025",
+          "MES": "07",
+          "rows": 2898
+        },
+        {
+          "ANO": "2025",
+          "MES": "08",
+          "rows": 2906
+        },
+        {
+          "ANO": "2025",
+          "MES": "09",
+          "rows": 2782
+        },
+        {
+          "ANO": "2025",
+          "MES": "10",
+          "rows": 2884
+        },
+        {
+          "ANO": "2025",
+          "MES": "11",
+          "rows": 2784
+        },
+        {
+          "ANO": "2025",
+          "MES": "12",
+          "rows": 2888
+        },
+        {
+          "ANO": "2026",
+          "MES": "01",
+          "rows": 2901
+        },
+        {
+          "ANO": "2026",
+          "MES": "02",
+          "rows": 2626
+        },
+        {
+          "ANO": "2026",
+          "MES": "03",
+          "rows": 2912
+        },
+        {
+          "ANO": "2026",
+          "MES": "04",
+          "rows": 2792
+        },
+        {
+          "ANO": "2026",
+          "MES": "05",
+          "rows": 2910
+        },
+        {
+          "ANO": "2026",
+          "MES": "06",
+          "rows": 2792
+        },
+        {
+          "ANO": "2026",
+          "MES": "07",
+          "rows": 2875
+        },
+        {
+          "ANO": "2026",
+          "MES": "08",
+          "rows": 2718
+        }
+      ]
+    },
+    "MAD-TRAFFIC": {
+      "input_rows": 677724,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 674704,
+      "raw_keys": 677724,
+      "null_dates": 0,
+      "units": [
+        "veh/h"
+      ],
+      "entities": 242,
+      "months": [
+        "2025-01"
+      ]
+    },
+    "join": {
+      "eligible_NO2": 33821,
+      "matched": 19087,
+      "pct": 56.4353508175394,
+      "spatially_mapped": 19099,
+      "losses": {
+        "matched": 19087,
+        "no_colocated_site": 14722,
+        "no_eligible_temperature": 12
+      },
+      "unmatched_entities": [
+        "MAD-AIR:11",
+        "MAD-AIR:17",
+        "MAD-AIR:18",
+        "MAD-AIR:27",
+        "MAD-AIR:4",
+        "MAD-AIR:40",
+        "MAD-AIR:47",
+        "MAD-AIR:48",
+        "MAD-AIR:49",
+        "MAD-AIR:50",
+        "MAD-AIR:57",
+        "MAD-AIR:60"
+      ]
+    }
+  },
+  "NYC": {
+    "NYC-AIR": {
+      "input_rows": 38290,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 36498,
+      "raw_keys": 38290,
+      "null_dates": 0,
+      "units": [
+        "Micrograms/cubic meter (LC)"
+      ],
+      "entities": 9,
+      "months": [
+        "2023-01",
+        "2023-02",
+        "2023-03",
+        "2023-04",
+        "2023-05",
+        "2023-06",
+        "2023-07",
+        "2023-08",
+        "2023-09",
+        "2023-10",
+        "2023-11",
+        "2023-12",
+        "2024-01"
+      ]
+    },
+    "NYC-COUNTS": {
+      "input_rows": 85106,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 9534,
+      "eligible_rows": 75572,
+      "raw_keys": 80339,
+      "null_dates": 0,
+      "units": [
+        "vehicles/15min"
+      ],
+      "entities": 150,
+      "months": [
+        "2023-01",
+        "2023-02",
+        "2023-03",
+        "2023-04",
+        "2023-05",
+        "2023-06",
+        "2023-07",
+        "2023-08",
+        "2023-09",
+        "2023-10",
+        "2023-11",
+        "2023-12"
+      ]
+    },
+    "joins": {
+      "DOT_311": {
+        "label": "DOT-311",
+        "left_groups": 322,
+        "right_groups": 96,
+        "matched_groups": 11,
+        "left_unmatched": 311,
+        "right_unmatched": 85,
+        "left_match_pct": 3.4161490683229814,
+        "right_match_pct": 11.458333333333334,
+        "keys": [
+          "zone",
+          "day"
+        ]
+      },
+      "DOT_EPA": {
+        "label": "DOT-EPA",
+        "left_groups": 322,
+        "right_groups": 883,
+        "matched_groups": 146,
+        "left_unmatched": 176,
+        "right_unmatched": 737,
+        "left_match_pct": 45.3416149068323,
+        "right_match_pct": 16.534541336353342,
+        "keys": [
+          "zone",
+          "day"
+        ]
+      },
+      "311_dates": 16,
+      "DOT_days": 219,
+      "DOT_date_groups_in_311_sample_dates": 11,
+      "EPA_UTC_duplicates": 0
+    }
+  },
+  "London": {
+    "LON-AIR": {
+      "input_rows": 7440,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 7323,
+      "raw_keys": 7440,
+      "null_dates": 0,
+      "units": [
+        "ug/m3"
+      ],
+      "entities": 5,
+      "months": [
+        "2013-01",
+        "2013-07"
+      ]
+    },
+    "LON-ENERGY": {
+      "input_rows": 347547,
+      "identical_extra_rows": 233,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 347314,
+      "raw_keys": 347314,
+      "null_dates": 0,
+      "units": [
+        "kWh/30min"
+      ],
+      "entities": 120,
+      "months": [
+        "2013-01",
+        "2013-07"
+      ]
+    },
+    "join": {
+      "coverage": {
+        "label": "London unshifted city/hour",
+        "left_groups": 1488,
+        "right_groups": 1488,
+        "matched_groups": 1488,
+        "left_unmatched": 0,
+        "right_unmatched": 0,
+        "left_match_pct": 100.0,
+        "right_match_pct": 100.0,
+        "keys": [
+          "time"
+        ]
+      },
+      "partial_household_hours": 44,
+      "timezone_sensitivity": [
+        {
+          "July_shift_hours": -1,
+          "matches": 1487,
+          "left_match_pct": 99.93279569892474,
+          "pearson_exploratory_only": 0.3781974886176914
+        },
+        {
+          "July_shift_hours": 0,
+          "matches": 1488,
+          "left_match_pct": 100.0,
+          "pearson_exploratory_only": 0.37304276650962653
+        },
+        {
+          "July_shift_hours": 1,
+          "matches": 1487,
+          "left_match_pct": 99.93279569892474,
+          "pearson_exploratory_only": 0.3596888521913981
+        }
+      ],
+      "households_min": 108,
+      "households_max": 119,
+      "household_fine_location_columns": [],
+      "temporal_match_is_not_geographic_match": true
+    },
+    "expanded": {
+      "rows": 4000000,
+      "unique_keys": 3997252,
+      "duplicate_extras": 2748,
+      "conflicting_extra_values": 0,
+      "unique_by_month": {
+        "2011-12": 51084,
+        "2012-01": 67007,
+        "2012-02": 64475,
+        "2012-03": 102770,
+        "2012-04": 110153,
+        "2012-05": 128827,
+        "2012-06": 160245,
+        "2012-07": 168066,
+        "2012-08": 168114,
+        "2012-09": 163826,
+        "2012-10": 175376,
+        "2012-11": 171171,
+        "2012-12": 176886,
+        "2013-01": 176279,
+        "2013-02": 158037,
+        "2013-03": 174018,
+        "2013-04": 167762,
+        "2013-05": 171157,
+        "2013-06": 164202,
+        "2013-07": 171035,
+        "2013-08": 170392,
+        "2013-09": 162664,
+        "2013-10": 163373,
+        "2013-11": 155109,
+        "2013-12": 159198,
+        "2014-01": 158559,
+        "2014-02": 137467
+      }
+    }
+  },
+  "recounted_primary_raw_rows": {
+    "Madrid": 13351700,
+    "NYC": 247526,
+    "London": 4007440
+  }
+}

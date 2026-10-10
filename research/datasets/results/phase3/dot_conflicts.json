@@ -1,0 +1,21 @@
+{
+  "rows": 85106,
+  "conflicting_rows": 9534,
+  "groups": 4767,
+  "candidate_duplicate_extras": {
+    "requestid,segmentid,direction,yr,m,d,hh,mm": 4767,
+    "requestid,segmentid,direction,yr,m,d,hh,mm,wktgeom": 4767,
+    "requestid,segmentid,direction,yr,m,d,hh,mm,boro,wktgeom,street,fromst,tost": 4767
+  },
+  "distinct_values_distribution": {
+    "2": 4767
+  },
+  "campaigns_with_conflicts": [
+    "36401",
+    "36828"
+  ],
+  "exact_raw_duplicates": 0,
+  "days_measured": 219,
+  "correct_physical_key_found": false,
+  "row_locator_is_provenance_not_sensor_identity": true
+}

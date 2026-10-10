@@ -1,0 +1,59 @@
+{
+  "source": "LON-AIR",
+  "rows": 7440,
+  "columns": 3,
+  "keys": [
+    "site",
+    "@MeasurementDateGMT"
+  ],
+  "duplicate_key_rows": 0,
+  "exact_duplicate_rows": 0,
+  "required_missing_rows": 0,
+  "attributes": [
+    {
+      "source": "LON-AIR",
+      "attribute": "site",
+      "rows": 7440,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 5,
+      "inferred_type": "string",
+      "declared_type": "not documented/checked",
+      "minimum": null,
+      "maximum": null,
+      "mean": null,
+      "median": null,
+      "iqr_outliers": null
+    },
+    {
+      "source": "LON-AIR",
+      "attribute": "@MeasurementDateGMT",
+      "rows": 7440,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 1488,
+      "inferred_type": "string",
+      "declared_type": "not documented/checked",
+      "minimum": null,
+      "maximum": null,
+      "mean": null,
+      "median": null,
+      "iqr_outliers": null
+    },
+    {
+      "source": "LON-AIR",
+      "attribute": "@Value",
+      "rows": 7440,
+      "null_count": 117,
+      "null_pct": 1.5725806451612903,
+      "unique_nonnull": 1412,
+      "inferred_type": "numeric",
+      "declared_type": "not documented/checked",
+      "minimum": -0.5,
+      "maximum": 280.7,
+      "mean": 54.44548682234059,
+      "median": 50.2,
+      "iqr_outliers": 179
+    }
+  ]
+}

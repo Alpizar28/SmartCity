@@ -1,0 +1,66 @@
+{
+  "DOT_normalization": {
+    "input_rows": 85106,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 9534,
+    "eligible_rows": 75572
+  },
+  "311_normalization": {
+    "input_rows": 124130,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 124130
+  },
+  "DOT_311": {
+    "label": "NYC DOT-311 borough/day; sampled days only",
+    "left_groups": 322,
+    "right_groups": 96,
+    "matched_groups": 11,
+    "left_unmatched": 311,
+    "right_unmatched": 85,
+    "left_match_pct": 3.4161490683229814,
+    "right_match_pct": 11.458333333333334,
+    "keys": [
+      "zone",
+      "day"
+    ]
+  },
+  "geographic_rule": "official boro/borough strings standardized to title case; no coordinates required for borough-level join",
+  "311_semantics": "citizen requests by created date, not occurrence time, sensor events or alerts",
+  "sampling_loss": "311 only16sampled dates, including consecutiveJan6-12; DOT campaigns unequal exposure; sums are measured intervals not borough-wide traffic totals",
+  "CRS_candidate": {
+    "candidate": "EPSG2263 -> EPSG4326; not confirmed official metadata",
+    "transformed_bbox": [
+      -74.18588031988781,
+      40.560802686955284,
+      -73.73420741160886,
+      40.862745129919986
+    ],
+    "rows_in_exploratory_NYC_bbox": 85106,
+    "used_for_join": false,
+    "bbox_consistency_does_not_prove_CRS": true
+  },
+  "EPA_normalization": {
+    "input_rows": 38290,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 36498
+  },
+  "DOT_EPA": {
+    "label": "NYC DOT-EPA PM2.5 borough/day, full2023",
+    "left_groups": 322,
+    "right_groups": 883,
+    "matched_groups": 146,
+    "left_unmatched": 176,
+    "right_unmatched": 737,
+    "left_match_pct": 45.3416149068323,
+    "right_match_pct": 16.534541336353342,
+    "keys": [
+      "zone",
+      "day"
+    ]
+  },
+  "three_source_groups": 1,
+  "three_source_pct_of_DOT_groups": 0.3105590062111801,
+  "assumptions": "county->borough official administrative equivalence; PM2.5 site mean over hours loses hourly peaks, POC/method detail; NYC local wall-clock from EPA GMT, not Date Local standard-time"
+}

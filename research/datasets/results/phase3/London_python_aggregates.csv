@@ -1,0 +1,3 @@
+source,variable,unit,count,min,max,mean
+LON-AIR,NO2,ug/m3,7323,-0.5,280.7,54.44548682234057
+LON-ENERGY,electricity,kWh/30min,347314,0.0,6.711,0.22732474935130745

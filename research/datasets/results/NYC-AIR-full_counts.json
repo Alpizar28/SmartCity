@@ -1,0 +1,31 @@
+{
+  "national_rows": 9350315,
+  "NY_state_rows": 104903,
+  "compressed": 76998372,
+  "uncompressed": 2625915829,
+  "member": "hourly_88101_2023.csv",
+  "CRC": 407155204,
+  "CRC_validated_at_EOF": true,
+  "NYC_rows": 38290,
+  "NYC_sites": 5,
+  "counties": {
+    "005": 17342,
+    "081": 13377,
+    "047": 7571
+  },
+  "units": {
+    "Micrograms/cubic meter (LC)": 38290
+  },
+  "datums": {
+    "WGS84": 38290
+  },
+  "qualifiers": {
+    "nan": 36498,
+    "IF": 1530,
+    "5": 200,
+    "IH": 38,
+    "J": 12,
+    "IT": 8,
+    "IP": 4
+  }
+}

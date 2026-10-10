@@ -1,0 +1,46 @@
+{
+  "source": "LON-AIR",
+  "observations": 7440,
+  "entities": 5,
+  "variables": [
+    "NO2"
+  ],
+  "date_min": "2013-01-01 00:00:00",
+  "date_max": "2013-07-31 23:00:00",
+  "invalid_dates": 0,
+  "missing_values": 117,
+  "unique_keys": 7440,
+  "duplicate_keys": 0,
+  "valid_observations": 7323,
+  "quality_counts": {
+    "valid": 7323,
+    "missing": 117
+  },
+  "zone_counts": {
+    "Greenwich": 2976,
+    "Westminster": 1488,
+    "Camden": 1488,
+    "Hackney": 1488
+  },
+  "coordinate_valid_rows": 7440,
+  "coordinate_missing_rows": 0,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 5,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "NO2",
+      "unit": "ug/m3",
+      "n": 7440,
+      "nonnull": 7323,
+      "min": -0.5,
+      "max": 280.7,
+      "mean": 54.44548682234057,
+      "median": 50.2,
+      "p01": 2.7,
+      "p99": 171.6,
+      "negative_values": 2,
+      "iqr_candidate_outliers": 179
+    }
+  ],
+  "physical_domain_checks": []
+}

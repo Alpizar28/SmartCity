@@ -1,0 +1,62 @@
+{
+  "PG01": {
+    "LON-AIR:NO2:ug/m3": 5
+  },
+  "PG02": {
+    "LON-AIR:BL0": 1,
+    "LON-AIR:GN0": 1,
+    "LON-AIR:GR4": 1,
+    "LON-AIR:HK6": 1,
+    "LON-AIR:MY1": 1
+  },
+  "PG03": {
+    "unknown_status": 5,
+    "known_status": 0
+  },
+  "PG04": {
+    "known_owner": 5,
+    "unknown_owner": 0
+  },
+  "PG05": {
+    "LON-AIR:BL0": 1,
+    "LON-AIR:GN0": 1,
+    "LON-AIR:GR4": 1,
+    "LON-AIR:HK6": 1,
+    "LON-AIR:MY1": 1
+  },
+  "PG06": {
+    "known_installation_date": 0
+  },
+  "PG07": {
+    "without_activity_in_loaded_window": 0,
+    "independent_inventory_test_pending": true
+  },
+  "PG08": {
+    "counts": {
+      "Camden": 1,
+      "Greenwich": 2,
+      "Hackney": 1,
+      "Westminster": 1
+    },
+    "ranks": {
+      "Camden": 2,
+      "Greenwich": 1,
+      "Hackney": 2,
+      "Westminster": 2
+    }
+  },
+  "PG09": {
+    "LON-AIR:NO2:ug/m3": 5
+  },
+  "PG10": {
+    "LON-AIR:BL0": 1,
+    "LON-AIR:GN0": 1,
+    "LON-AIR:GR4": 1,
+    "LON-AIR:HK6": 1,
+    "LON-AIR:MY1": 1
+  },
+  "readings": 354637,
+  "sum_values": 477657.36799619993,
+  "min_value": -0.5,
+  "max_value": 280.7
+}

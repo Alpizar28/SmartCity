@@ -16,3 +16,53 @@ Thumbs.db
 # Docker Compose overrides
 compose.override.yaml
 compose.override.yml
+
+# Research inputs and large/local derivatives (keep CSV dictionaries/matrices)
+raw/
+private_results/
+.venv/
+__pycache__/
+.pytest_cache/
+*.pyc
+*.sqlite
+*.sqlite-*
+*.db
+*.parquet
+*.zip
+*.tar
+*.tar.gz
+*.csv.gz
+*.bson
+*.dump
+*.backup
+dumps/
+backups/
+volumes/
+docker-volumes/
+tmp/
+temp/
+.cache/
+*.pem
+*.key
+*.p12
+*.log
+
+# Reviewed bounded historical evidence; new logs require explicit review
+!research/datasets/results/download.log
+!research/datasets/results/offline_run.log
+!research/datasets/results/phase3/run.log
+!research/datasets/results/phase3/postgres_execution.log
+!research/datasets/results/phase3/smartcity-phase3-proof-0c7789d6bb.log
+!research/datasets/results/phase3/smartcity-phase3-proof-0312c95cf8.log
+!research/datasets/results/phase3/smartcity-phase3-proof-1c9485d894.log
+!research/datasets/results/phase3/smartcity-phase3-proof-98037d38a4.log
+!research/datasets/results/phase5/prepare.log
+!research/datasets/results/phase5/mongodb_execution.log
+!research/datasets/results/phase5/mongodb_server.log
+!research/datasets/results/phase5/mongodb8_server.log
+
+# Full academic PDF transcriptions: local evidence, redistribution not confirmed
+research/datasets/results/phase3/academic_original.txt
+research/datasets/results/phase4/E_original.txt
+research/datasets/results/phase4/P_original.txt
+research/datasets/results/phase4/I_original.txt
