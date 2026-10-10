@@ -1,6 +1,6 @@
 # Modelos y pruebas técnicas — preliminares de Fase 5
 
-Contrato: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md), pendiente de revisión conjunta. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos. Los [diagramas](diagramas.md) representan el DDL real de prueba y el flujo propuesto, no un despliegue definitivo.
+Contrato histórico de los diagramas y DDL: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md), pendiente de revisión conjunta. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md); no reinterpreta ni modifica la evidencia histórica. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos. Los [diagramas](diagramas.md) representan el DDL real de prueba y el flujo propuesto, no un despliegue definitivo.
 
 ## PostgreSQL: doce tablas en `draft5`
 

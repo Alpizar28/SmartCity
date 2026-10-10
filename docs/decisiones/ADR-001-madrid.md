@@ -8,7 +8,7 @@ El proyecto requiere fuentes urbanas/IoT, modelos relacional y documental, consu
 
 ## Recomendación propuesta
 
-Usar aire, meteorología y tráfico de Madrid en **enero de 2025**, con inventarios auxiliares versionados. Mantener accidentes de 2026 y energía mensual como complementos separados. Revisar `madrid-draft-v1`, sin llamar sensor a un canal ni fabricar datos faltantes.
+Usar aire, meteorología y tráfico de Madrid en **enero de 2025**, con inventarios auxiliares versionados. Mantener accidentes de 2026 y energía mensual como complementos separados. `madrid-draft-v1` es el contrato histórico revisado por este ADR; el contrato provisional vigente es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md). No llamar sensor a un canal ni fabricar datos faltantes.
 
 La comparación histórica de Fase 4 otorga Madrid **63,665/100**, Londres **49,345/100** y Nueva York **46,345/100**. Son puntuaciones técnicas de planificación, no notas académicas. Madrid reduce trabajo incremental y ofrece procedencia municipal, licencia documentada, snapshots locales y relaciones exploratorias defendibles. Evidencia: [selección y matriz](../datasets/seleccion_dataset.md), [04_scores.csv](../../research/datasets/04_scores.csv), [subcriterios](../../research/datasets/results/phase4/subscores.csv).
 
