@@ -1,12 +1,14 @@
 # Contrato provisional del dataset — `madrid-draft-v1-frozen`
 
 **Estado:** interfaz provisional congelada para desarrollo; no autoriza una carga definitiva ni cambios en PostgreSQL, MongoDB o el servidor.  
-**Base revisada:** `origin/docs/dataset-research`, commit `d1555d9` (contrato `madrid-draft-v1`, diccionario de 75 entradas y manifiesto Fase 5).  
+**Base revisada:** [`research/datasets/05_data_contract.md`](research/datasets/05_data_contract.md), diccionario de 75 entradas y manifiesto de Fase 5.
 **Alcance:** lecturas reales de Madrid de enero de 2025: calidad del aire, meteorología y tráfico. Los originales y sus SHA-256 son los del manifiesto Fase 5. No incluye accidentes 2026 ni energía mensual en este contrato.
 
 ## Contrato que queda congelado
 
 La interfaz se llama **`madrid-draft-v1-frozen`**. Se congelan nombres, tipos lógicos, nulabilidad indicada y reglas de procedencia de los siguientes campos de lectura:
+
+`madrid-draft-v1` es el contrato histórico/preliminar usado en Fase 5. Sus scripts, resultados y `schema_version='madrid-draft-v1'` se conservan como evidencia y no se reescriben. `madrid-draft-v1-frozen` es el contrato provisional vigente para desarrollar ahora; no autoriza cargas, migraciones ni cambios a la evidencia histórica.
 
 `source_id`, `source_version`, `station_id`, `channel_id`, `measurement_type`, `value`, `original_time`, `original_timezone`, `timestamp_role`, `timestamp_status`, `quality_flag`, `raw_reference`, `data_origin`, `schema_version`, `catalog_version` y `transformation_method`.
 
