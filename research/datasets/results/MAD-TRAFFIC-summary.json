@@ -1,0 +1,71 @@
+{
+  "source": "MAD-TRAFFIC",
+  "observations": 677724,
+  "entities": 242,
+  "variables": [
+    "intensidad"
+  ],
+  "date_min": "2025-01-01 00:00:00",
+  "date_max": "2025-01-31 23:45:00",
+  "invalid_dates": 0,
+  "missing_values": 0,
+  "unique_keys": 677724,
+  "duplicate_keys": 0,
+  "valid_observations": 674704,
+  "quality_counts": {
+    "valid": 674704,
+    "unknown": 3020
+  },
+  "zone_counts": {
+    "8": 77767,
+    "5": 62234,
+    "15": 59062,
+    "20": 58494,
+    "16": 49847,
+    "9": 44443,
+    "11": 42166,
+    "13": 32550,
+    "4": 32184,
+    "2": 32060,
+    "6": 29044,
+    "10": 27203,
+    "14": 17647,
+    "12": 17617,
+    "3": 17484,
+    "18": 14793,
+    "7": 14784,
+    "17": 14637,
+    "1": 13028,
+    "19": 8863,
+    "21": 5922,
+    "unmapped": 5895
+  },
+  "coordinate_valid_rows": 674762,
+  "coordinate_missing_rows": 2962,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 241,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "intensidad",
+      "unit": "veh/h",
+      "n": 677724,
+      "nonnull": 677724,
+      "min": 0.0,
+      "max": 20969.0,
+      "mean": 336.8396943298452,
+      "median": 141.0,
+      "p01": 0.0,
+      "p99": 2988.0,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 59882
+    }
+  ],
+  "physical_domain_checks": [
+    {
+      "variable": "intensidad",
+      "rule": "nonnegative measured speed/consumption/count/intensity expected; investigate negatives without deletion",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    }
+  ]
+}

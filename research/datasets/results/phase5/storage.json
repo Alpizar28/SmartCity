@@ -1,0 +1,11 @@
+{
+  "measured_sample_bytes": {
+    "sample.extjson": 10649925,
+    "sample.csv": 1847440,
+    "sample.parquet": 368677
+  },
+  "measured_traffic_cache_bytes": 5739623,
+  "measured_mean_serialized_traffic_json_bytes": 2017.7646666666667,
+  "estimated_json_bytes_674704": 1361393892,
+  "not_BSON_indexes_WAL_or_remote_benchmark": true
+}

@@ -1,0 +1,60 @@
+{
+  "PG01": {
+    "NYC-AIR:88101:Micrograms/cubic meter (LC)": 9
+  },
+  "PG02": {
+    "NYC-AIR:36-005-0110": 3,
+    "NYC-AIR:36-005-0112": 1,
+    "NYC-AIR:36-047-0052": 1,
+    "NYC-AIR:36-047-0118": 1,
+    "NYC-AIR:36-081-0124": 3
+  },
+  "PG03": {
+    "unknown_status": 9,
+    "known_status": 0
+  },
+  "PG04": {
+    "known_owner": 0,
+    "unknown_owner": 9
+  },
+  "PG05": {
+    "NYC-AIR:36-005-0110": 3,
+    "NYC-AIR:36-005-0112": 1,
+    "NYC-AIR:36-047-0052": 1,
+    "NYC-AIR:36-047-0118": 1,
+    "NYC-AIR:36-081-0124": 3
+  },
+  "PG06": {
+    "known_installation_date": 0
+  },
+  "PG07": {
+    "without_activity_in_loaded_window": 0,
+    "independent_inventory_test_pending": true
+  },
+  "PG08": {
+    "counts": {
+      "Bronx": 4,
+      "Brooklyn": 2,
+      "Queens": 3
+    },
+    "ranks": {
+      "Bronx": 1,
+      "Brooklyn": 3,
+      "Queens": 2
+    }
+  },
+  "PG09": {
+    "NYC-AIR:88101:Micrograms/cubic meter (LC)": 9
+  },
+  "PG10": {
+    "NYC-AIR:36-005-0110": 3,
+    "NYC-AIR:36-005-0112": 1,
+    "NYC-AIR:36-047-0052": 1,
+    "NYC-AIR:36-047-0118": 1,
+    "NYC-AIR:36-081-0124": 3
+  },
+  "readings": 112070,
+  "sum_values": 12386118.1,
+  "min_value": 0.0,
+  "max_value": 1698.0
+}

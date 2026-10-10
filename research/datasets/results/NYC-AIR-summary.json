@@ -1,0 +1,45 @@
+{
+  "source": "NYC-AIR",
+  "observations": 38290,
+  "entities": 9,
+  "variables": [
+    "88101"
+  ],
+  "date_min": "2023-01-01 05:00:00+00:00",
+  "date_max": "2024-01-01 04:00:00+00:00",
+  "invalid_dates": 0,
+  "missing_values": 0,
+  "unique_keys": 38290,
+  "duplicate_keys": 0,
+  "valid_observations": 36498,
+  "quality_counts": {
+    "valid": 36498,
+    "qualified": 1792
+  },
+  "zone_counts": {
+    "Bronx": 17342,
+    "Queens": 13377,
+    "Brooklyn": 7571
+  },
+  "coordinate_valid_rows": 38290,
+  "coordinate_missing_rows": 0,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 5,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "88101",
+      "unit": "Micrograms/cubic meter (LC)",
+      "n": 38290,
+      "nonnull": 38290,
+      "min": 0.3,
+      "max": 412.0,
+      "mean": 10.013695481849048,
+      "median": 7.2,
+      "p01": 1.5889999999999986,
+      "p99": 53.4,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 1999
+    }
+  ],
+  "physical_domain_checks": []
+}

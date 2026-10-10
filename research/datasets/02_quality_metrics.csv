@@ -1,0 +1,330 @@
+source,attribute,rows,null_count,null_pct,unique_nonnull,inferred_type,declared_type,minimum,maximum,mean,median,iqr_outliers
+LON-AIR-META,@LocalAuthorityCode,258,0,0.0,33,numeric,not documented/checked,1.0,33.0,17.75968992248062,18.0,0.0
+LON-AIR-META,@LocalAuthorityName,258,0,0.0,33,string,not documented/checked,,,,,
+LON-AIR-META,@SiteCode,258,0,0.0,258,string,not documented/checked,,,,,
+LON-AIR-META,@SiteName,258,0,0.0,256,string,not documented/checked,,,,,
+LON-AIR-META,@SiteType,258,0,0.0,6,string,not documented/checked,,,,,
+LON-AIR-META,@DateClosed,258,73,28.294573643410853,129,string,not documented/checked,,,,,
+LON-AIR-META,@DateOpened,258,0,0.0,242,string,not documented/checked,,,,,
+LON-AIR-META,@Latitude,258,2,0.7751937984496124,237,numeric,not documented/checked,50.9112219333093,51.66864334727,51.49185913447406,51.494869,17.0
+LON-AIR-META,@Longitude,258,2,0.7751937984496124,237,numeric,not documented/checked,-0.460826,0.225359558329898,-0.11336250842382879,-0.125255868303007,0.0
+LON-AIR-META,@LatitudeWGS84,258,21,8.13953488372093,213,numeric,not documented/checked,6677125.85831,6740432.24987404,6709132.604497336,6709197.13236,17.0
+LON-AIR-META,@LongitudeWGS84,258,21,8.13953488372093,213,numeric,not documented/checked,-51298.9156643,25086.9112787,-13353.453834013508,-14140.580957,0.0
+LON-AIR-META,@DisplayOffsetX,258,0,0.0,18,numeric,not documented/checked,-900.0,600.0,15.271317829457365,0.0,39.0
+LON-AIR-META,@DisplayOffsetY,258,0,0.0,16,numeric,not documented/checked,-400.0,750.0,13.604651162790697,0.0,40.0
+LON-AIR-META,@DataOwner,258,0,0.0,33,string,not documented/checked,,,,,
+LON-AIR-META,@DataManager,258,0,0.0,1,string,not documented/checked,,,,,
+LON-AIR-META,@SiteLink,258,0,0.0,258,string,not documented/checked,,,,,
+LON-AIR,site,7440,0,0.0,5,string,not documented/checked,,,,,
+LON-AIR,@MeasurementDateGMT,7440,0,0.0,1488,string,not documented/checked,,,,,
+LON-AIR,@Value,7440,117,1.5725806451612903,1412,numeric,not documented/checked,-0.5,280.7,54.44548682234059,50.2,179.0
+LON-COUNTS,id,100,0,0.0,100,numeric,not documented/checked,31033.0,50644.0,41770.18,49490.5,0.0
+LON-COUNTS,count_point_id,100,0,0.0,5,numeric,not documented/checked,6001.0,6077.0,6041.72,6071.0,0.0
+LON-COUNTS,direction_of_travel,100,0,0.0,4,string,not documented/checked,,,,,
+LON-COUNTS,year,100,0,0.0,1,numeric,not documented/checked,2013.0,2013.0,2013.0,2013.0,0.0
+LON-COUNTS,count_date,100,0,0.0,5,string,not documented/checked,,,,,
+LON-COUNTS,hour,100,0,0.0,12,numeric,not documented/checked,7.0,18.0,12.55,13.0,0.0
+LON-COUNTS,region_id,100,0,0.0,1,numeric,not documented/checked,6.0,6.0,6.0,6.0,0.0
+LON-COUNTS,local_authority_id,100,0,0.0,3,numeric,not documented/checked,57.0,93.0,67.8,57.0,24.0
+LON-COUNTS,road_name,100,0,0.0,4,string,not documented/checked,,,,,
+LON-COUNTS,road_category,100,0,0.0,2,string,not documented/checked,,,,,
+LON-COUNTS,road_type,100,0,0.0,1,string,not documented/checked,,,,,
+LON-COUNTS,start_junction_road_name,100,0,0.0,5,string,not documented/checked,,,,,
+LON-COUNTS,end_junction_road_name,100,0,0.0,5,string,not documented/checked,,,,,
+LON-COUNTS,easting,100,0,0.0,5,numeric,not documented/checked,508900.0,538180.0,522845.6,520760.0,48.0
+LON-COUNTS,northing,100,0,0.0,5,numeric,not documented/checked,178400.0,195000.0,186319.2,189330.0,0.0
+LON-COUNTS,latitude,100,0,0.0,5,numeric,not documented/checked,51.49406628,51.64084978,51.56228920720002,51.58907965,0.0
+LON-COUNTS,longitude,100,0,0.0,5,numeric,not documented/checked,-0.43270171,-0.00983855,-0.22914488800000002,-0.2562403,48.0
+LON-COUNTS,link_length_km,100,0,0.0,5,numeric,not documented/checked,0.5,6.8,3.0240000000000005,2.1,24.0
+LON-COUNTS,link_length_miles,100,0,0.0,5,numeric,not documented/checked,0.3,4.2,1.8680000000000003,1.3,24.0
+LON-COUNTS,pedal_cycles,100,0,0.0,11,numeric,not documented/checked,0.0,13.0,1.03,0.0,25.0
+LON-COUNTS,two_wheeled_motor_vehicles,100,0,0.0,52,numeric,not documented/checked,9.0,102.0,38.32,32.0,3.0
+LON-COUNTS,cars_and_taxis,100,0,0.0,98,numeric,not documented/checked,1016.0,4301.0,2279.32,2135.5,0.0
+LON-COUNTS,buses_and_coaches,100,0,0.0,44,numeric,not documented/checked,5.0,69.0,25.26,21.0,3.0
+LON-COUNTS,lgvs,100,0,0.0,88,numeric,not documented/checked,189.0,931.0,476.08,465.0,3.0
+LON-COUNTS,hgvs_2_rigid_axle,100,0,0.0,67,numeric,not documented/checked,18.0,158.0,85.68,83.0,0.0
+LON-COUNTS,hgvs_3_rigid_axle,100,0,0.0,28,numeric,not documented/checked,2.0,41.0,13.72,12.0,1.0
+LON-COUNTS,hgvs_4_or_more_rigid_axle,100,0,0.0,44,numeric,not documented/checked,8.0,71.0,29.9,28.0,3.0
+LON-COUNTS,hgvs_3_or_4_articulated_axle,100,0,0.0,10,numeric,not documented/checked,0.0,9.0,2.4,2.0,1.0
+LON-COUNTS,hgvs_5_articulated_axle,100,0,0.0,36,numeric,not documented/checked,0.0,53.0,14.08,11.0,5.0
+LON-COUNTS,hgvs_6_articulated_axle,100,0,0.0,48,numeric,not documented/checked,3.0,66.0,29.62,29.0,2.0
+LON-COUNTS,all_hgvs,100,0,0.0,85,numeric,not documented/checked,42.0,285.0,175.4,169.0,0.0
+LON-COUNTS,all_motor_vehicles,100,0,0.0,99,numeric,not documented/checked,1358.0,5264.0,2994.38,2894.5,0.0
+LON-ENERGY,LCLid,347547,0,0.0,120,string,not documented/checked,,,,,
+LON-ENERGY,stdorToU,347547,0,0.0,1,string,not documented/checked,,,,,
+LON-ENERGY,DateTime,347547,0,0.0,2976,string,not documented/checked,,,,,
+LON-ENERGY,KWH/hh (per half hour),347547,0,0.0,3522,numeric,not documented/checked,0.0,6.711,0.22736748122354672,0.13,30696.0
+MAD-AIR-META,CODIGO,24,0,0.0,24,numeric,not documented/checked,28079004.0,28079060.0,28079037.75,28079039.5,0.0
+MAD-AIR-META,CODIGO_CORTO,24,0,0.0,24,numeric,not documented/checked,4.0,60.0,37.75,39.5,0.0
+MAD-AIR-META,ESTACION,24,0,0.0,24,string,not documented/checked,,,,,
+MAD-AIR-META,DIRECCION,24,0,0.0,24,string,not documented/checked,,,,,
+MAD-AIR-META,LONGITUD_ETRS89,24,0,0.0,24,string,not documented/checked,,,,,
+MAD-AIR-META,LATITUD_ETRS89,24,0,0.0,24,string,not documented/checked,,,,,
+MAD-AIR-META,ALTITUD,24,0,0.0,21,numeric,not documented/checked,600.0,730.0,657.4583333333334,660.0,0.0
+MAD-AIR-META,COD_TIPO,24,0,0.0,3,string,not documented/checked,,,,,
+MAD-AIR-META,NOM_TIPO,24,0,0.0,3,string,not documented/checked,,,,,
+MAD-AIR-META,NO2,24,0,0.0,1,string,not documented/checked,,,,,
+MAD-AIR-META,SO2,24,20,83.33333333333334,1,string,not documented/checked,,,,,
+MAD-AIR-META,CO,24,20,83.33333333333334,1,string,not documented/checked,,,,,
+MAD-AIR-META,PM10,24,11,45.83333333333333,1,string,not documented/checked,,,,,
+MAD-AIR-META,PM2_5,24,16,66.66666666666666,1,string,not documented/checked,,,,,
+MAD-AIR-META,O3,24,11,45.83333333333333,1,string,not documented/checked,,,,,
+MAD-AIR-META,BTX,24,19,79.16666666666666,1,string,not documented/checked,,,,,
+MAD-AIR-META,COD_VIA,24,0,0.0,24,numeric,not documented/checked,1111.0,31000516.0,2934319.3333333335,416000.0,2.0
+MAD-AIR-META,VIA_CLASE,24,1,4.166666666666666,5,string,not documented/checked,,,,,
+MAD-AIR-META,VIA_PAR,24,2,8.333333333333332,4,string,not documented/checked,,,,,
+MAD-AIR-META,VIA_NOMBRE,24,1,4.166666666666666,23,string,not documented/checked,,,,,
+MAD-AIR-META,Fecha alta,24,0,0.0,17,string,not documented/checked,,,,,
+MAD-AIR-META,COORDENADA_X_ETRS89,24,0,0.0,24,numeric,not documented/checked,434381.6,450835.2026,442409.0120666667,441662.68885000004,0.0
+MAD-AIR-META,COORDENADA_Y_ETRS89,24,0,0.0,24,numeric,not documented/checked,4466532.455,4485548.7,4476218.935333333,4475922.641000001,0.0
+MAD-AIR-META,LONGITUD,24,0,0.0,24,numeric,not documented/checked,-3.7746101,-3.5800258,-3.6790062999999997,-3.68777935,0.0
+MAD-AIR-META,LATITUD,24,0,0.0,24,numeric,not documented/checked,40.347147,40.5180701,40.4346097375,40.43188635,0.0
+MAD-AIR,PROVINCIA,76513,0,0.0,1,numeric,official CSV numeric/date-components or flag,28.0,28.0,28.0,28.0,0.0
+MAD-AIR,MUNICIPIO,76513,0,0.0,1,numeric,official CSV numeric/date-components or flag,79.0,79.0,79.0,79.0,0.0
+MAD-AIR,ESTACION,76513,0,0.0,23,numeric,official CSV numeric/date-components or flag,4.0,60.0,35.01916014272084,38.0,0.0
+MAD-AIR,MAGNITUD,76513,0,0.0,11,numeric,official CSV numeric/date-components or flag,1.0,35.0,11.1683374067152,9.0,9054.0
+MAD-AIR,PUNTO_MUESTREO,76513,0,0.0,126,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,ANO,76513,0,0.0,2,numeric,official CSV numeric/date-components or flag,2025.0,2026.0,2025.3992132055992,2025.0,0.0
+MAD-AIR,MES,76513,0,0.0,12,numeric,official CSV numeric/date-components or flag,1.0,12.0,5.725327722086443,6.0,0.0
+MAD-AIR,DIA,76513,0,0.0,31,numeric,official CSV numeric/date-components or flag,1.0,31.0,15.708311005972842,16.0,0.0
+MAD-AIR,H01,76513,0,0.0,422,numeric,official CSV numeric/date-components or flag,0.0,458.0,19.624846758067257,9.0,7105.0
+MAD-AIR,V01,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H02,76513,0,0.0,379,numeric,official CSV numeric/date-components or flag,0.0,409.0,17.685287467489182,8.0,7353.0
+MAD-AIR,V02,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H03,76513,0,0.0,316,numeric,official CSV numeric/date-components or flag,0.0,319.0,15.888139270450772,7.0,7967.0
+MAD-AIR,V03,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H04,76513,0,0.0,294,numeric,official CSV numeric/date-components or flag,0.0,284.0,14.58076274619999,6.0,8806.0
+MAD-AIR,V04,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H05,76513,0,0.0,279,numeric,official CSV numeric/date-components or flag,0.0,288.0,13.728617359141584,6.0,8575.0
+MAD-AIR,V05,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H06,76513,0,0.0,270,numeric,official CSV numeric/date-components or flag,0.0,273.0,13.600128082809459,6.0,8197.0
+MAD-AIR,V06,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H07,76513,0,0.0,289,numeric,official CSV numeric/date-components or flag,0.0,334.0,15.398630298119272,9.0,6313.0
+MAD-AIR,V07,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H08,76513,0,0.0,357,numeric,official CSV numeric/date-components or flag,0.0,477.0,19.742169304562626,12.0,2937.0
+MAD-AIR,V08,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H09,76513,0,0.0,452,numeric,official CSV numeric/date-components or flag,0.0,634.0,23.257901271679323,13.0,2941.0
+MAD-AIR,V09,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H10,76513,0,0.0,468,numeric,official CSV numeric/date-components or flag,0.0,898.0,22.91143335119522,13.0,3019.0
+MAD-AIR,V10,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H11,76513,0,0.0,368,numeric,official CSV numeric/date-components or flag,0.0,587.0,21.261379112046317,12.0,4500.0
+MAD-AIR,V11,76513,0,0.0,3,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H12,76513,0,0.0,317,numeric,official CSV numeric/date-components or flag,0.0,319.0,20.435712885392025,11.0,6374.0
+MAD-AIR,V12,76513,0,0.0,3,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H13,76513,0,0.0,289,numeric,official CSV numeric/date-components or flag,0.0,282.0,19.96464130278515,10.0,7155.0
+MAD-AIR,V13,76513,0,0.0,3,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H14,76513,0,0.0,280,numeric,official CSV numeric/date-components or flag,0.0,280.0,19.575747912119507,9.0,7931.0
+MAD-AIR,V14,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H15,76513,0,0.0,269,numeric,official CSV numeric/date-components or flag,0.0,260.0,18.9097538980304,8.0,8781.0
+MAD-AIR,V15,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H16,76513,0,0.0,253,numeric,official CSV numeric/date-components or flag,0.0,199.0,18.382770248193115,7.0,9275.0
+MAD-AIR,V16,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H17,76513,0,0.0,259,numeric,official CSV numeric/date-components or flag,0.0,262.0,18.3366748134304,7.0,8999.0
+MAD-AIR,V17,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H18,76513,0,0.0,261,numeric,official CSV numeric/date-components or flag,0.0,248.0,18.76778848038895,7.0,8841.0
+MAD-AIR,V18,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H19,76513,0,0.0,314,numeric,official CSV numeric/date-components or flag,0.0,418.0,19.914551775515275,8.0,8809.0
+MAD-AIR,V19,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H20,76513,0,0.0,397,numeric,official CSV numeric/date-components or flag,0.0,641.0,21.535284200070578,9.0,8588.0
+MAD-AIR,V20,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H21,76513,0,0.0,471,numeric,official CSV numeric/date-components or flag,0.0,672.0,22.883401513468304,10.0,8264.0
+MAD-AIR,V21,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H22,76513,0,0.0,494,numeric,official CSV numeric/date-components or flag,0.0,614.0,23.60321775384575,12.0,6674.0
+MAD-AIR,V22,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H23,76513,0,0.0,486,numeric,official CSV numeric/date-components or flag,0.0,605.0,23.102538130775162,12.0,6187.0
+MAD-AIR,V23,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-AIR,H24,76513,0,0.0,440,numeric,official CSV numeric/date-components or flag,0.0,521.0,21.507704573079085,10.0,6714.0
+MAD-AIR,V24,76513,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-CRASH,num_expediente,33322,0,0.0,14388,string,not documented/checked,,,,,
+MAD-CRASH,fecha,33322,0,0.0,243,string,not documented/checked,,,,,
+MAD-CRASH,hora,33322,0,0.0,1181,string,not documented/checked,,,,,
+MAD-CRASH,localizacion,33322,0,0.0,11174,string,not documented/checked,,,,,
+MAD-CRASH,numero,33322,0,0.0,1423,string,not documented/checked,,,,,
+MAD-CRASH,cod_distrito,33322,0,0.0,21,numeric,not documented/checked,1.0,21.0,10.106146089670489,10.0,0.0
+MAD-CRASH,distrito,33322,0,0.0,21,string,not documented/checked,,,,,
+MAD-CRASH,tipo_accidente,33322,3,0.009003061040753857,13,string,not documented/checked,,,,,
+MAD-CRASH,estado_meteorológico,33322,3979,11.94105996038653,7,string,not documented/checked,,,,,
+MAD-CRASH,tipo_vehiculo,33322,291,0.8732969209531242,30,string,not documented/checked,,,,,
+MAD-CRASH,tipo_persona,33322,0,0.0,3,string,not documented/checked,,,,,
+MAD-CRASH,rango_edad,33322,0,0.0,18,string,not documented/checked,,,,,
+MAD-CRASH,sexo,33322,0,0.0,3,string,not documented/checked,,,,,
+MAD-CRASH,cod_lesividad,33322,14678,44.0489766520617,8,numeric,not documented/checked,1.0,14.0,10.587856683115211,14.0,0.0
+MAD-CRASH,lesividad,33322,14678,44.0489766520617,8,string,not documented/checked,,,,,
+MAD-CRASH,coordenada_x_utm,33322,8,0.024008162775343615,13970,numeric,not documented/checked,0.0,455641.06,442060.4903025755,441843.105,725.0
+MAD-CRASH,coordenada_y_utm,33322,8,0.024008162775343615,14212,numeric,not documented/checked,0.0,4490351.85,4474050.531350483,4474685.26,30.0
+MAD-CRASH,positiva_alcohol,33322,151,0.45315407238461075,2,string,not documented/checked,,,,,
+MAD-CRASH,positiva_droga,33322,33193,99.61286837524759,1,numeric,not documented/checked,1.0,1.0,1.0,1.0,0.0
+MAD-ENERGY,AÑO,35803,0,0.0,7,numeric,not documented/checked,2020.0,2026.0,2023.5131972181102,2024.0,0.0
+MAD-ENERGY,MES,35803,0,0.0,12,numeric,not documented/checked,1.0,12.0,6.411529760075971,6.0,0.0
+MAD-ENERGY,ID,35803,23470,65.55316593581544,135,numeric,not documented/checked,0.0,2520.0,927.2752777102083,906.0,0.0
+MAD-ENERGY,TIPOEDIFICIO,35803,0,0.0,11,string,not documented/checked,,,,,
+MAD-ENERGY,EDIFICIO,35803,0,0.0,245,string,not documented/checked,,,,,
+MAD-ENERGY,DIRECCION,35803,3,0.00837918610172332,227,string,not documented/checked,,,,,
+MAD-ENERGY,DISTRITO,35803,0,0.0,23,string,not documented/checked,,,,,
+MAD-ENERGY,CÓDIGO DISTRITO,35803,0,0.0,23,string,not documented/checked,,,,,
+MAD-ENERGY,BARRIO,35803,2,0.005586124067815546,94,string,not documented/checked,,,,,
+MAD-ENERGY,CÓDIGO BARRIO,35803,0,0.0,95,string,not documented/checked,,,,,
+MAD-ENERGY,COORDENADA-X,35803,0,0.0,450,string,not documented/checked,,,,,
+MAD-ENERGY,COORDENADA-Y,35803,0,0.0,451,string,not documented/checked,,,,,
+MAD-ENERGY,LONGITUD,35803,2,0.005586124067815546,448,string,not documented/checked,,,,,
+MAD-ENERGY,LATITUD,35803,0,0.0,450,string,not documented/checked,,,,,
+MAD-ENERGY,SENSOR,35803,0,0.0,979,string,not documented/checked,,,,,
+MAD-ENERGY,TIPO,35803,0,0.0,5,string,not documented/checked,,,,,
+MAD-ENERGY,CLASE,35803,0,0.0,3,string,not documented/checked,,,,,
+MAD-ENERGY,GRUPO,35803,32813,91.64874451861576,8,string,not documented/checked,,,,,
+MAD-ENERGY,UNIDADES,35803,0,0.0,5,string,not documented/checked,,,,,
+MAD-ENERGY,CONSUMO,35803,19,0.053068178644247684,23898,string,not documented/checked,,,,,
+MAD-METEO-META,CÓDIGO,26,0,0.0,26,numeric,not documented/checked,28079004.0,28079115.0,28079071.5,28079080.5,0.0
+MAD-METEO-META,CÓDIGO_CORTO,26,0,0.0,26,numeric,not documented/checked,4.0,115.0,71.5,80.5,0.0
+MAD-METEO-META,ESTACION,26,0,0.0,26,string,not documented/checked,,,,,
+MAD-METEO-META,DIRECCION,26,0,0.0,24,string,not documented/checked,,,,,
+MAD-METEO-META,LONGITUD_ETRS89,26,0,0.0,24,string,not documented/checked,,,,,
+MAD-METEO-META,LATITUD_ETRS89,26,0,0.0,24,string,not documented/checked,,,,,
+MAD-METEO-META,ALTITUD,26,0,0.0,22,numeric,not documented/checked,565.0,706.0,640.9615384615385,645.0,0.0
+MAD-METEO-META,VV (81),26,16,61.53846153846154,1,string,not documented/checked,,,,,
+MAD-METEO-META,DV (82),26,16,61.53846153846154,1,string,not documented/checked,,,,,
+MAD-METEO-META,T (83),26,1,3.8461538461538463,1,string,not documented/checked,,,,,
+MAD-METEO-META,HR (86),26,3,11.538461538461538,1,string,not documented/checked,,,,,
+MAD-METEO-META,PB (87),26,18,69.23076923076923,1,string,not documented/checked,,,,,
+MAD-METEO-META,RS (88),26,18,69.23076923076923,1,string,not documented/checked,,,,,
+MAD-METEO-META,P (89),26,16,61.53846153846154,1,string,not documented/checked,,,,,
+MAD-METEO-META,COD_VIA,26,1,3.8461538461538463,22,numeric,not documented/checked,1903.0,31001349.0,2780494.08,293200.0,2.0
+MAD-METEO-META,VIA_CLASE,26,0,0.0,7,string,not documented/checked,,,,,
+MAD-METEO-META,VIA_PAR,26,4,15.384615384615385,3,string,not documented/checked,,,,,
+MAD-METEO-META,VIA_NOMBRE,26,0,0.0,23,string,not documented/checked,,,,,
+MAD-METEO-META,NUM_VIA,26,15,57.692307692307686,9,numeric,not documented/checked,2.0,184.0,40.79090909090909,21.7,1.0
+MAD-METEO-META,COORDENADA_X_ETRS89,26,0,0.0,24,numeric,not documented/checked,434381.6,448367.6,441418.60582692304,440636.81,0.0
+MAD-METEO-META,COORDENADA_Y_ETRS89,26,0,0.0,24,numeric,not documented/checked,4466725.787,4485548.7,4474760.227038462,4474547.9875,1.0
+MAD-METEO-META,LONGITUD,26,0,0.0,24,numeric,not documented/checked,-3.7746101,-3.609031,-3.6905549423076924,-3.699462,0.0
+MAD-METEO-META,LATITUD,26,0,0.0,24,numeric,not documented/checked,40.348902,40.5180701,40.42140303461539,40.4192834,1.0
+MAD-METEO,PROVINCIA,56383,0,0.0,1,numeric,official CSV numeric/date-components or flag,28.0,28.0,28.0,28.0,0.0
+MAD-METEO,MUNICIPIO,56383,0,0.0,1,numeric,official CSV numeric/date-components or flag,79.0,79.0,79.0,79.0,0.0
+MAD-METEO,ESTACION,56383,0,0.0,26,numeric,official CSV numeric/date-components or flag,4.0,115.0,76.47065604880903,102.0,0.0
+MAD-METEO,MAGNITUD,56383,0,0.0,7,numeric,official CSV numeric/date-components or flag,81.0,89.0,84.81967969068691,86.0,0.0
+MAD-METEO,PUNTO_MUESTREO,56383,56383,100.0,0,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,ANO,56383,0,0.0,2,numeric,official CSV numeric/date-components or flag,2025.0,2026.0,2025.3995175850878,2025.0,0.0
+MAD-METEO,MES,56383,0,0.0,12,numeric,official CSV numeric/date-components or flag,1.0,12.0,5.717787276306688,6.0,0.0
+MAD-METEO,DIA,56383,0,0.0,31,numeric,official CSV numeric/date-components or flag,1.0,31.0,15.702357093450154,16.0,0.0
+MAD-METEO,H01,56383,0,0.0,749,numeric,official CSV numeric/date-components or flag,-6.3,960.0,115.80680169554654,21.0,7836.0
+MAD-METEO,V01,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H02,56383,0,0.0,742,numeric,official CSV numeric/date-components or flag,-7.2,959.0,115.21386233439158,20.5,7576.0
+MAD-METEO,V02,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H03,56383,0,0.0,743,numeric,official CSV numeric/date-components or flag,-8.0,959.0,114.69527339801003,19.6,7358.0
+MAD-METEO,V03,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H04,56383,0,0.0,740,numeric,official CSV numeric/date-components or flag,-8.7,959.0,114.98672294840644,19.0,7270.0
+MAD-METEO,V04,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H05,56383,0,0.0,740,numeric,official CSV numeric/date-components or flag,-9.5,959.0,115.09868045332811,18.4,7230.0
+MAD-METEO,V05,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H06,56383,0,0.0,738,numeric,official CSV numeric/date-components or flag,-9.9,959.0,115.27082099214302,17.8,7165.0
+MAD-METEO,V06,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H07,56383,0,0.0,733,numeric,official CSV numeric/date-components or flag,-10.2,960.0,114.72626146178814,17.1,7078.0
+MAD-METEO,V07,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H08,56383,0,0.0,733,numeric,official CSV numeric/date-components or flag,-10.6,960.0,116.71269354237981,19.9,7008.0
+MAD-METEO,V08,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H09,56383,0,0.0,739,numeric,official CSV numeric/date-components or flag,-10.6,961.0,122.66814465353032,24.2,7494.0
+MAD-METEO,V09,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H10,56383,0,0.0,928,numeric,official CSV numeric/date-components or flag,-8.5,961.0,133.09304577620912,28.2,8847.0
+MAD-METEO,V10,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H11,56383,0,0.0,1100,numeric,official CSV numeric/date-components or flag,-3.6,961.0,144.85478246989342,29.8,9858.0
+MAD-METEO,V11,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H12,56383,0,0.0,1247,numeric,official CSV numeric/date-components or flag,-1.5,961.0,156.31446535303195,30.4,10237.0
+MAD-METEO,V12,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H13,56383,0,0.0,1314,numeric,official CSV numeric/date-components or flag,-0.4,1012.0,164.94588617136372,30.2,10460.0
+MAD-METEO,V13,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H14,56383,0,0.0,1377,numeric,official CSV numeric/date-components or flag,-0.8,1078.0,169.11413369277972,30.0,10511.0
+MAD-METEO,V14,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H15,56383,0,0.0,1403,numeric,official CSV numeric/date-components or flag,-0.4,1096.0,168.56644555983183,29.0,10343.0
+MAD-METEO,V15,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H16,56383,0,0.0,1353,numeric,official CSV numeric/date-components or flag,0.0,1024.0,163.84842239682172,28.3,10387.0
+MAD-METEO,V16,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H17,56383,0,0.0,1312,numeric,official CSV numeric/date-components or flag,0.0,958.0,155.1413972296614,28.0,10667.0
+MAD-METEO,V17,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H18,56383,0,0.0,1183,numeric,official CSV numeric/date-components or flag,0.0,958.0,144.56257205185963,27.0,11129.0
+MAD-METEO,V18,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H19,56383,0,0.0,1015,numeric,official CSV numeric/date-components or flag,-0.6,959.0,134.97904155507868,26.0,10910.0
+MAD-METEO,V19,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H20,56383,0,0.0,809,numeric,official CSV numeric/date-components or flag,-1.4,959.0,126.01102282602912,25.0,10116.0
+MAD-METEO,V20,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H21,56383,0,0.0,773,numeric,official CSV numeric/date-components or flag,-3.5,959.0,119.04905911356259,24.0,8621.0
+MAD-METEO,V21,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H22,56383,0,0.0,757,numeric,official CSV numeric/date-components or flag,-4.5,960.0,115.77113846372133,21.3,8519.0
+MAD-METEO,V22,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H23,56383,0,0.0,754,numeric,official CSV numeric/date-components or flag,-4.9,960.0,114.4478176045971,21.0,8207.0
+MAD-METEO,V23,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-METEO,H24,56383,0,0.0,751,numeric,official CSV numeric/date-components or flag,-5.6,960.0,108.21774293670077,19.0,7596.0
+MAD-METEO,V24,56383,0,0.0,2,string,official CSV numeric/date-components or flag,,,,,
+MAD-TRAFFIC-META,tipo_elem,5083,0,0.0,3,string,not documented/checked,,,,,
+MAD-TRAFFIC-META,distrito,5083,5,0.09836710603974032,21,numeric,not documented/checked,1.0,21.0,10.337140606538007,10.0,0.0
+MAD-TRAFFIC-META,id,5083,0,0.0,5083,numeric,not documented/checked,1001.0,11549.0,6925.9071414518985,6085.0,0.0
+MAD-TRAFFIC-META,cod_cent,5083,0,0.0,5081,string,not documented/checked,,,,,
+MAD-TRAFFIC-META,nombre,5083,22,0.43281526657485736,4915,string,not documented/checked,,,,,
+MAD-TRAFFIC-META,utm_x,5083,0,0.0,5078,numeric,not documented/checked,429060.790454468,453194.517744769,441986.7253631389,441756.32277715,28.0
+MAD-TRAFFIC-META,utm_y,5083,0,0.0,5080,numeric,not documented/checked,4464901.554260551,4485212.99385152,4475770.578576197,4475861.435678876,0.0
+MAD-TRAFFIC-META,longitud,5083,0,0.0,5082,numeric,not documented/checked,-3.83688562997397,-3.55162282763333,-3.6839410985747145,-3.6868645748055,28.0
+MAD-TRAFFIC-META,latitud,5083,0,0.0,5082,numeric,not documented/checked,40.33245364209287,40.51561092557125,40.430543606500066,40.43151266962149,0.0
+MAD-TRAFFIC,id,677724,0,0.0,242,numeric,not documented/checked,1020.0,11380.0,6730.6979242287425,6000.0,0.0
+MAD-TRAFFIC,fecha,677724,0,0.0,2965,string,not documented/checked,,,,,
+MAD-TRAFFIC,tipo_elem,677724,0,0.0,3,string,not documented/checked,,,,,
+MAD-TRAFFIC,intensidad,677724,0,0.0,4023,numeric,not documented/checked,0.0,20969.0,336.8396943298452,141.0,59882.0
+MAD-TRAFFIC,ocupacion,677724,0,0.0,99,numeric,not documented/checked,0.0,100.0,5.0185488487939045,2.0,67016.0
+MAD-TRAFFIC,carga,677724,0,0.0,101,numeric,not documented/checked,0.0,100.0,15.721299526060756,10.0,25430.0
+MAD-TRAFFIC,vmed,677724,310,0.0457413342304537,101,numeric,not documented/checked,0.0,100.0,5.49353423460395,0.0,56923.0
+MAD-TRAFFIC,error,677724,3020,0.4456091270192586,1,string,not documented/checked,,,,,
+MAD-TRAFFIC,periodo_integracion,677724,0,0.0,30,numeric,not documented/checked,1.0,30.0,13.970873098783576,15.0,146472.0
+NYC-311,unique_key,124130,0,0.0,124130,numeric,text,56408061.0,61776878.0,57083361.33346491,56531296.5,24.0
+NYC-311,created_date,124130,0,0.0,105210,string,calendar_date,,,,,
+NYC-311,closed_date,124130,1203,0.9691452509465882,97606,string,calendar_date,,,,,
+NYC-311,agency,124130,0,0.0,14,string,text,,,,,
+NYC-311,complaint_type,124130,0,0.0,167,string,text,,,,,
+NYC-311,descriptor,124130,1090,0.8781116571336502,722,string,text,,,,,
+NYC-311,status,124130,0,0.0,7,string,text,,,,,
+NYC-311,borough,124130,0,0.0,6,string,text,,,,,
+NYC-311,latitude,124130,1833,1.4766776766293404,64647,numeric,number,40.49940871125872,40.91228642241046,40.73657672770822,40.73050893499352,0.0
+NYC-311,longitude,124130,1833,1.4766776766293404,64648,numeric,number,-74.25473090615476,-73.70074293227381,-73.92164448661765,-73.92334866500454,4810.0
+NYC-AIR,State Code,38290,0,0.0,1,numeric,not documented/checked,36.0,36.0,36.0,36.0,0.0
+NYC-AIR,County Code,38290,0,0.0,3,numeric,not documented/checked,5.0,81.0,39.85594149908592,47.0,0.0
+NYC-AIR,Site Num,38290,0,0.0,5,numeric,not documented/checked,52.0,124.0,109.5128231914338,112.0,4158.0
+NYC-AIR,Parameter Code,38290,0,0.0,1,numeric,not documented/checked,88101.0,88101.0,88101.0,88101.0,0.0
+NYC-AIR,POC,38290,0,0.0,2,numeric,not documented/checked,4.0,24.0,8.884826325411334,4.0,9352.0
+NYC-AIR,Latitude,38290,0,0.0,5,numeric,not documented/checked,40.64182,40.816,40.75830835727345,40.73614,0.0
+NYC-AIR,Longitude,38290,0,0.0,5,numeric,not documented/checked,-74.01871,-73.82153,-73.8871456223557,-73.902,0.0
+NYC-AIR,Datum,38290,0,0.0,1,string,not documented/checked,,,,,
+NYC-AIR,Parameter Name,38290,0,0.0,1,string,not documented/checked,,,,,
+NYC-AIR,Date Local,38290,0,0.0,365,string,not documented/checked,,,,,
+NYC-AIR,Time Local,38290,0,0.0,24,string,not documented/checked,,,,,
+NYC-AIR,Date GMT,38290,0,0.0,366,string,not documented/checked,,,,,
+NYC-AIR,Time GMT,38290,0,0.0,24,string,not documented/checked,,,,,
+NYC-AIR,Sample Measurement,38290,0,0.0,815,numeric,not documented/checked,0.3,412.0,10.013695481849048,7.2,1999.0
+NYC-AIR,Units of Measure,38290,0,0.0,1,string,not documented/checked,,,,,
+NYC-AIR,MDL,38290,0,0.0,1,numeric,not documented/checked,0.1,0.1,0.1,0.1,0.0
+NYC-AIR,Uncertainty,38290,38290,100.0,0,string,not documented/checked,,,,,
+NYC-AIR,Qualifier,38290,36498,95.31992687385741,6,string,not documented/checked,,,,,
+NYC-AIR,Method Type,38290,0,0.0,1,string,not documented/checked,,,,,
+NYC-AIR,Method Code,38290,0,0.0,3,numeric,not documented/checked,236.0,736.0,562.72760511883,636.0,18704.0
+NYC-AIR,Method Name,38290,0,0.0,3,string,not documented/checked,,,,,
+NYC-AIR,State Name,38290,0,0.0,1,string,not documented/checked,,,,,
+NYC-AIR,County Name,38290,0,0.0,3,string,not documented/checked,,,,,
+NYC-AIR,Date of Last Change,38290,0,0.0,25,string,not documented/checked,,,,,
+NYC-COUNTS,requestid,85106,0,0.0,26,numeric,number,35707.0,37829.0,36398.272554226496,36190.0,2118.0
+NYC-COUNTS,boro,85106,0,0.0,5,string,text,,,,,
+NYC-COUNTS,yr,85106,0,0.0,1,numeric,number,2023.0,2023.0,2023.0,2023.0,0.0
+NYC-COUNTS,m,85106,0,0.0,12,numeric,number,1.0,12.0,6.48815594670176,6.0,0.0
+NYC-COUNTS,d,85106,0,0.0,31,numeric,number,1.0,31.0,15.422990153455691,16.0,0.0
+NYC-COUNTS,hh,85106,0,0.0,24,numeric,number,0.0,23.0,11.50372476676145,12.0,0.0
+NYC-COUNTS,mm,85106,0,0.0,4,numeric,number,0.0,45.0,22.499647498413744,15.0,0.0
+NYC-COUNTS,vol,85106,0,0.0,1452,numeric,number,0.0,1698.0,157.06126477569148,72.0,9092.0
+NYC-COUNTS,segmentid,85106,0,0.0,127,numeric,number,5164.0,9003591.0,372931.42887693,110422.0,2584.0
+NYC-COUNTS,wktgeom,85106,0,0.0,128,string,text,,,,,
+NYC-COUNTS,street,85106,0,0.0,96,string,text,,,,,
+NYC-COUNTS,fromst,85106,0,0.0,82,string,text,,,,,
+NYC-COUNTS,tost,85106,0,0.0,76,string,text,,,,,
+NYC-COUNTS,direction,85106,0,0.0,4,string,text,,,,,
+NYC-ENERGY,report_year,200,0,0.0,1,numeric,number,2023.0,2023.0,2023.0,2023.0,0.0
+NYC-ENERGY,property_id,200,0,0.0,198,numeric,number,7365.0,1633227.0,1452217.635,1582242.5,11.0
+NYC-ENERGY,parent_property_id,200,0,0.0,5,string,text,,,,,
+NYC-ENERGY,electricity_use_grid_purchase,200,0,0.0,199,numeric,text,512332.3,304292281.0,22413333.478,5402900.199999999,16.0
+NYC-ENERGY,electricity_use_grid_purchase_1,200,0,0.0,199,numeric,text,150156.0,89182955.5,6568971.495999999,1583499.25,16.0
+NYC-ENERGY,direct_ghg_emissions_metric,200,0,0.0,151,numeric,text,0.0,78707.2,1032.289,214.8,16.0
+NYC-ENERGY,borough,200,8,4.0,5,string,text,,,,,
+NYC-ENERGY,latitude,200,8,4.0,190,numeric,number,40.527705,40.899295,40.739299354166654,40.7526365,23.0
+NYC-ENERGY,longitude,200,8,4.0,190,numeric,number,-74.230733,-73.734043,-73.94451288541666,-73.9687175,16.0

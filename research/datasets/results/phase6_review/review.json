@@ -1,0 +1,102 @@
+{
+  "recommendation": "APTO PARA PUBLICACION documental; push gated by authorization and Coolify verification",
+  "branch": "docs/dataset-research",
+  "main_commit": "6ad86ce6ef43e200ed554f80100455ff04461d3c",
+  "main_unchanged": true,
+  "compose_unchanged": true,
+  "staged_files": 0,
+  "candidate_files_scanned": 239,
+  "approved_path_count": 233,
+  "maximum_candidate": {
+    "path": "research/datasets/results/phase5/postgresql_sample.json",
+    "bytes": 415171
+  },
+  "secret_scan": {
+    "method": "bounded static regex scan; not proof of absence or history audit",
+    "candidate_files_scanned": 239,
+    "findings": [],
+    "placeholders_or_variables": [
+      {
+        "path": ".env.example",
+        "line": 3
+      },
+      {
+        "path": ".env.example",
+        "line": 8
+      },
+      {
+        "path": "compose.yaml",
+        "line": 8
+      },
+      {
+        "path": "compose.yaml",
+        "line": 31
+      }
+    ]
+  },
+  "local_history_commits": 1,
+  "local_history_secret_pattern_matches": 0,
+  "new_services_started": 0,
+  "remote_database_connections": 0,
+  "deployment_actions": 0,
+  "network_downloads": 0,
+  "coolify_branch_deployment_risk": "NOT VERIFIED: panel branch/autodeploy/webhook/preview rules absent from repository",
+  "tests_before": {
+    "passed": 82,
+    "failed": 0
+  },
+  "tests_after": {
+    "passed": 85,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "correction": "main ref resolution uses local main or origin/main; clean publication clone exit 128 before, exit 0 after",
+  "clone_private_inputs_present": false,
+  "clone_data_replay_claimed": false,
+  "rendered_diagrams": 5,
+  "mermaid_version": "11.12.1",
+  "foreign_keys_checked": 15,
+  "bash_env_guard_test": "passed with isolated fixture",
+  "powershell_test": "static only, pwsh unavailable",
+  "previous_madrid_test_observations": 993374,
+  "january_core_eligible": 832668,
+  "changed_existing_files_during_review": [
+    "research/datasets/results/phase6/tests.xml",
+    "research/datasets/scripts/phase6_validate_docs.py",
+    "docs/README.md"
+  ],
+  "preserved_phases": "0-5",
+  "ignored_actual_paths": [
+    ".pytest_cache/",
+    "research/datasets/.pytest_cache/",
+    "research/datasets/.venv/",
+    "research/datasets/private_results/",
+    "research/datasets/raw/",
+    "research/datasets/results/phase3/academic_original.txt",
+    "research/datasets/results/phase4/E_original.txt",
+    "research/datasets/results/phase4/I_original.txt",
+    "research/datasets/results/phase4/P_original.txt",
+    "research/datasets/scripts/__pycache__/",
+    "research/datasets/tests/__pycache__/"
+  ],
+  "publication_allowlist": "approved_paths.txt",
+  "notes": [
+    "Local paths in manifests are provenance, not credentials.",
+    "Pattern scan and manual profile review are not an absolute security or legal guarantee.",
+    "URLs/licenses not rechecked live.",
+    "Existing phase6 generated summaries may be refreshed after this independent review."
+  ],
+  "documented_bash_blocks_syntax_checked": 12,
+  "python_script_syntax_checked": 25,
+  "javascript_syntax_checked": 2,
+  "links_internal_checked": 276,
+  "historical_manifest_entries_verified": 396,
+  "staging_dry_run_approved_paths": 233,
+  "candidate_bytes_excluding_this_report": 3439881,
+  "review_scope_complete": true,
+  "tests_before_seconds": 12.13,
+  "tests_after_seconds": 11.62,
+  "protected_compose_sha256": "66e344f1171d1be02471d4e18a1a14ed1c47d5e351dcfe208437e64ff79bcdf6",
+  "phase6_generated_summaries_refreshed": true
+}

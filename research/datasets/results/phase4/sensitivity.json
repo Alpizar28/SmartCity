@@ -1,0 +1,17 @@
+{
+  "Madrid": {
+    "base": 63.665,
+    "without_volume": 54.665,
+    "without_spatial_temporal": 56.165
+  },
+  "NYC": {
+    "base": 46.345,
+    "without_volume": 41.595,
+    "without_spatial_temporal": 41.345
+  },
+  "London": {
+    "base": 49.345,
+    "without_volume": 39.345,
+    "without_spatial_temporal": 46.845
+  }
+}

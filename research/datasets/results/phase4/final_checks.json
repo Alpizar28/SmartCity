@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-10-10T05:37:20.611447+00:00",
+  "previous_manifest_entries_verified": 333,
+  "required_deliverables": 7,
+  "tests_passed": 48,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "prior_files_unchanged": true,
+  "python_compilation_passed": true,
+  "team_approval": false,
+  "native_mongodb_executed": false,
+  "remote_changes": false,
+  "phase5_started": false,
+  "all_checks_passed": true
+}

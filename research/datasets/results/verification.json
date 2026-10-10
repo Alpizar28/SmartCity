@@ -1,0 +1,10 @@
+{
+  "http_attempt_records": 168,
+  "files_hash_verified": 165,
+  "downloaded_entity_bytes": 311375862,
+  "budget_bytes": 1000000000,
+  "remaining_bytes": 688624138,
+  "prior_phase_files": 10,
+  "derived_raw_artifacts": 5,
+  "all_checks_passed": true
+}

@@ -1,0 +1,53 @@
+{
+  "source": "NYC-COUNTS",
+  "observations": 85106,
+  "entities": 150,
+  "variables": [
+    "volume"
+  ],
+  "date_min": "2023-01-06 00:00:00",
+  "date_max": "2023-12-10 23:45:00",
+  "invalid_dates": 0,
+  "missing_values": 0,
+  "unique_keys": 80339,
+  "duplicate_keys": 4767,
+  "valid_observations": 85106,
+  "quality_counts": {
+    "valid": 85106
+  },
+  "zone_counts": {
+    "Brooklyn": 33486,
+    "Queens": 17681,
+    "Manhattan": 16374,
+    "Bronx": 14297,
+    "Staten Island": 3268
+  },
+  "coordinate_valid_rows": 0,
+  "coordinate_missing_rows": 85106,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 0,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "volume",
+      "unit": "vehicles/15min",
+      "n": 85106,
+      "nonnull": 85106,
+      "min": 0.0,
+      "max": 1698.0,
+      "mean": 157.06126477569148,
+      "median": 72.0,
+      "p01": 0.0,
+      "p99": 1199.949999999997,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 9092
+    }
+  ],
+  "physical_domain_checks": [
+    {
+      "variable": "volume",
+      "rule": "nonnegative measured speed/consumption/count/intensity expected; investigate negatives without deletion",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    }
+  ]
+}

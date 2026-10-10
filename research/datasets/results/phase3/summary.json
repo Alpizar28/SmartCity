@@ -1,0 +1,96 @@
+{
+  "coverage": {
+    "Madrid": {
+      "PostgreSQL": {
+        "PARCIAL": 6,
+        "NO_CUMPLE": 2,
+        "CUMPLE_VERIFICADO": 2
+      },
+      "MongoDB": {
+        "FACTIBLE_NO_EJECUTADO": 8,
+        "PARCIAL": 1,
+        "NO_CUMPLE": 1
+      },
+      "Spark": {
+        "FACTIBLE_NO_EJECUTADO": 8,
+        "PARCIAL": 2
+      },
+      "Dashboard": {
+        "PARCIAL": 12,
+        "NO_CUMPLE": 6,
+        "FACTIBLE_NO_EJECUTADO": 3
+      }
+    },
+    "NYC": {
+      "PostgreSQL": {
+        "PARCIAL": 6,
+        "NO_CUMPLE": 2,
+        "CUMPLE_VERIFICADO": 2
+      },
+      "MongoDB": {
+        "FACTIBLE_NO_EJECUTADO": 7,
+        "PARCIAL": 2,
+        "NO_CUMPLE": 1
+      },
+      "Spark": {
+        "FACTIBLE_NO_EJECUTADO": 6,
+        "PARCIAL": 3,
+        "NO_VERIFICADO": 1
+      },
+      "Dashboard": {
+        "PARCIAL": 9,
+        "NO_CUMPLE": 8,
+        "NO_VERIFICADO": 2,
+        "FACTIBLE_NO_EJECUTADO": 2
+      }
+    },
+    "London": {
+      "PostgreSQL": {
+        "PARCIAL": 6,
+        "NO_CUMPLE": 2,
+        "CUMPLE_VERIFICADO": 2
+      },
+      "MongoDB": {
+        "FACTIBLE_NO_EJECUTADO": 7,
+        "PARCIAL": 1,
+        "NO_CUMPLE": 1,
+        "NO_VERIFICADO": 1
+      },
+      "Spark": {
+        "FACTIBLE_NO_EJECUTADO": 7,
+        "PARCIAL": 2,
+        "NO_VERIFICADO": 1
+      },
+      "Dashboard": {
+        "PARCIAL": 8,
+        "NO_CUMPLE": 8,
+        "NO_VERIFICADO": 4,
+        "FACTIBLE_NO_EJECUTADO": 1
+      }
+    }
+  },
+  "postgresql_strict_verified": {
+    "Madrid": 2,
+    "NYC": 2,
+    "London": 2
+  },
+  "postgresql_functional_logical_scope": {
+    "Madrid": 6,
+    "NYC": 6,
+    "London": 6
+  },
+  "mongodb_data_supported_not_native": {
+    "Madrid": 8,
+    "NYC": 7,
+    "London": 7
+  },
+  "mongodb_native_executed": false,
+  "postgres_rows": {
+    "Madrid": 993374,
+    "NYC": 112070,
+    "London": 354637
+  },
+  "winner_selected": false,
+  "phase4_started": false,
+  "synthetic_measurements_generated": 0
+}

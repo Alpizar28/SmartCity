@@ -1,0 +1,11 @@
+{
+  "checked_at_utc": "2026-10-10T05:04:12.916560+00:00",
+  "required_deliverables": 8,
+  "compliance_matrix_rows": 153,
+  "origin_matrix_rows": 39,
+  "all_prior_inputs_unchanged": true,
+  "native_postgresql_executed": true,
+  "container_and_anonymous_volumes_removed": true,
+  "python_compilation_passed": true,
+  "all_checks_passed": true
+}

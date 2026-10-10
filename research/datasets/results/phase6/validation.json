@@ -1,0 +1,109 @@
+{
+  "phase": 6,
+  "branch": "docs/dataset-research",
+  "main_commit": "6ad86ce6ef43e200ed554f80100455ff04461d3c",
+  "main_reference": "refs/heads/main",
+  "remote_configured": "https://github.com/Alpizar28/SmartCity",
+  "network_requests": 0,
+  "services_started": 0,
+  "historical_outputs_regenerated": false,
+  "required_documents": 14,
+  "candidate_inputs": 236,
+  "inventory_scope": "tracked and nonignored untracked files, excluding this validator's three generated reports",
+  "links": {
+    "internal_checked": 276,
+    "external_references": 65,
+    "external_live_requests": 0,
+    "scope": "Markdown inline and reference links in candidate files",
+    "local_only_links": []
+  },
+  "metrics": {
+    "eligible_by_source": {
+      "MAD-AIR": 91959,
+      "MAD-METEO": 66005,
+      "MAD-TRAFFIC": 674704
+    },
+    "eligible_total": 832668,
+    "planning_scores": {
+      "Madrid": "63.665",
+      "NYC": "46.345",
+      "London": "49.345"
+    },
+    "catalog_sources": 30,
+    "dictionary_entries": 75,
+    "native_samples": 5000,
+    "native_evidence_mode": "historical results verified, engines not rerun"
+  },
+  "diagrams": {
+    "sql_tables": 12,
+    "ddl_foreign_keys": 15,
+    "er_relationships": 15,
+    "mermaid_blocks": 5,
+    "fk_and_nullability_match": true,
+    "validation": "text structure and exact DDL topology; no Mermaid parser/render or visual test"
+  },
+  "ignore_rules": {
+    "ignored_probes": 15,
+    "versionable_probes": 9
+  },
+  "secrets": {
+    "method": "bounded static regex scan; not proof of absence or history audit",
+    "candidate_files_scanned": 236,
+    "findings": [],
+    "placeholders_or_variables": [
+      {
+        "path": ".env.example",
+        "line": 3
+      },
+      {
+        "path": ".env.example",
+        "line": 8
+      },
+      {
+        "path": "compose.yaml",
+        "line": 8
+      },
+      {
+        "path": "compose.yaml",
+        "line": 31
+      }
+    ]
+  },
+  "candidate_files_over_1_MiB": [],
+  "documented_script_paths_checked": [
+    "phase5_contract.py",
+    "phase5_mongo_test.js",
+    "phase5_native.py",
+    "phase5_postgres_sample.py",
+    "phase5_postgresql.sql",
+    "phase5_postgresql_queries.sql",
+    "phase5_prepare.py",
+    "phase6_validate_docs.py",
+    "requirements.lock"
+  ],
+  "phase6_tests": {
+    "tests": 85,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "historical_manifests": {
+    "manifest_entries_verified": 396,
+    "missing_local_inputs": [],
+    "require_local_evidence": true,
+    "missing_inputs_are_not_data_replay_success": true
+  },
+  "baseline": {
+    "prior_files_checked": 438,
+    "changed_prior_files": [
+      ".gitignore",
+      "README.md",
+      "docs/README.md"
+    ],
+    "main_unchanged": true,
+    "head_unchanged": true,
+    "compose_unchanged": true
+  },
+  "failures": [],
+  "all_checks_passed": true
+}

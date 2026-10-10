@@ -1,0 +1,74 @@
+{
+  "source": "LON-ENERGY",
+  "rows": 347547,
+  "columns": 4,
+  "keys": [
+    "LCLid",
+    "DateTime"
+  ],
+  "duplicate_key_rows": 233,
+  "exact_duplicate_rows": 233,
+  "required_missing_rows": 0,
+  "attributes": [
+    {
+      "source": "LON-ENERGY",
+      "attribute": "LCLid",
+      "rows": 347547,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 120,
+      "inferred_type": "string",
+      "declared_type": "not documented/checked",
+      "minimum": null,
+      "maximum": null,
+      "mean": null,
+      "median": null,
+      "iqr_outliers": null
+    },
+    {
+      "source": "LON-ENERGY",
+      "attribute": "stdorToU",
+      "rows": 347547,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 1,
+      "inferred_type": "string",
+      "declared_type": "not documented/checked",
+      "minimum": null,
+      "maximum": null,
+      "mean": null,
+      "median": null,
+      "iqr_outliers": null
+    },
+    {
+      "source": "LON-ENERGY",
+      "attribute": "DateTime",
+      "rows": 347547,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 2976,
+      "inferred_type": "string",
+      "declared_type": "not documented/checked",
+      "minimum": null,
+      "maximum": null,
+      "mean": null,
+      "median": null,
+      "iqr_outliers": null
+    },
+    {
+      "source": "LON-ENERGY",
+      "attribute": "KWH/hh (per half hour)",
+      "rows": 347547,
+      "null_count": 0,
+      "null_pct": 0.0,
+      "unique_nonnull": 3522,
+      "inferred_type": "numeric",
+      "declared_type": "not documented/checked",
+      "minimum": 0.0,
+      "maximum": 6.711,
+      "mean": 0.22736748122354672,
+      "median": 0.13,
+      "iqr_outliers": 30696
+    }
+  ]
+}

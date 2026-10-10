@@ -1,0 +1,323 @@
+                       calidad del aire.
+INTÉRPRETE DE FICHEROS DE DATOS HORARIOS, DIARIOS Y TIEMPO REAL
+
+
+
+                     Índice                                          Página
+                     1.- Formato de datos                                2
+                     2.- Archivos en formato TXT                         2
+
+                     2.1.- Datos horarios y en tiempo real               2
+
+                     2.2.- Datos diarios                                 3
+
+                     3.- Archivos en formato CSV                         3
+
+                     3.1.- Datos horarios y en tiempo real               3
+
+                     3.2.- Datos diarios                                 4
+
+                     4.- Archivos en formato XML                         4
+                     4.1.- Datos horarios y en tiempo real               4
+                     4.2.- Datos diarios                                 5
+                     5.- Anexo I. Códigos de estaciones                  6
+                     6.- Anexo II. Magnitudes, Unidades y Técnicas       7
+                     7.- Notas                                           8
+
+
+
+
+                                                                              1
+1.- Formato de datos
+Los datos en los diferentes conjuntos de calidad del aire se proporcionan en tres formatos distintos:
+
+                                       Ficheros.txt
+
+                                       Ficheros.csv
+
+                                        Ficheros.xml
+
+2.- Archivos en formato TXT
+Un archivo TXT es un archivo de texto sin formato que no requiere de ningún programa especial para su
+creación y apertura. Para abrir un archivo TXT, la mayoría de los sistemas operativos ofrecen programas de
+procesamiento de textos.
+
+
+2.1.- Datos horarios y en tiempo real:
+Cada registro está estructurado de la siguiente forma:
+
+2.1.1.- Ficheros anteriores a octubre de 2017:
+
+          Ejemplo de estructura de los datos
+          28,079,004,01,38,02,24,07,01,00005V,….,….,
+
+
+
+Los caracteres representan la siguiente información:
+                                                     PERIODO                                          CÓDIGO DE
+       PROVINCIA MUNICIPIO ESTACIÓN MAGNITUD TÉCNICA ANÁLISIS                        AÑO MES DÍA DATO VALIDACIÓN
+
+             28             079             004             01             38   02   24     07   01   00005   V
+
+
+
+2.1.2.- Ficheros desde octubre de 2017*:
+* A partir de esta fecha el formato del año pasó a tener cuatro dígitos.
+
+          Ejemplo de estructura de los datos
+          28,079,004,01,38,02,2024,01,01,00023V,….,….,
+
+
+
+Los caracteres se corresponden con la siguiente información:
+                                                     PERIODO                                          CÓDIGO DE
+       PROVINCIA MUNICIPIO ESTACIÓN MAGNITUD TÉCNICA ANÁLISIS                        AÑO MES DÍA DATO VALIDACIÓN
+
+             28             079             004             01             38   02   2024   01   01   00023   V
+
+
+
+
+                                                                                                                   2
+Para los archivos de datos horarios y en tiempo real, el código del periodo de análisis es 02 y las columnas
+correspondientes a los datos son 24, una por hora, cada una de ellas con su correspondiente código de
+validación.
+2.2.-Datos diarios:
+       Ejemplo de estructura de los datos
+       28,079,004,01,38,02,2024,01,01,00008V,….,….,
+
+
+
+
+Los caracteres se corresponden con lo siguiente:
+
+                                                                  PERIODO                                 CÓDIGO DE
+     PROVINCIA MUNICIPIO ESTACIÓN MAGNITUD TÉCNICA                ANÁLISIS        AÑO    MES DATO         VALIDACIÓN
+
+           28          079         004         01         38          04          2024    01 00008               V
+
+
+
+Para los archivos de datos diarios, el código del periodo de análisis es 04 y las columnas correspondientes a
+los datos son 28, 29, 30 o 31, dependiendo de los días que tenga el mes consultado, cada una de ellas con su
+correspondiente código de validación.
+*Hasta 2010 los ficheros contienen un código de dos dígitos “00” en los datos diarios, que separaban el
+código del mes del código de los datos, pero sin ningún valor.
+
+
+3.- Archivos en formato CSV
+Un archivo CSV (valores separados por comas) es un archivo de texto que tiene un formato específico que
+permite guardar los datos en un formato de tabla estructurada, lo que facilita que sean accesibles
+automáticamente desde programas como Excel, entre otros.
+
+3.1.- Datos horarios y en tiempo real
+La estructura de los registros es la siguiente:
+  PROVINCIA MUNICIPIO ESTACION MAGNITUD PUNTO_MUESTREO AÑO MES DIA                       H01   V01 H02      V02
+
+      28          79           4           1          28079004_1_38    2019   1     1    23    V     17      V
+
+
+El campo punto de muestreo incluye el código de la estación completo (provincia, municipio y estación) más
+la magnitud y la técnica de muestreo.
+
+
+
+
+                                                                                                                       3
+H01 corresponde al dato de la 1 de la mañana de ese día, V01 es el código de validación, H02 al de las 2 de
+la mañana, V02 y así sucesivamente.
+
+3.2.-Datos diarios
+La estructura de los registros es la siguiente:
+  PROVINCIA MUNICIPIO ESTACION MAGNITUD PUNTO_MUESTREO AÑO MES D01                V01 D02   V02
+
+     28          79          4           1        28079004_1_38   2019   1   18   V    20   V
+
+
+
+El campo punto de muestreo incluye el código de la estación completo (provincia, municipio y estación), más
+la magnitud y la técnica de muestreo.
+D01 corresponde al dato del primer día del mes, D02 al del segundo día y así sucesivamente.
+
+4.- Archivos en formato XML
+Un archivo XML (archivo de marcado extensible) es el estándar para el intercambio de datos entre dos
+sistemas y puede ser leído tanto por humanos como por ordenadores. Un editor de texto es suficiente
+para abrir un archivo. xml, pero suele ser utilizado por su facilidad para trabajar con una herramienta
+profesional.
+
+
+
+4.1.- Datos horarios y en tiempo real:
+La estructura de los registros es la siguiente:
+
+<?xml version="1.0" encoding="utf-8" ?>
+<Datos xmlns="http://bdca" xmlns:xsi="http://www.w3.org/2001/XMLSchemainstance">
+<Dato_Horario>
+<provincia>28</provincia>
+<municipio>079</municipio>
+<estacion>004</estacion>
+<magnitud>1</magnitud>
+<punto_muestreo>28079004_1_38</punto_muestreo>
+<ano>2019</ano>
+<mes>01</mes>
+<dia>01</dia>
+<H01>23</H01>
+<V01>V</V01>
+<H02>17</H02>
+<V02>V</V02>
+
+
+
+                                                                                                          4
+El campo punto de muestreo incluye el código de la estación completo (provincia, municipio y estación) más
+la magnitud y la técnica de muestreo.
+H01 corresponde al dato de la 1 de la mañana de ese día, V01 código de validación, H02 al de las 2 de la
+mañana, V02 y así sucesivamente.
+4.2.-Datos diarios
+La estructura de los registros es la siguiente:
+
+<Datos xmlns="http://bdca" xmlns:xsi="http://www.w3.org/2001/XMLSchema - instance">
+<Dato_Diario>
+<provincia>28</provincia>
+<municipio>079</municipio>
+<estacion>004</estacion>
+<magnitud>1</magnitud>
+<punto_muestreo>28079004_1_38</punto_muestreo>
+<ano>2019</ano>
+<mes>01</mes>
+<D01>18</D01>
+<V01>V</V01>
+<D02>20</D02>
+<V02>V</V02>
+El campo punto de muestreo incluye el código de la estación completo (provincia, municipio y estación) más
+la magnitud y la técnica de muestreo.
+D01 corresponde al dato del primer día del mes, D02 al del segundo día y así sucesivamente.
+
+
+
+
+                                                                                                      5
+Anexo I. Códigos de estaciones
+Las estaciones señaladas con un asterisco (*), cambiaron su código a partir de la fecha que se indica
+para la adaptación a la codificación nacional de intercambio de datos de calidad del aire.
+
+
+                CÓDIGO                 NOMBRE           SITUACIÓN                    OBSERVACIONES
+               28079001    Pº. Recoletos             Baja.- 04/05/2009
+               28079002    Glta. de Carlos V         Baja.- 04/12/2006
+               28079035*   Pza. del Carmen           Alta.-              *Desde enero 2010.Código anterior 28079003
+               28079004    Pza. de España            Alta.-
+               28079039*   Barrio del Pilar          Alta.-              *Desde enero 2010.Código anterior 28079005
+               28079006    Pza. Dr. Marañón          Baja.- 27/11/2009
+               28079007    Pza. M. de Salamanca      Baja.- 30/12/2009
+               28079008    Escuelas Aguirre          Alta.-
+               28079009    Pza. Luca de Tena         Baja.- 07/12/2009
+               28079038*   Cuatro Caminos            Alta.-              *Desde enero 2010.Código anterior 28079010
+               28079011    Av. Ramón y Cajal         Alta.-
+               28079012    Pza. Manuel Becerra       Baja.- 30/12/2009
+               28079040*   Vallecas                  Alta.-              *Desde enero 2010.Código anterior 28079013
+               28079014    Pza. Fdez. Ladreda        Baja.- 02/12/2009
+               28079015    Pza. Castilla             Baja.- 17/10/2008
+               28079016    Arturo Soria              Alta.-
+               28079017    Villaverde Alto           Alta.-
+               28079018    C/ Farolillo              Alta.-
+               28079019    Huerta Castañeda          Baja.- 30/12/2009
+               28079036*   Moratalaz                 Alta.-              *Desde enero 2010.Código anterior 28079020
+               28079021    Pza. Cristo Rey           Baja.- 04/12/2009
+               28079022    Pº. Pontones              Baja.- 20/11/2009
+               28079023    Final C/ Alcalá           Baja.- 30/12/2009
+               28079024    Casa de Campo             Alta.-
+               28079025    Santa Eugenia             Baja.- 16/11/2009
+               28079026    Urb. Embajada (Barajas)   Baja.- 11/01/2010
+               28079027    Barajas                   Alta.-
+               28079047    Méndez Álvaro             Alta.- 21/12/2009
+               28079048    Pº. Castellana            Alta.- 01/06/2010
+               28079049    Retiro                    Alta.- 01/01/2010
+               28079050    Pza. Castilla             Alta.- 08/02/2010
+               28079054    Ensanche Vallecas         Alta.- 11/12/2009
+               28079055    Urb. Embajada (Barajas)   Alta.- 20/01/2010
+               28079056    Plaza Elíptica            Alta.- 18/01/2010
+               28079057    Sanchinarro               Alta.- 24/11/2009
+               28079058    El Pardo                  Alta.- 30/11/2009
+               28079059    Parque Juan Carlos I      Alta.- 14/12/2009
+               28079060    Tres Olivos               Alta.-14/01/2010
+
+
+
+
+                                                                                                                      6
+6.- Anexo II. Magnitudes, Unidades y Técnicas
+
+
+                                                                                      Código             Técnica de medida
+       Cod.                    Mágnitud                        Abrevia.   Unidad
+                                                                                      Técnica
+       01      Dióxido de Azufre                               SO2        µg/m 3      38          Fluorescencia ultravioleta
+
+       06      Monóxido de Carbono                             CO         mg/m3       48          Absorción infrarroja
+
+       07      Monóxido de Nitrógeno                           NO         µg/m3       08          Quimioluminiscencia
+
+       08      Dióxido de Nitrógeno                            NO2        µg/m 3      08          Quimioluminiscencia
+
+       09      Partículas < 2.5 µm                             PM2.5      µg/m3       47          Microbalanza/Espectrometría*
+
+       10      Partículas < 10 µm                              PM10       µg/m3       47          Microbalanza/Espectrometría*
+
+       12      Óxidos de Nitrógeno                             NOx        µg/m3       08          Quimioluminiscencia
+
+       14      Ozono                                           O3         µg/m 3      06          Absorción ultravioleta
+
+       20      Tolueno                                         TOL        µg/m3       59          Cromatografía de gases
+
+       30      Benceno                                         BEN        µg/m3       59          Cromatografía de gases
+
+       35      Etilbenceno                                     EBE        µg/m3       59          Cromatografía de gases
+
+       37      Metaxileno                                      MXY        µg/m3       59          Cromatografía de gases
+
+       38      Paraxileno                                      PXY        µg/m3       59          Cromatografía de gases
+
+       39      Ortoxileno                                      OXY        µg/m3       59          Cromatografía de gases
+
+       42      Hidrocarburos totales (hexano)                  TCH        mg/m3       59          Cromatografía de gases
+
+       43      Metano                                          CH4        mg/m3       59          Cromatografía de gases
+
+       44      Hidrocarburos no metánicos (hexano)             NMHC       mg/m3       59          Cromatografía de gases
+
+       431     Metaparaxileno                                  MPX        mg/m3       59          Cromatografía de gases
+
+
+
+     *Desde el año 2024 en la red de vigilancia de la calidad del aire existen dos tipos de equipos automáticos de medición en continuo de
+     partículas, que utilizan técnicas diferentes: medición directa de la masa de partículas por microbalanza o por el método de
+     espectrometría óptica de aerosol.
+
+
+
+
+                                                           7
+    7.- Notas
+
+
+   Los datos horarios publicados se expresan en hora local de Madrid (UTC+2 o UTC+1 dependiendo de
+    la época del año). Cuando se produce un cambio de hora, si ese día tiene una hora menos se calcula
+    el dato diario con 23 valores. Cuando por el contrario se produce un cambio horario y el día tiene 25
+    horas, se elimina el dato de la hora en la que se produce el retraso.
+
+   El valor H24 es el valor horario correspondiente a la última hora del día y se calcula como la media de
+    los 6 valores diezminutales que van desde las 23 horas hasta las 24h, hablando siempre en horario
+    local.
+
+   Los motivos por los que no se aporta dato de un contaminante en un momento determinado pueden
+    ser muy diversos. Generalmente debido a labores de mantenimiento de los equipos, u otras
+    incidencias que generan un dato anómalo, estos datos son revisados y anulados durante el proceso
+    de validación. En algunos casos la falta de dato se produce debido a averías en el suministro eléctrico,
+    en las comunicaciones, o en el propio equipo analizador, el dato no se llega a registrar.
+
+
+
+
+                                                8
+

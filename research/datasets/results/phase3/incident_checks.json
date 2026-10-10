@@ -1,0 +1,35 @@
+{
+  "Madrid": {
+    "detail_rows": 33322,
+    "incident_ids": 14388,
+    "conflicting_categories": 0,
+    "conflicting_dates": 0,
+    "conflicting_districts": 0,
+    "unambiguous_category_incidents": 14386,
+    "missing_category_incidents": 2,
+    "category_counts": {
+      "Colisión fronto-lateral": 3401,
+      "Alcance": 2876,
+      "Colisión lateral": 2254,
+      "Choque contra obstáculo fijo": 1964,
+      "Caída": 1230,
+      "Atropello a persona": 873,
+      "Otro": 839,
+      "Colisión múltiple": 388,
+      "Colisión frontal": 316,
+      "Solo salida de la vía": 126,
+      "Vuelco": 67,
+      "Atropello a animal": 50,
+      "Despeñamiento": 2
+    }
+  },
+  "NYC": {
+    "unique_requests": 124130,
+    "kind": "citizen_service_request",
+    "confirmed_incident": false
+  },
+  "London": {
+    "TfL_incidents_complete_sample_audited": false,
+    "status": "unverified complement in Phase1"
+  }
+}

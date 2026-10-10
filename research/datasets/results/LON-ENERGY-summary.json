@@ -1,0 +1,49 @@
+{
+  "source": "LON-ENERGY",
+  "observations": 347547,
+  "entities": 120,
+  "variables": [
+    "electricity"
+  ],
+  "date_min": "2013-01-01 00:00:00",
+  "date_max": "2013-07-31 23:30:00",
+  "invalid_dates": 0,
+  "missing_values": 0,
+  "unique_keys": 347314,
+  "duplicate_keys": 233,
+  "valid_observations": 347547,
+  "quality_counts": {
+    "valid": 347547
+  },
+  "zone_counts": {
+    "London": 347547
+  },
+  "coordinate_valid_rows": 0,
+  "coordinate_missing_rows": 347547,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 0,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "electricity",
+      "unit": "kWh/30min",
+      "n": 347547,
+      "nonnull": 347547,
+      "min": 0.0,
+      "max": 6.711,
+      "mean": 0.22736748122354672,
+      "median": 0.13,
+      "p01": 0.0,
+      "p99": 1.7545399539999789,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 30696
+    }
+  ],
+  "physical_domain_checks": [
+    {
+      "variable": "electricity",
+      "rule": "nonnegative measured speed/consumption/count/intensity expected; investigate negatives without deletion",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    }
+  ]
+}

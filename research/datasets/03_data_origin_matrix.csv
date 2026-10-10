@@ -1,0 +1,40 @@
+alternative,field,data_origin,meaning,source_evidence,transformation_or_condition,synthetic_proposed,synthetic_rows_generated
+Madrid,fecha_instalacion,unavailable,"Fecha alta de estación observada, NO instalación de dispositivo",inventario MAD-AIR: Fecha alta; diccionario AnexoI,ninguna imputación,False,0
+Madrid,estado_sensor,unavailable,"Altas/bajas de sitio históricas, no estado administrativo de cada canal",diccionario M13 AnexoI,actividad_en_ventana solo derived,False,0
+Madrid,organismo_responsable,unverified,Ayuntamiento/publicador y unidad municipal; vínculo operador individual no completo,01/02 catálogos; M14 Unidad responsable,completar relación con fuente oficial,False,0
+Madrid,usuarios_sistema,unavailable,No hay usuarios de aplicación en datasets,cinco entidades académicas; tabla proof.users vacía,registro real del equipo con consentimiento o fixture opcional,False,0
+Madrid,alertas_emitidas,unavailable,No se acreditan emisiones históricas por zona,muestras 02; sin colección emitida,no transformar lecturas en mensajes históricos,False,0
+Madrid,eventos_criticos,derived,Detección posible por regla aprobada; aún NO calculada como crítica,"Hxx/Vxx, variable y unidades; estadísticos QA","umbral/duración/versionado, no IQR=crítico",False,0
+Madrid,incidentes,observed,Accidentes registrados; detalle persona separado de expediente,MAD-CRASH num_expediente/tipo_accidente/fecha,agregar expediente solo cuando categoría coherente,False,0
+Madrid,energia,observed,"Consumo municipal mensual, unidades/niveles múltiples",MAD-ENERGY SENSOR/CONSUMO/UNIDADES/MES,no repartir consumo mensual a horas,False,0
+Madrid,CO2_concentracion,unavailable,CO y NO2 no son CO2,diccionario de magnitudes Madrid,CO2 ambiente requiere fuente complementaria,False,0
+Madrid,actividad_en_ventana,derived,"COUNT de lecturas por canal/período, nunca estado administrativo",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+Madrid,agregados_temporales,derived,"promedios/sumas por variable y unidad, panel y exposición explícitos",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+Madrid,anomaly_candidate,derived,"IQR descriptivo, candidato QA, no evento crítico confirmado",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+Madrid,optional_demo_users,synthetic,"Propuesta opcional: hasta cuatro cuentas de prueba, NO generadas ni necesarias para volumen",requisito académico Usuarios; no fuente de datos externa,solo autorización posterior; user_demo_01..04; correos @example.invalid; namespace demo; ninguna identidad real,True,0
+NYC,fecha_instalacion,unavailable,No instalación individual publicada,EPA/DOT originales; primeras campañas no instalación,no usar min(time),False,0
+NYC,estado_sensor,unavailable,Campaña discontinua y qualifiers no equivalen a estado administrativo,DOT campaña; EPA qualifier; 311 status es trámite,no ausencia=falla,False,0
+NYC,organismo_responsable,unverified,"DOT/EPA son publicadores, operador EPA por sitio pendiente",N01 metadata Agency; EPA sin campo operador en CSV,consulta fuente oficial de operador,False,0
+NYC,usuarios_sistema,unavailable,Usuarios de aplicación no publicados,proof.users vacía; solicitudes 311 no usuarios app,registro autorizado o fixture opcional,False,0
+NYC,alertas_emitidas,unavailable,NYCEM esquema/probe previo no acredita alertas por zona auditadas,01_http_evidence: NYCEM; sin datos 02 válidos,fuente complementaria con emisión y zonificación,False,0
+NYC,eventos_criticos,derived,Reglas PM2.5/tráfico posibles; no ejecutadas como críticas,EPA Units/Qualifier y DOT vol,unidad/ventana y calidad por canal,False,0
+NYC,incidentes,observed,"Solicitudes ciudadanas realmente registradas, NO hechos confirmados",311 unique_key/complaint_type/created_date/borough,categorizar como citizen_service_request,False,0
+NYC,energia,observed,LL84 electricidad anual por propiedad; dos claves candidatas repetidas,LL84 sample report_year/property_id/electricity_use_grid_purchase,resolver propiedad padre/revisión antes de totalizar,False,0
+NYC,CO2_concentracion,unavailable,CO2e anual de edificios no concentración de CO2,LL84 direct_ghg_emissions_metric; EPA PM2.5,no sustitución CO2e→CO2,False,0
+NYC,actividad_en_ventana,derived,"COUNT de lecturas por canal/período, nunca estado administrativo",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+NYC,agregados_temporales,derived,"promedios/sumas por variable y unidad, panel y exposición explícitos",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+NYC,anomaly_candidate,derived,"IQR descriptivo, candidato QA, no evento crítico confirmado",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+NYC,optional_demo_users,synthetic,"Propuesta opcional: hasta cuatro cuentas de prueba, NO generadas ni necesarias para volumen",requisito académico Usuarios; no fuente de datos externa,solo autorización posterior; user_demo_01..04; correos @example.invalid; namespace demo; ninguna identidad real,True,0
+London,fecha_instalacion,unavailable,"DateOpened es apertura de sitio, no instalación del analizador",LAQN metadata @DateOpened,mantener columnas distintas,False,0
+London,estado_sensor,unavailable,"Operacionalidad de sitio por apertura/cierre es derived, no sensor admin",LAQN @DateClosed/Opened,no extrapolar a hogares/sensores,False,0
+London,organismo_responsable,observed,DataOwner/DataManager de sitio; persona responsable ausente,LAQN metadata @DataOwner/@DataManager,"separar propietario, gestor y persona",False,0
+London,usuarios_sistema,unavailable,"LCLid identifica hogar anónimo, NO usuario de app",LCL LCLid; proof.users vacía,registro real autorizado o fixture opcional,False,0
+London,alertas_emitidas,unavailable,Sin evidencia de alertas históricas emitidas por zona,LAQN endpoint RawAQData; no mensajes emitidos,no inventar emitted_at,False,0
+London,eventos_criticos,derived,Regla NO2/energía posible; detección crítica aún no ejecutada,"LAQN Value GMT; LCL kWh, clock por confirmar",definir regla y cohorte; IQR no prueba incidente,False,0
+London,incidentes,unverified,TfL complemento de Fase1 no sometido a auditoría completa de Fase2,01_sources_catalog/01_http_evidence,"auditar IDs, categorías y accidentes antes de afirmarlo",False,0
+London,energia,observed,"Energía real semihoraria de hogares, sin geografía fina","LCLid/DateTime/KWH/hh, cuatro CSV",hora derivada con dos intervalos; no total ciudad,False,0
+London,CO2_concentracion,unavailable,NO2 no CO2; energía no concentración,LAQN NO2/LCL kWh,fuente complementaria,False,0
+London,actividad_en_ventana,derived,"COUNT de lecturas por canal/período, nunca estado administrativo",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+London,agregados_temporales,derived,"promedios/sumas por variable y unidad, panel y exposición explícitos",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+London,anomaly_candidate,derived,"IQR descriptivo, candidato QA, no evento crítico confirmado",02_quality_metrics.csv y results/*-summary.json; pruebas phase3,preservar inputs/método/ventana/unidad,False,0
+London,optional_demo_users,synthetic,"Propuesta opcional: hasta cuatro cuentas de prueba, NO generadas ni necesarias para volumen",requisito académico Usuarios; no fuente de datos externa,solo autorización posterior; user_demo_01..04; correos @example.invalid; namespace demo; ninguna identidad real,True,0

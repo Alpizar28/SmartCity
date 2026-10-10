@@ -1,0 +1,26 @@
+{
+  "engine": "MongoDB",
+  "native_executed": false,
+  "local_socket": "unix:///var/run/docker.sock",
+  "image": "mongo:8.0",
+  "image_id": "sha256:3342b5975a68ccf08b047b4e13d6297a5888b83fe145797bda94d270af9dc298",
+  "repo_digests": [
+    "mongo@sha256:d0d926f94df099bff534b7ee5b5986458131a22489dfff8664509af0c1e2ca9c"
+  ],
+  "network": "none",
+  "published_ports": [],
+  "database": "smartcity_phase5_fb0322acac7d",
+  "container": "smartcity-phase5-mongo-fb0322acac7d",
+  "input_sha256": "d34ab1ea274865d7513054c0d5d620cd9911694fa47f2bf7a3311fc4bf5c8c24",
+  "container_id": "7aa68a8a22fbf0e4f8c3ed9102e57dfb69193285b6bd265de9f615a57027c67f",
+  "owned_anonymous_volumes": [
+    "c7eb498ddca3f4d09ce218934c79f5f937a5e717aeee778173244a8ec396eb70",
+    "3081d64bf172e525f57331ddf3eb6100ed9e36a22154952823b512745ee31c57"
+  ],
+  "last_readiness_stderr": "",
+  "error": "Disposable MongoDB exited during startup; see mongodb_server.log",
+  "cleanup_returncode": 0,
+  "remove_returncode": 0,
+  "container_removed": true,
+  "anonymous_volumes_removed": true
+}

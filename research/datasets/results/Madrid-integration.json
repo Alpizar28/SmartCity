@@ -1,0 +1,74 @@
+{
+  "co_located_sites": 13,
+  "air_inventory_sites": 24,
+  "meteo_inventory_sites": 26,
+  "air_sample_sites": 23,
+  "geographic_air_site_match_pct": 56.52173913043478,
+  "eligible_air_NO2_rows": 33821,
+  "spatially_mapped_air_NO2_rows": 19099,
+  "air_row_spatial_pct": 56.470831731764285,
+  "air_row_spatial_unmatched": 14722,
+  "air_row_spatiotemporal_matched": 19087,
+  "air_row_spatiotemporal_pct": 56.4353508175394,
+  "normalization_left": {
+    "input_rows": 34224,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 33821
+  },
+  "normalization_right": {
+    "input_rows": 36768,
+    "identical_extra_rows": 0,
+    "ambiguous_rows_excluded_from_join_not_deleted": 0,
+    "eligible_rows": 35991
+  },
+  "coverage": {
+    "label": "Madrid co-located site/hour NO2-temperature",
+    "left_groups": 19099,
+    "right_groups": 35991,
+    "matched_groups": 19087,
+    "left_unmatched": 12,
+    "right_unmatched": 16904,
+    "left_match_pct": 99.93716948531336,
+    "right_match_pct": 53.03270262009947,
+    "keys": [
+      "site",
+      "time"
+    ]
+  },
+  "rule": "same published coordinates<1m plus same site short code; independent channels retained",
+  "lost": "other variables, non-co-located sites, invalid flags; current inventory historical validity not fully documented",
+  "timezone": "Madrid local hour endpoints; January and July2025 avoid DST transitions; no UTC ambiguity forced",
+  "traffic": {
+    "sample_points": 240,
+    "points_with_coordinates": 239,
+    "points_within1km": 76,
+    "point_geographic_match_pct": 31.666666666666668,
+    "eligible_rows": 674704,
+    "spatially_mapped_rows": 213688,
+    "spatial_row_match_pct": 31.671369963717424,
+    "spatial_unmatched_rows": 461016,
+    "coverage": {
+      "label": "Madrid traffic proximity<=1km site/hour, ecological mean signal",
+      "left_groups": 14093,
+      "right_groups": 16885,
+      "matched_groups": 13918,
+      "left_unmatched": 175,
+      "right_unmatched": 2967,
+      "left_match_pct": 98.75824877598808,
+      "right_match_pct": 82.42819070180634,
+      "keys": [
+        "site",
+        "time"
+      ]
+    },
+    "normalization": {
+      "input_rows": 677724,
+      "identical_extra_rows": 0,
+      "ambiguous_rows_excluded_from_join_not_deleted": 0,
+      "eligible_rows": 674704
+    },
+    "assumptions": "1km exploratory context radius, not equivalence or causality; equally weighted report intensity, not vehicles sum; timestamps interpreted interval start",
+    "historical_inventory": "published traffic inventory version must be confirmed forJan2025"
+  }
+}

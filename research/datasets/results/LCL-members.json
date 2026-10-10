@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Small LCL Data/LCL-June2015v2_0.csv",
+    "offset": 0,
+    "compressed_bytes": 4722446,
+    "uncompressed_bytes": 50755532,
+    "crc32": 1091804530,
+    "sha256": "4997141df1efb62488305936c3d2aee395c456f475542bfbdcd5a2145479bd61",
+    "path": "/home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/raw/lcl_members/LCL-June2015v2_0.csv"
+  },
+  {
+    "name": "Small LCL Data/LCL-June2015v2_1.csv",
+    "offset": 4722511,
+    "compressed_bytes": 4728951,
+    "uncompressed_bytes": 50736845,
+    "crc32": 481360127,
+    "sha256": "e2d9a8b89289edc7c6a25290b90635ac744cef347b7e0164f8c4bc2b8c0b55bd",
+    "path": "/home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/raw/lcl_members/LCL-June2015v2_1.csv"
+  },
+  {
+    "name": "Small LCL Data/LCL-June2015v2_10.csv",
+    "offset": 9451527,
+    "compressed_bytes": 4743739,
+    "uncompressed_bytes": 50901009,
+    "crc32": 2592810196,
+    "sha256": "b331bd5d216d02d0a17e2fef63ad7c14a84170dc0cb8be0c661acfcd66b1c844",
+    "path": "/home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/raw/lcl_members/LCL-June2015v2_10.csv"
+  },
+  {
+    "name": "Small LCL Data/LCL-June2015v2_100.csv",
+    "offset": 14195332,
+    "compressed_bytes": 4716309,
+    "uncompressed_bytes": 50869633,
+    "crc32": 2078341436,
+    "sha256": "3b27bcb63aca48dcd97b520930b8c3c7c8d6f5f76bf1da66f7050e350f2f2dd0",
+    "path": "/home/jp/Documentos/TEC/Bases/SmartCity/SmartCity/research/datasets/raw/lcl_members/LCL-June2015v2_100.csv"
+  }
+]

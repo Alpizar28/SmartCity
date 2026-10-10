@@ -1,0 +1,42 @@
+{
+  "original_source": {
+    "probe_id": "M13",
+    "checked_at_utc": "2026-10-10T02:01:56.843246+00:00",
+    "method": "GET",
+    "requested_url": "https://datos.madrid.es/dataset/201200-0-calidad-aire-horario/resource/201200-17-calidad-aire-horario/download/201200-17-calidad-aire-horario.pdf",
+    "final_url": "https://datos.madrid.es/dataset/201200-0-calidad-aire-horario/resource/201200-17-calidad-aire-horario/download/201200-17-calidad-aire-horario.pdf",
+    "status": "200",
+    "content_type": "application/pdf",
+    "content_length_header": "707858",
+    "content_range_header": "",
+    "bytes_read": "707858",
+    "read_cap": "800000",
+    "sha256_bytes_read": "29a274b439e31c3f2c6d4ef29691152b8fd30cbafc04d222357f0deee2b6e73e",
+    "json_rows_returned": "",
+    "name": "",
+    "evidence_excerpt": "",
+    "error": ""
+  },
+  "retained_text_sha256": "469cadabbbe8e1c98a8850c1c2ca292e6eca6fc80e3ed9c69103f20ae817a15b",
+  "unit_codes_extracted": {
+    "1": "ug/m3",
+    "6": "mg/m3",
+    "7": "ug/m3",
+    "8": "ug/m3",
+    "9": "ug/m3",
+    "10": "ug/m3",
+    "12": "ug/m3",
+    "14": "ug/m3",
+    "20": "ug/m3",
+    "30": "ug/m3",
+    "35": "ug/m3",
+    "37": "ug/m3",
+    "38": "ug/m3",
+    "39": "ug/m3",
+    "42": "mg/m3",
+    "43": "mg/m3",
+    "44": "mg/m3",
+    "431": "mg/m3"
+  },
+  "all_used_air_units_match": true
+}

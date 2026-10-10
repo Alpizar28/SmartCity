@@ -1,0 +1,158 @@
+{
+  "source": "MAD-METEO",
+  "observations": 138960,
+  "entities": 26,
+  "variables": [
+    "81",
+    "82",
+    "83",
+    "86",
+    "87",
+    "88",
+    "89"
+  ],
+  "date_min": "2025-01-01 01:00:00",
+  "date_max": "2025-08-01 00:00:00",
+  "invalid_dates": 0,
+  "missing_values": 0,
+  "unique_keys": 138960,
+  "duplicate_keys": 0,
+  "valid_observations": 135011,
+  "quality_counts": {
+    "valid": 135011,
+    "invalid": 3949
+  },
+  "zone_counts": {
+    "Madrid": 138960
+  },
+  "coordinate_valid_rows": 138960,
+  "coordinate_missing_rows": 0,
+  "coordinate_invalid_nonmissing": 0,
+  "unique_coordinates": 24,
+  "statistics_all_values_no_auto_deletion": [
+    {
+      "variable": "81",
+      "unit": "m/s",
+      "n": 14856,
+      "nonnull": 14856,
+      "min": 0.0,
+      "max": 7.3,
+      "mean": 1.1620624663435648,
+      "median": 1.0,
+      "p01": 0.0,
+      "p99": 4.5,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 300
+    },
+    {
+      "variable": "82",
+      "unit": "degrees",
+      "n": 14856,
+      "nonnull": 14856,
+      "min": 0.0,
+      "max": 360.0,
+      "mean": 146.06859181475497,
+      "median": 164.0,
+      "p01": 0.0,
+      "p99": 350.0,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 0
+    },
+    {
+      "variable": "83",
+      "unit": "degC",
+      "n": 36768,
+      "nonnull": 36768,
+      "min": -10.6,
+      "max": 40.3,
+      "mean": 16.822992819843343,
+      "median": 14.9,
+      "p01": -2.3,
+      "p99": 37.1,
+      "negative_values": 906,
+      "iqr_candidate_outliers": 0
+    },
+    {
+      "variable": "86",
+      "unit": "percent",
+      "n": 33792,
+      "nonnull": 33792,
+      "min": 0.0,
+      "max": 100.0,
+      "mean": 52.98573626893939,
+      "median": 49.0,
+      "p01": 0.0,
+      "p99": 98.0,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 0
+    },
+    {
+      "variable": "87",
+      "unit": "hPa",
+      "n": 11904,
+      "nonnull": 11904,
+      "min": 0.0,
+      "max": 960.0,
+      "mean": 906.1576780913979,
+      "median": 944.0,
+      "p01": 0.0,
+      "p99": 957.0,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 486
+    },
+    {
+      "variable": "88",
+      "unit": "W/m2",
+      "n": 11904,
+      "nonnull": 11904,
+      "min": 0.0,
+      "max": 1050.0,
+      "mean": 202.90347782258064,
+      "median": 5.0,
+      "p01": 0.0,
+      "p99": 979.9699999999993,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 897
+    },
+    {
+      "variable": "89",
+      "unit": "mm",
+      "n": 14880,
+      "nonnull": 14880,
+      "min": 0.0,
+      "max": 6.2,
+      "mean": 0.02538978494623656,
+      "median": 0.0,
+      "p01": 0.0,
+      "p99": 0.7,
+      "negative_values": 0,
+      "iqr_candidate_outliers": 829
+    }
+  ],
+  "physical_domain_checks": [
+    {
+      "variable": "81",
+      "rule": "nonnegative measured speed/consumption/count/intensity expected; investigate negatives without deletion",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    },
+    {
+      "variable": "82",
+      "rule": "wind direction0..360degrees; 360retained",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    },
+    {
+      "variable": "83",
+      "rule": "absolute zero lower bound -273.15C; no arbitrary upper bound",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    },
+    {
+      "variable": "86",
+      "rule": "relative humidity domain0..100%; source magnitude86",
+      "candidate_violations": 0,
+      "automatically_deleted": 0
+    }
+  ]
+}

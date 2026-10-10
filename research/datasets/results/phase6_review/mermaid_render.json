@@ -1,0 +1,42 @@
+{
+  "version": "11.12.1",
+  "results": [
+    {
+      "diagram": 1,
+      "parsed": true,
+      "rendered": true,
+      "svgBytes": 19632
+    },
+    {
+      "diagram": 2,
+      "parsed": true,
+      "rendered": true,
+      "svgBytes": 27375
+    },
+    {
+      "diagram": 3,
+      "parsed": true,
+      "rendered": true,
+      "svgBytes": 182563
+    },
+    {
+      "diagram": 4,
+      "parsed": true,
+      "rendered": true,
+      "svgBytes": 15236
+    },
+    {
+      "diagram": 5,
+      "parsed": true,
+      "rendered": true,
+      "svgBytes": 20942
+    }
+  ],
+  "allPassed": true,
+  "input": "docs/arquitectura/diagramas.md",
+  "source_sha256": "e2782ed1df8afa6ccaa7abf74c2f65f3a9dc5337168dee69fde9232566f6274d",
+  "method": "existing Mermaid 11.12.1 + local Webpack/system Node + Chrome headless, file-only SVG rendering",
+  "network_downloads": 0,
+  "svg_elements": 5,
+  "visual_human_review": false
+}

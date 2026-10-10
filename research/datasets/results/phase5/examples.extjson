@@ -1,0 +1,169 @@
+[
+  {
+    "_id": "measurement:18561277e2cca444b56b34fa18fd5d60a8a08d32c83e935edb87740eda4b2219",
+    "measurement_id": "measurement:18561277e2cca444b56b34fa18fd5d60a8a08d32c83e935edb87740eda4b2219",
+    "sensor_id": null,
+    "station_id": "station:1e090dac4ffed4d0aa4ea8f9610d02de6fff0d54ac721048aa8ceef0cd7440bc",
+    "channel_id": "channel:ab914056374bd60014a9dc19dfcd21e65656f3046e1c891b7c5868414aa14dc2",
+    "zone_id": null,
+    "observed_at": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "original_time": "2025-01-01T01:00:00",
+    "original_timezone": "Europe/Madrid",
+    "timestamp_role": "hour_end",
+    "source_id": "MAD-AIR",
+    "source_version": "9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471",
+    "schema_version": "madrid-draft-v1",
+    "catalog_version": "madrid-draft-v1",
+    "data_origin": "observed",
+    "transformation_method": "phase5-normalize-v1",
+    "measurement_type": "MAD-AIR:12",
+    "value": 30.0,
+    "unit": "ug/m3",
+    "unit_status": "verified_dictionary",
+    "candidate_unit": null,
+    "quality_flag": "V",
+    "timestamp_status": "documented_local",
+    "source_key": [
+      "11",
+      "12",
+      "28079011_12_8",
+      "2025-01-01",
+      "H01"
+    ],
+    "raw_reference": {
+      "path": "raw/MAD-AIR-file.attempt1.bin",
+      "sha256": "9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471",
+      "row": 2,
+      "column": "H01"
+    },
+    "provenance": {
+      "value": "observed",
+      "observed_at": "derived",
+      "ids": "derived",
+      "unit": "derived",
+      "unit_availability": "available"
+    },
+    "payload_hash": "payload:4c9bdacc8b8848d42e38608626685496389c74308a85ff0153fd889e28058076"
+  },
+  {
+    "_id": "measurement:a4ad2e12fb58919760401e8e4b27a9394f2b3fcf810ffd6bd599ca5ca18264e2",
+    "measurement_id": "measurement:a4ad2e12fb58919760401e8e4b27a9394f2b3fcf810ffd6bd599ca5ca18264e2",
+    "sensor_id": null,
+    "station_id": "station:6a37a72bb858d27dc88ab418fa5d323a811098ecd6f1606931c682cd5e0bf829",
+    "channel_id": "channel:866f2285987c89276459ff9798e3fe518bc478e09bbe240096ec5a6463571d31",
+    "zone_id": null,
+    "observed_at": {
+      "$date": "2025-01-01T00:00:00Z"
+    },
+    "original_time": "2025-01-01T01:00:00",
+    "original_timezone": "Europe/Madrid",
+    "timestamp_role": "hour_end",
+    "source_id": "MAD-METEO",
+    "source_version": "ada9304d302ead850e45c404d279762b774cd6671391febfc531f6c3033f3852",
+    "schema_version": "madrid-draft-v1",
+    "catalog_version": "madrid-draft-v1",
+    "data_origin": "observed",
+    "transformation_method": "phase5-normalize-v1",
+    "measurement_type": "MAD-METEO:81",
+    "value": 0.7,
+    "unit": null,
+    "unit_status": "pending_dictionary",
+    "candidate_unit": "m/s",
+    "quality_flag": "V",
+    "timestamp_status": "assumed_same_H_format_pending_dictionary",
+    "source_key": [
+      "102",
+      "81",
+      null,
+      "2025-01-01",
+      "H01"
+    ],
+    "raw_reference": {
+      "path": "raw/MAD-METEO-file.attempt1.bin",
+      "sha256": "ada9304d302ead850e45c404d279762b774cd6671391febfc531f6c3033f3852",
+      "row": 2,
+      "column": "H01"
+    },
+    "provenance": {
+      "value": "observed",
+      "observed_at": "derived",
+      "ids": "derived",
+      "unit": null,
+      "unit_availability": "pending"
+    },
+    "payload_hash": "payload:86948eebc6444b4d6b4a8cd4a90a6fb1a177ee4b21f02d40a5c1a1d3211fa253"
+  },
+  {
+    "_id": "measurement:95d3eec903009597d982090d90dcde017bfdba3ac9eb9bb09202b7103f68ffbf",
+    "measurement_id": "measurement:95d3eec903009597d982090d90dcde017bfdba3ac9eb9bb09202b7103f68ffbf",
+    "sensor_id": null,
+    "station_id": "station:08de595007bb11dce61e2bd1dbf921bbc0f9abcb2c94d95b3f0ce5f72eeee22e",
+    "channel_id": "channel:10b9ee5ae796594f3bfca67f9c1b75eef8902df14adb7accd8dda3acfd0853fc",
+    "zone_id": "madrid:district:2",
+    "observed_at": {
+      "$date": "2024-12-31T23:00:00Z"
+    },
+    "original_time": "2025-01-01T00:00:00",
+    "original_timezone": "Europe/Madrid",
+    "timestamp_role": "publisher_label",
+    "source_id": "MAD-TRAFFIC",
+    "source_version": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c",
+    "schema_version": "madrid-draft-v1",
+    "catalog_version": "madrid-draft-v1",
+    "data_origin": "observed",
+    "transformation_method": "phase5-normalize-v1",
+    "measurement_type": "MAD-TRAFFIC:intensidad",
+    "value": 312.0,
+    "unit": "veh/h",
+    "unit_status": "documented_phase1_dictionary",
+    "candidate_unit": null,
+    "quality_flag": "N",
+    "timestamp_status": "assumed_local_label_pending_provider_confirmation",
+    "source_key": [
+      "1020",
+      "2025-01-01 00:00:00",
+      "C30"
+    ],
+    "interval_minutes": 5.0,
+    "measurements": {
+      "ocupacion": {
+        "value": 2.0,
+        "unit": "percent",
+        "data_origin": "observed",
+        "applicability": "requires_type_specific_QA",
+        "raw_value": "2"
+      },
+      "carga": {
+        "value": 0.0,
+        "unit": "percent",
+        "data_origin": "observed",
+        "applicability": "requires_type_specific_QA",
+        "raw_value": "0"
+      },
+      "vmed": {
+        "value": 70.0,
+        "unit": "km/h",
+        "data_origin": "observed",
+        "applicability": "requires_type_specific_QA",
+        "raw_value": "70"
+      }
+    },
+    "element_type": "C30",
+    "raw_reference": {
+      "path": "raw/MAD-TRAFFIC-Jan2025.record89.bin",
+      "sha256": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c",
+      "member": "01-2025.csv",
+      "row": 38319,
+      "column": "intensidad"
+    },
+    "provenance": {
+      "value": "observed",
+      "observed_at": "derived",
+      "ids": "derived",
+      "unit": "derived"
+    },
+    "payload_hash": "payload:c6cd74dd61b702d69c501b580a4d68dc98c46f556f206dcbc249f745b964bff8"
+  }
+]
