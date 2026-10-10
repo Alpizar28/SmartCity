@@ -5,6 +5,14 @@
 
 ## Se puede desarrollar ya
 
+### Recuperación histórica y desarrollo nuevo son frentes separados
+
+La reproducción histórica sigue **pendiente**: 83/85 pruebas pasan; dos controles rechazan los hashes binarios de los SQLite regenerados y faltan 13 respuestas históricas. La correspondencia con fuentes verificadas no acredita identidad con las bases históricas. Véanse [recuperación](RECUPERACION_INSUMOS_HISTORICOS.md) y [auditoría lógica](AUDITORIA_LOGICA_SQLITE.md). No se declara PASS ni se modifica esa suite.
+
+Esto **no invalida la interfaz provisional `madrid-draft-v1-frozen` ni impide desarrollar código nuevo** sobre sus campos congelados. Tampoco acredita cumplimiento académico, estabilidad de los campos abiertos ni autorización de carga. El desarrollo nuevo tendrá pruebas propias, separadas de la reproducción histórica; su PASS no sustituirá los controles pendientes.
+
+La consolidación documental se integra en `main` por autorización explícita del usuario, **sin declarar reproducción histórica completa ni validación global PASS**. La rama local `fix/repo-consolidation` se elimina únicamente después de confirmar integración y publicación; la recuperación pendiente queda documentada en `main`. La continuación se mantiene en `feat/sprint1-local-core`. El [plan de inicio](PLAN_IMPLEMENTACION_SPRINT1.md) delimita archivos, consultas y bloqueos.
+
 - Adaptadores, DTOs, validadores y consultas locales contra los campos congelados: fuente/versión, estación, canal, variable, valor, procedencia, calidad, reloj original y payload de tráfico.
 - Catálogos y pruebas de integridad que respeten `NULL`, trazabilidad e IDs estables (`source_id`, `source_version`, `station_id`, `channel_id`, `location_id`).
 - Diseño de migraciones y colecciones en una rama de trabajo, sin colocarlas en `postgres/init/` o `mongodb/init/` ni aplicarlas a un servidor.
