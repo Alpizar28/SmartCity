@@ -48,7 +48,7 @@ Evidencia de incidentes: [incident_checks.json](../../research/datasets/results/
 
 ## Identificación y linaje por atributo
 
-El [contrato `madrid-draft-v1`](../../research/datasets/05_data_contract.md) y [diccionario de 75 entradas](../../research/datasets/05_data_dictionary.csv) son borradores para revisión. Distinguen `station_id`, `sensor_id`, `channel_id`, `measurement_type`, `location_id` y `measurement_id`.
+El [contrato histórico `madrid-draft-v1`](../../research/datasets/05_data_contract.md) y [diccionario de 75 entradas](../../research/datasets/05_data_dictionary.csv) son borradores de Fase 5 para revisión. El contrato provisional vigente es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md); conserva los límites de la evidencia sin reescribir resultados históricos. Distinguen `station_id`, `sensor_id`, `channel_id`, `measurement_type`, `location_id` y `measurement_id`.
 
 - Estación/sitio: namespace de fuente y código original; una co-localización no fusiona redes.
 - Dispositivo físico: `sensor_id=NULL` sin evidencia verificable. No sustituirlo por el código de estación.

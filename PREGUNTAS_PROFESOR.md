@@ -1,6 +1,6 @@
 # Preguntas que requieren validación docente
 
-Estas preguntas tratan aceptación académica o interpretación de la rúbrica. No sustituyen la evidencia técnica que el equipo debe obtener de las fuentes oficiales.
+Esta es la fuente canónica, breve y lista para enviar. El contexto, impacto y registro de respuestas se mantienen en [`docs/equipo/preguntas_profesor.md`](docs/equipo/preguntas_profesor.md). Estas preguntas tratan aceptación académica o interpretación de la rúbrica; no sustituyen la evidencia técnica que el equipo debe obtener de fuentes oficiales.
 
 1. **Sensor físico frente a canal/sitio.** Mientras no exista un inventario individual verificable, ¿se acepta que las consultas y el modelo se expresen como canal lógico/sitio, con `sensor_id=NULL`, declarando explícitamente que no representan dispositivos físicos?
 
