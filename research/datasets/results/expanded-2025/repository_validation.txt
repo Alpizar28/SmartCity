@@ -1,0 +1,30 @@
+{
+  "branch": "feat/unified-data-contract",
+  "all_checks_passed": true,
+  "links": {
+    "internal_checked": 307,
+    "external_references": 69,
+    "external_live_requests": 0,
+    "scope": "Markdown inline and reference links in candidate files",
+    "local_only_links": []
+  },
+  "diagrams": {
+    "sql_tables": 12,
+    "ddl_foreign_keys": 17,
+    "er_relationships": 17,
+    "mermaid_blocks": 5,
+    "fk_and_nullability_match": true,
+    "validation": "text structure and exact DDL topology; no Mermaid parser/render or visual test"
+  },
+  "phase6_tests": {
+    "tests": 85,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "failures": []
+}
+........................................................................ [ 53%]
+..............................................................           [100%]
+134 passed in 5.87s
+Repository validation passed.

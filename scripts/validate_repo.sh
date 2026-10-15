@@ -7,7 +7,11 @@ cd "$root"
 
 # The historical Phase 6 validator writes its report files. Preserve them so a
 # maintenance validation never presents regenerated evidence as historical work.
-tmpdir="$(mktemp -d)"
+tmpbase="${TMPDIR:-/tmp}"
+if [[ -d /tmp/opencode ]]; then
+  tmpbase=/tmp/opencode
+fi
+tmpdir="$(mktemp -d "$tmpbase/smartcity-validation.XXXXXX")"
 phase6_outputs=(
   research/datasets/results/phase6/candidate_inventory.csv
   research/datasets/results/phase6/outputs_manifest.csv
@@ -32,6 +36,9 @@ fi
 python3 -m compileall -q research/datasets/scripts research/datasets/tests
 python3 research/datasets/scripts/phase6_validate_docs.py
 python3 -m pytest research/datasets/tests -q
+# Check the intended diff, not the temporary CSV reports emitted by Phase 6.
+cleanup
+trap - EXIT
 git diff --check
 
 echo 'Repository validation passed.'

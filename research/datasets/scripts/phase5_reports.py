@@ -3,7 +3,7 @@ import csv
 import json
 import xml.etree.ElementTree as ET
 
-from phase5_contract import ROOT, OUT, PRIVATE, VERSION, digest
+from phase5_legacy_contract import ROOT, OUT, PRIVATE, VERSION, digest
 
 
 def write(name, text):

@@ -1,5 +1,7 @@
 # Estado del Sprint 1
 
+> **Actualización para revisión, 14–15/10/2026:** esta rama implementa el [contrato común `madrid-draft-v1`](CONTRATO_UNIFICADO.md) y la [ampliación real anual](AMPLIACION_REAL_SPRINT1.md), con 1.076.813 observaciones aceptadas de aire. `madrid-draft-v1-frozen` ya no es la interfaz propuesta vigente. Los apartados siguientes conservan el estado previo para trazabilidad; no son resultados de la carga anual. La autorización docente para atributos administrativos sintéticos está registrada en el contrato común. La segunda fuente aceptada sigue pendiente de revisión/evidencia; Spark no se ejecutó.
+
 **Contrato vigente:** [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md).
 **Evidencia histórica:** `madrid-draft-v1` y los artefactos de Fase 5 en [`research/datasets/`](../../research/datasets/). No son una implementación final ni autorización de carga.
 

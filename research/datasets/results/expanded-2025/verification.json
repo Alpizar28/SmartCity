@@ -1,0 +1,30 @@
+{
+  "verified": true,
+  "generation": "expanded-2025",
+  "accepted": 1076813,
+  "quarantined_air": 26419,
+  "duplicates": 0,
+  "conflicts": 0,
+  "synthetic_measurements": 0,
+  "ids_payload_sha256": "7ee034a1f3be3f4ef533d43c571047f6860fbf62e925759c6387e600eb11f398",
+  "postgresql": {
+    "count": 1076813,
+    "minimum": 100000,
+    "met": true
+  },
+  "mongodb": {
+    "count": 1076813,
+    "minimum": 500000,
+    "met": true
+  },
+  "spark": {
+    "executed": false,
+    "status": "pending",
+    "eligible_input_records": 1076813
+  },
+  "accepted_measurement_sources": [
+    "MAD-AIR"
+  ],
+  "two_measurement_sources_met": false,
+  "shared_server_modified": false
+}

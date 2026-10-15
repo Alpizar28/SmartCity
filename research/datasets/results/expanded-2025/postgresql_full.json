@@ -1,0 +1,229 @@
+{
+  "generation": "expanded-2025",
+  "native_executed": true,
+  "full_batch": true,
+  "accepted_input_sha256": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
+  "source_hashes": {
+    "unified_full_load.py": "dde8256c09cb01f22a613168bc36797dfd915767f979998b9b06f6d28bce4509",
+    "unified_full_mongo.js": "6cbc51a85cfe8a4fffaa067c8e5b3195bd94df0591db27c636721adc620a6a97",
+    "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
+    "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
+  },
+  "shared_server_modified": false,
+  "engine": "postgresql",
+  "image": "postgres:16-alpine",
+  "image_id": "sha256:81bd698b4594e751a3269e4dcd3e03a4a0ec0daf7b72e7aa1abd43cce9887542",
+  "network": "none",
+  "published_ports": [],
+  "local_socket": "unix:///var/run/docker.sock",
+  "memory_limit_bytes": 2147483648,
+  "cpus": 2,
+  "container": "smartcity-full-postgresql-906e0448eddb",
+  "container_removed": true,
+  "anonymous_volumes_removed": true,
+  "version": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "stage_copy_seconds": 15.006049868000446,
+  "initial_import_seconds": 458.0876698969996,
+  "count": 1076813,
+  "idempotent_reimport": true,
+  "full_reimport_seconds": 575.5639710730002,
+  "metadata_verified": 1076813,
+  "full_metadata_comparison_seconds": 33.13870427100028,
+  "count_by_source": [
+    {
+      "source_id": "MAD-AIR",
+      "count": 1076813
+    }
+  ],
+  "integrity_rejections": {
+    "payload_conflict": {
+      "rejected": true,
+      "error": "ERROR:  immutable observation / payload conflict: measurement:000016b4257395881a08e494a0b545e0b63a41fecddcca4bb528c4af1b33f161\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+    },
+    "duplicate_id": {
+      "rejected": true,
+      "error": "ERROR:  duplicate key value violates unique constraint \"observations_pkey\"\nDETAIL:  Key (measurement_id)=(measurement:1c27bf06bffe0f86edfd3fd8ec5b11b36bd9410a39b8dff7f13325b580c124c5) already exists."
+    },
+    "natural_key": {
+      "rejected": true,
+      "error": "ERROR:  duplicate key value violates unique constraint \"observations_channel_id_observed_at_timestamp_role_key\"\nDETAIL:  Key (channel_id, observed_at, timestamp_role)=(channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415, 2025-01-01 00:00:00+00, hour_end) already exists."
+    },
+    "catalog_source": {
+      "rejected": true,
+      "error": "ERROR:  update or delete on table \"channels\" violates foreign key constraint \"observations_channel_id_source_id_fkey\" on table \"observations\"\nDETAIL:  Key (channel_id, source_id)=(channel:025f8a3821e78414c49ce58202975ac61a781fb40b128be70874a00d8a48ab3c, MAD-AIR) is still referenced from table \"observations\"."
+    }
+  },
+  "conflicting_payload_rejected": true,
+  "explain": [
+    {
+      "Plan": {
+        "Node Type": "Gather Merge",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 57313.07,
+        "Total Cost": 58939.05,
+        "Plan Rows": 13936,
+        "Plan Width": 850,
+        "Actual Startup Time": 37.045,
+        "Actual Total Time": 40.49,
+        "Actual Rows": 8635,
+        "Actual Loops": 1,
+        "Workers Planned": 2,
+        "Workers Launched": 2,
+        "Shared Hit Blocks": 22,
+        "Shared Read Blocks": 2197,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Plans": [
+          {
+            "Node Type": "Sort",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 56313.05,
+            "Total Cost": 56330.47,
+            "Plan Rows": 6968,
+            "Plan Width": 850,
+            "Actual Startup Time": 34.685,
+            "Actual Total Time": 34.802,
+            "Actual Rows": 2878,
+            "Actual Loops": 3,
+            "Sort Key": [
+              "observed_at"
+            ],
+            "Sort Method": "quicksort",
+            "Sort Space Used": 2255,
+            "Sort Space Type": "Memory",
+            "Shared Hit Blocks": 22,
+            "Shared Read Blocks": 2197,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Workers": [
+              {
+                "Worker Number": 0,
+                "Sort Method": "quicksort",
+                "Sort Space Used": 2446,
+                "Sort Space Type": "Memory"
+              },
+              {
+                "Worker Number": 1,
+                "Sort Method": "quicksort",
+                "Sort Space Used": 2537,
+                "Sort Space Type": "Memory"
+              }
+            ],
+            "Plans": [
+              {
+                "Node Type": "Bitmap Heap Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": true,
+                "Async Capable": false,
+                "Relation Name": "observations",
+                "Alias": "observations",
+                "Startup Cost": 1118.17,
+                "Total Cost": 53246.76,
+                "Plan Rows": 6968,
+                "Plan Width": 850,
+                "Actual Startup Time": 9.743,
+                "Actual Total Time": 33.354,
+                "Actual Rows": 2878,
+                "Actual Loops": 3,
+                "Recheck Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
+                "Rows Removed by Index Recheck": 0,
+                "Exact Heap Blocks": 596,
+                "Lossy Heap Blocks": 0,
+                "Shared Hit Blocks": 6,
+                "Shared Read Blocks": 2197,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Workers": [],
+                "Plans": [
+                  {
+                    "Node Type": "Bitmap Index Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Index Name": "observations_channel_id_observed_at_timestamp_role_key",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 1113.99,
+                    "Plan Rows": 16724,
+                    "Plan Width": 0,
+                    "Actual Startup Time": 4.495,
+                    "Actual Total Time": 4.495,
+                    "Actual Rows": 17270,
+                    "Actual Loops": 1,
+                    "Index Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
+                    "Shared Hit Blocks": 4,
+                    "Shared Read Blocks": 278,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0,
+                    "Workers": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "Planning": {
+        "Shared Hit Blocks": 216,
+        "Shared Read Blocks": 2,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 1.068,
+      "Triggers": [],
+      "Execution Time": 41.033
+    }
+  ],
+  "database_bytes": 4195351575,
+  "observations_total_bytes": 2416459776,
+  "queries_executed": [
+    "PG01",
+    "PG02",
+    "PG03",
+    "PG04",
+    "PG05",
+    "PG06",
+    "PG07",
+    "PG08",
+    "PG09",
+    "PG10"
+  ],
+  "physical_inventory_functional_compliance": false,
+  "synthetic_measurements": 0,
+  "ids_payload_sha256": "7ee034a1f3be3f4ef533d43c571047f6860fbf62e925759c6387e600eb11f398",
+  "peak_cgroup_memory_bytes": 2147483648,
+  "ledger_reconciled": true,
+  "elapsed_seconds": 1105.647068786
+}

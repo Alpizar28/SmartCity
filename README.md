@@ -4,8 +4,14 @@ Proyecto académico de **Bases de Datos — II Semestre 2026**. El código admin
 
 ## Estado y contrato vigente
 
-- **Contrato de desarrollo vigente:** [`madrid-draft-v1-frozen`](CONTRATO_PROVISIONAL_DATASET.md). Define la interfaz provisional que puede usar el Sprint 1.
-- **Contrato histórico:** [`madrid-draft-v1`](research/datasets/05_data_contract.md), usado para la investigación y las pruebas locales de Fase 5. No es la implementación final ni debe modificarse para que parezca vigente.
+**Ampliación real de Sprint 1:** [entrega técnica anual](docs/equipo/AMPLIACION_REAL_SPRINT1.md). El CSV oficial ya disponible permite **1.076.813 observaciones aceptadas de aire de 2025**, con cuarentena separada y carga completa local reproducible. No sumar la muestra o enero otra vez. La segunda fuente de mediciones y Spark siguen pendientes; los manifiestos de los motores acreditan únicamente las pruebas efectivamente terminadas.
+
+Inicio para el equipo: [instrucciones de Daniel, Kembly y Fernanda](docs/equipo/ENTREGA_TECNICA_SPRINT1.md). Segunda fuente: [propuesta `madrid-draft-v2`](docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md), pendiente de aprobación y sin implementación incompatible.
+
+**Validación completa terminada:** [cierre y cumplimiento verificable](docs/equipo/CIERRE_VALIDACION_SPRINT1.md): 1.076.813 registros en cada motor local, replay completo sin duplicados e igualdad comprobada. Los mínimos de volumen de PostgreSQL y MongoDB se acreditan localmente; dos fuentes aceptadas, inventario físico y Spark siguen pendientes. Contenedores desechables eliminados; servidor compartido no modificado.
+
+- **Contrato común implementado en esta rama:** [`madrid-draft-v1`](docs/equipo/CONTRATO_UNIFICADO.md), esquema SQL `smartcity`, generación `unified-v1`; pendiente de revisión del equipo y sin autorización de carga compartida.
+- **Contrato anterior:** [`madrid-draft-v1-frozen`](CONTRATO_PROVISIONAL_DATASET.md), obsoleto por la especificación de integración del 14/10/2026. Los resultados de Fase 5 se preservan como evidencia histórica, no como prueba de la implementación nueva.
 - Madrid para enero de 2025 tiene **832.668 observaciones estructuralmente elegibles** en evidencia local; esto **no** significa que estén cargadas en PostgreSQL ni MongoDB compartidos.
 - Hadoop/HDFS, Spark y Streamlit no están implementados ni ejecutados. La recomendación de Madrid y las excepciones académicas siguen condicionadas a decisiones del equipo, evidencia técnica y validación docente.
 
@@ -22,7 +28,7 @@ El estado operativo del Sprint 1 está en [`docs/equipo/ESTADO_SPRINT1.md`](docs
 | `docs/` | Guías, decisiones, arquitectura preliminar y estado del equipo. |
 | `scripts/validate_repo.sh` | Validación local mínima de integridad documental y Python. |
 
-Los archivos `research/datasets/scripts/phase5_postgresql.sql`, `phase5_postgresql_queries.sql` y `phase5_mongo_test.js` son **evidencia de Fase 5 y pruebas locales desechables**. No se copian a `postgres/init/` o `mongodb/init/`, ni se ejecutan contra bases compartidas.
+Los scripts `phase5_postgresql.sql`, `phase5_postgresql_queries.sql` y `phase5_mongo_test.js` ahora implementan la unificación para **pruebas locales desechables**. Sus resultados anteriores en `results/phase5/` son históricos; los nuevos van a `results/unified-v1/`. No se copian a inicializadores ni se ejecutan contra bases compartidas. Reproducción y límites: [contrato común](docs/equipo/CONTRATO_UNIFICADO.md).
 
 ## Desarrollo local
 
@@ -83,7 +89,7 @@ Las salidas de Fase 5 son evidencia histórica: muestran muestras locales acotad
 - Trabaja en una rama propia; revisa `git status` y el diff antes de añadir archivos.
 - No subas `.env`, contraseñas, tokens, llaves, dumps, volúmenes ni snapshots privados. `.gitignore` ayuda, pero no sustituye la revisión humana.
 - Los parámetros para el entorno compartido (host privado, puertos y credenciales) se solicitan al administrador por un canal privado. No se versionan aquí. Coolify, Tailscale y las bases compartidas no se administran desde este repositorio.
-- No infieras un sensor físico desde un canal, estación o variable. Respeta los `NULL` y estados abiertos de `madrid-draft-v1-frozen`.
+- No infieras un sensor físico desde un canal, estación o variable. El permiso docente para datos administrativos aleatorios se aplica a fixtures explícitamente sintéticos y separados; consulta el contrato común.
 - Antes de preparar un PR, ejecuta `scripts/validate_repo.sh` y revisa [`docs/equipo/revision_repositorio.md`](docs/equipo/revision_repositorio.md).
 
 ## Seguridad
@@ -93,7 +99,7 @@ No versionar secretos, enlaces privados, credenciales, llaves SSH, archivos `.pe
 ## Próximas fases
 
 1. Cerrar evidencia técnica pendiente: unidades meteorológicas, relojes, CRS y vigencia geográfica.
-2. Resolver con el profesor el alcance de sensores/canales, atributos administrativos, usuarios y alertas.
+2. Resolver el alcance físico de sensores/canales y alertas. El permiso docente del 10/10 para atributos aleatorios está registrado; no confirma inventario físico ni relojes.
 3. Diseñar y revisar la implementación definitiva del Sprint 1; solo entonces crear migraciones o colecciones versionadas.
 4. Planificar cargas locales y compartidas autorizadas con respaldo, reconciliación y pruebas.
 5. Abordar HDFS/Spark y la interfaz en fases posteriores, con fuentes reales y validación independiente.

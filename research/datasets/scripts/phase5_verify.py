@@ -6,7 +6,7 @@ import py_compile
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
-from phase5_contract import ROOT, OUT, digest
+from phase5_legacy_contract import ROOT, OUT, digest
 
 
 def main():

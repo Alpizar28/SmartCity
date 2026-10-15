@@ -1,0 +1,36 @@
+{
+  "generation": "expanded-2025",
+  "accepted": 1076813,
+  "january_accepted_unchanged": 91959,
+  "additional_accepted_beyond_january": 984854,
+  "quarantined_air": 26419,
+  "quarantine_reasons": {
+    "provider_flag": 26167,
+    "nonexistent_local_time": 126,
+    "ambiguous_local_time_requires_publisher_fold": 126
+  },
+  "quarantined_other_sources_january": {
+    "MAD-METEO": 69408,
+    "MAD-TRAFFIC": 677724
+  },
+  "combined_quarantine_without_double_counting": 773551,
+  "duplicates": 0,
+  "conflicts": 0,
+  "synthetic_measurements": 0,
+  "synthetic_admin_entities": 14,
+  "new_measurement_download_bytes": 0,
+  "official_documentation_bytes": 2606497,
+  "original_input_bytes": 129381665,
+  "annual_output_bytes": {
+    "accepted.extjsonl": 1567851765,
+    "quarantine.extjsonl": 15339280,
+    "conflicts.extjsonl": 0,
+    "catalogs.json": 5308643,
+    "sample.extjson": 8851772,
+    "identities.sqlite": 577552384
+  },
+  "accepted_jsonl_MB_decimal": 1567.851765,
+  "annual_outputs_GB_decimal": 2.174903844,
+  "counts_are_not_additive_across_generations": true,
+  "shared_server_modified": false
+}
