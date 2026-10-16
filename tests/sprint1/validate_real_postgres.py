@@ -1,5 +1,6 @@
 """Prueba el lote real de Madrid en PostgreSQL local y elimina su contenedor."""
 
+import argparse
 import hashlib
 import json
 from pathlib import Path
@@ -187,6 +188,10 @@ def check_real_results(sql, preparation, catalogs):
 
 def main():
     started_at = time.monotonic()
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--benchmark", action="store_true",
+                        help="Mide consultas después de la validación real")
+    options = parser.parse_args()
     preparation = json.loads((RESULTS / "preparation.json").read_text())
     check_input_files(preparation)
     read_queries()
@@ -250,7 +255,7 @@ def main():
         table_counts, source_counts, monthly_counts, rows, channel, readings = (
             check_real_results(sql, preparation, catalogs)
         )
-        print(json.dumps({
+        print("VALIDACION_REAL=" + json.dumps({
             "generation": "expanded-2025", "contract": "madrid-draft-v1",
             "tested_at_utc": datetime.now(timezone.utc).isoformat(),
             "postgresql_version": version, "real_observations": table_counts["observations"],
@@ -262,7 +267,14 @@ def main():
             "schema_checks": 9, "controlled_checks": 14, "real_data_checks": 11,
             "pg01_to_pg08": "empty: no accredited physical sensors",
             "pg09": "real channel readings", "pg10": "function counts channels, not sensors",
-        }, ensure_ascii=False, indent=2))
+        }, ensure_ascii=False), flush=True)
+        if options.benchmark:
+            from benchmark_real_postgres import run_benchmarks
+
+            benchmark = run_benchmarks(
+                sql, read_queries(), channel, PROJECT / "sprint1/postgres/queries.sql"
+            )
+            print("BENCHMARK_REAL=" + json.dumps(benchmark, ensure_ascii=False), flush=True)
     finally:
         if created:
             subprocess.run(["docker", "stop", "--time", "60", name],
