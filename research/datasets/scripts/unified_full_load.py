@@ -185,6 +185,24 @@ def postgres(private, out, report):
         command(['exec','-i',name,'psql','-X','-U','postgres','-Atq','-v','ON_ERROR_STOP=1'],
                 input=(ROOT/'scripts/phase5_postgresql_queries.sql').read_text())
         report['queries_executed']=[f'PG{n:02d}' for n in range(1,11)]
+        def query_evidence(status, data_scope, scope_notice, assertions, synthetic_input_count=0):
+            return {'status':status,'data_scope':data_scope,'scope_notice':scope_notice,
+                    'assertions':assertions,'synthetic_input_count':synthetic_input_count}
+        synthetic_scope='Synthetic administrative demo; it does not identify the producer of an observed reading.'
+        observed_scope='Observed MAD-AIR data; channels and readings are not linked to synthetic sensors.'
+        blocked_scope='No defensible observed sensor-to-channel relationship exists; the query is not presented as physical inventory evidence.'
+        report['query_evidence']={
+            'PG01':query_evidence('executed','synthetic_demo',synthetic_scope,{'categorized_sensors':int(sql('SELECT count(*) FROM smartcity.sensors;'))>0},len(seed['sensors'])),
+            'PG02':query_evidence('executed','synthetic_demo',synthetic_scope,{'sensors_with_location':int(sql('SELECT count(*) FROM smartcity.sensors s JOIN smartcity.stations t USING(station_id) WHERE t.location_id IS NOT NULL;'))>0},len(seed['sensors'])),
+            'PG03':query_evidence('executed','synthetic_demo',synthetic_scope,{'administrative_statuses':int(sql('SELECT count(*) FROM smartcity.sensors WHERE administrative_status IS NOT NULL;'))>0},len(seed['sensors'])),
+            'PG04':query_evidence('executed','synthetic_demo',synthetic_scope,{'organizations_assigned':int(sql('SELECT count(*) FROM smartcity.sensors WHERE organization_id IS NOT NULL;'))>0},len(seed['sensors'])),
+            'PG05':query_evidence('executed','synthetic_demo',synthetic_scope,{'locations_ranked':int(sql('SELECT count(DISTINCT location_id) FROM smartcity.stations;'))>0},len(seed['sensors'])),
+            'PG06':query_evidence('executed','synthetic_demo',synthetic_scope,{'installation_dates':int(sql('SELECT count(*) FROM smartcity.sensors WHERE installation_date IS NOT NULL;'))>0},len(seed['sensors'])),
+            'PG07':query_evidence('blocked','synthetic_demo',blocked_scope,{'observed_sensor_links':False},len(seed['sensors'])),
+            'PG08':query_evidence('executed','synthetic_demo',synthetic_scope,{'zones_ranked':int(sql('SELECT count(DISTINCT zone_id) FROM smartcity.locations WHERE zone_id IS NOT NULL;'))>0},len(seed['sensors'])),
+            'PG09':query_evidence('executed','observed',observed_scope,{'channel_activity_rows':int(sql('SELECT count(*) FROM smartcity.channel_activity;'))>0}),
+            'PG10':query_evidence('executed','observed',observed_scope,{'stations_available':int(sql('SELECT count(*) FROM smartcity.stations WHERE inventory_present;'))>0}),
+        }
         report['physical_inventory_functional_compliance']=False
         report['synthetic_measurements']=int(sql("SELECT count(*) FROM smartcity.observations WHERE data_origin='synthetic';"))
         args=DOCKER+['exec',name,'psql','-X','-U','postgres','-Atq','-v','ON_ERROR_STOP=1','-c',

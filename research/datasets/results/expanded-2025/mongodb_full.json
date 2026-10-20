@@ -4,8 +4,8 @@
   "full_batch": true,
   "accepted_input_sha256": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
   "source_hashes": {
-    "unified_full_load.py": "66244d90c651168188f70a0cb64dd3eb97229842aef83413f9177e77f3270f93",
-    "unified_full_mongo.js": "7e7715ddc6a383e0f8738dc4703bfd003643080a04c120a7af4ffd37f7c5f49e",
+    "unified_full_load.py": "f64d70a478169a429ef27a95f13560694787ab8fb6486e05010be2323ec80214",
+    "unified_full_mongo.js": "680e14106b0cfd8ef615400d7508bb8654def9a008fa9adff6dbf55deca1d83f",
     "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
     "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
   },
@@ -18,14 +18,14 @@
   "local_socket": "unix:///var/run/docker.sock",
   "memory_limit_bytes": 2147483648,
   "cpus": 2,
-  "container": "smartcity-full-mongodb-4b04a4039f44",
+  "container": "smartcity-full-mongodb-bce32f7280c1",
   "container_removed": true,
   "anonymous_volumes_removed": true,
   "version": "7.0.16",
   "timings_seconds": {
-    "initial_import": 64.105,
-    "full_reimport": 259.225,
-    "full_metadata_comparison": 222.829
+    "initial_import": 70.803,
+    "full_reimport": 291.322,
+    "full_metadata_comparison": 277.196
   },
   "imported": 1076813,
   "idempotent_reimport": true,
@@ -51,7 +51,7 @@
   "explain": {
     "explainVersion": "1",
     "queryPlanner": {
-      "namespace": "smartcity_full_e86547849e17.readings",
+      "namespace": "smartcity_full_6898b6585be4.readings",
       "indexFilterSet": false,
       "parsedQuery": {
         "channel_id": {
@@ -102,7 +102,7 @@
     "executionStats": {
       "executionSuccess": true,
       "nReturned": 8635,
-      "executionTimeMillis": 8,
+      "executionTimeMillis": 9,
       "totalKeysExamined": 8635,
       "totalDocsExamined": 8635,
       "executionStages": {
@@ -121,7 +121,7 @@
         "inputStage": {
           "stage": "IXSCAN",
           "nReturned": 8635,
-          "executionTimeMillisEstimate": 0,
+          "executionTimeMillisEstimate": 1,
           "works": 8636,
           "advanced": 8635,
           "needTime": 0,
@@ -172,10 +172,10 @@
       "sort": {
         "observed_at": 1
       },
-      "$db": "smartcity_full_e86547849e17"
+      "$db": "smartcity_full_6898b6585be4"
     },
     "serverInfo": {
-      "host": "e10a3734c746",
+      "host": "9dd5e801fece",
       "port": 27017,
       "version": "7.0.16",
       "gitVersion": "18b949444cfdaa88e30b0e10243bc18268251c1f"
@@ -231,7 +231,7 @@
     }
   ],
   "storage": {
-    "db": "smartcity_full_e86547849e17",
+    "db": "smartcity_full_6898b6585be4",
     "collections": {
       "low": 5,
       "high": 0,
@@ -249,20 +249,20 @@
     },
     "avgObjSize": 1456.5180883485223,
     "dataSize": 1583353140,
-    "storageSize": 278265856,
+    "storageSize": 279449600,
     "indexes": {
       "low": 12,
       "high": 0,
       "unsigned": false
     },
-    "indexSize": 257069056,
-    "totalSize": 535334912,
+    "indexSize": 249552896,
+    "totalSize": 529002496,
     "scaleFactor": {
       "low": 1,
       "high": 0,
       "unsigned": false
     },
-    "fsUsedSize": 325436473344,
+    "fsUsedSize": 332501393408,
     "fsTotalSize": 343027191808,
     "ok": 1
   },
@@ -274,7 +274,99 @@
   "readings_with_sensor_link": 0,
   "channels_assigned_to_synthetic_sensors": 0,
   "synthetic_measurements": 0,
-  "peak_cgroup_memory_bytes": 1764466688,
+  "query_evidence": {
+    "MG01": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "matching_readings": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG02": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "full_range_count": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG03": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "finite_extrema": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG04": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "approved_rule": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG05": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "historical_emissions_source": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG06": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "grouped_by_zone_and_type": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG07": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "grouped_by_measurement_type": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG08": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "accident_source_loaded": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG09": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "aggregation_pipeline": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG10": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "multi_filter_query": true
+      },
+      "synthetic_input_count": 0
+    }
+  },
+  "peak_cgroup_memory_bytes": 1959415808,
   "ledger_reconciled": true,
-  "elapsed_seconds": 578.8023439079989
+  "elapsed_seconds": 675.401689262
 }

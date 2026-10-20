@@ -1,6 +1,6 @@
 # Cierre de validación local — contrato `madrid-draft-v1`
 
-Fecha de ejecución: 15/10/2026. Rama `feat/unified-data-contract`. **Resultados locales verificados; contrato pendiente de aprobación del equipo.** No hubo reinicio de las cargas activas, push, merge ni cambios remotos.
+Fecha de ejecución inicial: 15/10/2026. Rama inicial `feat/unified-data-contract`. **Resultados locales verificados; contrato pendiente de aprobación del equipo.** La nota de no-push/no-merge describe esa ejecución histórica; los commits y el estado remoto posteriores se verifican con Git antes de cada entrega.
 
 ## 1. Resultado completo, no muestra
 
