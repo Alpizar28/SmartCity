@@ -4,8 +4,8 @@
   "full_batch": true,
   "accepted_input_sha256": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
   "source_hashes": {
-    "unified_full_load.py": "dde8256c09cb01f22a613168bc36797dfd915767f979998b9b06f6d28bce4509",
-    "unified_full_mongo.js": "6cbc51a85cfe8a4fffaa067c8e5b3195bd94df0591db27c636721adc620a6a97",
+    "unified_full_load.py": "66244d90c651168188f70a0cb64dd3eb97229842aef83413f9177e77f3270f93",
+    "unified_full_mongo.js": "7e7715ddc6a383e0f8738dc4703bfd003643080a04c120a7af4ffd37f7c5f49e",
     "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
     "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
   },
@@ -18,14 +18,14 @@
   "local_socket": "unix:///var/run/docker.sock",
   "memory_limit_bytes": 2147483648,
   "cpus": 2,
-  "container": "smartcity-full-mongodb-fd77e7777225",
+  "container": "smartcity-full-mongodb-4b04a4039f44",
   "container_removed": true,
   "anonymous_volumes_removed": true,
   "version": "7.0.16",
   "timings_seconds": {
-    "initial_import": 70.465,
-    "full_reimport": 299.935,
-    "full_metadata_comparison": 237.84
+    "initial_import": 64.105,
+    "full_reimport": 259.225,
+    "full_metadata_comparison": 222.829
   },
   "imported": 1076813,
   "idempotent_reimport": true,
@@ -51,7 +51,7 @@
   "explain": {
     "explainVersion": "1",
     "queryPlanner": {
-      "namespace": "smartcity_full_408f611ca7e8.readings",
+      "namespace": "smartcity_full_e86547849e17.readings",
       "indexFilterSet": false,
       "parsedQuery": {
         "channel_id": {
@@ -102,13 +102,13 @@
     "executionStats": {
       "executionSuccess": true,
       "nReturned": 8635,
-      "executionTimeMillis": 10,
+      "executionTimeMillis": 8,
       "totalKeysExamined": 8635,
       "totalDocsExamined": 8635,
       "executionStages": {
         "stage": "FETCH",
         "nReturned": 8635,
-        "executionTimeMillisEstimate": 0,
+        "executionTimeMillisEstimate": 1,
         "works": 8636,
         "advanced": 8635,
         "needTime": 0,
@@ -172,10 +172,10 @@
       "sort": {
         "observed_at": 1
       },
-      "$db": "smartcity_full_408f611ca7e8"
+      "$db": "smartcity_full_e86547849e17"
     },
     "serverInfo": {
-      "host": "b0000cb90062",
+      "host": "e10a3734c746",
       "port": 27017,
       "version": "7.0.16",
       "gitVersion": "18b949444cfdaa88e30b0e10243bc18268251c1f"
@@ -231,9 +231,9 @@
     }
   ],
   "storage": {
-    "db": "smartcity_full_408f611ca7e8",
+    "db": "smartcity_full_e86547849e17",
     "collections": {
-      "low": 2,
+      "low": 5,
       "high": 0,
       "unsigned": false
     },
@@ -243,31 +243,38 @@
       "unsigned": false
     },
     "objects": {
-      "low": 1076814,
+      "low": 1087081,
       "high": 0,
       "unsigned": false
     },
-    "avgObjSize": 1464.086584126878,
-    "dataSize": 1576548931,
-    "storageSize": 276533248,
+    "avgObjSize": 1456.5180883485223,
+    "dataSize": 1583353140,
+    "storageSize": 278265856,
     "indexes": {
-      "low": 5,
+      "low": 12,
       "high": 0,
       "unsigned": false
     },
-    "indexSize": 249372672,
-    "totalSize": 525905920,
+    "indexSize": 257069056,
+    "totalSize": 535334912,
     "scaleFactor": {
       "low": 1,
       "high": 0,
       "unsigned": false
     },
-    "fsUsedSize": 320865669120,
+    "fsUsedSize": 325436473344,
     "fsTotalSize": 343027191808,
     "ok": 1
   },
+  "administrative_counts": {
+    "organizations": 1,
+    "users": 5133,
+    "sensors": 5133
+  },
+  "readings_with_sensor_link": 0,
+  "channels_assigned_to_synthetic_sensors": 0,
   "synthetic_measurements": 0,
-  "peak_cgroup_memory_bytes": 1719492608,
+  "peak_cgroup_memory_bytes": 1764466688,
   "ledger_reconciled": true,
-  "elapsed_seconds": 644.9110375939999
+  "elapsed_seconds": 578.8023439079989
 }

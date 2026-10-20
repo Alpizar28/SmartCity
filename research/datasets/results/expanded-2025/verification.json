@@ -26,5 +26,14 @@
     "MAD-AIR"
   ],
   "two_measurement_sources_met": false,
+  "administrative_demo": {
+    "verified": true,
+    "organizations": 1,
+    "users": 5133,
+    "sensors": 5133,
+    "synthetic_measurements": 0,
+    "channels_assigned_to_synthetic_sensors": 0,
+    "readings_assigned_to_synthetic_sensors": 0
+  },
   "shared_server_modified": false
 }

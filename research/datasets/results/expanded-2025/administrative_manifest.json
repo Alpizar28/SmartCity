@@ -1,0 +1,14 @@
+{
+  "administrative_seed_file": "administrative_seed.json",
+  "administrative_seed_sha256": "caa3f5c3241d1ddb5d4ca0567a031b89f7a49c0803c519ba7817d092f8c83f6a",
+  "catalogs_sha256": "66e5414cc7c2299933ba98b8d46129ffa3e754dc404dd76972b328732fdebe26",
+  "generator_version": "admin-demo-v2",
+  "seed": 20261010,
+  "counts": {
+    "organizations": 1,
+    "users": 5133,
+    "sensors": 5133
+  },
+  "synthetic_measurements": 0,
+  "channels_assigned_to_synthetic_sensors": 0
+}

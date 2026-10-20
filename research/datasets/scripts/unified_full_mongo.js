@@ -2,6 +2,8 @@
 if (!/^smartcity_full_[a-f0-9]{12}$/.test(db.getName())) throw new Error('Disposable database required');
 const fs = require('fs'), crypto = require('crypto');
 const catalogs = JSON.parse(fs.readFileSync('/inputs/catalogs.json','utf8'));
+const categoryIds = new Set(Object.values(catalogs.measurement_types).map(row=>row.category_id));
+const administrative = JSON.parse(fs.readFileSync('/inputs/administrative_seed.json','utf8'));
 function check(value,message) { if (!value) throw new Error(message); }
 function* lines(path) {
   const fd = fs.openSync(path,'r'), buffer = Buffer.alloc(65536);
@@ -39,6 +41,24 @@ function validate(d) {
     s.zone_id===d.zone_id && d.sensor_id===null,'Catalog reference mismatch');
   check(d.zone_id===null || catalogs.zones[d.zone_id],'Zone reference');
 }
+function validateAdministrative() {
+  check(administrative.synthetic_measurements===0,'Synthetic measurements forbidden');
+  for (const row of administrative.organizations) check(row.data_origin==='synthetic' && row.provenance?.physical_inventory_evidence===false,'Invalid organization');
+  for (const row of administrative.users) check(row.data_origin==='synthetic' && row.demo_only===true && /@example\.invalid$/.test(row.email),'Invalid user');
+  for (const row of administrative.sensors) check(row.data_origin==='synthetic' && catalogs.stations[row.station_id] && categoryIds.has(row.category_id) && row.provenance?.physical_inventory_evidence===false,'Invalid sensor');
+}
+function createAdministrativeCollections() {
+  db.createCollection('organizations',{validator:{$jsonSchema:{bsonType:'object',required:['_id','name','data_origin','provenance'],properties:{data_origin:{enum:['synthetic']}}}},validationAction:'error'});
+  db.createCollection('users',{validator:{$jsonSchema:{bsonType:'object',required:['_id','name','email','consent_reference','demo_only','data_origin'],properties:{email:{pattern:'@example\\.invalid$'},demo_only:{enum:[true]},data_origin:{enum:['synthetic']}}}},validationAction:'error'});
+  db.createCollection('sensors',{validator:{$jsonSchema:{bsonType:'object',required:['_id','name','category_id','station_id','organization_id','identity_evidence_reference','data_origin','provenance'],properties:{data_origin:{enum:['synthetic']}}}},validationAction:'error'});
+  db.users.createIndex({email:1},{unique:true});
+  db.sensors.createIndex({station_id:1}); db.sensors.createIndex({category_id:1}); db.sensors.createIndex({organization_id:1});
+  db.organizations.insertMany(administrative.organizations.map(row=>({_id:row.organization_id,...row})));
+  db.users.insertMany(administrative.users.map(row=>({_id:row.user_id,...row})));
+  db.sensors.insertMany(administrative.sensors.map(row=>({_id:row.sensor_id,...row})));
+}
+validateAdministrative();
+createAdministrativeCollections();
 db.createCollection('readings',{validator:{$and:[{$jsonSchema:{bsonType:'object',
   required:['_id','measurement_id','station_id','channel_id','source_id','source_version','observed_at',
     'value','measurement_type','schema_version','catalog_version','raw_reference','payload_hash',
@@ -131,6 +151,11 @@ result.count_by_source=db.readings.aggregate([{$group:{_id:'$source_id',count:{$
 result.explain=db.readings.find({channel_id:first.channel_id}).sort({observed_at:1}).explain('executionStats');
 result.indexes=db.readings.getIndexes();
 result.storage=db.runCommand({dbStats:1,scale:1});
+result.administrative_counts={organizations:db.organizations.countDocuments({}),users:db.users.countDocuments({}),sensors:db.sensors.countDocuments({})};
+check(Object.values(result.administrative_counts).every(count=>count>0),'Administrative load incomplete');
+result.readings_with_sensor_link=db.readings.countDocuments({sensor_id:{$ne:null}});
+check(result.readings_with_sensor_link===0,'Observed reading linked to synthetic sensor');
+result.channels_assigned_to_synthetic_sensors=0;
 result.synthetic_measurements=db.readings.countDocuments({data_origin:'synthetic'});
 result.native_executed=true;
 print('FULL_RESULT='+JSON.stringify(result));

@@ -11,6 +11,7 @@ import uuid
 from phase5_contract import ROOT, canonical, digest, stable_id
 from phase5_postgres_sample import sql_literal
 from unified_expand import generation_paths, verify_generation, atomic_json
+from unified_synthetic import build_administrative_seed
 
 DOCKER = ['docker','--host','unix:///var/run/docker.sock']
 
@@ -61,6 +62,25 @@ def container(engine, image, private, report):
             report['anonymous_volumes_removed']=all(subprocess.run(DOCKER+['volume','inspect',v],capture_output=True).returncode!=0 for v in volumes)
 
 
+def administrative_seed(private, out):
+    """Read a sealed deterministic demo package tied to current catalogs."""
+    manifest = json.loads((out/'administrative_manifest.json').read_text())
+    path = private / manifest['administrative_seed_file']
+    catalogs_path = private / 'catalogs.json'
+    if digest(path) != manifest['administrative_seed_sha256'] or digest(catalogs_path) != manifest['catalogs_sha256']:
+        raise ValueError('Administrative seed or catalogs changed')
+    seed = json.loads(path.read_text())
+    expected = build_administrative_seed(json.loads(catalogs_path.read_text()), manifest['catalogs_sha256'], manifest['seed'])
+    if seed != expected:
+        raise ValueError('Administrative seed is not deterministic')
+    counts = {key: len(seed[key]) for key in ('organizations', 'users', 'sensors')}
+    if counts != manifest['counts'] or not all(counts.values()) or seed.get('synthetic_measurements') != 0:
+        raise ValueError('Administrative seed counts or provenance invalid')
+    if any(row.get('data_origin') != 'synthetic' for rows in (seed[k] for k in counts) for row in rows):
+        raise ValueError('Administrative data must be synthetic')
+    return seed
+
+
 def catalog_sql(catalogs):
     statements=['SET search_path=smartcity,pg_temp;']
     def insert(table,rows,types):
@@ -84,7 +104,18 @@ def catalog_sql(catalogs):
     return '\n'.join(statements)
 
 
-def postgres(private, report):
+def administrative_sql(seed):
+    statements = ['SET search_path=smartcity,pg_temp;']
+    def insert(table, rows, types):
+        columns = ','.join(field.split()[0] for field in types.split(','))
+        statements.append(f'INSERT INTO {table}({columns}) SELECT {columns} FROM json_to_recordset({sql_literal(rows)}) AS x({types});')
+    insert('organizations', seed['organizations'], 'organization_id text,name text,responsible_person_or_role text,evidence_reference text,data_origin text,provenance jsonb')
+    insert('users', seed['users'], 'user_id text,name text,email text,consent_reference text,demo_only boolean,data_origin text')
+    insert('sensors', seed['sensors'], 'sensor_id text,name text,category_id text,station_id text,installation_date date,administrative_status text,status_effective_at timestamptz,organization_id text,identity_evidence_reference text,data_origin text,provenance jsonb')
+    return '\n'.join(statements)
+
+
+def postgres(private, out, report):
     with container('postgresql','postgres:16-alpine',private,report) as name:
         def sql(query):
             return command(['exec','-i',name,'psql','-X','-U','postgres','-Atq','-v','ON_ERROR_STOP=1'],
@@ -92,6 +123,16 @@ def postgres(private, report):
         report['version']=sql('SELECT version();')
         sql((ROOT/'scripts/phase5_postgresql.sql').read_text())
         sql(catalog_sql(json.loads((private/'catalogs.json').read_text())))
+        seed = administrative_seed(private, out)
+        sql(administrative_sql(seed))
+        report['administrative_counts'] = json.loads(sql("""SELECT json_object_agg(name,count) FROM (
+          SELECT 'organizations' AS name,count(*)::bigint AS count FROM smartcity.organizations
+          UNION ALL SELECT 'users',count(*)::bigint FROM smartcity.users
+          UNION ALL SELECT 'sensors',count(*)::bigint FROM smartcity.sensors
+        ) AS counts"""))
+        report['channels_assigned_to_synthetic_sensors'] = int(sql("SELECT count(*) FROM smartcity.channels WHERE sensor_id IS NOT NULL"))
+        if report['channels_assigned_to_synthetic_sensors']:
+            raise ValueError('Observed channels must not use synthetic sensors')
         started=time.perf_counter()
         sql("CREATE UNLOGGED TABLE smartcity.import_stage(doc jsonb NOT NULL);")
         # CSV control separators cannot occur literally in canonical JSON strings.
@@ -159,7 +200,8 @@ def postgres(private, report):
         report['native_executed']=True
 
 
-def mongo(private,report):
+def mongo(private, out, report):
+    administrative_seed(private, out)
     with container('mongodb','mongo:7.0.16',private,report) as name:
         database='smartcity_full_'+uuid.uuid4().hex[:12]
         output=command(['exec',name,'mongosh','--quiet',f'mongodb://127.0.0.1:27017/{database}',
@@ -178,7 +220,7 @@ def run(generation,engine):
             'shared_server_modified':False}
     started=time.perf_counter()
     try:
-        (postgres if engine=='postgresql' else mongo)(private,report)
+        (postgres if engine=='postgresql' else mongo)(private,out,report)
         if report['count']!=preparation['accepted'] or report['metadata_verified']!=preparation['accepted']:
             raise ValueError('Incomplete engine count or metadata verification')
         db=sqlite3.connect(f'file:{private / "identities.sqlite"}?mode=ro',uri=True)

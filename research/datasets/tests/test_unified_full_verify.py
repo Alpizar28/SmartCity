@@ -26,7 +26,9 @@ def evidence(tmp_path,monkeypatch):
         'native_executed':True,'idempotent_reimport':True,'conflicting_payload_rejected':True,
         'ledger_reconciled':True,'container_removed':True,'anonymous_volumes_removed':True,
         'synthetic_measurements':0,'shared_server_modified':False,'conflict_recorded':True,
-        'unique_id_and_natural_key':True,'integrity_rejections':{'fixture':{'rejected':True}}}
+        'unique_id_and_natural_key':True,'integrity_rejections':{'fixture':{'rejected':True}},
+        'administrative_counts':{'organizations':1,'users':1,'sensors':1},
+        'channels_assigned_to_synthetic_sensors':0,'readings_with_sensor_link':0}
     for engine in ('postgresql','mongodb'):
         (out/(engine+'_full.json')).write_text(json.dumps(report))
     monkeypatch.setattr(verifier,'generation_paths',lambda g:(private,out))
@@ -39,6 +41,8 @@ def test_verified_small_input_does_not_claim_minimums_or_spark_or_two_sources(ev
     assert result['verified']
     assert not result['postgresql']['met'] and not result['mongodb']['met']
     assert not result['spark']['executed'] and not result['two_measurement_sources_met']
+    assert result['administrative_demo']['verified']
+    assert result['administrative_demo']['sensors'] == 1
 
 
 @pytest.mark.parametrize('field,value',[
@@ -50,5 +54,18 @@ def test_verified_small_input_does_not_claim_minimums_or_spark_or_two_sources(ev
 def test_incomplete_or_invalid_evidence_is_rejected(evidence,field,value):
     out,report=evidence
     (out/'mongodb_full.json').write_text(json.dumps({**report,field:value}))
+    with pytest.raises(ValueError):
+        verifier.verify('fixture')
+
+
+def test_administrative_evidence_must_match_and_preserve_observed_data(evidence):
+    out,report=evidence
+    invalid = {**report, 'administrative_counts': {'organizations': 1, 'users': 1, 'sensors': 0}}
+    (out/'mongodb_full.json').write_text(json.dumps(invalid))
+    with pytest.raises(ValueError):
+        verifier.verify('fixture')
+
+    invalid = {**report, 'readings_with_sensor_link': 1}
+    (out/'mongodb_full.json').write_text(json.dumps(invalid))
     with pytest.raises(ValueError):
         verifier.verify('fixture')

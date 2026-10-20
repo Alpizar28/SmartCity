@@ -41,6 +41,15 @@ def verify(generation):
             raise ValueError('Real-only/local-only invariant violated')
     if not reports['mongodb'].get('conflict_recorded') or not reports['mongodb'].get('unique_id_and_natural_key'):
         raise ValueError('MongoDB conflict record or uniqueness evidence missing')
+    administrative = {engine: report.get('administrative_counts') for engine, report in reports.items()}
+    if not all(isinstance(counts, dict) and all(isinstance(counts.get(name), int) and counts[name] > 0
+               for name in ('organizations', 'users', 'sensors')) for counts in administrative.values()):
+        raise ValueError('Administrative table evidence missing or empty')
+    if administrative['postgresql'] != administrative['mongodb']:
+        raise ValueError('Administrative counts differ between engines')
+    for engine, report in reports.items():
+        if report.get('channels_assigned_to_synthetic_sensors') != 0 or report.get('readings_with_sensor_link', 0) != 0:
+            raise ValueError(engine+' links observed data to a synthetic sensor')
     rejections=reports['postgresql'].get('integrity_rejections',{})
     if not rejections or not all(value.get('rejected') for value in rejections.values()):
         raise ValueError('PostgreSQL rejection evidence missing or failed')
@@ -52,6 +61,9 @@ def verify(generation):
         'mongodb':{'count':reports['mongodb']['count'],'minimum':500000,'met':count>=500000},
         'spark':{'executed':False,'status':'pending','eligible_input_records':count},
         'accepted_measurement_sources':['MAD-AIR'],'two_measurement_sources_met':False,
+        'administrative_demo':{'verified':True,**administrative['postgresql'],
+            'synthetic_measurements':0,'channels_assigned_to_synthetic_sensors':0,
+            'readings_assigned_to_synthetic_sensors':0},
         'shared_server_modified':False}
 
 
