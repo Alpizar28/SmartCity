@@ -1,0 +1,44 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+      - feat/unified-data-contract
+      - feat/sprint1-evidence-v2-ci
+
+permissions:
+  contents: read
+
+jobs:
+  public-validation:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: research/datasets/scripts/requirements.lock
+      - name: Install Python dependencies
+        run: python -m pip install -r research/datasets/scripts/requirements.lock
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate documentation
+        run: python research/datasets/scripts/phase6_validate_docs.py
+      - name: Restore generated Phase 6 reports
+        run: git restore research/datasets/results/phase6
+      - name: Run public deterministic tests
+        run: >-
+          python -m pytest -q
+          research/datasets/tests/test_phase6_docs.py
+          research/datasets/tests/test_unified_contract.py
+          research/datasets/tests/test_unified_full_verify.py
+          research/datasets/tests/test_unified_synthetic_admin.py
+      - name: Validate MongoDB script syntax
+        run: node --check research/datasets/scripts/unified_full_mongo.js
+      - name: Check diff whitespace
+        run: git diff --check

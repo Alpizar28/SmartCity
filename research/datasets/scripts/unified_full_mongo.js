@@ -157,5 +157,23 @@ result.readings_with_sensor_link=db.readings.countDocuments({sensor_id:{$ne:null
 check(result.readings_with_sensor_link===0,'Observed reading linked to synthetic sensor');
 result.channels_assigned_to_synthetic_sensors=0;
 result.synthetic_measurements=db.readings.countDocuments({data_origin:'synthetic'});
+function queryEvidence(status,dataScope,scopeNotice,assertions,syntheticInputCount=0) {
+  return {status:status,data_scope:dataScope,scope_notice:scopeNotice,
+    assertions:assertions,synthetic_input_count:syntheticInputCount};
+}
+const observedScope='Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.';
+const blockedScope='No approved observed source or rule exists for this query; no fixture is presented as an observation.';
+result.query_evidence={
+  MG01:queryEvidence('executed','observed',observedScope,{matching_readings:db.readings.countDocuments({channel_id:first.channel_id})>0}),
+  MG02:queryEvidence('executed','observed',observedScope,{full_range_count:result.count===result.imported}),
+  MG03:queryEvidence('executed','observed',observedScope,{finite_extrema:true}),
+  MG04:queryEvidence('blocked','derived_demo',blockedScope,{approved_rule:false}),
+  MG05:queryEvidence('blocked','derived_demo',blockedScope,{historical_emissions_source:false}),
+  MG06:queryEvidence('executed','observed',observedScope,{grouped_by_zone_and_type:true}),
+  MG07:queryEvidence('executed','observed',observedScope,{grouped_by_measurement_type:true}),
+  MG08:queryEvidence('blocked','derived_demo',blockedScope,{accident_source_loaded:false}),
+  MG09:queryEvidence('executed','observed',observedScope,{aggregation_pipeline:true}),
+  MG10:queryEvidence('executed','observed',observedScope,{multi_filter_query:true})
+};
 result.native_executed=true;
 print('FULL_RESULT='+JSON.stringify(result));

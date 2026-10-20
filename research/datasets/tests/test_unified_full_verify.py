@@ -28,9 +28,18 @@ def evidence(tmp_path,monkeypatch):
         'synthetic_measurements':0,'shared_server_modified':False,'conflict_recorded':True,
         'unique_id_and_natural_key':True,'integrity_rejections':{'fixture':{'rejected':True}},
         'administrative_counts':{'organizations':1,'users':1,'sensors':1},
-        'channels_assigned_to_synthetic_sensors':0,'readings_with_sensor_link':0}
+        'channels_assigned_to_synthetic_sensors':0,'readings_with_sensor_link':0,
+        'query_evidence': {f'{prefix}{number:02d}': {
+            'status': 'executed',
+            'data_scope': 'synthetic_demo' if number <= 8 else 'observed',
+            'scope_notice': 'fixture scope',
+            'assertions': {'executed': True},
+        } for prefix in ('PG', 'MG') for number in range(1, 11)}}
     for engine in ('postgresql','mongodb'):
-        (out/(engine+'_full.json')).write_text(json.dumps(report))
+        prefix = 'PG' if engine == 'postgresql' else 'MG'
+        engine_report = {**report, 'query_evidence': {
+            name: row for name, row in report['query_evidence'].items() if name.startswith(prefix)}}
+        (out/(engine+'_full.json')).write_text(json.dumps(engine_report))
     monkeypatch.setattr(verifier,'generation_paths',lambda g:(private,out))
     monkeypatch.setattr(verifier,'verify_generation',lambda g:preparation)
     return out,report
@@ -68,4 +77,20 @@ def test_administrative_evidence_must_match_and_preserve_observed_data(evidence)
     invalid = {**report, 'readings_with_sensor_link': 1}
     (out/'mongodb_full.json').write_text(json.dumps(invalid))
     with pytest.raises(ValueError):
+        verifier.verify('fixture')
+
+
+def test_query_evidence_requires_all_queries_and_honest_synthetic_scope(evidence):
+    out,_ = evidence
+    report = json.loads((out/'mongodb_full.json').read_text())
+    missing = {**report, 'query_evidence': {}}
+    (out/'mongodb_full.json').write_text(json.dumps(missing))
+    with pytest.raises(ValueError, match='query evidence'):
+        verifier.verify('fixture')
+
+    dishonest = json.loads(json.dumps(report))
+    dishonest['query_evidence']['MG01']['data_scope'] = 'observed'
+    dishonest['query_evidence']['MG01']['synthetic_input_count'] = 1
+    (out/'mongodb_full.json').write_text(json.dumps(dishonest))
+    with pytest.raises(ValueError, match='synthetic'):
         verifier.verify('fixture')

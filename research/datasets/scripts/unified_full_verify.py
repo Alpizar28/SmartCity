@@ -8,6 +8,30 @@ from phase5_contract import ROOT, canonical, digest
 from unified_expand import generation_paths, verify_generation
 
 
+QUERY_STATUSES = {'executed', 'blocked', 'not_applicable'}
+QUERY_SCOPES = {'observed', 'synthetic_demo', 'derived_demo'}
+
+
+def verify_query_evidence(report, prefix):
+    evidence = report.get('query_evidence')
+    if not isinstance(evidence, dict):
+        raise ValueError('query evidence missing')
+    required = {f'{prefix}{number:02d}' for number in range(1, 11)}
+    if set(evidence) != required:
+        raise ValueError('query evidence must include exactly '+prefix+'01–'+prefix+'10')
+    for name, row in evidence.items():
+        if not isinstance(row, dict) or row.get('status') not in QUERY_STATUSES:
+            raise ValueError('invalid query evidence status: '+name)
+        if row.get('data_scope') not in QUERY_SCOPES:
+            raise ValueError('invalid query evidence scope: '+name)
+        if not isinstance(row.get('scope_notice'), str) or not row['scope_notice'].strip():
+            raise ValueError('query evidence scope notice missing: '+name)
+        if not isinstance(row.get('assertions'), dict):
+            raise ValueError('query evidence assertions missing: '+name)
+        if row['data_scope'] == 'observed' and row.get('synthetic_input_count', 0):
+            raise ValueError('observed query cannot consume synthetic input: '+name)
+
+
 def verify(generation):
     preparation=verify_generation(generation)
     private,out=generation_paths(generation)
@@ -22,6 +46,7 @@ def verify(generation):
     if count!=preparation['accepted']:
         raise ValueError('Ledger count mismatch')
     for engine,report in reports.items():
+        verify_query_evidence(report, 'PG' if engine == 'postgresql' else 'MG')
         if report.get('error'):
             raise ValueError(engine+' failed: '+report['error'])
         for filename, expected in report['source_hashes'].items():
