@@ -21,9 +21,12 @@ jobs:
         with:
           python-version: '3.11'
           cache: pip
-          cache-dependency-path: research/datasets/scripts/requirements.lock
+          cache-dependency-path: >-
+            research/datasets/scripts/requirements.lock
       - name: Install Python dependencies
-        run: python -m pip install -r research/datasets/scripts/requirements.lock
+        run: >-
+          python -m pip install
+          -r research/datasets/scripts/requirements.lock
       - uses: actions/setup-node@v4
         with:
           node-version: '20'

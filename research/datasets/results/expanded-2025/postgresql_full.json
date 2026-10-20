@@ -4,8 +4,8 @@
   "full_batch": true,
   "accepted_input_sha256": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
   "source_hashes": {
-    "unified_full_load.py": "66244d90c651168188f70a0cb64dd3eb97229842aef83413f9177e77f3270f93",
-    "unified_full_mongo.js": "7e7715ddc6a383e0f8738dc4703bfd003643080a04c120a7af4ffd37f7c5f49e",
+    "unified_full_load.py": "f64d70a478169a429ef27a95f13560694787ab8fb6486e05010be2323ec80214",
+    "unified_full_mongo.js": "680e14106b0cfd8ef615400d7508bb8654def9a008fa9adff6dbf55deca1d83f",
     "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
     "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
   },
@@ -18,7 +18,7 @@
   "local_socket": "unix:///var/run/docker.sock",
   "memory_limit_bytes": 2147483648,
   "cpus": 2,
-  "container": "smartcity-full-postgresql-6e32f290b0e1",
+  "container": "smartcity-full-postgresql-9b5e564507df",
   "container_removed": true,
   "anonymous_volumes_removed": true,
   "version": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
@@ -28,13 +28,13 @@
     "sensors": 5133
   },
   "channels_assigned_to_synthetic_sensors": 0,
-  "stage_copy_seconds": 13.757062439999572,
-  "initial_import_seconds": 380.6525308559976,
+  "stage_copy_seconds": 18.192777868999997,
+  "initial_import_seconds": 429.535376167,
   "count": 1076813,
   "idempotent_reimport": true,
-  "full_reimport_seconds": 454.97951999400175,
+  "full_reimport_seconds": 533.6482499090001,
   "metadata_verified": 1076813,
-  "full_metadata_comparison_seconds": 27.098969503000262,
+  "full_metadata_comparison_seconds": 42.265493646000095,
   "count_by_source": [
     {
       "source_id": "MAD-AIR",
@@ -66,12 +66,12 @@
         "Node Type": "Gather Merge",
         "Parallel Aware": false,
         "Async Capable": false,
-        "Startup Cost": 55427.75,
-        "Total Cost": 56989.56,
-        "Plan Rows": 13386,
+        "Startup Cost": 55412.61,
+        "Total Cost": 56973.72,
+        "Plan Rows": 13380,
         "Plan Width": 850,
-        "Actual Startup Time": 8.4,
-        "Actual Total Time": 12.053,
+        "Actual Startup Time": 9.515,
+        "Actual Total Time": 13.383,
         "Actual Rows": 8635,
         "Actual Loops": 1,
         "Workers Planned": 2,
@@ -92,19 +92,19 @@
             "Parent Relationship": "Outer",
             "Parallel Aware": false,
             "Async Capable": false,
-            "Startup Cost": 54427.72,
-            "Total Cost": 54444.46,
-            "Plan Rows": 6693,
+            "Startup Cost": 54412.58,
+            "Total Cost": 54429.31,
+            "Plan Rows": 6690,
             "Plan Width": 850,
-            "Actual Startup Time": 6.26,
-            "Actual Total Time": 6.372,
+            "Actual Startup Time": 7.311,
+            "Actual Total Time": 7.441,
             "Actual Rows": 2878,
             "Actual Loops": 3,
             "Sort Key": [
               "observed_at"
             ],
             "Sort Method": "quicksort",
-            "Sort Space Used": 2409,
+            "Sort Space Used": 2414,
             "Sort Space Type": "Memory",
             "Shared Hit Blocks": 22,
             "Shared Read Blocks": 2197,
@@ -120,13 +120,13 @@
               {
                 "Worker Number": 0,
                 "Sort Method": "quicksort",
-                "Sort Space Used": 2393,
+                "Sort Space Used": 2320,
                 "Sort Space Type": "Memory"
               },
               {
                 "Worker Number": 1,
                 "Sort Method": "quicksort",
-                "Sort Space Used": 2436,
+                "Sort Space Used": 2504,
                 "Sort Space Type": "Memory"
               }
             ],
@@ -138,17 +138,17 @@
                 "Async Capable": false,
                 "Relation Name": "observations",
                 "Alias": "observations",
-                "Startup Cost": 1117.04,
-                "Total Cost": 51485.94,
-                "Plan Rows": 6693,
+                "Startup Cost": 1124.98,
+                "Total Cost": 51471.01,
+                "Plan Rows": 6690,
                 "Plan Width": 850,
-                "Actual Startup Time": 3.753,
-                "Actual Total Time": 5.255,
+                "Actual Startup Time": 4.107,
+                "Actual Total Time": 5.969,
                 "Actual Rows": 2878,
                 "Actual Loops": 3,
                 "Recheck Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
                 "Rows Removed by Index Recheck": 0,
-                "Exact Heap Blocks": 651,
+                "Exact Heap Blocks": 635,
                 "Lossy Heap Blocks": 0,
                 "Shared Hit Blocks": 6,
                 "Shared Read Blocks": 2197,
@@ -169,11 +169,11 @@
                     "Async Capable": false,
                     "Index Name": "observations_channel_id_observed_at_timestamp_role_key",
                     "Startup Cost": 0.0,
-                    "Total Cost": 1113.03,
-                    "Plan Rows": 16063,
+                    "Total Cost": 1120.96,
+                    "Plan Rows": 16055,
                     "Plan Width": 0,
-                    "Actual Startup Time": 4.182,
-                    "Actual Total Time": 4.183,
+                    "Actual Startup Time": 4.444,
+                    "Actual Total Time": 4.444,
                     "Actual Rows": 17270,
                     "Actual Loops": 1,
                     "Index Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
@@ -207,9 +207,9 @@
         "Temp Read Blocks": 0,
         "Temp Written Blocks": 0
       },
-      "Planning Time": 0.667,
+      "Planning Time": 0.87,
       "Triggers": [],
-      "Execution Time": 12.559
+      "Execution Time": 14.044
     }
   ],
   "database_bytes": 4203133975,
@@ -226,10 +226,102 @@
     "PG09",
     "PG10"
   ],
+  "query_evidence": {
+    "PG01": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "categorized_sensors": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG02": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "sensors_with_location": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG03": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "administrative_statuses": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG04": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "organizations_assigned": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG05": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "locations_ranked": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG06": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "installation_dates": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG07": {
+      "status": "blocked",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "No defensible observed sensor-to-channel relationship exists; the query is not presented as physical inventory evidence.",
+      "assertions": {
+        "observed_sensor_links": false
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG08": {
+      "status": "executed",
+      "data_scope": "synthetic_demo",
+      "scope_notice": "Synthetic administrative demo; it does not identify the producer of an observed reading.",
+      "assertions": {
+        "zones_ranked": true
+      },
+      "synthetic_input_count": 5133
+    },
+    "PG09": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR data; channels and readings are not linked to synthetic sensors.",
+      "assertions": {
+        "channel_activity_rows": true
+      },
+      "synthetic_input_count": 0
+    },
+    "PG10": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR data; channels and readings are not linked to synthetic sensors.",
+      "assertions": {
+        "stations_available": true
+      },
+      "synthetic_input_count": 0
+    }
+  },
   "physical_inventory_functional_compliance": false,
   "synthetic_measurements": 0,
   "ids_payload_sha256": "7ee034a1f3be3f4ef533d43c571047f6860fbf62e925759c6387e600eb11f398",
   "peak_cgroup_memory_bytes": 2147483648,
   "ledger_reconciled": true,
-  "elapsed_seconds": 896.6332996609999
+  "elapsed_seconds": 1045.833419616
 }
