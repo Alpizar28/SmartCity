@@ -49,7 +49,7 @@ La identidad histórica del canal omitía la estación como parte explícita. Es
 
 ## Datos administrativos sintéticos autorizados
 
-Fuente de autorización: conversación aportada por Jose del **10/10/2026**, respuesta docente de las 21:14: «Pueden poner datos aleatorios a la hora de la carga». Resuelve la posibilidad de simular atributos administrativos faltantes; no acredita sensores reales, mediciones, relojes ni unidades. No se versiona el número telefónico del mensaje.
+Fuente de autorización: [evidencia de autorización para datos sintéticos administrativos](EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md), conversación aportada por Jose del **10/10/2026**, respuesta docente de las 21:14: «Pueden poner datos aleatorios a la hora de la carga». Resuelve la posibilidad de simular atributos administrativos faltantes; no acredita sensores reales, mediciones, relojes ni unidades. No se versiona el número telefónico del mensaje.
 
 `unified_synthetic.py --generation expanded-2025` genera un paquete determinista con semilla `20261010` y versión `admin-demo-v2`: organismos, usuarios y un sensor ficticio por estación de catálogo. Todos llevan `data_origin=synthetic`, procedencia, semilla y propósito; los correos usan `example.invalid` y no se inventa consentimiento de personas reales.
 
