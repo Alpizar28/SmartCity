@@ -19,7 +19,8 @@ import zipfile
 import pandas as pd
 
 from phase5_contract import (ROOT, OUT, PRIVATE, VERSION, base_document, canonical,
-                             digest, hourly_endpoint, numeric, stable_id, validate_document)
+                             digest, hourly_endpoint, numeric, stable_id, validate_document,
+                             payload_hash, IMPLEMENTATION, TRANSFORMATION_VERSION, SOURCES)
 
 IDS = ['MAD-AIR-file', 'MAD-METEO-file', 'MAD-TRAFFIC-Jan2025',
        '212629-0-estaciones-control-aire-inventory',
@@ -43,6 +44,15 @@ def sources():
 
 
 def traffic_cache(source):
+    # Reuse the audited immutable extraction, independently of the export generation.
+    historical = ROOT/'private_results/phase5'
+    if (historical/'traffic_cache_manifest.json').exists():
+        old = json.loads((historical/'traffic_cache_manifest.json').read_text())
+        cached = historical/'traffic_selected.parquet'
+        if (old['fingerprint']['original_sha256'] == source['sha256']
+                and old['fingerprint']['filter'] == 'int(id)%20==0'
+                and digest(cached) == old['sha256']):
+            return cached, old
     path = PRIVATE/'traffic_selected.parquet'
     stamp = PRIVATE/'traffic_cache_manifest.json'
     fingerprint = {'original_sha256': source['sha256'], 'filter': 'int(id)%20==0', 'version': VERSION}
@@ -106,9 +116,13 @@ def geographic(source, code, meta, catalogs):
 def add_channel(doc, key, catalogs):
     catalogs['channels'][doc['channel_id']] = {'channel_id':doc['channel_id'],
         'station_id':doc['station_id'], 'sensor_id':None, 'source_id':doc['source_id'],
-        'source_key':key, 'category_id':doc['measurement_type'], 'catalog_basis':'observations',
+        'source_key':key, 'measurement_type':doc['measurement_type'], 'catalog_basis':'observations',
         'installation_date':None, 'administrative_status':None, 'organization_id':None,
         'data_origin':'derived'}
+    typ = doc['measurement_type']
+    catalogs['measurement_types'][typ] = {'measurement_type':typ, 'category_id':typ,
+        'name':typ, 'source_id':doc['source_id'], 'code':typ.rsplit(':', 1)[1],
+        'unit':doc['unit'], 'unit_status':doc['unit_status'], 'candidate_unit':doc.get('candidate_unit')}
 
 
 def air_documents(source, resource, meta, catalogs, counters):
@@ -124,7 +138,8 @@ def air_documents(source, resource, meta, catalogs, counters):
         for h in range(1,25):
             flag, value = r[f'V{h:02d}'], numeric(r[f'H{h:02d}'])
             local = hourly_endpoint(date, h)
-            doc = base_document(source, resource['sha256'], code, key, local, 'hour_end')
+            status = 'documented_local' if source=='MAD-AIR' else 'assumed_same_H_format_pending_dictionary'
+            doc = base_document(source, resource['sha256'], code, key, local, 'hour_end', status)
             doc.update(measurement_type=f'{source}:{variable}', value=value,
                 unit=AIR_UNITS.get(variable) if source=='MAD-AIR' else None,
                 unit_status='verified_dictionary' if source=='MAD-AIR' and variable in AIR_UNITS else 'pending_dictionary',
@@ -149,7 +164,8 @@ def traffic_documents(path, resource, cache, meta, catalogs, counters):
         code, typ = r['id'], r['tipo_elem']
         local = datetime.fromisoformat(r['fecha'])
         key = [code, typ]
-        doc = base_document('MAD-TRAFFIC', resource['sha256'], code, key, local, 'publisher_label')
+        doc = base_document('MAD-TRAFFIC', resource['sha256'], code, key, local, 'publisher_label',
+                            'assumed_local_label_pending_provider_confirmation')
         duration, intensity = numeric(r['periodo_integracion']), numeric(r['intensidad'])
         optional = {}
         for field, unit in [('ocupacion','percent'), ('carga','percent'), ('vmed','km/h')]:
@@ -205,7 +221,14 @@ def main():
         return
     cache_path, cache = traffic_cache(resource['MAD-TRAFFIC-Jan2025'])
     meta = metadata(resource)
-    catalogs = {'stations':{}, 'channels':{}, 'zones':{}}
+    catalogs = {'schema_version':VERSION, 'implementation':IMPLEMENTATION,
+                'stations':{}, 'channels':{}, 'zones':{}, 'measurement_types':{},
+                'sources':{s:{'source_id':s, 'name':s, 'publisher':'Ayuntamiento de Madrid'} for s in SOURCES},
+                'source_versions':{}}
+    for ident, source in zip(IDS, (*SOURCES, *SOURCES)):
+        r = resource[ident]
+        catalogs['source_versions'][r['sha256']] = {'source_version':r['sha256'],
+            'source_id':source, 'original_path':r['path']}
     # Independent site inventory, not guessed channels formed by cross product of variables.
     for source, records in meta.items():
         for code in records:
@@ -218,27 +241,47 @@ def main():
     db.execute('DELETE FROM identities')
     counters, candidates, stats = {}, [], {}
     t = time.perf_counter()
+    accepted = (PRIVATE/'accepted.extjsonl.partial').open('w')
+    quarantine = (PRIVATE/'quarantine.extjsonl.partial').open('w')
+    conflicts_log = (PRIVATE/'conflicts.extjsonl.partial').open('w')
     for source in ('MAD-AIR','MAD-METEO','MAD-TRAFFIC'):
         counters[source] = {}
         totals = Counter()
         stream = (traffic_documents(cache_path, resource['MAD-TRAFFIC-Jan2025'], cache, meta, catalogs, counters[source])
                   if source=='MAD-TRAFFIC' else air_documents(source, resource[source+'-file'], meta, catalogs, counters[source]))
-        quota = args.sample_size - 2*(args.sample_size//5) if source=='MAD-TRAFFIC' else args.sample_size//5
+        quota = args.sample_size - len(candidates)
         n = 0
         for doc, valid, reason in stream:
             totals['selected_records'] += 1
+            if doc['time_error']:
+                valid, reason = False, doc['time_error']
             totals[reason] += 1
             if doc['zone_id'] is None:
                 totals['zone_null'] += 1
+            # Raw reference row must not make repeated identical measurement look conflicting.
+            sig = payload_hash(doc)
+            doc['payload_hash'] = sig
+            if not valid:
+                quarantine.write(canonical({'reason':reason, 'source_id':source,
+                    'raw_reference':doc['raw_reference'], 'source_key':doc['source_key'],
+                    'original_time':doc['original_time'], 'original_timezone':doc['original_timezone'],
+                    'timestamp_role':doc['timestamp_role'], 'timestamp_status':doc['timestamp_status'],
+                    'observed_at':None, 'value':doc['value'], 'payload_hash':sig,
+                    'schema_version':VERSION, 'transformation_version':TRANSFORMATION_VERSION})+'\n')
+            if doc['measurement_id'] is None:
+                continue
+            totals['identified_records'] += 1
             if valid:
                 validate_document(doc, catalogs)
-            # Raw reference row must not make repeated identical measurement look conflicting.
-            identity_content = {k:v for k,v in doc.items() if k not in ('raw_reference',)}
-            sig = stable_id('payload', identity_content)
-            doc['payload_hash'] = sig
+            previous = db.execute('SELECT signature FROM identities WHERE id=?', (doc['_id'],)).fetchone()
+            if previous and previous[0] != sig:
+                conflicts_log.write(canonical({'measurement_id':doc['_id'], 'previous_hash':previous[0],
+                    'incoming_hash':sig, 'raw_reference':doc['raw_reference']})+'\n')
             db.execute('INSERT INTO identities(id,source,signature,valid) VALUES (?,?,?,?) '
                        'ON CONFLICT(id) DO UPDATE SET conflict=CASE WHEN signature!=excluded.signature THEN 1 ELSE conflict END',
-                       (doc['_id'], source, sig, int(valid)))
+                        (doc['_id'], source, sig, int(valid)))
+            if valid and previous is None:
+                accepted.write(canonical(doc)+'\n')
             if valid and n<quota:
                 candidates.append(doc)
                 n += 1
@@ -247,8 +290,15 @@ def main():
         db.commit()
         unique, effective, conflicts = db.execute('SELECT count(*),sum(valid AND NOT conflict),sum(conflict) FROM identities WHERE source=?',(source,)).fetchone()
         stats[source] = {**counters[source], **dict(totals), 'unique_natural_keys':unique,
-            'duplicate_extras':totals['selected_records']-unique, 'conflicting_keys':conflicts or 0,
+            'duplicate_extras':totals['identified_records']-unique, 'conflicting_keys':conflicts or 0,
             'effective_documents':effective or 0, 'strict_physical_sensor_documents':0}
+    for handle in (accepted, quarantine, conflicts_log):
+        handle.close()
+    if any(s['conflicting_keys'] for s in stats.values()):
+        db.close()
+        raise ValueError('Payload conflict: inspect conflicts.extjsonl.partial; no completed batch published')
+    for filename in ('accepted.extjsonl', 'quarantine.extjsonl', 'conflicts.extjsonl'):
+        os.replace(PRIVATE/(filename+'.partial'), PRIVATE/filename)
     sample = [d for d in candidates if db.execute('SELECT conflict FROM identities WHERE id=?',(d['_id'],)).fetchone()[0]==0]
     if len(sample)!=args.sample_size:
         raise ValueError('Not enough valid nonconflicting candidates; review quota/QA, do not fabricate')
@@ -272,7 +322,8 @@ def main():
     report = {'configuration':configuration, 'counts':stats, 'sample_size':len(sample), 'sample_by_source':dict(sample_sources),
         'synthetic_measurements':0, 'elapsed_seconds':time.perf_counter()-t, 'source_snapshots':list(resource.values()),
         'cache':cache, 'source_rows_only_January':True, 'engines_loaded':False,
-        'private_output_hashes':{f:digest(PRIVATE/f) for f in ['catalogs.json','sample.extjson','sample.parquet','sample.csv','identity_ledger.sqlite']}}
+        'implementation':IMPLEMENTATION, 'transformation_version':TRANSFORMATION_VERSION,
+        'private_output_hashes':{f:digest(PRIVATE/f) for f in ['catalogs.json','sample.extjson','sample.parquet','sample.csv','identity_ledger.sqlite', 'accepted.extjsonl', 'quarantine.extjsonl', 'conflicts.extjsonl']}}
     atomic_json(completed, report)
     print(json.dumps({'counts':stats, 'sample_size':len(sample), 'sample_by_source':dict(sample_sources)}, indent=2))
 

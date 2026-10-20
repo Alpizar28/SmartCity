@@ -1,0 +1,278 @@
+{
+  "generation": "expanded-2025",
+  "configuration": {
+    "exporter": "multi-month-air-v1",
+    "contract": "madrid-draft-v1",
+    "year": 2025,
+    "months": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "snapshots": {
+      "MAD-AIR-file": "9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471",
+      "MAD-METEO-file": "ada9304d302ead850e45c404d279762b774cd6671391febfc531f6c3033f3852",
+      "MAD-TRAFFIC-Jan2025": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c",
+      "212629-0-estaciones-control-aire-inventory": "2c84ca974088a6d5de13509489196ddefeee83fcae4999798b00603aa951cd1b",
+      "300360-0-meteorologicos-estaciones-inventory": "a95a5d26d27912751589526dc13e6cf729cf49fd8222dc990d3030660acdb7c6",
+      "MAD-TRAFFIC-META-file": "2cd3a4e97a4e25589068616148cd84841dfa1db71844247f5bb874648e961286"
+    },
+    "code_hashes": {
+      "unified_expand.py": "16d8f9c907daba9c08000b52b4bfc4eab5e2822a6630898523db648ba21ce73b",
+      "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0",
+      "phase5_prepare.py": "df1eeb17c701554f0cfc66a4f75079841afe52bf0f3c088b7ce08477bc92c6a4"
+    }
+  },
+  "accepted": 1076813,
+  "quarantined": 26419,
+  "duplicates": 0,
+  "conflicts": 0,
+  "selected": 1103232,
+  "by_source": {
+    "MAD-AIR": {
+      "selected": 1103232,
+      "accepted": 1076813,
+      "quarantined": 26419
+    }
+  },
+  "by_month": {
+    "2025-01": {
+      "selected": 93720,
+      "accepted": 91959,
+      "provider_flag": 1761
+    },
+    "2025-02": {
+      "selected": 84672,
+      "accepted": 82748,
+      "provider_flag": 1924
+    },
+    "2025-03": {
+      "selected": 93744,
+      "accepted": 91145,
+      "provider_flag": 2473,
+      "nonexistent_local_time": 126
+    },
+    "2025-04": {
+      "selected": 90576,
+      "accepted": 86722,
+      "provider_flag": 3854
+    },
+    "2025-05": {
+      "selected": 93600,
+      "accepted": 91736,
+      "provider_flag": 1864
+    },
+    "2025-06": {
+      "selected": 90720,
+      "accepted": 87741,
+      "provider_flag": 2979
+    },
+    "2025-07": {
+      "selected": 93744,
+      "accepted": 91700,
+      "provider_flag": 2044
+    },
+    "2025-08": {
+      "selected": 93744,
+      "accepted": 92297,
+      "provider_flag": 1447
+    },
+    "2025-09": {
+      "selected": 90576,
+      "accepted": 88229,
+      "provider_flag": 2347
+    },
+    "2025-10": {
+      "selected": 93744,
+      "accepted": 91479,
+      "provider_flag": 2139,
+      "ambiguous_local_time_requires_publisher_fold": 126
+    },
+    "2025-11": {
+      "selected": 90648,
+      "accepted": 88778,
+      "provider_flag": 1870
+    },
+    "2025-12": {
+      "selected": 93744,
+      "accepted": 92279,
+      "provider_flag": 1465
+    }
+  },
+  "by_measurement_type": {
+    "MAD-AIR:1": 25426,
+    "MAD-AIR:10": 117467,
+    "MAD-AIR:12": 198303,
+    "MAD-AIR:14": 111951,
+    "MAD-AIR:20": 33385,
+    "MAD-AIR:30": 33414,
+    "MAD-AIR:35": 33467,
+    "MAD-AIR:6": 34443,
+    "MAD-AIR:7": 198302,
+    "MAD-AIR:8": 198302,
+    "MAD-AIR:9": 92353
+  },
+  "synthetic_measurements": 0,
+  "resumed_by_deterministic_replay": false,
+  "elapsed_seconds": 154.86948658600022,
+  "engine_loads": false,
+  "source_snapshots": [
+    {
+      "id": "MAD-AIR-file",
+      "source": "MAD-AIR",
+      "level": "C",
+      "url": "https://datos.madrid.es/dataset/201200-0-calidad-aire-horario/resource/201200-1-calidad-aire-horario-csv/download/201200-1-calidad-aire-horario-csv.csv",
+      "final_url": "https://datos.madrid.es/dataset/201200-0-calidad-aire-horario/resource/201200-1-calidad-aire-horario-csv/download/201200-1-calidad-aire-horario-csv.csv",
+      "retrieved_at_utc": "2026-10-10T02:33:50.516052+00:00",
+      "status": "206",
+      "bytes_downloaded": "20166384",
+      "sha256": "9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471",
+      "path": "raw/MAD-AIR-file.attempt1.bin",
+      "complete_response": "True",
+      "content_type": "text/csv; charset=utf-8",
+      "content_length": "20166384",
+      "content_range": "bytes 0-20166383/20166384",
+      "etag": "\"1790608618.3508804-20166384-1391858716\"",
+      "last_modified": "Mon, 28 Sep 2026 15:16:58 GMT",
+      "period": "2025",
+      "version": "M07",
+      "attempt": "1",
+      "error": ""
+    },
+    {
+      "id": "MAD-METEO-file",
+      "source": "MAD-METEO",
+      "level": "C",
+      "url": "https://datos.madrid.es/dataset/300352-0-meteorologicos-horarios/resource/300352-180-meteorologicos-horarios-csv/download/300352-180-meteorologicos-horarios-csv.csv",
+      "final_url": "https://datos.madrid.es/dataset/300352-0-meteorologicos-horarios/resource/300352-180-meteorologicos-horarios-csv/download/300352-180-meteorologicos-horarios-csv.csv",
+      "retrieved_at_utc": "2026-10-10T02:33:54.454270+00:00",
+      "status": "206",
+      "bytes_downloaded": "15267750",
+      "sha256": "ada9304d302ead850e45c404d279762b774cd6671391febfc531f6c3033f3852",
+      "path": "raw/MAD-METEO-file.attempt1.bin",
+      "complete_response": "True",
+      "content_type": "text/csv; charset=utf-8",
+      "content_length": "15267750",
+      "content_range": "bytes 0-15267749/15267750",
+      "etag": "\"1790610324.5651453-15267750-3231389274\"",
+      "last_modified": "Mon, 28 Sep 2026 15:45:24 GMT",
+      "period": "2025",
+      "version": "M17",
+      "attempt": "1",
+      "error": ""
+    },
+    {
+      "id": "MAD-TRAFFIC-Jan2025",
+      "source": "MAD-TRAFFIC",
+      "level": "C",
+      "url": "https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico/resource/208627-73-transporte-ptomedida-historico-zip/download/208627-73-transporte-ptomedida-historico-zip.zip",
+      "final_url": "https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico/resource/208627-73-transporte-ptomedida-historico-zip/download/208627-73-transporte-ptomedida-historico-zip.zip",
+      "retrieved_at_utc": "2026-10-10T03:40:27.997504+00:00",
+      "status": "200",
+      "bytes_downloaded": "93223315",
+      "sha256": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c",
+      "path": "raw/MAD-TRAFFIC-Jan2025.record89.bin",
+      "complete_response": "True",
+      "content_type": "application/zip",
+      "content_length": "93223315",
+      "content_range": "",
+      "etag": "\"1771195776.86244-93223315-1481578742\"",
+      "last_modified": "Sun, 15 Feb 2026 22:49:36 GMT",
+      "period": "2025-01",
+      "version": "official catalog resource73",
+      "attempt": "1",
+      "error": ""
+    },
+    {
+      "id": "212629-0-estaciones-control-aire-inventory",
+      "source": "MAD-STATION-META",
+      "level": "B",
+      "url": "https://datos.madrid.es/dataset/212629-0-estaciones-control-aire/resource/212629-0-estaciones-control-aire-csv/download/212629-0-estaciones-control-aire-csv.csv",
+      "final_url": "https://datos.madrid.es/dataset/212629-0-estaciones-control-aire/resource/212629-0-estaciones-control-aire-csv/download/212629-0-estaciones-control-aire-csv.csv",
+      "retrieved_at_utc": "2026-10-10T03:37:11.798594+00:00",
+      "status": "200",
+      "bytes_downloaded": "5310",
+      "sha256": "2c84ca974088a6d5de13509489196ddefeee83fcae4999798b00603aa951cd1b",
+      "path": "raw/212629-0-estaciones-control-aire-inventory.record39.bin",
+      "complete_response": "True",
+      "content_type": "text/csv; charset=utf-8",
+      "content_length": "5310",
+      "content_range": "",
+      "etag": "\"1771206088.452912-5310-2611942821\"",
+      "last_modified": "Mon, 16 Feb 2026 01:41:28 GMT",
+      "period": "",
+      "version": "current published inventory",
+      "attempt": "1",
+      "error": ""
+    },
+    {
+      "id": "300360-0-meteorologicos-estaciones-inventory",
+      "source": "MAD-STATION-META",
+      "level": "B",
+      "url": "https://datos.madrid.es/dataset/300360-0-meteorologicos-estaciones/resource/300360-1-meteorologicos-estaciones-csv/download/300360-1-meteorologicos-estaciones-csv.csv",
+      "final_url": "https://datos.madrid.es/dataset/300360-0-meteorologicos-estaciones/resource/300360-1-meteorologicos-estaciones-csv/download/300360-1-meteorologicos-estaciones-csv.csv",
+      "retrieved_at_utc": "2026-10-10T03:37:13.131356+00:00",
+      "status": "200",
+      "bytes_downloaded": "4880",
+      "sha256": "a95a5d26d27912751589526dc13e6cf729cf49fd8222dc990d3030660acdb7c6",
+      "path": "raw/300360-0-meteorologicos-estaciones-inventory.record41.bin",
+      "complete_response": "True",
+      "content_type": "text/csv; charset=utf-8",
+      "content_length": "4880",
+      "content_range": "",
+      "etag": "\"1771210707.533288-4880-3419936440\"",
+      "last_modified": "Mon, 16 Feb 2026 02:58:27 GMT",
+      "period": "",
+      "version": "current published inventory",
+      "attempt": "1",
+      "error": ""
+    },
+    {
+      "id": "MAD-TRAFFIC-META-file",
+      "source": "MAD-TRAFFIC-META",
+      "level": "C",
+      "url": "https://datos.madrid.es/dataset/202468-0-intensidad-trafico/resource/202468-306-intensidad-trafico/download/202468-306-intensidad-trafico.csv",
+      "final_url": "https://datos.madrid.es/dataset/202468-0-intensidad-trafico/resource/202468-306-intensidad-trafico/download/202468-306-intensidad-trafico.csv",
+      "retrieved_at_utc": "2026-10-10T02:34:00.449411+00:00",
+      "status": "206",
+      "bytes_downloaded": "714026",
+      "sha256": "2cd3a4e97a4e25589068616148cd84841dfa1db71844247f5bb874648e961286",
+      "path": "raw/MAD-TRAFFIC-META-file.attempt1.bin",
+      "complete_response": "True",
+      "content_type": "text/csv; charset=utf-8",
+      "content_length": "714026",
+      "content_range": "bytes 0-714025/714026",
+      "etag": "\"1790863779.8256643-714026-81531555\"",
+      "last_modified": "Thu, 01 Oct 2026 14:09:39 GMT",
+      "period": "resource as published",
+      "version": "M16",
+      "attempt": "1",
+      "error": ""
+    }
+  ],
+  "output_bytes": {
+    "accepted.extjsonl": 1567851765,
+    "quarantine.extjsonl": 15339280,
+    "conflicts.extjsonl": 0,
+    "catalogs.json": 5308643,
+    "sample.extjson": 8851772,
+    "identities.sqlite": 577552384
+  },
+  "output_hashes": {
+    "accepted.extjsonl": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
+    "quarantine.extjsonl": "6fc3841530eb9ff2696b4b34a5236530826045e6aed00796e202ede4a423ae77",
+    "conflicts.extjsonl": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "catalogs.json": "66e5414cc7c2299933ba98b8d46129ffa3e754dc404dd76972b328732fdebe26",
+    "sample.extjson": "69ccfe9e301bceb392ed5fa9ac7cbf1c86dab47ad219b89982561d3763407444",
+    "identities.sqlite": "0f6143abf9241ff7898470edcb4e1370288b88d513b386d073483848a07e31c1"
+  }
+}

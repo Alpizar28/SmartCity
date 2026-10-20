@@ -1,0 +1,13 @@
+{
+  "by_source": {
+    "MAD-AIR": {
+      "count": 5000,
+      "min": 0.1,
+      "max": 832.0,
+      "sum": 104879.2
+    }
+  },
+  "ids": 5000,
+  "first_channel": "channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415",
+  "channel_count": 738
+}

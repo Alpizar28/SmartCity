@@ -1,4 +1,4 @@
-SET search_path=draft5;
+SET search_path=smartcity,pg_temp;
 -- STRICT physical queries. Empty sensors table does NOT demonstrate academic compliance.
 -- PG01
 SELECT category_id,count(*) FROM sensors GROUP BY category_id ORDER BY category_id;

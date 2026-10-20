@@ -9,17 +9,28 @@ function check(condition, message) { if (!condition) throw new Error(message); }
 check(sample.length >= 1000 && sample.length <= 10000, 'Bounded sample required');
 db.createCollection('readings', {validator: {$jsonSchema: {
   bsonType: 'object', required: ['_id','measurement_id','station_id','channel_id','observed_at',
-    'source_id','source_version','measurement_type','value','unit','sensor_id','data_origin','raw_reference'],
+    'source_id','source_version','measurement_type','value','unit','sensor_id','data_origin','raw_reference',
+    'payload_hash','transformation_method','transformation_version','catalog_version','schema_version',
+    'original_time','original_timezone','timestamp_role','timestamp_status','quality_flag'],
   properties: {
     _id: {bsonType: 'string'}, measurement_id: {bsonType: 'string'},
     station_id: {bsonType: 'string'}, channel_id: {bsonType: 'string'},
     sensor_id: {bsonType: ['null','string']}, zone_id: {bsonType: ['null','string']},
     observed_at: {bsonType: 'date'}, value: {bsonType: ['double','int','long','decimal']},
-    unit: {bsonType: ['null','string']}, source_id: {bsonType: 'string'},
-    source_version: {bsonType: 'string'}, measurement_type: {bsonType: 'string'},
-    data_origin: {enum: ['observed','derived','synthetic']}, raw_reference: {bsonType:'object'}
+    unit: {bsonType: ['null','string']},
+    source_version: {bsonType: 'string',pattern:'^[0-9a-f]{64}$'}, measurement_type: {bsonType: 'string'},
+    source_id:{enum:['MAD-AIR','MAD-METEO','MAD-TRAFFIC']},
+    original_timezone:{enum:['Europe/Madrid']}, timestamp_role:{enum:['hour_end','publisher_label']},
+    data_origin: {enum: ['observed']}, raw_reference: {bsonType:'object'},
+    timestamp_status: {enum:['documented_local','publisher_confirmed_local']},
+    schema_version: {enum:['madrid-draft-v1']}, catalog_version: {enum:['madrid-draft-v1']},
+    payload_hash: {bsonType:'string',pattern:'^payload:[0-9a-f]{64}$'},
+    transformation_method:{bsonType:'string'}, transformation_version:{bsonType:'string'}
   }
-}}, validationLevel: 'strict', validationAction: 'error'});
+}, $expr: {$and:[{$eq:['$_id','$measurement_id']},
+  {$eq:['$source_version','$raw_reference.sha256']},
+  {$gt:['$value',-Infinity]},{$lt:['$value',Infinity]}]}},
+  validationLevel: 'strict', validationAction: 'error'});
 const result = {engine: 'MongoDB', version: db.version(), sample_size:sample.length,
   native_executed:false, queries:{}, timings_ms:{}, physical_sensor_semantics_approved:false};
 const start = performance.now();
@@ -27,7 +38,6 @@ for (let i=0; i<sample.length; i+=500) db.readings.insertMany(sample.slice(i,i+5
 result.timings_ms.insert_batches = performance.now()-start;
 const indexStart = performance.now();
 db.readings.createIndex({channel_id:1, observed_at:1, timestamp_role:1}, {unique:true, name:'natural_observation'});
-db.readings.createIndex({channel_id:1, observed_at:1}, {name:'channel_time'});
 db.readings.createIndex({source_id:1, measurement_type:1, observed_at:1}, {name:'source_variable_time'});
 db.readings.createIndex({zone_id:1, measurement_type:1, observed_at:1}, {name:'zone_variable_time'});
 result.timings_ms.create_indexes = performance.now()-indexStart;
@@ -82,7 +92,7 @@ result.timings_ms.MG10 = performance.now()-t;
 result.explain = db.readings.find({channel_id:target, observed_at:{$gte:from,$lt:until}})
   .sort({observed_at:1}).explain('executionStats');
 result.hinted_explain = db.readings.find({channel_id:target, observed_at:{$gte:from,$lt:until}})
-  .hint('channel_time').explain('executionStats');
+  .hint('natural_observation').explain('executionStats');
 result.hint_is_demonstration_not_optimizer_claim = true;
 result.indexes = db.readings.getIndexes();
 // Reject schema/unique errors; never change original imported observations.
@@ -92,10 +102,42 @@ catch(e) { result.rejected.duplicate = e.code===11000; }
 try { db.readings.insertOne({...sample[0],_id:'bad-date-demo',observed_at:'not-BSON-date'}); result.rejected.string_date=false; }
 catch(e) { result.rejected.string_date = e.code===121; }
 check(result.rejected.duplicate && result.rejected.string_date, 'Expected rejection failed');
-check(sample.every(d=>db.readings.findOne({_id:d._id}).payload_hash===d.payload_hash),'Conflict on replay');
-const reimport = db.readings.bulkWrite(sample.map(d=>({updateOne:{filter:{_id:d._id},update:{$setOnInsert:d},upsert:true}})),{ordered:true});
+function importBatch(batch) {
+  function semantic(value) {
+    if (value instanceof Date) return value.toISOString();
+    if (Array.isArray(value)) return value.map(semantic);
+    if (value && typeof value==='object') return Object.fromEntries(Object.keys(value).sort()
+      .filter(k=>!['raw_reference','payload_hash','time_error'].includes(k)).map(k=>[k,semantic(value[k])]));
+    return value;
+  }
+  const ids = new Map(), natural = new Map();
+  for (const d of batch) {
+    const key = JSON.stringify([d.channel_id,d.observed_at,d.timestamp_role]);
+    const prior = ids.get(d._id);
+    check(!prior || (prior.payload_hash===d.payload_hash && JSON.stringify(semantic(prior))===JSON.stringify(semantic(d))), 'Intra-batch payload conflict');
+    check(!natural.has(key) || natural.get(key)===d._id, 'Intra-batch natural key conflict');
+    const existing = db.readings.findOne({$or:[{_id:d._id},
+      {channel_id:d.channel_id,observed_at:d.observed_at,timestamp_role:d.timestamp_role}]});
+    if (existing && (existing._id!==d._id || existing.payload_hash!==d.payload_hash
+        || JSON.stringify(semantic(existing))!==JSON.stringify(semantic(d)))) {
+      db.import_conflicts.insertOne({measurement_id:d._id, existing_hash:existing.payload_hash,
+        incoming_hash:d.payload_hash, data_origin:'derived', lifecycle:'import_conflict'});
+      throw new Error('Payload conflict');
+    }
+    ids.set(d._id,d); natural.set(key,d._id);
+  }
+  // Matching hash in the upsert filter also blocks races: a changed hash hits unique _id.
+  return db.readings.bulkWrite([...ids.values()].map(d=>({updateOne:{
+    filter:{_id:d._id,payload_hash:d.payload_hash},update:{$setOnInsert:d},upsert:true}})),{ordered:true});
+}
+const reimport = importBatch(sample);
 check(reimport.upsertedCount===0 && db.readings.countDocuments({})===sample.length,'Idempotence failed');
 result.idempotent_reimport = {upserted:reimport.upsertedCount,count:db.readings.countDocuments({})};
+try { importBatch([{...sample[0],value:sample[0].value+1,payload_hash:'payload:'+'0'.repeat(64)}]);
+  throw new Error('Conflict accepted');
+} catch(e) { check(e.message==='Payload conflict','Unexpected conflict result'); }
+result.conflicting_reimport = {rejected:true,recorded:db.import_conflicts.countDocuments({})===1};
+result.ids_values = db.readings.find({}, {_id:0,measurement_id:1,value:1}).sort({measurement_id:1}).toArray();
 db.createCollection('crud_demo');
 db.crud_demo.insertOne({_id:'demo-one',record_kind:'crud_fixture',data_origin:'synthetic',annotation:'fixture, not measurement'});
 db.crud_demo.insertMany([{_id:'demo-two',data_origin:'synthetic'},{_id:'demo-three',data_origin:'synthetic'}]);

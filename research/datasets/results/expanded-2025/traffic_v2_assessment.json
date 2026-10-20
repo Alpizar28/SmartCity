@@ -1,0 +1,40 @@
+{
+  "status": "proposal_only_not_accepted_or_loaded",
+  "scope": "January 2025 audited ID modulo 20 stratum",
+  "cache_sha256": "6f1e7c63e8267e0bdcfa62e5e8890d2b6aae1b91f71b8a36d81d43ba0f2bb848",
+  "source_version": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c",
+  "dictionary_url": "https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico/resource/208627-81-transporte-ptomedida-historico/download/208627-81-transporte-ptomedida-historico.pdf",
+  "dictionary_sha256": "17562978ce1b7930c6c720db37f055cb3459e30b8cec50d2a671682b215b9de9",
+  "selected_rows": 677724,
+  "quality_flags": {
+    "N": 674704,
+    "": 3020
+  },
+  "element_types": {
+    "C30": 17774,
+    "URB": 611153,
+    "M30": 48797
+  },
+  "official_documented_class_candidates": 656930,
+  "distinct_candidate_logical_keys": 656930,
+  "candidate_duplicate_extras": 0,
+  "candidates_by_type": {
+    "URB": 611153,
+    "M30": 45777
+  },
+  "candidate_integration_sample_count_min": 1,
+  "candidate_integration_sample_count_max": 30,
+  "undocumented_C30_rows": 17774,
+  "invalid_or_missing_sample_count_rows": 0,
+  "timezone_offset_for_january_if_v2_approved": "Europe/Madrid UTC+01:00; no DST transition in this selected month",
+  "candidate_policy": "N flag; finite nonnegative intensity; documented URB/M30; valid January local label; nonnegative integer sample count",
+  "not_yet_verified": [
+    "new v2 identities and payload conflicts",
+    "v2 cross-engine import and replay",
+    "approval of v2 contract and migration",
+    "C30 meaning and optional-variable applicability"
+  ],
+  "accepted_measurements_added": 0,
+  "originals_modified": false,
+  "elapsed_seconds": 0.7626785420006854
+}

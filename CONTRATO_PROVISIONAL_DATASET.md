@@ -1,4 +1,6 @@
-# Contrato provisional del dataset — `madrid-draft-v1-frozen`
+# Contrato provisional anterior — `madrid-draft-v1-frozen` (obsoleto)
+
+> Supersedido por la especificación de integración del 14/10/2026. Implementación común: [madrid-draft-v1](docs/equipo/CONTRATO_UNIFICADO.md). El contenido siguiente conserva las decisiones anteriores para trazabilidad; sus afirmaciones de vigencia ya no aplican.
 
 **Estado:** interfaz provisional congelada para desarrollo; no autoriza una carga definitiva ni cambios en PostgreSQL, MongoDB o el servidor.  
 **Base revisada:** [`research/datasets/05_data_contract.md`](research/datasets/05_data_contract.md), diccionario de 75 entradas y manifiesto de Fase 5.
