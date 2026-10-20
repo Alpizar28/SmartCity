@@ -51,9 +51,9 @@ La identidad histórica del canal omitía la estación como parte explícita. Es
 
 Fuente de autorización: conversación aportada por Jose del **10/10/2026**, respuesta docente de las 21:14: «Pueden poner datos aleatorios a la hora de la carga». Resuelve la posibilidad de simular atributos administrativos faltantes; no acredita sensores reales, mediciones, relojes ni unidades. No se versiona el número telefónico del mensaje.
 
-`unified_synthetic.py` genera con semilla `20261010` y versión `admin-demo-v1`: organismos, usuarios y sensores ficticios con fechas y estados administrativos. Todos llevan `data_origin=synthetic`, procedencia y propósito. Los correos usan `example.invalid`; no se inventa consentimiento de personas reales.
+`unified_synthetic.py --generation expanded-2025` genera un paquete determinista con semilla `20261010` y versión `admin-demo-v2`: organismos, usuarios y un sensor ficticio por estación de catálogo. Todos llevan `data_origin=synthetic`, procedencia, semilla y propósito; los correos usan `example.invalid` y no se inventa consentimiento de personas reales.
 
-Se cargan en `smartcity_demo.entities`, **no** en inventario ni observaciones oficiales. No existe relación inventada entre sensor y canal observado. Este demo no acredita PG01–PG08 con sensores reales ni reemplaza las adaptaciones de consultas de Daniel.
+Se cargan en las tablas/colecciones administrativas de entrega (`organizations`, `users`, `sensors`), no en `observations`/`readings`. Tampoco se crea relación inventada entre sensor y canal observado: `channels.sensor_id` y `observations.sensor_id` continúan NULL. El demo llena las entidades administrativas para pruebas de integridad, pero no acredita inventario físico ni reemplaza PG01–PG08 basadas en sensores reales.
 
 ## Reproducción local
 

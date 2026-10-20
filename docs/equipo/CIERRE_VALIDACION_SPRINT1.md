@@ -62,7 +62,7 @@ Son mediciones de esta máquina, imágenes locales y configuración acotada; **n
 - Meteo enero: 69.408 en cuarentena; tráfico enero: 677.724 en cuarentena. No se cargaron como aceptados.
 - Cuarentena combinada sin repetir enero de aire: **773.551**.
 - Enero mantiene exactamente sus 91.959 IDs y payloads; ampliación adicional: 984.854, no una copia de enero.
-- Mediciones sintéticas: **0**. Las 14 entidades administrativas de demo previas siguen separadas; no se cargaron en los motores anuales ni se atribuyeron a mediciones reales.
+- Mediciones sintéticas: **0**. La carga completa incluye **1 organización, 5.133 usuarios y 5.133 sensores administrativos sintéticos** con `data_origin=synthetic`, semilla/versionado y procedencia; sus correos usan `example.invalid`. No se enlazan a canales ni observaciones reales, que conservan `sensor_id=NULL`, y no acreditan inventario físico.
 - No se descargaron nuevas mediciones: el CSV oficial ya contenía todo 2025. Se adquirieron siete recursos documentales oficiales, 2.606.497 bytes, con hashes y procedencia.
 - JSONL aceptado: **1.567,85 MB / 1,568 GB**; derivados anuales, incluido ledger y muestra: **2,175 GB**. No sumar archivos derivados como registros adicionales.
 

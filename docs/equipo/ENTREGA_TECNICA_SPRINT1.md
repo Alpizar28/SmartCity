@@ -31,7 +31,7 @@ Los archivos privados **no están en Git**. Transferirlos por un medio acordado 
 5. Mantener PG01–PG10 y sus pruebas bajo su autoría. No copiar automáticamente los ejemplos de Jose sobre sus archivos. Para la actividad sin lecturas, fijar ventana y no inferir avería.
 6. Medir con `EXPLAIN ANALYZE`; no recrear índices redundantes con PK/UNIQUE ni índices sobre la relación antigua de ubicación.
 
-Puede trabajar ya con **1.076.813 lecturas reales de aire**, catálogos, integridad y consultas analíticas. `sensor_id` es NULL sin evidencia física. Instalación, estado administrativo, organismo y usuarios reales no se deducen de las lecturas; el demo sintético separado no acredita inventario real ni completa por sí mismo PG01–PG08.
+Puede trabajar ya con **1.076.813 lecturas reales de aire**, catálogos, integridad y consultas analíticas. `sensor_id` permanece NULL en las observaciones y canales reales sin evidencia física. La carga de entrega completa además incluye entidades administrativas sintéticas deterministas, con `data_origin=synthetic`, semilla y procedencia visibles: sirven para poblar `organizations`, `users` y `sensors`, pero no acreditan instalación, estado administrativo, organismo ni usuarios reales.
 
 ## Kembly — importar sin recalcular identidades
 
