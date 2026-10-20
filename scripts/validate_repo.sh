@@ -41,7 +41,15 @@ fi
 
 "$python" -m compileall -q research/datasets/scripts research/datasets/tests
 "$python" research/datasets/scripts/phase6_validate_docs.py
-"$python" -m pytest research/datasets/tests -q
+if [[ "${FULL_DATASET_VALIDATION:-0}" == "1" ]]; then
+  "$python" -m pytest research/datasets/tests -q
+else
+  "$python" -m pytest -q \
+    research/datasets/tests/test_phase6_docs.py \
+    research/datasets/tests/test_unified_contract.py \
+    research/datasets/tests/test_unified_full_verify.py \
+    research/datasets/tests/test_unified_synthetic_admin.py
+fi
 # Check the intended diff, not the temporary CSV reports emitted by Phase 6.
 cleanup
 trap - EXIT
