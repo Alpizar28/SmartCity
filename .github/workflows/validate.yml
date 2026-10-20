@@ -13,6 +13,7 @@ permissions:
 
 jobs:
   public-validation:
+    name: Public repository validation
     runs-on: ubuntu-24.04
     timeout-minutes: 15
     steps:
@@ -30,17 +31,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Validate documentation
-        run: python research/datasets/scripts/phase6_validate_docs.py
-      - name: Restore generated Phase 6 reports
-        run: git restore research/datasets/results/phase6
-      - name: Run public deterministic tests
-        run: >-
-          python -m pytest -q
-          research/datasets/tests/test_phase6_docs.py
-          research/datasets/tests/test_unified_contract.py
-          research/datasets/tests/test_unified_full_verify.py
-          research/datasets/tests/test_unified_synthetic_admin.py
+      - name: Run public repository validation
+        env:
+          PYTHON: ${{ env.pythonLocation }}/bin/python
+        run: ./scripts/validate_repo.sh
       - name: Validate MongoDB script syntax
         run: node --check research/datasets/scripts/unified_full_mongo.js
       - name: Check diff whitespace
