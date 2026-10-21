@@ -5,6 +5,37 @@
 
 ## Se puede desarrollar ya
 
+### Núcleo local implementado — 20 de octubre de 2026
+
+Existe código nuevo en [`sprint1/`](../../sprint1/README.md): contrato e IDs,
+validación de catálogos/procedencia/reloj/QA, cuarentena en memoria, propuestas
+SQL y builders/esquema/índices MongoDB. Se comprueba con
+`bash scripts/validate_sprint1.sh`: **32 pruebas Python y 8 Node aprobadas**.
+No se instalaron dependencias ni se descargaron imágenes.
+
+Es un PASS **offline nuevo**, no de reproducción histórica ni del Sprint completo.
+Además se ejecutó integración nueva en **PostgreSQL 16.6 y MongoDB 7.0.16**
+locales desechables: tres lecturas publicadas por motor, SQL/BSON, consultas,
+índices, replay/cuarentena persistentes y CRUD Mongo aislado. Los contenedores se
+eliminaron; los ejemplos históricos no cambiaron. Véase
+[`sprint1/INTEGRACION.md`](../../sprint1/INTEGRACION.md).
+Faltan catálogos completos independientes, carga masiva autorizada, validación
+completa de los clientes de importación, estrés y demostración de volumen/rendimiento.
+También se comprobó respaldo/restauración lógica en ambos motores y una carrera
+PostgreSQL de ocho conexiones (1 accepted, 3 duplicate, 4 quarantined). No equivale
+a estrés sostenido ni recuperación ante caída; véase
+[`sprint1/RESPALDOS.md`](../../sprint1/RESPALDOS.md). La base de origen permaneció
+intacta; restauraciones y carrera se hicieron solo sobre destinos desechables.
+
+Por petición del usuario se agregó [`sprint1/basico/`](../../sprint1/basico/README.md):
+código de estudiante con comentarios en español, consultas SQL/MongoDB, CRUD de
+práctica y CLI de carga local que por defecto solo valida archivos. No se borró
+el núcleo probado. Los CLI no crean catálogos ni ejecutan cargas automáticamente.
+Su lógica tiene pruebas simuladas, y consultas/CRUD se probaron en los motores;
+falta probar las conexiones de los CLI con psycopg/PyMongo en una base autenticada.
+Las matrices de abajo siguen describiendo evidencia histórica, no el estado de
+ejecución de las propuestas nuevas. No cambia ningún bloqueo académico o técnico.
+
 ### Recuperación histórica y desarrollo nuevo son frentes separados
 
 La reproducción histórica sigue **pendiente**: 83/85 pruebas pasan; dos controles rechazan los hashes binarios de los SQLite regenerados y faltan 13 respuestas históricas. La correspondencia con fuentes verificadas no acredita identidad con las bases históricas. Véanse [recuperación](RECUPERACION_INSUMOS_HISTORICOS.md) y [auditoría lógica](AUDITORIA_LOGICA_SQLITE.md). No se declara PASS ni se modifica esa suite.

@@ -21,6 +21,10 @@ El estado operativo del Sprint 1 está en [`docs/equipo/ESTADO_SPRINT1.md`](docs
 | `research/datasets/` | Investigación, scripts, pruebas y evidencia histórica de fases 0–5. |
 | `docs/` | Guías, decisiones, arquitectura preliminar y estado del equipo. |
 | `scripts/validate_repo.sh` | Validación local mínima de integridad documental y Python. |
+| `sprint1/` | Núcleo local nuevo, validadores y propuestas SQL/MongoDB con integración desechable acotada. |
+| `sprint1/basico/` | Código sencillo de estudiante: consultas comentadas, CRUD de práctica y carga local opcional. |
+| `tests/sprint1/`, `scripts/validate_sprint1.sh` | Pruebas offline nuevas e independientes de la reproducción histórica. |
+| `tests/integration/`, `scripts/test_sprint1_engines.py` | Integración nueva en contenedores locales desechables, sin red ni cargas masivas. |
 
 Los archivos `research/datasets/scripts/phase5_postgresql.sql`, `phase5_postgresql_queries.sql` y `phase5_mongo_test.js` son **evidencia de Fase 5 y pruebas locales desechables**. No se copian a `postgres/init/` o `mongodb/init/`, ni se ejecutan contra bases compartidas.
 
@@ -67,7 +71,14 @@ docker compose --env-file .env down
 
 ## Reproducción de la investigación
 
-La investigación requiere los snapshots locales autorizados y archivos no versionados (`raw/`, `private_results/` y, en algunos casos, PDFs originales). No descarga datasets, no inicia Spark/Hadoop y no usa credenciales remotas.
+La investigación requiere los snapshots locales autorizados y archivos no versionados (`raw/`, `private_results/` y, en algunos casos, PDFs originales). Los siguientes comandos no descargan datasets, no inician Spark/Hadoop y no usan credenciales remotas. En una copia nueva, crea primero el entorno y sus dependencias (esta instalación sí requiere acceso al repositorio de paquetes):
+
+```bash
+python3 -m venv research/datasets/.venv
+research/datasets/.venv/bin/python -m pip install -r research/datasets/scripts/requirements.txt
+```
+
+Crear el entorno **no recupera los insumos históricos ausentes** ni garantiza que la suite histórica pase. `scripts/validate_repo.sh` usa `python3` del PATH: activa ese entorno antes de ejecutarlo.
 
 ```bash
 cd research/datasets
@@ -77,6 +88,21 @@ cd research/datasets
 ```
 
 Las salidas de Fase 5 son evidencia histórica: muestran muestras locales acotadas y pruebas nativas desechables, no una carga definitiva ni un benchmark del servidor. Consulta [`docs/arquitectura/pipeline.md`](docs/arquitectura/pipeline.md) para requisitos y límites de reproducción.
+
+### Núcleo nuevo del Sprint 1
+
+Con Python 3.10+ y Node.js 18+, desde la raíz, sin instalar dependencias Python:
+
+```bash
+bash scripts/validate_sprint1.sh
+```
+
+Véase [`sprint1/README.md`](sprint1/README.md). Este comando no conecta a bases ni altera resultados históricos. Su PASS solo cubre pruebas unitarias/builders y controles estáticos de propuestas; no certifica motores, volumen, aceptación docente ni reproducción histórica.
+
+La integración nativa ya se comprobó aparte con tres ejemplos publicados en
+PostgreSQL 16.6/MongoDB 7.0.16 desechables. Para requisitos, ejecución y límites,
+consulta [`sprint1/INTEGRACION.md`](sprint1/INTEGRACION.md). No acredita los mínimos
+de volumen ni cumplimiento completo del avance.
 
 ## Colaboración segura
 
@@ -94,6 +120,6 @@ No versionar secretos, enlaces privados, credenciales, llaves SSH, archivos `.pe
 
 1. Cerrar evidencia técnica pendiente: unidades meteorológicas, relojes, CRS y vigencia geográfica.
 2. Resolver con el profesor el alcance de sensores/canales, atributos administrativos, usuarios y alertas.
-3. Diseñar y revisar la implementación definitiva del Sprint 1; solo entonces crear migraciones o colecciones versionadas.
+3. Revisar las propuestas nuevas de `sprint1/` y autorizar pruebas en motores locales desechables antes de diseñar migraciones o colecciones definitivas.
 4. Planificar cargas locales y compartidas autorizadas con respaldo, reconciliación y pruebas.
 5. Abordar HDFS/Spark y la interfaz en fases posteriores, con fuentes reales y validación independiente.

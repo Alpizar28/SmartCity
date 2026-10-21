@@ -4,6 +4,24 @@
 
 ## Base y separación de evidencia
 
+**Checkpoint local — 20 de octubre de 2026:** se crearon los módulos propuestos
+en `sprint1/` y la suite independiente `scripts/validate_sprint1.sh` (32 pruebas
+Python + 8 Node aprobadas). Las listas de «aún no creados» de la preparación
+original que siguen abajo quedan superadas por este checkpoint: se implementó
+`contract.py`, `validation.py`, propuestas SQL y módulos MongoDB. Para pruebas
+MongoDB se usa `tests/sprint1/test_mongodb.js` en Node, no el `.py` propuesto.
+Posteriormente se probaron ambos motores en contenedores locales desechables,
+con tres ejemplos publicados, sin carga masiva ni cambios compartidos. Se añadió
+staging persistente con replay/cuarentena; véase [integración](../../sprint1/INTEGRACION.md).
+Las instrucciones iniciales de «no ejecutar ahora» quedan superadas exclusivamente
+para ese harness local acotado autorizado al continuar el trabajo. No se declara
+PASS histórico, aprobación definitiva del modelo ni autorización de cargas masivas.
+
+Se añadió `sprint1/basico/` como entrada de aprendizaje: consultas y CRUD directos,
+lectura de JSON, validación y carga local opcional. Los comentarios están en español
+y las funciones usan pasos explícitos. La suite incluye sus pruebas unitarias;
+los CLI no han realizado una carga real mediante sus drivers.
+
 Referencia: [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md) y [estado del Sprint 1](ESTADO_SPRINT1.md). La interfaz provisional permite desarrollo; no autoriza DDL definitivo, carga ni despliegue. Los campos abiertos no se convierten en requisitos obligatorios del núcleo.
 
 La recuperación histórica queda en `fix/repo-consolidation`: **83 PASS / 2 FAIL**, dos SQLite sin identidad binaria histórica acreditada y 13 respuestas históricas pendientes. No se modifican pruebas, manifiestos, hashes, resultados ni scripts de Fase 5. Ese bloqueo impide cerrar la reproducción histórica, pero no invalida el contrato provisional ni bloquea implementar código nuevo independiente. Ningún PASS nuevo significa que la suite histórica pasó.
