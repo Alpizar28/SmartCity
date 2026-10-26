@@ -1,6 +1,8 @@
-# Diagramas textuales — arquitectura preliminar de Fase 5
+# Diagramas textuales — contrato común `smartcity`
 
-Formato Mermaid versionable y renderizable en GitHub. Las flechas de flujo expresan transferencia propuesta, **no FK ni servicios desplegados**. Solo el E-R expresa las FK del [DDL `draft5`](../../research/datasets/scripts/phase5_postgresql.sql). Los cuatro integrantes deben revisar antes de ratificar.
+Formato Mermaid versionable y renderizable en GitHub. Las flechas de flujo expresan transferencia local o propuesta, **no FK ni servicios desplegados**. El E-R refleja las relaciones entre las doce tablas centrales del [DDL `smartcity`](../../research/datasets/scripts/phase5_postgresql.sql); las FK compuestas refuerzan coherencia de fuente y estación. `smartcity_demo.entities` está separado y no tiene FK al núcleo. Los cuatro integrantes deben revisar antes de ratificar. Versión: [contrato común](../equipo/CONTRATO_UNIFICADO.md).
+
+La muestra de 5.000 de estos diagramas describe la validación inicial, no el volumen actual disponible. La [ampliación anual](../equipo/AMPLIACION_REAL_SPRINT1.md) añade una ruta configurable de todo 2025 con 1.076.813 observaciones reales y validación completa en motores locales. Meteorología y tráfico siguen separados, sin afirmar integración temporal validada.
 
 ## 1. Arquitectura de datos
 
@@ -10,7 +12,7 @@ flowchart LR
   V --> N[Normalizacion temporal condicionada]
   N --> I[IDs deterministas y catalogos]
   I --> S[Muestra acotada reproducible]
-  S --> P[PostgreSQL draft5 local desechable]
+  S --> P[PostgreSQL smartcity local desechable]
   S --> M[MongoDB readings local desechable]
   P -. exportacion futura .-> E[CSV y Parquet posteriores]
   M -. exportacion futura .-> E
@@ -40,7 +42,7 @@ flowchart TD
   E --> M[Prueba MongoDB]
 ```
 
-Reanudación actual: reutilizar cache completa/hash válido o reconstruir determinísticamente el ledger incompleto. No se declara un checkpoint distribuido. Flags excluidos permanecen en original/ledger; una excepción temporal/hash fatal aborta. Fuente: [phase5_prepare.py](../../research/datasets/scripts/phase5_prepare.py).
+Reanudación actual: reutilizar cache completa/hash válido o reconstruir determinísticamente el ledger incompleto. No se declara un checkpoint distribuido. Flags inválidos y tiempos no confirmados quedan en cuarentena referenciada; un conflicto de payload impide publicar un lote completo. Fuente: [phase5_prepare.py](../../research/datasets/scripts/phase5_prepare.py).
 
 ## 3. E-R PostgreSQL — doce tablas preliminares
 
@@ -51,6 +53,8 @@ erDiagram
   sources ||..o{ source_versions : source_id
   sources ||..o{ stations : source_id
   sources ||..o{ measurement_types : source_id
+  sources ||..o{ channels : source_id
+  sources ||..o{ observations : source_id
   zones o|..o{ locations : zone_id_nullable
   source_versions o|..o{ locations : inventory_version_nullable
   locations o|..o{ stations : location_id_nullable
@@ -128,6 +132,7 @@ erDiagram
   channels {
     text channel_id PK
     text station_id FK
+    text source_id FK
     text sensor_id FK
     text measurement_type FK
     jsonb source_key
@@ -136,11 +141,15 @@ erDiagram
   observations {
     text measurement_id PK
     text channel_id FK
+    text source_id FK
     text source_version FK
     timestamptz observed_at
     text timestamp_role
     float value
     jsonb measurements
+    text payload_hash
+    text transformation_version
+    text catalog_version
   }
 ```
 
@@ -166,9 +175,9 @@ No se modela `SQL → MongoDB` como FK, sincronización automática o transacci�
 ```mermaid
 flowchart TD
   subgraph CORE[Nucleo propuesto: enero de 2025]
-    A[Aire horario] --> R[Observaciones estructurales elegibles]
-    W[Meteorologia horaria] --> R
-    T[Trafico: intervalo multivariable] --> R
+    A[Aire horario confirmado] --> R[Observaciones aceptadas]
+    W[Meteorologia horaria] --> Q[Cuarentena: reloj no confirmado]
+    T[Trafico: intervalo multivariable] --> Q
     I[Inventarios actuales de sitios] -. referencias con vigencia pendiente .-> R
   end
   R --> S[Muestra 5000 para SQL y MongoDB]

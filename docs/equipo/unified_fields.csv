@@ -1,0 +1,35 @@
+field,meaning,origin,sql_type,bson_type,unit,nullable,transformation,evidence
+measurement_id,Shared accepted measurement identity,derived,text PK,string,,false,SHA256 canonical channel UTC role,CONTRATO_UNIFICADO.md identities
+_id,Mongo identity equal to measurement_id,derived,measurement_id projection,string,,false,Copy measurement_id,Integration PDF section 4
+station_id,Source station identity,derived,text FK via channels,string,,false,Hash source and original station code,Source station code and catalog
+channel_id,Logical measurement feed,derived,text FK,string,,false,Hash source station_id channel_key,Integration PDF section 2
+sensor_id,Optional physical device,observed,text FK via channels,string or null,,true,NULL without physical inventory,No accredited individual-device inventory
+zone_id,Published district associated with inventory,derived,text FK via locations,string or null,,true,Published traffic district only,Auxiliary traffic inventory
+source_id,Dataset identifier,observed,text FK,string,,false,Restricted three-source catalog,Download manifest
+source_version,Original file SHA256,derived,text FK,string,,false,SHA256 entire immutable file,Download manifest
+measurement_type,Canonical source variable,derived,text FK via channels,string,,false,Source identifier plus variable code,Variable catalog
+value,Finite published reading,observed,double precision,double,Variable catalog,false,Parse decimal without inventing values,Original file row and column
+unit,Accredited physical unit,derived,text via measurement_types,string or null,Variable catalog,true,Official dictionary or NULL,Dictionary provenance
+unit_status,Evidence state of unit,derived,text via measurement_types,string,,false,verified_dictionary or documented_phase1_dictionary or pending_dictionary,Dictionary provenance
+candidate_unit,Unverified unit hypothesis,derived,text via measurement_types,string or null,,true,Never substitute for unit,Historical meteorology research
+original_time,Original naive wall clock,observed,timestamp,string,,false,H01-H24 endpoint or source fecha,Original source fields
+original_timezone,Conversion zone,derived,text,string,,false,Europe/Madrid with acceptance policy,Source time documentation
+timestamp_role,Published temporal meaning,derived,text,string,,false,hour_end or publisher_label,Source time documentation
+timestamp_status,Temporal evidence state,derived,text,string,,false,Only confirmed statuses in accepted readings,CONTRATO_UNIFICADO.md time
+observed_at,Validated UTC timestamp,derived,timestamptz,date,,false,Reject DST gap ambiguity and unconfirmed semantics,Source documentation and zoneinfo
+quality_flag,Original provider quality flag,observed,text,string,,false,Preserve source flag,Original Vxx or error
+raw_reference,Original record locator,derived,jsonb,object,,false,Path SHA256 row column and ZIP member,Download manifest and physical row
+payload_hash,Canonical semantic payload fingerprint,derived,text,string,,false,Hash excluding locator hash and time_error,CONTRATO_UNIFICADO.md provenance
+schema_version,Logical contract version,derived,text,string,,false,madrid-draft-v1,Integration PDF section 1
+catalog_version,Reference catalog contract version,derived,text,string,,false,madrid-draft-v1 plus bundle SHA256 manifest,Completed preparation manifest
+transformation_method,Normalization method,derived,text,string,,false,madrid-normalize,phase5_contract.py
+transformation_version,Normalization algorithm revision,derived,text,string,,false,madrid-normalize-v2,Integration migration decision
+data_origin,Reading provenance,observed,text,string,,false,observed only in central readings,Original source and isolated demo policy
+interval_minutes,Traffic interval duration; traffic mapping blocked,derived,integer,int or double,minute,true,NULL for accepted air; do not map periodo_integracion; proposed v2 constant 15 requires approval,Official traffic interpreter pages 4-5 and AMPLIACION_REAL_SPRINT1.md
+measurements,Complementary traffic variables for same interval,observed,jsonb,object,,true,Preserve bundle and applicability without extra readings,Original ocupacion carga vmed
+element_type,Published traffic element class,observed,text,string,,true,Preserve URB M30 or C30,Original tipo_elem
+source_key,Original logical record key,observed,jsonb,array,,false,Preserve original code representation,Original source key fields
+provenance,Per-field reading provenance,derived,jsonb,object,,false,Observed values and derived IDs/time; no fabricated readings,Exporter implementation
+time_error,Quarantine diagnostic,derived,Not loaded,null or string,,true,NULL for accepted records; reason in quarantine,Temporal validator
+demo.entity_id,Isolated administrative fixture identity,synthetic,smartcity_demo.entities text PK,string,,false,Deterministic seed and generator version,Professor authorization 2026-10-10
+demo.provenance,Synthetic origin and authorization,synthetic,jsonb,object,,false,Explicit demo purpose and no inventory evidence,Professor authorization 2026-10-10

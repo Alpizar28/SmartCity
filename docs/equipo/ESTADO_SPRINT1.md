@@ -1,7 +1,10 @@
 # Estado del Sprint 1
 
-**Contrato vigente:** [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md).
-**Evidencia histórica:** `madrid-draft-v1` y los artefactos de Fase 5 en [`research/datasets/`](../../research/datasets/). No son una implementación final ni autorización de carga.
+> **Actualización para revisión, 20/10/2026:** esta rama implementa el [contrato común `madrid-draft-v1`](CONTRATO_UNIFICADO.md) y la [ampliación real anual](AMPLIACION_REAL_SPRINT1.md), con 1.076.813 observaciones aceptadas de aire. Las cargas locales verificadas incluyen 1 organización, 5.133 usuarios y 5.133 sensores administrativos sintéticos, autorizados y documentados en [EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md](EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md). Las lecturas permanecen reales y no se vinculan a sensores demo. La segunda fuente aceptada sigue pendiente de revisión/evidencia; Spark no se ejecutó.
+
+**Contrato vigente de esta rama:** [`madrid-draft-v1`](CONTRATO_UNIFICADO.md).
+
+**Contrato histórico:** [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md), conservado para trazabilidad; no es la interfaz de la carga anual.
 
 ## Se puede desarrollar ya
 
@@ -52,7 +55,7 @@ La consolidación documental se integra en `main` por autorización explícita d
 ## No se debe asumir
 
 - Un canal, estación o variable no representa un sensor físico.
-- `sensor_id`, `organization_id`, `user_id`, `installation_date` y `administrative_status` no están acreditados; deben permanecer `NULL` o no poblados.
+- Las entidades administrativas de entrega sí están pobladas con datos sintéticos deterministas: `sensor_id`, `organization_id`, `user_id`, `installation_date` y `administrative_status` no acreditan una identidad física observada. En canales y observaciones reales, `sensor_id` permanece `NULL`.
 - Las unidades meteorológicas, los relojes de meteo/tráfico, CRS, geografía y vigencia histórica siguen abiertos.
 - `measurement_id` y `_id` de meteo/tráfico no son IDs definitivos mientras cambie la interpretación del reloj.
 - Los 832.668 candidatos no están cargados en las bases compartidas; Spark/Hadoop no se ejecutó.

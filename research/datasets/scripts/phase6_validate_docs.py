@@ -239,11 +239,24 @@ def verify_baseline(path, failures):
 
 def verify_private_evidence(required, failures):
     checked, missing = 0, []
+    migration = json.loads((ROOT/'docs/decisiones/unified-v1.json').read_text())
+    migrated = set(migration['historical_source_paths'])
+    archived_sources = []
     for phase in (3, 4, 5):
         names = ["outputs_manifest.csv"] + (["inputs_manifest.csv"] if phase == 3 else [])
         for name in names:
             for row in csv.DictReader((DATASETS / f"results/phase{phase}" / name).open()):
                 path = DATASETS / row["path"]
+                relative = str(path.relative_to(ROOT))
+                if relative in migrated:
+                    original = subprocess.run(['git','show',migration['historical_revision']+':'+relative],
+                                              cwd=ROOT, capture_output=True)
+                    if original.returncode or hashlib.sha256(original.stdout).hexdigest() != row['sha256']:
+                        failures.append(f'Historical Git source mismatch or unavailable: {relative}')
+                    else:
+                        checked += 1
+                        archived_sources.append(relative)
+                    continue
                 if not path.exists():
                     missing.append(str(path.relative_to(ROOT)))
                 else:
@@ -253,6 +266,8 @@ def verify_private_evidence(required, failures):
     if required and missing:
         failures.append(f"Missing {len(missing)} historical/private manifest paths")
     return {"manifest_entries_verified": checked, "missing_local_inputs": sorted(set(missing)),
+            "migrated_source_verification": "original Git bytes at recorded pre-migration revision; not current source",
+            "migrated_sources_verified": archived_sources,
             "require_local_evidence": required, "missing_inputs_are_not_data_replay_success": True}
 
 

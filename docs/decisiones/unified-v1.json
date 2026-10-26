@@ -1,0 +1,19 @@
+{
+  "implementation": "unified-v1",
+  "contract_version": "madrid-draft-v1",
+  "historical_revision": "2bcee5778a5ce16d1da5fc14f5cd9fc96066607d",
+  "reason": "Integration specification 2026-10-14: migrate source scripts, preserve historical results and verify their original source bytes from Git, not from the revised implementation.",
+  "historical_source_paths": [
+    "research/datasets/05_data_contract.md",
+    "research/datasets/scripts/phase5_contract.py",
+    "research/datasets/scripts/phase5_mongo_test.js",
+    "research/datasets/scripts/phase5_native.py",
+    "research/datasets/scripts/phase5_postgres_sample.py",
+    "research/datasets/scripts/phase5_postgresql.sql",
+    "research/datasets/scripts/phase5_postgresql_queries.sql",
+    "research/datasets/scripts/phase5_prepare.py",
+    "research/datasets/scripts/phase5_reports.py",
+    "research/datasets/scripts/phase5_verify.py",
+    "research/datasets/tests/test_phase5.py"
+  ]
+}

@@ -1,5 +1,7 @@
 # Fase 5 — Contrato común de datos `madrid-draft-v1`
 
+> Documento histórico de investigación. Para la implementación común `madrid-draft-v1`, generación `unified-v1`, rige [CONTRATO_UNIFICADO.md](../../docs/equipo/CONTRATO_UNIFICADO.md). Los estados y conteos siguientes no describen una carga del esquema nuevo.
+
 Estado: **borrador implementable localmente, pendiente de revisión y aceptación**. Diccionario exhaustivo del DTO y campos críticos administrativos/complementarios: `05_data_dictionary.csv` (75 entradas). CSV incluye significado, tipos SQL/BSON, columna original, origen, unidad, nulos, disponibilidad, restricciones, transformación, fuente/versión y evidencia. Un campo no disponible queda NULL: no recibe una falsa etiqueta observed.
 
 ## Entidades y granularidad

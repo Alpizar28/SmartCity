@@ -1,0 +1,231 @@
+{
+  "native_executed": true,
+  "engine": "PostgreSQL",
+  "image": "postgres:16-alpine",
+  "network": "none",
+  "published_ports": [],
+  "local_socket": "unix:///var/run/docker.sock",
+  "container": "smartcity-phase5-postgres-8a0e8e758302",
+  "log": [],
+  "source_hashes": {
+    "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0",
+    "phase5_prepare.py": "df1eeb17c701554f0cfc66a4f75079841afe52bf0f3c088b7ce08477bc92c6a4",
+    "phase5_postgres_sample.py": "28240f370be3f311125c444782329f018df68eb8050714cdfadd3a8b6284e9ab",
+    "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
+    "phase5_postgresql_queries.sql": "9440cf52282b3142594c34aeff92383080c83958faff035594679aaa1bd5e12e",
+    "unified_synthetic.py": "5b80646bd91c739c77c549abaf752a2703dc9a14a0730e0f8f3049e68e03b3b8"
+  },
+  "owned_anonymous_volumes": [
+    "fadabfe171e443c21e88dca8416c7f2dad2d15ccb75207eba729d7ee7b299bc5"
+  ],
+  "version": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "image_id": "sha256:81bd698b4594e751a3269e4dcd3e03a4a0ec0daf7b72e7aa1abd43cce9887542",
+  "input_sha256": "6a365c358d406e613721f9fb619666e1605eda44ad5d43df05df29858e879fed",
+  "idempotent_reimport": true,
+  "preparation_and_insert_seconds": 3.1335432860000765,
+  "counts": {
+    "observations": 5000,
+    "channels": 462,
+    "stations": 5134,
+    "sensors": 0,
+    "users": 0
+  },
+  "catalogs_match_document_catalogs": true,
+  "source_aggregates": [
+    {
+      "source_id": "MAD-AIR",
+      "n": 5000,
+      "min": 0.1,
+      "max": 832,
+      "sum": 104879.19999999864
+    }
+  ],
+  "ids_values_sha256": "260ab18a77aaeb743b73867e95fad71ade04d18eccc313cdd9bbf1b8499ccdd7",
+  "explain": [
+    {
+      "Plan": {
+        "Node Type": "Sort",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 1186.23,
+        "Total Cost": 1188.08,
+        "Plan Rows": 738,
+        "Plan Width": 849,
+        "Actual Startup Time": 0.599,
+        "Actual Total Time": 0.626,
+        "Actual Rows": 738,
+        "Actual Loops": 1,
+        "Sort Key": [
+          "observed_at"
+        ],
+        "Sort Method": "quicksort",
+        "Sort Space Used": 618,
+        "Sort Space Type": "Memory",
+        "Shared Hit Blocks": 194,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Plans": [
+          {
+            "Node Type": "Bitmap Heap Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Relation Name": "observations",
+            "Alias": "observations",
+            "Startup Cost": 98.13,
+            "Total Cost": 1151.08,
+            "Plan Rows": 738,
+            "Plan Width": 849,
+            "Actual Startup Time": 0.218,
+            "Actual Total Time": 0.298,
+            "Actual Rows": 738,
+            "Actual Loops": 1,
+            "Recheck Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
+            "Rows Removed by Index Recheck": 0,
+            "Exact Heap Blocks": 165,
+            "Lossy Heap Blocks": 0,
+            "Shared Hit Blocks": 191,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Bitmap Index Scan",
+                "Parent Relationship": "Outer",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Index Name": "observations_channel_id_observed_at_timestamp_role_key",
+                "Startup Cost": 0.0,
+                "Total Cost": 97.94,
+                "Plan Rows": 738,
+                "Plan Width": 0,
+                "Actual Startup Time": 0.161,
+                "Actual Total Time": 0.161,
+                "Actual Rows": 1476,
+                "Actual Loops": 1,
+                "Index Cond": "(channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)",
+                "Shared Hit Blocks": 26,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0
+              }
+            ]
+          }
+        ]
+      },
+      "Planning": {
+        "Shared Hit Blocks": 214,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 0.737,
+      "Triggers": [],
+      "Execution Time": 0.749
+    }
+  ],
+  "sample_values_match_reference": true,
+  "queries_output_preview": "channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415|738\nchannel:9928aa6c82a23a95ea9fe76fb9c86f28454961275e694d5357f5e9b306aadace|738\nchannel:089092072cddac1e886d2c135f05bf549d1defc0ae6f84163e0bd06f63fdbd8a|738\nchannel:1c6eb517e801d4d52cde187215426055b605458f7f41e482c5662d3aa0685fe0|735\nchannel:aa5df6632d03193406812a3dcdf8538ffad0eb75dd03ea234b861d8336c22d6d|734\nchannel:31c4dcc0380b655e11d2d2c2e096b58fc3774352f5a2a93fa2e67d44050e2dcd|727\nchannel:96d0e52c535f935dec3ab87fec31414fdd2f6c84ae905d1580560b9ddedb96cc|590\nstation:09611b0a47715b1eb3ea6dc474030177fd67cadbbe94ea3a7f051f26a09a4f05|6\nstation:acaf494e803dcd71c0c5790aaa0cd590325aff8ed97443580273dfdb5f162072|11\nstation:1e090dac4ffed4d0aa4ea8f9610d02de6fff0d54ac721048aa8ceef0cd7440bc|6\nstation:80cf4808569f2f133df1afad50aec7224c9b8905fa60e58acb8d79214e0e8e1f|4\nstation:ef9f0014f6449db5b48ef7149065dece7d8ed2590897460ebb2b48d593b19186|4\nstation:8e1fddd0740ff1b74b7d5e765b95c388cffea70860a3d1bd4cfbc8999857f185|8\nstation:7fce502f70cd5275b331d2efd0b51cfd2cae897cdfcbadc65ab825d28ee3f442|6\nstation:3f89f41bfa158a45a3367dc0148dada00c9a353b74ee16e940d5ac042e809822|4\nstation:a23f05275a82833ded3145d264d049b4c4828f70da618374a1a0b53258eaf060|6\nstation:d0ad77542f842bafa5d0806991d25102332f7248a7cf0c9edfc188c747c51876|5\nstation:af656c294d70ab509931023d472efa552e36f7cd0537e834c2d9cfcffd604094|8\nstation:5c4f436a333ce81570779c638c8f85b02cd2d85fd46c02e03b478cfadeeb093c|4\nstation:84fb277efb40b24d50f07fa44e721d480aba2b6072a11ee56f6f",
+  "queries_output_sha256": "4e00350fc596522ebea60d6bd930224f9f0b087581fbc046b367a038784d23ea",
+  "queries_executed": [
+    "PG01",
+    "PG02",
+    "PG03",
+    "PG04",
+    "PG05",
+    "PG06",
+    "PG07",
+    "PG08",
+    "PG09",
+    "PG10"
+  ],
+  "queries_empty_physical_inventory_not_compliance": true,
+  "constraints": {
+    "duplicate_rejected": {
+      "rejected": true,
+      "stderr": "ERROR:  duplicate key value violates unique constraint \"observations_pkey\"\nDETAIL:  Key (measurement_id)=(measurement:1c27bf06bffe0f86edfd3fd8ec5b11b36bd9410a39b8dff7f13325b580c124c5) already exists."
+    },
+    "orphan_channel_rejected": {
+      "rejected": true,
+      "stderr": "ERROR:  immutable observation / payload conflict: measurement:00072217415d202293c8601cba9bae9950f91d4bdfbeb5ce254538d8ad335123\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+    },
+    "wrong_source_rejected": {
+      "rejected": true,
+      "stderr": "ERROR:  immutable observation / payload conflict: measurement:00072217415d202293c8601cba9bae9950f91d4bdfbeb5ce254538d8ad335123\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+    },
+    "payload_conflict_rejected": {
+      "rejected": true,
+      "stderr": "ERROR:  immutable observation / payload conflict: measurement:00072217415d202293c8601cba9bae9950f91d4bdfbeb5ce254538d8ad335123\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+    },
+    "raw_hash_rejected": {
+      "rejected": true,
+      "stderr": "ERROR:  immutable observation / payload conflict: measurement:00072217415d202293c8601cba9bae9950f91d4bdfbeb5ce254538d8ad335123\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+    },
+    "insert_raw_hash": {
+      "rejected": true,
+      "stderr": "ERROR:  new row for relation \"observations\" violates check constraint \"observations_check\"\nDETAIL:  Failing row contains (bad-hash, channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1a..., MAD-AIR, 2025-01-01 00:00:00+00, 2025-01-01 01:00:00, Europe/Madrid, hour_end, documented_local, 30, V, 9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471, observed, payload:5e56a721f511653ff637a4dadc73dc8b42bf3c93f36aae5406fcd92d..., madrid-normalize, madrid-normalize-v2, madrid-draft-v1, {\"sha256\": \"bad\"}, null, [\"11\", \"12\", \"28079011_12_8\", \"2025-01-01\", \"H01\"], {\"ids\": \"derived\", \"unit\": \"derived\", \"value\": \"observed\", \"obse..., null, null, madrid-draft-v1)."
+    },
+    "insert_wrong_source": {
+      "rejected": true,
+      "stderr": "ERROR:  channel/station/type/source version mismatch\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 16 at RAISE"
+    },
+    "insert_unconfirmed_time": {
+      "rejected": true,
+      "stderr": "ERROR:  new row for relation \"observations\" violates check constraint \"observations_timestamp_status_check\"\nDETAIL:  Failing row contains (bad-status, channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1a..., MAD-AIR, 2025-01-01 00:00:00+00, 2025-01-01 01:00:00, Europe/Madrid, hour_end, assumed_local, 30, V, 9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471, observed, payload:5e56a721f511653ff637a4dadc73dc8b42bf3c93f36aae5406fcd92d..., madrid-normalize, madrid-normalize-v2, madrid-draft-v1, {\"row\": 2, \"path\": \"raw/MAD-AIR-file.attempt1.bin\", \"column\": \"H..., null, [\"11\", \"12\", \"28079011_12_8\", \"2025-01-01\", \"H01\"], {\"ids\": \"derived\", \"unit\": \"derived\", \"value\": \"observed\", \"obse..., null, null, madrid-draft-v1)."
+    },
+    "insert_dst_gap": {
+      "rejected": true,
+      "stderr": "ERROR:  invalid or ambiguous Madrid wall clock\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 9 at RAISE"
+    },
+    "insert_dst_ambiguous": {
+      "rejected": true,
+      "stderr": "ERROR:  invalid or ambiguous Madrid wall clock\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 9 at RAISE"
+    },
+    "insert_nonfinite": {
+      "rejected": true,
+      "stderr": "ERROR:  new row for relation \"observations\" violates check constraint \"observations_value_check\"\nDETAIL:  Failing row contains (bad-finite, channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1a..., MAD-AIR, 2025-01-01 00:00:00+00, 2025-01-01 01:00:00, Europe/Madrid, hour_end, documented_local, NaN, V, 9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471, observed, payload:5e56a721f511653ff637a4dadc73dc8b42bf3c93f36aae5406fcd92d..., madrid-normalize, madrid-normalize-v2, madrid-draft-v1, {\"row\": 2, \"path\": \"raw/MAD-AIR-file.attempt1.bin\", \"column\": \"H..., null, [\"11\", \"12\", \"28079011_12_8\", \"2025-01-01\", \"H01\"], {\"ids\": \"derived\", \"unit\": \"derived\", \"value\": \"observed\", \"obse..., null, null, madrid-draft-v1)."
+    },
+    "channel_source_fk": {
+      "rejected": true,
+      "stderr": "ERROR:  insert or update on table \"channels\" violates foreign key constraint \"channels_station_id_source_id_fkey\"\nDETAIL:  Key (station_id, source_id)=(station:4891284df62d316de16de06c6aa4e215f224cabbf3f041f709c84e37360e06df, MAD-METEO) is not present in table \"stations\"."
+    },
+    "sensor_station_fk": {
+      "rejected": true,
+      "stderr": "ERROR:  insert or update on table \"channels\" violates foreign key constraint \"channels_sensor_id_station_id_fkey\"\nDETAIL:  Key (sensor_id, station_id)=(test-only, station:80cf4808569f2f133df1afad50aec7224c9b8905fa60e58acb8d79214e0e8e1f) is not present in table \"sensors\"."
+    }
+  },
+  "conflicting_reimport": {
+    "rejected": true,
+    "error": "ERROR:  immutable observation / payload conflict: measurement:1c27bf06bffe0f86edfd3fd8ec5b11b36bd9410a39b8dff7f13325b580c124c5\nCONTEXT:  PL/pgSQL function consistent_observation_source() line 4 at RAISE"
+  },
+  "demo_input_sha256": "8b89d3dbd2c94126cca2df185fcd48c23631d6caab43b12d19d1171919173545",
+  "demo_entities": 14,
+  "sample_not_100k_fulfillment": true,
+  "container_removed": true,
+  "anonymous_volumes_removed": true
+}

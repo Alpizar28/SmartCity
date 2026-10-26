@@ -1,0 +1,372 @@
+{
+  "generation": "expanded-2025",
+  "native_executed": true,
+  "full_batch": true,
+  "accepted_input_sha256": "1fba6d1e8e65f31a92a88d0e837da0d5fcf375d686eb85dcb179410ac40f36b8",
+  "source_hashes": {
+    "unified_full_load.py": "f64d70a478169a429ef27a95f13560694787ab8fb6486e05010be2323ec80214",
+    "unified_full_mongo.js": "680e14106b0cfd8ef615400d7508bb8654def9a008fa9adff6dbf55deca1d83f",
+    "phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
+    "phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
+  },
+  "shared_server_modified": false,
+  "engine": "MongoDB",
+  "image": "mongo:7.0.16",
+  "image_id": "sha256:dba5780f2781c48a7d8229550a8f77d57d67cecdc6b5859ad1cc6d8a0abc4a3b",
+  "network": "none",
+  "published_ports": [],
+  "local_socket": "unix:///var/run/docker.sock",
+  "memory_limit_bytes": 2147483648,
+  "cpus": 2,
+  "container": "smartcity-full-mongodb-bce32f7280c1",
+  "container_removed": true,
+  "anonymous_volumes_removed": true,
+  "version": "7.0.16",
+  "timings_seconds": {
+    "initial_import": 70.803,
+    "full_reimport": 291.322,
+    "full_metadata_comparison": 277.196
+  },
+  "imported": 1076813,
+  "idempotent_reimport": true,
+  "metadata_verified": 1076813,
+  "conflicting_payload_rejected": true,
+  "conflict_recorded": true,
+  "rejected": {
+    "string_date": true,
+    "inconsistent_id": true,
+    "invalid_hash": true,
+    "nonfinite": true,
+    "unknown_source": true
+  },
+  "unique_id_and_natural_key": true,
+  "ids_payload_sha256": "7ee034a1f3be3f4ef533d43c571047f6860fbf62e925759c6387e600eb11f398",
+  "count": 1076813,
+  "count_by_source": [
+    {
+      "_id": "MAD-AIR",
+      "count": 1076813
+    }
+  ],
+  "explain": {
+    "explainVersion": "1",
+    "queryPlanner": {
+      "namespace": "smartcity_full_6898b6585be4.readings",
+      "indexFilterSet": false,
+      "parsedQuery": {
+        "channel_id": {
+          "$eq": "channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415"
+        }
+      },
+      "queryHash": "93A7729E",
+      "planCacheKey": "73079842",
+      "maxIndexedOrSolutionsReached": false,
+      "maxIndexedAndSolutionsReached": false,
+      "maxScansToExplodeReached": false,
+      "winningPlan": {
+        "stage": "FETCH",
+        "inputStage": {
+          "stage": "IXSCAN",
+          "keyPattern": {
+            "channel_id": 1,
+            "observed_at": 1,
+            "timestamp_role": 1
+          },
+          "indexName": "natural_observation",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "channel_id": [],
+            "observed_at": [],
+            "timestamp_role": []
+          },
+          "isUnique": true,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "channel_id": [
+              "[\"channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415\", \"channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415\"]"
+            ],
+            "observed_at": [
+              "[MinKey, MaxKey]"
+            ],
+            "timestamp_role": [
+              "[MinKey, MaxKey]"
+            ]
+          }
+        }
+      },
+      "rejectedPlans": []
+    },
+    "executionStats": {
+      "executionSuccess": true,
+      "nReturned": 8635,
+      "executionTimeMillis": 9,
+      "totalKeysExamined": 8635,
+      "totalDocsExamined": 8635,
+      "executionStages": {
+        "stage": "FETCH",
+        "nReturned": 8635,
+        "executionTimeMillisEstimate": 1,
+        "works": 8636,
+        "advanced": 8635,
+        "needTime": 0,
+        "needYield": 0,
+        "saveState": 8,
+        "restoreState": 8,
+        "isEOF": 1,
+        "docsExamined": 8635,
+        "alreadyHasObj": 0,
+        "inputStage": {
+          "stage": "IXSCAN",
+          "nReturned": 8635,
+          "executionTimeMillisEstimate": 1,
+          "works": 8636,
+          "advanced": 8635,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 8,
+          "restoreState": 8,
+          "isEOF": 1,
+          "keyPattern": {
+            "channel_id": 1,
+            "observed_at": 1,
+            "timestamp_role": 1
+          },
+          "indexName": "natural_observation",
+          "isMultiKey": false,
+          "multiKeyPaths": {
+            "channel_id": [],
+            "observed_at": [],
+            "timestamp_role": []
+          },
+          "isUnique": true,
+          "isSparse": false,
+          "isPartial": false,
+          "indexVersion": 2,
+          "direction": "forward",
+          "indexBounds": {
+            "channel_id": [
+              "[\"channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415\", \"channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415\"]"
+            ],
+            "observed_at": [
+              "[MinKey, MaxKey]"
+            ],
+            "timestamp_role": [
+              "[MinKey, MaxKey]"
+            ]
+          },
+          "keysExamined": 8635,
+          "seeks": 1,
+          "dupsTested": 0,
+          "dupsDropped": 0
+        }
+      }
+    },
+    "command": {
+      "find": "readings",
+      "filter": {
+        "channel_id": "channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415"
+      },
+      "sort": {
+        "observed_at": 1
+      },
+      "$db": "smartcity_full_6898b6585be4"
+    },
+    "serverInfo": {
+      "host": "9dd5e801fece",
+      "port": 27017,
+      "version": "7.0.16",
+      "gitVersion": "18b949444cfdaa88e30b0e10243bc18268251c1f"
+    },
+    "serverParameters": {
+      "internalQueryFacetBufferSizeBytes": 104857600,
+      "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+      "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+      "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+      "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+      "internalQueryProhibitBlockingMergeOnMongoS": 0,
+      "internalQueryMaxAddToSetBytes": 104857600,
+      "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+      "internalQueryFrameworkControl": "trySbeRestricted"
+    },
+    "ok": 1
+  },
+  "indexes": [
+    {
+      "v": 2,
+      "key": {
+        "_id": 1
+      },
+      "name": "_id_"
+    },
+    {
+      "v": 2,
+      "key": {
+        "channel_id": 1,
+        "observed_at": 1,
+        "timestamp_role": 1
+      },
+      "name": "natural_observation",
+      "unique": true
+    },
+    {
+      "v": 2,
+      "key": {
+        "source_id": 1,
+        "measurement_type": 1,
+        "observed_at": 1
+      },
+      "name": "source_variable_time"
+    },
+    {
+      "v": 2,
+      "key": {
+        "zone_id": 1,
+        "measurement_type": 1,
+        "observed_at": 1
+      },
+      "name": "zone_variable_time"
+    }
+  ],
+  "storage": {
+    "db": "smartcity_full_6898b6585be4",
+    "collections": {
+      "low": 5,
+      "high": 0,
+      "unsigned": false
+    },
+    "views": {
+      "low": 0,
+      "high": 0,
+      "unsigned": false
+    },
+    "objects": {
+      "low": 1087081,
+      "high": 0,
+      "unsigned": false
+    },
+    "avgObjSize": 1456.5180883485223,
+    "dataSize": 1583353140,
+    "storageSize": 279449600,
+    "indexes": {
+      "low": 12,
+      "high": 0,
+      "unsigned": false
+    },
+    "indexSize": 249552896,
+    "totalSize": 529002496,
+    "scaleFactor": {
+      "low": 1,
+      "high": 0,
+      "unsigned": false
+    },
+    "fsUsedSize": 332501393408,
+    "fsTotalSize": 343027191808,
+    "ok": 1
+  },
+  "administrative_counts": {
+    "organizations": 1,
+    "users": 5133,
+    "sensors": 5133
+  },
+  "readings_with_sensor_link": 0,
+  "channels_assigned_to_synthetic_sensors": 0,
+  "synthetic_measurements": 0,
+  "query_evidence": {
+    "MG01": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "matching_readings": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG02": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "full_range_count": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG03": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "finite_extrema": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG04": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "approved_rule": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG05": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "historical_emissions_source": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG06": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "grouped_by_zone_and_type": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG07": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "grouped_by_measurement_type": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG08": {
+      "status": "blocked",
+      "data_scope": "derived_demo",
+      "scope_notice": "No approved observed source or rule exists for this query; no fixture is presented as an observation.",
+      "assertions": {
+        "accident_source_loaded": false
+      },
+      "synthetic_input_count": 0
+    },
+    "MG09": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "aggregation_pipeline": true
+      },
+      "synthetic_input_count": 0
+    },
+    "MG10": {
+      "status": "executed",
+      "data_scope": "observed",
+      "scope_notice": "Observed MAD-AIR readings; no synthetic sensor is assigned to a reading.",
+      "assertions": {
+        "multi_filter_query": true
+      },
+      "synthetic_input_count": 0
+    }
+  },
+  "peak_cgroup_memory_bytes": 1959415808,
+  "ledger_reconciled": true,
+  "elapsed_seconds": 675.401689262
+}

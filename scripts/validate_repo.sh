@@ -4,10 +4,20 @@ set -euo pipefail
 
 root="$(git rev-parse --show-toplevel)"
 cd "$root"
+python="${PYTHON:-$root/.venv/bin/python}"
+if [[ ! -x "$python" ]]; then
+  echo "Missing virtualenv interpreter: $python" >&2
+  echo 'Create it from research/datasets/scripts/requirements.lock before validating.' >&2
+  exit 2
+fi
 
 # The historical Phase 6 validator writes its report files. Preserve them so a
 # maintenance validation never presents regenerated evidence as historical work.
-tmpdir="$(mktemp -d)"
+tmpbase="${TMPDIR:-/tmp}"
+if [[ -d /tmp/opencode ]]; then
+  tmpbase=/tmp/opencode
+fi
+tmpdir="$(mktemp -d "$tmpbase/smartcity-validation.XXXXXX")"
 phase6_outputs=(
   research/datasets/results/phase6/candidate_inventory.csv
   research/datasets/results/phase6/outputs_manifest.csv
@@ -29,9 +39,20 @@ if git grep -nE '^(<<<<<<<|=======|>>>>>>>)'; then
   exit 1
 fi
 
-python3 -m compileall -q research/datasets/scripts research/datasets/tests
-python3 research/datasets/scripts/phase6_validate_docs.py
-python3 -m pytest research/datasets/tests -q
+"$python" -m compileall -q research/datasets/scripts research/datasets/tests
+"$python" research/datasets/scripts/phase6_validate_docs.py
+if [[ "${FULL_DATASET_VALIDATION:-0}" == "1" ]]; then
+  "$python" -m pytest research/datasets/tests -q
+else
+  "$python" -m pytest -q \
+    research/datasets/tests/test_phase6_docs.py \
+    research/datasets/tests/test_unified_contract.py \
+    research/datasets/tests/test_unified_full_verify.py \
+    research/datasets/tests/test_unified_synthetic_admin.py
+fi
+# Check the intended diff, not the temporary CSV reports emitted by Phase 6.
+cleanup
+trap - EXIT
 git diff --check
 
 echo 'Repository validation passed.'
