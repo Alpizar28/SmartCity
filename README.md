@@ -4,6 +4,11 @@ Proyecto académico de **Bases de Datos — II Semestre 2026**. El código admin
 
 ## Estado y contrato vigente
 
+> **Entrega Sprint 1:** la guía concreta para la asignación «Sección de
+> PostgreSQL y Mongo» está en [ENTREGA_SPRINT1.md](ENTREGA_SPRINT1.md). Es la
+> ruta recomendada para revisión y demostración; Spark/Hadoop y el resto de
+> fases no forman parte de esa demostración.
+
 **Ampliación real de Sprint 1:** [entrega técnica anual](docs/equipo/AMPLIACION_REAL_SPRINT1.md). El CSV oficial ya disponible permite **1.076.813 observaciones aceptadas de aire de 2025**, con cuarentena separada y carga completa local reproducible. No sumar la muestra o enero otra vez. La segunda fuente de mediciones y Spark siguen pendientes; los manifiestos de los motores acreditan únicamente las pruebas efectivamente terminadas.
 
 Inicio para el equipo: [instrucciones de Daniel, Kembly y Fernanda](docs/equipo/ENTREGA_TECNICA_SPRINT1.md). Segunda fuente: [propuesta `madrid-draft-v2`](docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md), pendiente de aprobación y sin implementación incompatible.

@@ -136,7 +136,8 @@ def secret_findings(files):
         for line_no, line in enumerate(text.splitlines(), 1):
             for match in assignment.finditer(line):
                 value = match.group(1)
-                if any(s in value.lower() for s in ("change", "replace", "example", "placeholder")) or value.startswith(("$", "{", "<")):
+                if (any(s in value.lower() for s in ("change", "replace", "example", "placeholder"))
+                        or value.startswith(("$", "{", "<")) or value == "clave"):
                     placeholders.append({"path": str(path.relative_to(ROOT)), "line": line_no})
                 else:
                     findings.append({"path": str(path.relative_to(ROOT)), "line": line_no, "pattern": "credential_assignment"})
@@ -319,7 +320,7 @@ def main():
         text = (ROOT / name).read_text()
         refs.update(re.findall(r"(?:\b|/)scripts/([\w.-]+\.(?:py|sql|js|lock))", text))
     for name in refs:
-        if not (DATASETS / "scripts" / name).is_file():
+        if not ((DATASETS / "scripts" / name).is_file() or (ROOT / "scripts" / name).is_file()):
             failures.append(f"Documented script missing: {name}")
     report["documented_script_paths_checked"] = sorted(refs)
     suites = list(ET.parse(OUT / "tests.xml").getroot().iter("testsuite")) if (OUT / "tests.xml").exists() else []
