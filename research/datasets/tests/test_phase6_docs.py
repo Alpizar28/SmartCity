@@ -1,5 +1,8 @@
 """Regression tests for the documented validator in a docs-branch clone."""
 import subprocess
+import csv
+import hashlib
+import json
 from pathlib import Path
 from unittest.mock import patch
 
@@ -49,3 +52,16 @@ def test_sprint_status_reports_populated_synthetic_administration_without_callin
     assert "5.133 sensores" in status
     assert "sintétic" in status.lower()
     assert "inventario físico" in status.lower()
+
+
+def test_summarized_research_index_preserves_exact_historical_git_bytes():
+    migration = json.loads((validator.ROOT / 'docs/decisiones/unified-v1.json').read_text())
+    path = 'research/datasets/README.md'
+    assert path in migration['historical_source_paths']
+    original = subprocess.check_output(
+        ['git', 'show', migration['historical_revision'] + ':' + path], cwd=validator.ROOT)
+    manifest = validator.DATASETS / 'results/phase3/inputs_manifest.csv'
+    with manifest.open(newline='') as stream:
+        expected = next(row for row in csv.DictReader(stream) if row['path'] == 'README.md')
+    assert hashlib.sha256(original).hexdigest() == expected['sha256']
+    assert len(original) == int(expected['bytes'])

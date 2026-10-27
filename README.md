@@ -15,13 +15,14 @@ Para redactar la entrega: [informe en LaTeX](docs/avance_1/main.tex), con
 10 consultas por motor y documentación. Hadoop, Spark e interfaz quedan para
 la entrega final del 25 de noviembre. Referencia: `Plan_de_trabajo.pdf` del equipo.
 
-## Dos implementaciones distintas
+## Ruta de ejecución
 
-- **Carga anual:** esquema `smartcity`, contrato `madrid-draft-v1`.
-  Evidencia local de 1.076.813 lecturas reales de aire por motor.
-- **Demostración local:** código en `sprint1/`, esquema `sprint1`, contrato
+- **SQL canónico:** esquema `smartcity`, contrato `madrid-draft-v1`.
+  Las diez consultas están en `sprint1/postgres/queries.sql`; se prueban con
+  fixtures controladas. La evidencia anual previa registra 1.076.813 lecturas por motor.
+- **Práctica complementaria:** esquema `sprint1`, contrato
   `madrid-draft-v1-frozen`. Prueba tres ejemplos; no acredita el volumen anual
-  ni las 20 consultas completas.
+  ni las 20 consultas completas. Su SQL está en `staging_queries.sql`, no en el archivo canónico.
 
 No mezclar sus esquemas, identificadores o resultados. La segunda fuente aceptada
 y varias consultas siguen pendientes. No se ha comprobado aquí el servidor compartido.
@@ -34,7 +35,14 @@ Con Python 3.10+ y Node.js 18+, desde la raíz:
 bash scripts/validate_sprint1.sh
 ```
 
-La demostración con Docker y la validación documental están en
+Para incluir las diez consultas canónicas en PostgreSQL y la integración de práctica
+SQL/Mongo, con Docker e imágenes ya disponibles:
+
+```bash
+bash scripts/validate_sprint1.sh --engines
+```
+
+La preparación de imágenes, el alcance de cada prueba y la validación documental están en
 [ENTREGA_SPRINT1.md](ENTREGA_SPRINT1.md).
 
 ## Carpetas

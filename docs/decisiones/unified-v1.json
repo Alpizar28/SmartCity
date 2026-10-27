@@ -3,7 +3,9 @@
   "contract_version": "madrid-draft-v1",
   "historical_revision": "2bcee5778a5ce16d1da5fc14f5cd9fc96066607d",
   "reason": "Integration specification 2026-10-14: migrate source scripts, preserve historical results and verify their original source bytes from Git, not from the revised implementation.",
+  "documentation_revision": "2026-10-27: research/datasets/README.md is a navigation index, now summarized. Its Phase 3 input hash and size still match the original Git bytes at historical_revision; historical manifests remain unchanged.",
   "historical_source_paths": [
+    "research/datasets/README.md",
     "research/datasets/05_data_contract.md",
     "research/datasets/scripts/phase5_contract.py",
     "research/datasets/scripts/phase5_mongo_test.js",

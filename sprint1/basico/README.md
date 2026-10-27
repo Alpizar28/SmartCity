@@ -52,7 +52,7 @@ Antes de guardar debe existir una base **exclusivamente local de práctica** lla
 escuche en localhost. Los scripts fijan `127.0.0.1`, pero no pueden comprobar dónde
 termina un túnel creado fuera del programa.
 
-- PostgreSQL necesita `schema_proposal.sql`, `queries.sql`, `staging.sql` y
+- PostgreSQL necesita `schema_proposal.sql`, `staging_queries.sql`, `staging.sql` y
   catálogos independientes cargados/revisados. Los scripts no crean ni sustituyen
   el esquema ni sus catálogos automáticamente.
 - MongoDB necesita `validator.js`, los índices de `indexes.js` y permisos para

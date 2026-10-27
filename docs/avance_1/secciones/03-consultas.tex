@@ -15,18 +15,24 @@ PG03 & Cantidad de activos e inactivos. & Registrada con estados administrativos
 PG04 & Sensores por organismo responsable. & Registrada con organismos asignados a sensores demo. \\
 PG05 & Ubicaciones con más sensores. & Ranking registrado sobre sensores demo. \\
 PG06 & Sensores instalados por año. & Registrada con fechas sintéticas. \\
-PG07 & Sensores sin actividad registrada. & Bloqueada: no hay relación acreditada sensor--canal observado. \\
+PG07 & Sensores sin actividad registrada. & Funcional en prueba controlada; bloqueada en el lote observado por falta de relación sensor--canal. \\
 PG08 & Ranking de zonas monitoreadas. & Registrada sobre sensores demo; revisar alcance geográfico. \\
 PG09 & Consulta utilizando vistas. & Vista anual de actividad por canal. \\
 PG10 & Procedimiento o función. & Función anual que cuenta canales de una estación. \\
 \bottomrule
 \end{longtable}
 
-Existe una regresión de integración: el archivo
-\archivo{sprint1/postgres/queries.sql} contiene ahora consultas del núcleo local,
-pero \archivo{tests/sprint1/validate_real_postgres.py} espera allí las diez
-consultas anuales. Su parser falla con ``Falta alguna consulta PG01--PG10''.
-Se deben separar las rutas antes de presentar el reproductor anual como funcional.
+La regresión de integración fue corregida: el archivo
+\archivo{sprint1/postgres/queries.sql} vuelve a contener PG01--PG10 para
+\archivo{smartcity}; el núcleo local usa \archivo{staging_queries.sql}.
+El parser anual reconoce las diez consultas y tiene pruebas de regresión.
+Una nueva prueba PostgreSQL ejecuta el archivo canónico y contrasta las filas
+de cada consulta con resultados esperados sobre fixtures revertidas al finalizar.
+
+PG07 requiere una relación conocida sensor--canal antes de evaluar ausencia
+de lecturas en enero. Excluye relaciones desconocidas y usa una ventana
+semiabierta en hora de Madrid. La prueba incluye ambos límites, un sensor con
+canal sin lecturas y un sensor sin canal; no acredita identidad física observada.
 
 El núcleo demuestra SELECT, filtros, ordenamiento, DISTINCT, JOIN, GROUP BY,
 HAVING, agregaciones, CTE, ventanas, subconsultas y fechas en distintos archivos.

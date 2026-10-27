@@ -5,7 +5,11 @@ Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
 
 ## Comprobado
 
-- Núcleo `sprint1`: 32 pruebas Python y 8 Node aprobadas; integración local
+- Suite unificada: 38 pruebas Python y 8 Node aprobadas; diez consultas SQL
+  `smartcity` ejecutadas con resultados comprobados y fixtures revertidas.
+  El parser anual vuelve a reconocer PG01–PG10. SQL de práctica separado en
+  `staging_queries.sql`; PG07 excluye relaciones sensor–canal desconocidas.
+- Núcleo complementario `sprint1`: integración local
   PostgreSQL 16.6/MongoDB 7.0.16 con tres ejemplos, replay, cuarentena,
   CRUD, respaldo/restauración y carrera PostgreSQL de ocho conexiones.
 - Carga anual `smartcity`: los manifiestos registran 1.076.813 lecturas reales
@@ -17,19 +21,16 @@ Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
 
 ## Pendientes de entrega
 
-1. Elegir una ruta de entrega coherente: el esquema anual `smartcity` y el núcleo
-   `sprint1` tienen contratos e identidades diferentes.
-2. Separar los archivos de consultas: `sprint1/postgres/queries.sql` fue reemplazado
-   por el núcleo local y rompe el parser del validador anual `validate_real_postgres.py`.
-3. Completar y ejecutar las [20 consultas](MATRIZ_CONSULTAS_SPRINT1.md).
-   Los manifiestos anuales mantienen PG07 y MG04/05/08 bloqueadas; otras consultas
+1. Completar la evidencia de las [20 consultas](MATRIZ_CONSULTAS_SPRINT1.md).
+   La ruta SQL canónica es `smartcity`; el núcleo `sprint1` queda como práctica
+   complementaria. Los manifiestos anuales mantienen PG07 y MG04/05/08 bloqueadas; otras consultas
    necesitan aclarar alcance por canal/sensor y zona. Las banderas declarativas
    del harness anual Mongo no sustituyen resultados de cada pipeline.
-4. Resolver la segunda fuente aceptada: el lote anual solo admite aire.
+2. Resolver la segunda fuente aceptada: el lote anual solo admite aire.
    Tráfico v2 requiere aprobación y pruebas; meteorología conserva bloqueos de reloj.
-5. Probar los cargadores Python con autenticación real, incorporar la suite nueva
-   al CI y cerrar el informe/diagramas de la implementación elegida.
-6. Si la entrega usa bases compartidas, comprobar acceso, carga y respaldo por separado.
+3. Probar los cargadores Python con autenticación real y cerrar el informe/diagramas.
+   La CI ya invoca la suite offline unificada; su ejecución remota falta hasta publicar.
+4. Si la entrega usa bases compartidas, comprobar acceso, carga y respaldo por separado.
    Las pruebas desechables no acreditan su estado.
 
 ## Antecedentes que no bloquean desarrollar

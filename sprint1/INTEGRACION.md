@@ -1,5 +1,10 @@
 # Integración local nueva — alcance y evidencia
 
+Esta guía corresponde al núcleo complementario `sprint1`. Su SQL está en
+`sprint1/postgres/staging_queries.sql`. La ruta canónica `smartcity` y sus diez
+consultas se prueban aparte mediante `scripts/test_sprint1_sql.py`.
+Ambos pasos se ejecutan desde la raíz con `bash scripts/validate_sprint1.sh --engines`.
+
 Se ejecutó `scripts/test_sprint1_engines.py` con Docker local, imágenes existentes
 **PostgreSQL 16.6** y **MongoDB 7.0.16**. El resultado es independiente de Fase 5.
 Cada motor recibe **tres lecturas**, una por fuente, desde copias explícitas de

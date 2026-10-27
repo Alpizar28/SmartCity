@@ -56,22 +56,33 @@ def check_input_files(preparation):
             raise ValueError("Hash distinto del manifiesto: " + filename)
 
 
-def read_queries():
+def read_queries(path=None):
+    """Read the ten canonical smartcity SELECTs, never the staging demo."""
     queries = {}
     number = None
     lines = []
-    for line in (PROJECT / "sprint1/postgres/queries.sql").read_text().splitlines():
-        match = re.match(r"^-- PG(0[1-9]|10):", line)
+    path = PROJECT / "sprint1/postgres/queries.sql" if path is None else Path(path)
+    for line in path.read_text().splitlines():
+        match = re.match(r"^-- (PG\d{2}):", line)
         if match:
-            number = "PG" + match.group(1)
+            if number is not None:
+                raise ValueError("Consulta sin punto y coma: " + number)
+            number = match.group(1)
+            if number in queries:
+                raise ValueError("Consulta duplicada: " + number)
             lines = []
             continue
         if number is None or line.lstrip().startswith("--"):
             continue
         lines.append(line)
         if line.rstrip().endswith(";"):
-            queries[number] = "\n".join(lines).strip().removesuffix(";")
+            statement = "\n".join(lines).strip().removesuffix(";")
+            if not re.match(r"^(SELECT|WITH)\b", statement, re.IGNORECASE):
+                raise ValueError("Se esperaba una consulta SELECT/CTE: " + number)
+            queries[number] = statement
             number = None
+    if number is not None:
+        raise ValueError("Consulta sin punto y coma: " + number)
     if sorted(queries) != [f"PG{index:02d}" for index in range(1, 11)]:
         raise ValueError("Falta alguna consulta PG01–PG10")
     return queries

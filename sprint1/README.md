@@ -1,4 +1,12 @@
-# Núcleo local del Sprint 1
+# Código del Sprint 1 y núcleo de práctica
+
+La ruta SQL canónica usa `smartcity` y las diez consultas de
+[`postgres/queries.sql`](postgres/queries.sql). La prueba de motor está en
+`scripts/test_sprint1_sql.py`. La entrada común desde la raíz es
+`bash scripts/validate_sprint1.sh --engines`.
+
+El resto de esta guía describe el núcleo **complementario** `sprint1`, no el DDL
+anual. Su SQL está en `postgres/staging_queries.sql`.
 
 Implementación nueva e independiente de la recuperación histórica. Sin paquetes
 Python externos ni cargas automáticas. Importar los módulos no conecta a motores;
@@ -15,7 +23,8 @@ de validación; no es necesario reescribir sus controles para aprender las consu
   nulabilidad, reloj y QA; ledger de revisión en memoria con cuarentena.
 - `core/adapters.py`: DTO inmutable validado y proyecciones puras para columnas
   PostgreSQL y valores BSON-ready; sin ejecutar escrituras.
-- `postgres/`: propuesta DDL y consultas probadas en contenedores desechables;
+- `postgres/schema_proposal.sql`, `postgres/staging_queries.sql`: propuesta
+  DDL y consultas de práctica probadas en contenedores desechables;
   no migración aplicada a servicios persistentes o compartidos.
 - `mongodb/`: esquema BSON, índices, builders y función explícita de staging.
 

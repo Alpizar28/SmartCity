@@ -15,7 +15,7 @@ class PostgresProposalTests(unittest.TestCase):
         self.assertNotIn('UNIQUE (channel_id, observed_at)', sql)
 
     def test_function_is_snapshot_and_evidence_scoped(self):
-        sql = (ROOT / 'sprint1/postgres/queries.sql').read_text()
+        sql = (ROOT / 'sprint1/postgres/staging_queries.sql').read_text()
         self.assertIn('CREATE VIEW sprint1.quality_summary', sql)
         self.assertIn('CREATE FUNCTION sprint1.air_statistics', sql)
         self.assertIn('r.source_version = p_version', sql)

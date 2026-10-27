@@ -7,11 +7,12 @@ Primer avance del 28/10/2026: modelos, datos, índices, **10 consultas SQL y
 El plan del equipo incluye dos fuentes y mínimos de 100.000 registros PostgreSQL
 y 500.000 documentos MongoDB. Spark, Hadoop e interfaz quedan para noviembre.
 
-La demostración que sigue es **parcial**: funciona con tres ejemplos, pero no
-sustituye esos requisitos. El [estado](docs/equipo/ESTADO_SPRINT1.md) y la
+La ruta siguiente prueba las diez consultas SQL con fixtures controladas y añade
+una demostración complementaria SQL/Mongo de tres ejemplos. No sustituye todos
+los requisitos. El [estado](docs/equipo/ESTADO_SPRINT1.md) y la
 [matriz de consultas](docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md) indican lo pendiente.
 
-## Ejecutar la demostración local
+## Una entrada de ejecución
 
 Desde la raíz, con Python 3.10+ y Node.js 18+:
 
@@ -23,24 +24,50 @@ Para probar ambos motores se necesita Docker local y las imágenes
 `postgres:16.6-alpine` y `mongo:7.0.16` ya descargadas:
 
 ```bash
-PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_engines.py
+bash scripts/validate_sprint1.sh --engines
 ```
 
-Resultado esperado: `Sprint 1 disposable engines: PASS`. Crea y elimina solo
-contenedores de prueba propios, sin puertos publicados ni bases persistentes.
-El informe queda en `/tmp/opencode/smartcity-s1-integration-*.json`.
+El comando ejecuta, en orden: pruebas offline, diez consultas SQL canónicas
+(`scripts/test_sprint1_sql.py`) e integración complementaria SQL/Mongo
+(`scripts/test_sprint1_engines.py`). Deben aparecer `Sprint 1 canonical SQL: PASS`
+y `Sprint 1 disposable engines: PASS`.
 
-**Verificado el 27/10/2026:** 32 pruebas Python, 8 Node e integración PASS.
+Solo crea y elimina contenedores propios, sin puertos ni bases persistentes.
+Los informes nuevos quedan en `/tmp/opencode/smartcity-s1-sql-*.json` y
+`/tmp/opencode/smartcity-s1-integration-*.json`; incluyen resultados, hashes y limpieza.
+
+**Verificado el 27/10/2026:** 38 pruebas Python, 8 Node, las diez consultas SQL
+con resultados esperados e integración SQL/Mongo PASS.
 Se comprobaron consultas, índices, replay, cuarentena, CRUD, respaldo/restauración
 y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticación real.
 
 ## Archivos para explicar en clase
 
-- PostgreSQL: `sprint1/postgres/schema_proposal.sql`, `queries.sql` y `staging.sql`.
+- PostgreSQL canónico: DDL `research/datasets/scripts/phase5_postgresql.sql`
+  y consultas `sprint1/postgres/queries.sql`, ambos para el esquema `smartcity`.
+- SQL de práctica: `schema_proposal.sql`, `staging_queries.sql` y `staging.sql`
+  dentro de `sprint1/postgres/`; solo para el esquema `sprint1`.
 - MongoDB: `sprint1/mongodb/validator.js`, `indexes.js`, `queries.js` y `staging.js`.
 - Ejemplos comentados y CRUD: [sprint1/basico](sprint1/basico/README.md).
 
-Estos archivos usan el núcleo `sprint1`, no el esquema anual `smartcity`.
+PG07 evalúa enero de 2025 en Madrid y excluye sensores sin vínculo a un canal:
+una relación desconocida no significa falta de actividad. La prueba incluye un
+sensor con lectura en el inicio incluido y otro solo en el final excluido.
+Su PASS con fixtures no acredita inventario físico ni cierra el bloqueo de datos anuales.
+
+Para ejecutar el archivo completo manualmente en una base **local ya preparada**:
+
+```bash
+PGOPTIONS='-c default_transaction_read_only=on' \
+psql -X --set=ON_ERROR_STOP=1 --single-transaction \
+  --host=127.0.0.1 --port=5433 --username=smartcity \
+  --dbname=smartcity --file=sprint1/postgres/queries.sql
+```
+
+El comando impone una transacción de solo lectura. El usuario, puerto y nombre de base deben corresponder
+a tu configuración local; no pasar contraseñas en el comando. El DDL no se instala
+automáticamente y no debe aplicarse a una base poblada.
+
 Detalles de pruebas y respaldos: [integración](sprint1/INTEGRACION.md) y
 [restauración](sprint1/RESPALDOS.md).
 

@@ -1,51 +1,58 @@
-# PostgreSQL: propuesta local revisable
+# PostgreSQL — ruta canónica del Sprint 1
 
-`schema_proposal.sql`, `queries.sql` y `staging.sql` **no son migraciones definitivas**.
-Sí se ejecutaron en PostgreSQL 16.6 desechable con tres ejemplos publicados,
-mediante `scripts/test_sprint1_engines.py`. No están conectados a Compose ni a
-`postgres/init/`; no hay despliegue compartido ni carga masiva.
+## Qué archivo usar
 
-## Alcance de consultas
+- **DDL común:** `research/datasets/scripts/phase5_postgresql.sql`, esquema `smartcity`.
+- **Diez consultas de entrega:** `sprint1/postgres/queries.sql`, PG01–PG10.
+- **Reproductor anual:** `tests/sprint1/validate_real_postgres.py`; usa ese mismo archivo.
+- **Práctica separada:** `schema_proposal.sql`, `staging_queries.sql` y `staging.sql`
+  usan el esquema `sprint1`. No aplicarlos para preparar el esquema anual.
 
-| Consulta | Implementación propuesta | Límite |
-|---|---|---|
-| PG01/02/05/07 | Consultas por canal/sitio | Parciales; no sensores físicos ni inventario independiente |
-| PG03/04/06 | Ninguna | Estado, organismos e instalación no acreditados |
-| PG08 | Ninguna | Geografía/vigencia abiertas |
-| PG09 | `quality_summary` | Vista comprobada con tres lecturas locales |
-| PG10 | `air_statistics` | Canal+snapshot, aire válido, intervalo UTC semiabierto |
+Los DDL no son inicializadores de Compose ni migraciones para bases pobladas.
+No se aplican a un servidor compartido sin revisión y autorización.
 
-Fuentes, versiones, estaciones y canales se separan para evitar duplicar sus
-atributos en cada lectura. Las FK compuestas impiden mezclar redes/snapshots.
-El documento JSONB conserva procedencia, payload y campos abiertos; no sustituye
-los catálogos. No se declara una demostración académica completa de 3FN,
-particionamiento, vistas materializadas ni rendimiento.
+## Un comando desde la raíz
 
-## Frontera de validación
+```bash
+bash scripts/validate_sprint1.sh --engines
+```
 
-Antes de cualquier futura escritura debe ejecutarse `validate_document` con
-catálogos explícitos. Las columnas SQL son una proyección del documento validado:
-`ReadingDTO.postgres_record()` genera una proyección consistente, pero todavía
-`stage_reading(record jsonb)` ofrece la escritura/reconciliación del lado SQL.
-Existe un CLI básico en `basico/cargar_postgres.py`, sin importación masiva;
-su conexión mediante psycopg todavía no se probó de extremo a extremo. Los checks SQL son
-defensa adicional, no un reemplazo del
-validador. El DTO convierte Extended JSON a `datetime` UTC; la futura capa debe
-envolver los objetos JSONB con el tipo del driver y enlazar todos los parámetros.
-El ID autogenerado solo localiza staging. La unicidad usa snapshot/canal/clave
-original, nunca UTC hipotético, valor o fila. Una colisión contradictoria debe
-cuarentenarse; queda prohibido sobrescribirla con un upsert.
+Ejecuta pruebas offline, SQL canónico sobre PostgreSQL desechable y práctica
+complementaria SQL/Mongo. Requiere Python 3.10+, Node.js 18+, Docker local e
+imágenes ya descargadas `postgres:16.6-alpine` y `mongo:7.0.16`.
+No descarga imágenes, publica puertos ni monta datos del host.
 
-Los índices cubren FK/filtros y el tiempo de aire exclusivamente. Su efectividad
-requiere futuros `EXPLAIN (ANALYZE, BUFFERS)` con datos reales autorizados.
-`air_statistics` recibe parámetros; no construir SQL concatenando entradas.
+Para repetir **solo las diez consultas SQL**, sin Mongo ni insumos privados:
 
-`stage_reading` usa unicidad snapshot/canal/clave original y `ON CONFLICT DO
-NOTHING`, nunca `DO UPDATE`. Repite como `duplicate` o guarda el documento en
-cuarentena sin modificar la lectura aceptada. Las lecturas deben ser append-only.
-Usar transacciones READ COMMITTED; a mayor aislamiento, reintentar errores de
-serialización en la futura capa cliente. Se comprobó una carrera de ocho
-conexiones y dos payloads para una clave, no estrés sostenido. También se verificó
-respaldo/restauración de datos, esquema y secuencias; véase [respaldos](../RESPALDOS.md).
-`inventory_present` permite NULL porque los ejemplos públicos no acreditan
-presencia en un inventario independiente; desconocido no equivale a falso.
+```bash
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_sql.py
+```
+
+El informe `/tmp/opencode/smartcity-s1-sql-*.json` incluye las filas obtenidas
+por cada consulta, hashes, rollback y limpieza del contenedor. Es una prueba
+con fixtures fabricadas y explícitas, no una carga de mediciones reales.
+
+## Semántica de las consultas
+
+PG01–PG06 y PG08 consultan sensores/organismos/ubicaciones del inventario, que
+puede contener entidades administrativas sintéticas autorizadas. PG09 usa
+`channel_activity`; PG10 invoca `channels_at_station()`, que cuenta canales.
+
+PG07 busca sensores **con algún canal asociado** que no tienen lecturas en
+`[2025-01-01 00:00+01, 2025-02-01 00:00+01)`. No equivale a estado inactivo,
+avería o ausencia de información en todo el histórico. Un sensor sin relación
+con canales se excluye porque no se puede evaluar su actividad.
+La prueba cubre inicio incluido, fin excluido y relación desconocida.
+
+Las diez consultas ejecutan con resultados comprobados en el caso controlado.
+En el lote anual observado los sensores siguen sin enlace a las lecturas:
+el bloqueo de datos de PG07 no se resuelve asignando dispositivos ficticios.
+La matriz de entrega conserva ese límite.
+
+## Evidencia anual y rendimiento
+
+El parser y el resumen de aire del benchmark vuelven a leer el archivo canónico.
+Repetir la carga anual necesita los snapshots privados y las imágenes indicadas
+por ese reproductor; no se ha reejecutado para este arreglo. El informe
+`performance_real_2025.md` conserva mediciones históricas, no resultados nuevos.
+Las pruebas pequeñas no acreditan volumen, 3FN final ni mejora de un índice.

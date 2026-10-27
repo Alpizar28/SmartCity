@@ -1,6 +1,6 @@
 \section{Validación y resultados disponibles}
 \subsection{Demostración local del 27 de octubre}
-Se ejecutaron 32 pruebas Python y 8 Node, todas aprobadas. La integración
+Se ejecutaron 38 pruebas Python y 8 Node, todas aprobadas. La integración
 PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,
 uno de aire, uno meteorológico y uno de tráfico, adaptados en copias de prueba.
 Los ejemplos de meteo/tráfico en staging no son registros aceptados de la carga anual.
@@ -12,9 +12,16 @@ una aceptación, tres duplicados y cuatro cuarentenas. No es estrés sostenido n
 prueba de concurrencia MongoDB entre procesos \cite{integracion,respaldos}.
 
 Los contenedores fueron locales, sin puertos publicados y con red deshabilitada.
-Se eliminaron al finalizar. El informe generado fue
-\archivo{/tmp/opencode/smartcity-s1-integration-t7d2ibo2.json}; es un artefacto
-local, no un archivo disponible en cualquier clon.
+Se eliminaron al finalizar. Los informes se generan como
+\archivo{/tmp/opencode/smartcity-s1-integration-*.json}; son artefactos
+locales, no archivos disponibles en cualquier clon.
+
+Además, \archivo{scripts/test_sprint1_sql.py} ejecutó las diez consultas
+canónicas con resultados comprobados en \archivo{smartcity}, incluyendo estados
+NULL, organismos vacíos, empates de ranking y los límites temporales de PG07.
+Las fixtures son fabricadas exclusivamente para probar SQL, se revierten y nunca
+se presentan como observaciones de la fuente pública. El informe nuevo queda en
+\archivo{/tmp/opencode/smartcity-s1-sql-*.json}.
 
 \subsection{Carga anual: evidencia previa, no reejecución de hoy}
 El mínimo es de 100.000 registros PostgreSQL y 500.000 documentos MongoDB
@@ -49,9 +56,10 @@ bash scripts/validate_sprint1.sh
 Para integrar motores se requiere Docker local y las imágenes ya descargadas
 \archivo{postgres:16.6-alpine} y \archivo{mongo:7.0.16}:
 \begin{lstlisting}
-PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_engines.py
+bash scripts/validate_sprint1.sh --engines
 \end{lstlisting}
-El harness no descarga imágenes. Las instrucciones completas y su alcance están
+La entrada unificada ejecuta unidades, consultas canónicas e integración complementaria.
+Los harnesses no descargan imágenes. Las instrucciones completas y su alcance están
 en \archivo{ENTREGA_SPRINT1.md}. Los clientes básicos psycopg/PyMongo aún
 necesitan prueba de extremo a extremo con autenticación real.
 

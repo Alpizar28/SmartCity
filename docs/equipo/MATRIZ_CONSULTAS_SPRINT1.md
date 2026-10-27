@@ -30,8 +30,11 @@ ni confirmación de que la consulta actual siga siendo reproducible.
 
 ## Qué falta para cerrar esta lista
 
-- Separar las consultas anuales del archivo `sprint1/postgres/queries.sql`,
-  actualmente reemplazado por consultas de otro esquema; el reproductor anual falla.
+- Las diez consultas canónicas están restauradas en `sprint1/postgres/queries.sql`
+  para `smartcity`. Ejecutar `bash scripts/validate_sprint1.sh --engines` prueba
+  sus resultados sobre fixtures controladas, no sobre el lote anual.
+- PG07 ya tiene prueba funcional de ventana semiabierta y exclusión de sensores
+  sin relación conocida; su bloqueo de datos observados continúa en el manifiesto histórico.
 - Guardar parámetros y resultados de cada consulta Mongo: varias banderas de
   `query_evidence` son constantes y no prueban que se ejecutara el pipeline.
 - Resolver PG07, MG04, MG05 y MG08; confirmar alcance de canal/sensor y zona.

@@ -5,8 +5,6 @@ on:
   push:
     branches:
       - main
-      - feat/unified-data-contract
-      - feat/sprint1-evidence-v2-ci
 
 permissions:
   contents: read
@@ -41,5 +39,7 @@ jobs:
         run: ./scripts/validate_repo.sh
       - name: Validate MongoDB script syntax
         run: node --check research/datasets/scripts/unified_full_mongo.js
+      - name: Run Sprint 1 offline regression suite
+        run: bash scripts/validate_sprint1.sh
       - name: Check diff whitespace
         run: git diff --check

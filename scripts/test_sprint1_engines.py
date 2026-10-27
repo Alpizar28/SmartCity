@@ -181,7 +181,7 @@ def main():
                              default=lambda value: value.isoformat(), allow_nan=False)
         encoded = base64.b64encode(records.encode()).decode('ascii')
         sql = (ROOT / 'sprint1/postgres/schema_proposal.sql').read_text() + '\n'
-        sql += (ROOT / 'sprint1/postgres/queries.sql').read_text() + '\n'
+        sql += (ROOT / 'sprint1/postgres/staging_queries.sql').read_text() + '\n'
         sql += (ROOT / 'sprint1/postgres/staging.sql').read_text() + '\n'
         sql += 'CREATE TEMP TABLE fixture(record jsonb);\n'
         # The only interpolated SQL value is our base64 alphabet, not raw input.

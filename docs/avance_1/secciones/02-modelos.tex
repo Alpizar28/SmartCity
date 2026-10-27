@@ -9,9 +9,11 @@ Su evidencia previa comprende 1.076.813 lecturas de aire por motor.
 adaptados en copias de prueba. No es una migración de la carga anual.
 \end{description}
 
-El informe describe ambas rutas porque existen en la rama revisada. No suma
-sus coberturas ni presenta la demostración pequeña como carga anual. Antes de
-la entrega se debe acordar una sola interfaz de ejecución para el equipo.
+La ruta SQL canónica usa el esquema anual \archivo{smartcity} y las diez
+consultas de \archivo{sprint1/postgres/queries.sql}. El SQL de práctica se
+conserva en \archivo{sprint1/postgres/staging_queries.sql}. La entrada común es
+\archivo{bash scripts/validate_sprint1.sh --engines}: comprueba ambas rutas
+por separado, sin sumar coberturas ni presentar fixtures como carga anual.
 
 \subsection{Modelo relacional anual}
 El DDL está en \archivo{research/datasets/scripts/phase5_postgresql.sql}.
