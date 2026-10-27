@@ -1,6 +1,9 @@
 # Matriz de evidencia de consultas — Sprint 1
 
-Esta matriz separa resultado técnico, procedencia y alcance académico. Una consulta marcada como `synthetic_demo` se ejecuta contra entidades administrativas deterministas autorizadas; no acredita que esos sensores sean dispositivos físicos que produjeron lecturas públicas.
+**Alcance:** evidencia registrada de la carga anual `smartcity`, no del núcleo
+local `sprint1`. «Ejecutada» es el estado del manifiesto, no aprobación académica
+ni confirmación de que la consulta actual siga siendo reproducible.
+`synthetic_demo` usa entidades administrativas autorizadas, no sensores físicos observados.
 
 | Consulta | Motor | Estado | Alcance de datos | Evidencia |
 |---|---|---|---|---|
@@ -25,4 +28,15 @@ Esta matriz separa resultado técnico, procedencia y alcance académico. Una con
 | MG09 | MongoDB | ejecutada | `observed` | Pipeline nativo de agregación. |
 | MG10 | MongoDB | ejecutada | `observed` | Filtros múltiples e índice natural. |
 
-Los informes `postgresql_full.json` y `mongodb_full.json` contienen `query_evidence` con el estado, alcance, comprobaciones y conteo de entradas sintéticas por consulta. `unified_full_verify.py` rechaza evidencia incompleta, incoherente o que declare una consulta observada con insumos sintéticos.
+## Qué falta para cerrar esta lista
+
+- Separar las consultas anuales del archivo `sprint1/postgres/queries.sql`,
+  actualmente reemplazado por consultas de otro esquema; el reproductor anual falla.
+- Guardar parámetros y resultados de cada consulta Mongo: varias banderas de
+  `query_evidence` son constantes y no prueban que se ejecutara el pipeline.
+- Resolver PG07, MG04, MG05 y MG08; confirmar alcance de canal/sensor y zona.
+  No presentar agrupaciones de zonas nulas como análisis geográfico.
+
+Los manifiestos están en `research/datasets/results/expanded-2025/`.
+Su verificador controla estructura y procedencia declarada, no sustituye la
+ejecución ni la revisión del resultado de las 20 consultas.

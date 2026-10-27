@@ -15,7 +15,8 @@ de validación; no es necesario reescribir sus controles para aprender las consu
   nulabilidad, reloj y QA; ledger de revisión en memoria con cuarentena.
 - `core/adapters.py`: DTO inmutable validado y proyecciones puras para columnas
   PostgreSQL y valores BSON-ready; sin ejecutar escrituras.
-- `postgres/`: propuesta DDL y consultas revisables; no migración ejecutada.
+- `postgres/`: propuesta DDL y consultas probadas en contenedores desechables;
+  no migración aplicada a servicios persistentes o compartidos.
 - `mongodb/`: esquema BSON, índices, builders y función explícita de staging.
 
 ## Validación independiente

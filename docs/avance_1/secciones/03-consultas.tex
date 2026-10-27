@@ -1,0 +1,72 @@
+\section{Consultas obligatorias y cobertura}
+Las siguientes tablas resumen la evidencia anual y las pruebas del núcleo local,
+diferenciadas por fila; no son una nueva ejecución de las veinte consultas.
+``Demo'' significa entidades
+administrativas sintéticas autorizadas; no inventario físico observado.
+``Registrada'' no equivale a aceptación académica ni reproducibilidad actual.
+
+\subsection{PostgreSQL}
+\begin{longtable}{p{0.08\textwidth}p{0.39\textwidth}p{0.43\textwidth}}
+\toprule ID & Consulta exigida & Evidencia y límite \\
+\midrule\endhead
+PG01 & Sensores por tipo. & Registrada sobre sensores demo. \\
+PG02 & Sensores por ubicación. & Registrada sobre sensores demo y catálogo. \\
+PG03 & Cantidad de activos e inactivos. & Registrada con estados administrativos demo. \\
+PG04 & Sensores por organismo responsable. & Registrada con organismos asignados a sensores demo. \\
+PG05 & Ubicaciones con más sensores. & Ranking registrado sobre sensores demo. \\
+PG06 & Sensores instalados por año. & Registrada con fechas sintéticas. \\
+PG07 & Sensores sin actividad registrada. & Bloqueada: no hay relación acreditada sensor--canal observado. \\
+PG08 & Ranking de zonas monitoreadas. & Registrada sobre sensores demo; revisar alcance geográfico. \\
+PG09 & Consulta utilizando vistas. & Vista anual de actividad por canal. \\
+PG10 & Procedimiento o función. & Función anual que cuenta canales de una estación. \\
+\bottomrule
+\end{longtable}
+
+Existe una regresión de integración: el archivo
+\archivo{sprint1/postgres/queries.sql} contiene ahora consultas del núcleo local,
+pero \archivo{tests/sprint1/validate_real_postgres.py} espera allí las diez
+consultas anuales. Su parser falla con ``Falta alguna consulta PG01--PG10''.
+Se deben separar las rutas antes de presentar el reproductor anual como funcional.
+
+El núcleo demuestra SELECT, filtros, ordenamiento, DISTINCT, JOIN, GROUP BY,
+HAVING, agregaciones, CTE, ventanas, subconsultas y fechas en distintos archivos.
+Esa variedad técnica no reemplaza las preguntas obligatorias sobre sensores.
+
+\subsection{MongoDB}
+\begin{longtable}{p{0.08\textwidth}p{0.39\textwidth}p{0.43\textwidth}}
+\toprule ID & Consulta exigida & Evidencia y límite \\
+\midrule\endhead
+MG01 & Lecturas de un sensor específico. & Búsqueda registrada por canal lógico, no dispositivo físico. \\
+MG02 & Lecturas en un rango de fechas. & Rango BSON probado en el núcleo; falta salida específica del rango anual. \\
+MG03 & Máximos y mínimos. & Agregación probada en el núcleo; la bandera anual no basta como resultado. \\
+MG04 & Eventos críticos detectados. & Bloqueada: regla, umbral y severidad sin aprobación registrada. \\
+MG05 & Alertas emitidas por zona. & Bloqueada: falta fuente o replay autorizado con emisión acreditada. \\
+MG06 & Promedio de mediciones por zona. & Declarada en evidencia anual; verificar pipeline y zonas conocidas. \\
+MG07 & Promedio por tipo de sensor. & Declarada por variable/unidad; no equivale automáticamente a tipo físico. \\
+MG08 & Incidentes por categoría. & Bloqueada: fuente de accidentes no cargada para esta consulta. \\
+MG09 & Consulta con agregaciones. & Pipelines probados en el núcleo; conservar salida anual específica. \\
+MG10 & Consulta con filtros múltiples. & Filtros probados en el núcleo; conservar parámetros y resultado anual. \\
+\bottomrule
+\end{longtable}
+
+El harness anual contiene algunas afirmaciones constantes en
+\archivo{query_evidence}; su verificador controla estructura y procedencia,
+no ejecuta cada pipeline. Por ello, no se declaran siete consultas anuales
+completamente acreditadas solo por esas banderas. Agrupar una zona nula tampoco
+demuestra un análisis por zona geográfica.
+
+Las operaciones insertOne, insertMany, find, findOne, updateOne, updateMany y
+deleteOne se prueban en la integración con colecciones de demostración aisladas.
+Las actualizaciones y borrados no deben aplicarse a las observaciones originales.
+
+\subsection{Ficha mínima para completar cada consulta}
+Daniel y Kembly deben registrar, para cada ID:
+\begin{enumerate}
+\item Pregunta, contrato, esquema/colección y generación utilizada.
+\item Archivo y SQL o pipeline exacto, con sus parámetros.
+\item Resultado obtenido y comprobación independiente del valor esperado.
+\item Índice/plan cuando corresponda, fecha, entorno y responsable de revisión.
+\item Origen observado, derivado o sintético y limitaciones de interpretación.
+\end{enumerate}
+La matriz editable del repositorio está en
+\archivo{docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md}.

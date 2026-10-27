@@ -1,0 +1,9 @@
+# Artefactos locales de compilación; las fuentes TeX sí se versionan.
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+main.pdf

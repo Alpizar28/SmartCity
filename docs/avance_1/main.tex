@@ -1,0 +1,44 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs,longtable,array}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\usepackage{listings}
+\lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,
+  keepspaces=true,showstringspaces=false,frame=single}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\newcommand{\archivo}[1]{\path{#1}}
+\newcommand{\pendiente}[1]{\textbf{Pendiente de revisión:} #1}
+\title{SmartCity Analytics\\Primer avance: PostgreSQL y MongoDB}
+\author{Equipo: José, Daniel, Kembly y Fernanda}
+\date{Entrega prevista: 28 de octubre de 2026\\
+  Borrador técnico actualizado el 27 de octubre de 2026}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Este informe documenta el avance de almacenamiento relacional y documental de
+SmartCity Analytics. Presenta las fuentes de Madrid, las dos implementaciones
+que actualmente conviven en el repositorio y las pruebas disponibles. Se separa
+la evidencia histórica de carga anual de la demostración local de tres ejemplos.
+Los mínimos de volumen cuentan con evidencia local previa, pero no se declara
+completo el conjunto de veinte consultas ni una carga en servidores compartidos.
+\end{abstract}
+\textbf{Estado del documento: borrador, no entrega aprobada.} Los integrantes
+deben revisar nombres completos, identificación del curso, modelos, resultados
+y aceptación de los alcances pendientes antes de presentar este documento.
+\tableofcontents
+\newpage
+\input{secciones/01-alcance-datos}
+\input{secciones/02-modelos}
+\input{secciones/03-consultas}
+\input{secciones/04-validacion}
+\input{secciones/05-cierre}
+\end{document}

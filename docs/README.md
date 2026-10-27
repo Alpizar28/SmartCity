@@ -1,33 +1,54 @@
-# Documentación — SmartCity Analytics
+# Documentación
 
-**Fase 6: documentación para revisión, no aprobación ni implementación definitiva.** Esta capa resume y enlaza la investigación inmutable de fases 0–5. Las fechas de verificación proceden del reloj del entorno, 9–10 de octubre de 2026; las URLs son referencias verificadas entonces, no garantías de disponibilidad futura.
+## Uso diario
 
-## Rutas de lectura
+- [Alcance y ejecución del Sprint 1](../ENTREGA_SPRINT1.md).
+- [Estado y pendientes](equipo/ESTADO_SPRINT1.md).
+- [Las 20 consultas](equipo/MATRIZ_CONSULTAS_SPRINT1.md).
 
-| Necesidad | Documento |
-|---|---|
-| Incorporar una sección al informe | [Texto académico](academico/texto_para_informe.md) |
-| Declarar apoyo de IA | [Transparencia sobre IA](academico/uso_ia.md) |
-| Entender la recomendación | [Selección del dataset](datasets/seleccion_dataset.md) y [ADR-001](decisiones/ADR-001-madrid.md) |
-| Citar fuentes, versiones y licencias | [Fuentes y procedencia](datasets/fuentes_y_procedencia.md) |
-| Entender conteos, limpieza y límites | [Calidad y limitaciones](datasets/calidad_y_limitaciones.md) |
-| Localizar investigación sin repetirla | [Índice de evidencias](datasets/indice_evidencias.md) |
-| Revisar PostgreSQL y MongoDB | [Modelos preliminares](arquitectura/modelos.md) |
-| Ver arquitectura, ETL y E-R | [Cinco diagramas Mermaid](arquitectura/diagramas.md) |
-| Reproducir procedimientos existentes | [Pipeline y reproducción](arquitectura/pipeline.md) |
-| Resolver bloqueos académicos | [Preguntas oficiales breves](../PREGUNTAS_PROFESOR.md) y [seguimiento detallado](equipo/preguntas_profesor.md) |
-| Coordinar trabajo individual | [Guía de integrantes](equipo/guia_integrantes.md) |
-| Ver alcance real del Sprint 1 | [Estado Sprint 1](equipo/ESTADO_SPRINT1.md) |
-| Revisar Git, secretos y publicación | [Revisión del repositorio](equipo/revision_repositorio.md) |
-| Consultar auditoría final antes de publicar | [Auditoría de publicación de Fase 6](equipo/auditoria_publicacion_fase6.md) |
+## Informe del avance en LaTeX
 
-## Cómo interpretar el estado
+El borrador editable empieza en [avance_1/main.tex](avance_1/main.tex).
+Las cinco secciones de `avance_1/secciones/` cubren alcance/datos, modelos,
+consultas, validación y cierre. Ya tienen contenido; no es una plantilla vacía.
+Los pendientes están señalados y no deben presentarse como resultados terminados.
 
-- **Ejecutado:** resultado acotado con archivo de evidencia, no cumplimiento automático del proyecto.
-- **Preliminar:** contrato, DDL, colecciones y diagramas revisables.
-- **Condicionado:** requiere cierre técnico o aceptación explícita de alcance.
-- **Pendiente:** no existe ejecución, fuente o aprobación suficiente.
+En Overleaf, subir la carpeta `avance_1/`, seleccionar `main.tex` como documento
+principal y compilar con pdfLaTeX. Localmente, con TeX Live y `latexmk` instalados:
 
-Los conteos y resultados históricos corresponden a enero de 2025 y al contrato `madrid-draft-v1`. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../CONTRATO_PROVISIONAL_DATASET.md). No actualizar silenciosamente puntuaciones o resultados históricos con pruebas posteriores. Madrid continúa recomendado, pendiente de decisiones técnicas, del equipo y docentes.
+```bash
+cd docs/avance_1
+make pdf
+```
 
-Volver al [README principal](../README.md). La evidencia detallada sigue en [research/datasets](../research/datasets/); no se movieron ni eliminaron sus archivos.
+Alternativa sin `latexmk`: ejecutar `pdflatex -halt-on-error main.tex` dos veces
+desde esa misma carpeta. El PDF es un artefacto local ignorado por Git.
+El diagrama incluido es un extracto del modelo, no el E-R completo aprobado.
+Antes de entregar, completar portada, revisar 3FN/modelos y adjuntar resultados
+de las veinte consultas con Daniel, Kembly y Fernanda.
+
+## Referencias técnicas, solo cuando hagan falta
+
+- [Contrato anual `smartcity`](equipo/CONTRATO_UNIFICADO.md) y
+  [diccionario de campos](equipo/unified_fields.csv).
+- [Código y modelo del núcleo local `sprint1`](../sprint1/README.md).
+- [Resultados de carga anual](equipo/CIERRE_VALIDACION_SPRINT1.md).
+- [Autorización de datos administrativos sintéticos](equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md).
+- [Propuesta de tráfico v2, todavía pendiente](decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
+- [Preguntas que siguen abiertas](../PREGUNTAS_PROFESOR.md).
+
+## Archivo de consulta, no instrucciones vigentes de entrega
+
+Los demás documentos conservan investigación, decisiones y checkpoints anteriores.
+Se mantienen en sus rutas porque las pruebas y los manifiestos los referencian.
+No hace falta leerlos todos para trabajar ni copiar sus estados al informe actual.
+
+En particular, `academico/texto_para_informe.md`, las síntesis de `datasets/`,
+los modelos y el pipeline de `arquitectura/`, y los planes/checklists anteriores
+de `equipo/` contienen secciones superadas. Consultarlos por contexto, no como
+lista actual de tareas o comandos de entrega. Los diagramas también requieren
+revisión para la implementación elegida.
+
+Las fases `00_*`–`05_*` de [research/datasets](../research/datasets/README.md)
+y el [contrato provisional](../CONTRATO_PROVISIONAL_DATASET.md) son antecedentes.
+No mezclar sus cifras o contratos con la carga anual ni con los tres ejemplos locales.

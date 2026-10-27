@@ -1,88 +1,66 @@
-# Entrega Sprint 1 — PostgreSQL y MongoDB
+# Sprint 1 — PostgreSQL y MongoDB
 
-**Alcance de la asignación:** «Sección de PostgreSQL y Mongo». Esta entrega es
-individual y no depende de Spark, Hadoop, una segunda fuente, alertas, sensores
-físicos, ni infraestructura compartida.
+## Alcance
 
-## Qué se entrega
+Primer avance del 28/10/2026: modelos, datos, índices, **10 consultas SQL y
+10 MongoDB**, CRUD Mongo, vistas/funciones SQL, resultados y documentación.
+El plan del equipo incluye dos fuentes y mínimos de 100.000 registros PostgreSQL
+y 500.000 documentos MongoDB. Spark, Hadoop e interfaz quedan para noviembre.
 
-| Motor | Implementación demostrable | Archivos principales |
-|---|---|---|
-| PostgreSQL 16.6 | Esquema relacional, restricciones, índices, consultas, vista, función, replay, cuarentena y respaldo/restauración. | `sprint1/postgres/` |
-| MongoDB 7.0.16 | Validador BSON, índices, consultas/agregaciones, replay, cuarentena, CRUD aislado y respaldo/restauración. | `sprint1/mongodb/`, `sprint1/basico/` |
+La demostración que sigue es **parcial**: funciona con tres ejemplos, pero no
+sustituye esos requisitos. El [estado](docs/equipo/ESTADO_SPRINT1.md) y la
+[matriz de consultas](docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md) indican lo pendiente.
 
-La demostración usa tres ejemplos publicados, uno de aire, uno meteorológico y
-uno de tráfico, en copias de prueba. Los datos de prueba no afirman representar
-un inventario de sensores físicos.
+## Ejecutar la demostración local
 
-## Ejecución para revisión
-
-### Requisito
-
-- Python 3.10+, Node.js 18+ y Docker.
-- Imágenes locales `postgres:16.6-alpine` y `mongo:7.0.16`.
-
-### Validación rápida
-
-Desde la raíz del repositorio:
+Desde la raíz, con Python 3.10+ y Node.js 18+:
 
 ```bash
 bash scripts/validate_sprint1.sh
 ```
 
-Resultado esperado: **32 pruebas Python y 8 pruebas Node, sin fallos**. Esta
-prueba no inicia servicios ni modifica datos.
-
-### Demostración integrada de ambos motores
+Para probar ambos motores se necesita Docker local y las imágenes
+`postgres:16.6-alpine` y `mongo:7.0.16` ya descargadas:
 
 ```bash
 PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_engines.py
 ```
 
-Resultado esperado:
+Resultado esperado: `Sprint 1 disposable engines: PASS`. Crea y elimina solo
+contenedores de prueba propios, sin puertos publicados ni bases persistentes.
+El informe queda en `/tmp/opencode/smartcity-s1-integration-*.json`.
 
-```text
-Sprint 1 disposable engines: PASS
+**Verificado el 27/10/2026:** 32 pruebas Python, 8 Node e integración PASS.
+Se comprobaron consultas, índices, replay, cuarentena, CRUD, respaldo/restauración
+y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticación real.
+
+## Archivos para explicar en clase
+
+- PostgreSQL: `sprint1/postgres/schema_proposal.sql`, `queries.sql` y `staging.sql`.
+- MongoDB: `sprint1/mongodb/validator.js`, `indexes.js`, `queries.js` y `staging.js`.
+- Ejemplos comentados y CRUD: [sprint1/basico](sprint1/basico/README.md).
+
+Estos archivos usan el núcleo `sprint1`, no el esquema anual `smartcity`.
+Detalles de pruebas y respaldos: [integración](sprint1/INTEGRACION.md) y
+[restauración](sprint1/RESPALDOS.md).
+
+## Validación documental
+
+Para la suite pública del repositorio, crear el entorno **en la raíz**:
+
+```bash
+python3 -m venv .venv
+.venv/bin/python -m pip install -r research/datasets/scripts/requirements.lock
+./scripts/validate_repo.sh
 ```
 
-El comando crea contenedores efímeros, sin puertos publicados ni conexión de red
-entre ellos; al finalizar los elimina. Genera un informe verificable en
-`/tmp/opencode/smartcity-s1-integration-*.json`.
+La instalación requiere acceso al repositorio de paquetes. Esta suite no reproduce
+las cargas anuales ni recupera snapshots privados. Para usar otro intérprete,
+definir `PYTHON=/ruta/al/python` al ejecutar el validador.
 
-La última ejecución local registrada el **26/10/2026** terminó en `PASS`:
+## Evidencia anual, separada de la demostración
 
-- PostgreSQL: DDL, 3 lecturas, consultas, vista, función, replay, cuarentena,
-  respaldo/restauración y una prueba de concurrencia de 8 conexiones.
-- MongoDB: validador, 6 índices, 3 lecturas, búsquedas, agregaciones, CRUD en
-  colección separada, replay, cuarentena y respaldo/restauración.
-
-## Demostración corta en clase
-
-1. Ejecutar la validación rápida.
-2. Ejecutar la demostración integrada y mostrar la línea `PASS`.
-3. Mostrar en PostgreSQL `sprint1/postgres/schema_proposal.sql`,
-   `queries.sql` y `staging.sql`: tablas relacionadas, FK, índices, vista
-   `quality_summary` y función `air_statistics`.
-4. Mostrar en MongoDB `sprint1/mongodb/validator.js`, `indexes.js` y
-   `queries.js`: validación de documentos, índices y agregaciones.
-5. Abrir las consultas sencillas y comentadas:
-   - `sprint1/basico/consultas_postgres.sql`
-   - `sprint1/basico/consultas_mongodb.js`
-
-## Límites declarados
-
-- La prueba integrada valida funcionalidad con una muestra pequeña; no es un
-  benchmark de volumen ni una carga en servidores compartidos.
-- Canal y estación se tratan como entidades lógicas. No se presentan como
-  sensores físicos acreditados.
-- Las consultas no inventan datos de alertas, geografía, organizaciones o
-  usuarios.
-- Los componentes posteriores (Spark/Hadoop, interfaz y una segunda fuente
-  aceptada) quedan fuera del alcance indicado para esta asignación.
-
-## Evidencia adicional disponible
-
-El repositorio también conserva evidencia de validaciones locales de volumen con
-1.076.813 observaciones reales de aire en ambos motores en
-`docs/equipo/CIERRE_VALIDACION_SPRINT1.md`. Es evidencia complementaria, no se
-requiere para reproducir la demostración rápida anterior.
+El [cierre anual](docs/equipo/CIERRE_VALIDACION_SPRINT1.md) registra 1.076.813
+lecturas reales de aire por motor en contenedores locales desechables.
+Su contrato es [madrid-draft-v1](docs/equipo/CONTRATO_UNIFICADO.md).
+No acredita una segunda fuente aceptada, 20 consultas completas ni carga compartida.

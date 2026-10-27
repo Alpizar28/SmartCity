@@ -1,0 +1,84 @@
+\section{Limitaciones y tareas de cierre}
+No se declara el avance completo. La demostración local valida funcionalidad
+de ambos motores; la carga anual aporta volumen y trazabilidad de aire. Ninguna
+de las dos, por separado o sumando sus resultados, resuelve automáticamente
+todas las preguntas del enunciado.
+
+\begin{enumerate}
+\item Unificar la ruta de entrega y separar consultas anuales y de staging.
+\item Completar PG07 y MG04/MG05/MG08 con datos, reglas y autorizaciones aplicables.
+\item Confirmar la aceptación académica de alternativas por canal lógico y datos demo.
+\item Resolver la segunda fuente aceptada y el alcance geográfico de las consultas.
+\item Incorporar la suite nueva al CI y repetir las pruebas sobre la versión candidata.
+\item Revisar modelos, evidencias, referencias y redacción entre todos los integrantes.
+\end{enumerate}
+
+La recuperación histórica conserva un checkpoint de 83/85 pruebas con dos
+SQLite no idénticos y trece respuestas históricas faltantes. Ese pendiente se
+mantiene separado de las pruebas nuevas y no se transforma en PASS al aprobarlas.
+No impide escribir y probar código independiente.
+
+\section{Organización y revisión del informe}
+\begin{description}
+\item[José:] fuentes, preparación, población de datos, acceso y respaldos.
+\item[Daniel:] modelo relacional, justificación de normalización y consultas SQL.
+\item[Kembly:] modelo documental, CRUD, pipelines y consultas MongoDB.
+\item[Fernanda:] edición del informe, diagramas, referencias y matriz de evidencia.
+\end{description}
+La asignación procede del plan del equipo; no demuestra que cada integrante
+haya revisado o aprobado todavía su sección. Los nombres completos y datos de
+portada deben ser confirmados, no inferidos.
+
+\section{Conclusiones parciales}
+PostgreSQL permite representar relaciones y validar coherencia mediante claves,
+restricciones y consultas SQL. MongoDB permite conservar lecturas con metadatos
+variables y procesarlas mediante filtros y pipelines. La integración depende
+de un contrato compartido y validaciones de aplicación, no de una FK entre motores.
+
+El principal trabajo pendiente es consolidar las implementaciones y acreditar
+las consultas faltantes. La evidencia de volumen y las pruebas locales son
+avances verificables, pero no deben presentarse como cierre de todos los requisitos.
+El procesamiento distribuido y la interfaz se abordarán en la entrega final.
+
+\section*{Declaración de asistencia automatizada}
+\addcontentsline{toc}{section}{Declaración de asistencia automatizada}
+Este borrador se preparó con asistencia de IA para revisar el repositorio,
+resumir documentación y redactar la estructura LaTeX. No se atribuyen firmas,
+validaciones humanas ni aprobaciones docentes no registradas. El equipo debe
+revisar y adaptar la declaración a la normativa del curso antes de entregar.
+
+\begin{thebibliography}{99}
+\bibitem{enunciado} Instituto Tecnológico de Costa Rica.
+\emph{Enunciado Proyecto SmartCity Analytics, II Semestre 2026}.
+PDF facilitado al equipo; entrega general del 25/11/2026.
+\bibitem{plan} Equipo SmartCity.
+\emph{Plan de trabajo y distribución de responsabilidades: primer avance}.
+Archivo local \archivo{Plan_de_trabajo.pdf}; planificación de avance del 28/10/2026.
+\bibitem{aire} Ayuntamiento de Madrid.
+\emph{Calidad del aire: datos horarios}.
+\url{https://datos.madrid.es/dataset/201200-0-calidad-aire-horario}.
+\bibitem{meteo} Ayuntamiento de Madrid.
+\emph{Datos meteorológicos horarios}.
+\url{https://datos.madrid.es/dataset/300352-0-meteorologicos-horarios}.
+\bibitem{trafico} Ayuntamiento de Madrid.
+\emph{Histórico de datos del tráfico}.
+\url{https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico}.
+\bibitem{contrato} Repositorio SmartCity.
+\emph{Contrato común madrid-draft-v1}.
+\archivo{docs/equipo/CONTRATO_UNIFICADO.md}.
+\bibitem{permiso} Repositorio SmartCity.
+\emph{Evidencia de autorización para datos sintéticos administrativos}.
+\archivo{docs/equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md}.
+\bibitem{v2} Repositorio SmartCity.
+\emph{Propuesta Madrid draft v2, pendiente de aprobación}.
+\archivo{docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md}.
+\bibitem{cierre} Repositorio SmartCity.
+\emph{Cierre de validación local del contrato madrid-draft-v1}.
+\archivo{docs/equipo/CIERRE_VALIDACION_SPRINT1.md}.
+\bibitem{integracion} Repositorio SmartCity.
+\emph{Integración local nueva: alcance y evidencia}.
+\archivo{sprint1/INTEGRACION.md}.
+\bibitem{respaldos} Repositorio SmartCity.
+\emph{Respaldos y restauración del núcleo local}.
+\archivo{sprint1/RESPALDOS.md}.
+\end{thebibliography}

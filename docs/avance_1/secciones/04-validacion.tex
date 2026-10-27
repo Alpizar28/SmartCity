@@ -1,0 +1,71 @@
+\section{Validación y resultados disponibles}
+\subsection{Demostración local del 27 de octubre}
+Se ejecutaron 32 pruebas Python y 8 Node, todas aprobadas. La integración
+PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,
+uno de aire, uno meteorológico y uno de tráfico, adaptados en copias de prueba.
+Los ejemplos de meteo/tráfico en staging no son registros aceptados de la carga anual.
+
+La integración comprobó restricciones SQL/BSON, índices, consultas, replay,
+conflictos en cuarentena, CRUD aislado y respaldo/restauración lógico de ambos
+motores. También probó ocho conexiones PostgreSQL sobre una clave y dos payloads:
+una aceptación, tres duplicados y cuatro cuarentenas. No es estrés sostenido ni
+prueba de concurrencia MongoDB entre procesos \cite{integracion,respaldos}.
+
+Los contenedores fueron locales, sin puertos publicados y con red deshabilitada.
+Se eliminaron al finalizar. El informe generado fue
+\archivo{/tmp/opencode/smartcity-s1-integration-t7d2ibo2.json}; es un artefacto
+local, no un archivo disponible en cualquier clon.
+
+\subsection{Carga anual: evidencia previa, no reejecución de hoy}
+El mínimo es de 100.000 registros PostgreSQL y 500.000 documentos MongoDB
+según el enunciado y el plan del equipo \cite{enunciado,plan}.
+\begin{longtable}{p{0.48\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
+\toprule Control registrado & PostgreSQL & MongoDB \\
+\midrule\endhead
+Lecturas/documentos aceptados & 1.076.813 & 1.076.813 \\
+Metadatos y valores comparados & 1.076.813 & 1.076.813 \\
+Replay del lote completo & Sin aumento & Sin aumento \\
+Mediciones sintéticas & 0 & 0 \\
+Mínimo de volumen del motor & Superado localmente & Superado localmente \\
+Segunda fuente de mediciones aceptada & No & No \\
+\bottomrule
+\end{longtable}
+
+Estos resultados proceden de los manifiestos
+\archivo{research/datasets/results/expanded-2025/postgresql_full.json} y
+\archivo{mongodb_full.json}, y del cierre documentado \cite{cierre}.
+La revisión actual contrastó los hashes de sus cuatro scripts registrados con
+el código disponible; no repitió la carga masiva ni verificó todos los insumos privados.
+
+Los mínimos locales no prueban que el servidor compartido tenga esos datos.
+Tampoco constituyen una comparación de rendimiento entre motores: almacenamiento,
+configuración y operaciones deben ser equivalentes antes de comparar tiempos.
+
+\subsection{Reproducción del núcleo}
+Desde la raíz del repositorio, con Python 3.10+ y Node.js 18+:
+\begin{lstlisting}
+bash scripts/validate_sprint1.sh
+\end{lstlisting}
+Para integrar motores se requiere Docker local y las imágenes ya descargadas
+\archivo{postgres:16.6-alpine} y \archivo{mongo:7.0.16}:
+\begin{lstlisting}
+PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_engines.py
+\end{lstlisting}
+El harness no descarga imágenes. Las instrucciones completas y su alcance están
+en \archivo{ENTREGA_SPRINT1.md}. Los clientes básicos psycopg/PyMongo aún
+necesitan prueba de extremo a extremo con autenticación real.
+
+\subsection{Respaldo y restauración}
+La prueba usa pg\_dump/pg\_restore y mongodump/mongorestore, restaura en otra
+base desechable y compara contenido y estructura. Esto acredita el caso
+controlado, no una política de respaldo productiva, recuperación tras caída,
+retención externa o restauración del servidor compartido.
+
+\subsection{Qué evidencia falta adjuntar}
+\begin{itemize}
+\item Salidas verificables de cada una de las veinte consultas en la ruta elegida.
+\item Diagrama E--R completo y dependencias funcionales revisados por Daniel.
+\item Modelo documental final, ejemplos BSON y revisión de Kembly.
+\item Capturas legibles y registro de revisión cruzada, sin credenciales ni hosts privados.
+\item Comprobación de acceso, conteos y respaldo compartidos si se usan en la entrega.
+\end{itemize}

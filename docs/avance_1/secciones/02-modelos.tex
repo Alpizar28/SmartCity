@@ -1,0 +1,88 @@
+\section{Arquitectura y modelos implementados}
+\subsection{Dos rutas que no deben confundirse}
+\begin{description}
+\item[Carga anual:] esquema PostgreSQL \archivo{smartcity}, contrato
+\archivo{madrid-draft-v1} y generación \archivo{expanded-2025}.
+Su evidencia previa comprende 1.076.813 lecturas de aire por motor.
+\item[Núcleo local:] esquema PostgreSQL \archivo{sprint1}, contrato
+\archivo{madrid-draft-v1-frozen} y una demostración con tres ejemplos publicados
+adaptados en copias de prueba. No es una migración de la carga anual.
+\end{description}
+
+El informe describe ambas rutas porque existen en la rama revisada. No suma
+sus coberturas ni presenta la demostración pequeña como carga anual. Antes de
+la entrega se debe acordar una sola interfaz de ejecución para el equipo.
+
+\subsection{Modelo relacional anual}
+El DDL está en \archivo{research/datasets/scripts/phase5_postgresql.sql}.
+Contiene doce tablas centrales: fuentes, versiones, zonas, ubicaciones,
+estaciones, categorías, tipos de medición, organismos, usuarios, sensores,
+canales y observaciones. Las entidades demo se identifican por origen;
+también existe el espacio separado \archivo{smartcity_demo}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+  entidad/.style={draw,rounded corners,align=center,font=\small,
+    minimum width=2.5cm,minimum height=0.8cm},
+  relacion/.style={-{Latex}},node distance=1cm and 0.6cm]
+\node[entidad] (fuente) {Fuentes};
+\node[entidad,right=of fuente] (version) {Versiones};
+\node[entidad,below=of fuente] (estacion) {Estaciones};
+\node[entidad,right=of estacion] (canal) {Canales};
+\node[entidad,right=of canal] (observacion) {Observaciones};
+\node[entidad,below=of estacion] (ubicacion) {Ubicaciones};
+\node[entidad,below=of canal] (tipo) {Tipos de medición};
+\draw[relacion] (version) -- (fuente);
+\draw[relacion] (estacion) -- (fuente);
+\draw[relacion] (estacion) -- (ubicacion);
+\draw[relacion] (canal) -- (estacion);
+\draw[relacion] (canal) -- (tipo);
+\draw[relacion] (observacion) -- (canal);
+\draw[relacion] (observacion) -- (version);
+\end{tikzpicture}
+\caption{Extracto del modelo anual. Las flechas indican referencias hacia
+catálogos; no es el diagrama E--R completo ni representa cardinalidades.}
+\end{figure}
+
+Las PK identifican entidades; las FK compuestas comprueban que canal, estación,
+tipo y versión pertenezcan a la fuente correspondiente. La unicidad de
+\archivo{(channel_id, observed_at, timestamp_role)} evita repetir una observación.
+Un trigger rechaza modificaciones de observaciones y comprueba coherencia temporal.
+La vista \archivo{channel_activity} resume actividad por canal y la función
+\archivo{channels_at_station} cuenta canales, no sensores físicos.
+
+La separación de catálogos evita repetir nombres y propiedades de entidades en
+cada hecho. No obstante, esta motivación no sustituye una demostración formal
+de tercera forma normal. \pendiente{Daniel debe documentar claves candidatas,
+dependencias funcionales y justificación de 3FN para todas las relaciones,
+incluyendo redundancias mantenidas para integridad y trazabilidad.}
+
+\subsection{Núcleo relacional de demostración}
+\archivo{sprint1/postgres/schema_proposal.sql} define fuentes, versiones,
+estaciones, canales, lecturas y cuarentena. Usa un identificador interno
+\archivo{storage_id}, no una identidad científica definitiva.
+La clave única de staging combina snapshot, canal y clave original.
+La vista \archivo{quality_summary} y la función \archivo{air_statistics}
+pertenecen a este núcleo y no son las vistas/funciones de la carga anual.
+
+\subsection{Modelo documental e integración}
+MongoDB mantiene una colección estándar \archivo{readings}, validación BSON e
+índices. Los documentos reúnen valor, calidad, referencia al original y metadatos
+variables; esto facilita conservar estructuras semiestructuradas sin convertir
+cada atributo opcional en una entidad relacional.
+
+En la carga anual, \archivo{_id = measurement_id}; el tiempo aceptado es BSON
+Date. Los índices incluyen la clave natural canal/fecha/rol y filtros por fuente,
+tipo y zona. Las comprobaciones de catálogos se realizan antes de importar:
+MongoDB no ofrece FK automáticas hacia PostgreSQL.
+
+En el núcleo local, \archivo{sprint1/mongodb/validator.js} usa un ObjectId
+interno y \archivo{staging_key}; no permite asignar identidades físicas o una
+identidad científica final a los ejemplos. Su política no debe mezclarse con
+la importación anual.
+
+La justificación de MongoDB se apoya en la estructura documental y Aggregation
+Framework, no en que cualquier JSON necesite NoSQL. PostgreSQL conserva ventajas
+para relaciones, restricciones y consultas entre catálogos. Las pruebas pequeñas
+no demuestran superioridad de rendimiento de un motor sobre el otro.

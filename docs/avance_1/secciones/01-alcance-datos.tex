@@ -1,0 +1,82 @@
+\section{Problema y alcance del avance}
+Las fuentes urbanas publican datos con diferentes estructuras, frecuencias,
+reglas de calidad e identificadores. SmartCity Analytics estudia cómo almacenar
+estos datos y consultarlos sin perder su procedencia ni atribuirles información
+que no existe en los originales.
+
+El primer avance se concentra en PostgreSQL y MongoDB: modelos, restricciones,
+índices, población de datos, diez consultas por motor y evidencia de ejecución.
+El plan del equipo sitúa este avance el 28 de octubre y la entrega final el
+25 de noviembre de 2026. Hadoop, Spark y la interfaz corresponden al hito final.
+La división procede del plan de trabajo; el enunciado general no incluye una
+rúbrica independiente del primer avance \cite{plan,enunciado}.
+
+\subsection{Objetivos del avance}
+\begin{itemize}
+\item Representar catálogos y observaciones con integridad relacional.
+\item Representar lecturas y sus metadatos como documentos BSON validados.
+\item Demostrar consultas, agregaciones, índices y operaciones CRUD solicitadas.
+\item Comprobar replay, conflictos y respaldo/restauración en entornos locales.
+\item Documentar qué resultados están acreditados y qué requisitos faltan.
+\end{itemize}
+
+\section{Fuentes, preparación y procedencia}
+Las fuentes consideradas son calidad del aire, meteorología y tráfico del
+Ayuntamiento de Madrid. Sus catálogos oficiales y la investigación del repositorio
+documentan licencia CC BY 4.0; deben conservarse atribución, snapshot y cambios
+realizados \cite{aire,meteo,trafico,contrato}.
+
+\begin{longtable}{p{0.18\textwidth}p{0.34\textwidth}p{0.38\textwidth}}
+\toprule
+Fuente & Información & Estado en la generación anual \\
+\midrule\endhead
+Aire & Observaciones horarias y flags de calidad. &
+1.076.813 observaciones aceptadas de 2025. \\
+Meteorología & Variables y estaciones meteorológicas. &
+Los 69.408 slots auditados de enero permanecen en cuarentena;
+el reloj no está acreditado para habilitar su aceptación. \\
+Tráfico & Intervalos y variables publicadas por punto de medida. &
+677.724 filas seleccionadas de enero permanecen en cuarentena;
+la revisión incompatible del contrato sigue pendiente. \\
+\bottomrule
+\end{longtable}
+
+Solo aire constituye una fuente de mediciones aceptada en la carga anual.
+Investigar tres fuentes o disponer de inventarios auxiliares no demuestra por sí
+solo el requisito de dos fuentes integradas.
+
+\subsection{Calidad y conteos}
+El snapshot de aire produjo 1.103.232 slots de 2025: 1.076.813 aceptados y
+26.419 rechazados. Los rechazos corresponden a 26.167 flags del publicador,
+126 horas locales inexistentes y 126 ambiguas sin evidencia para resolverlas.
+La ampliación anual contiene enero; no se le suman de nuevo sus 91.959 aceptadas
+ni las muestras de prueba \cite{cierre}.
+
+El campo de tráfico \archivo{periodo_integracion} cuenta muestras, no minutos.
+La duración documentada es de 15 minutos. Esta corrección está en la propuesta
+v2 y no habilita automáticamente la carga de tráfico bajo v1 \cite{v2}.
+
+\subsection{Identidad y trazabilidad}
+Se distinguen estación, canal lógico y sensor físico. Un canal no acredita la
+identidad de un dispositivo individual. El contrato anual deriva identificadores
+mediante SHA-256 de contenido canónico y conserva fuente, versión del archivo,
+referencia de fila/columna, calidad, tiempo original y transformación.
+
+\archivo{source_version} identifica el snapshot y debe coincidir con
+\archivo{raw_reference.sha256}. Las horas de aire se interpretan en
+\archivo{Europe/Madrid}; las ambigüedades no se resuelven inventando un fold.
+Los conflictos de contenido no deben sobrescribir observaciones aceptadas.
+
+\subsection{Datos administrativos sintéticos}
+La evidencia documental de la respuesta docente del 10/10 permite atributos
+administrativos aleatorios. El paquete anual registra una organización,
+5.133 usuarios y 5.133 sensores sintéticos deterministas, con semilla
+\archivo{20261010}, versión \archivo{admin-demo-v2} y procedencia explícita.
+Los correos usan \archivo{example.invalid}. Esto no acredita inventario físico
+ni autoriza mediciones inventadas \cite{permiso,contrato}.
+
+Los sensores demo tienen identificadores propios, pero no se enlazan a canales
+o lecturas observadas: la referencia \archivo{sensor_id} en los canales y en
+la proyección documental de las lecturas reales permanece nula.
+La autorización se conoce por el registro
+aportado al repositorio, no por una captura original adjunta a este informe.
