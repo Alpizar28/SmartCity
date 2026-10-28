@@ -1,0 +1,301 @@
+{
+  "generation": "expanded-v2-2025-01",
+  "contract": "madrid-draft-v2",
+  "status": "PASS",
+  "shared_server_modified": false,
+  "started_at": "2026-10-28T00:31:02.168705+00:00",
+  "accepted": 748889,
+  "by_source": {
+    "MAD-AIR": {
+      "selected": 93720,
+      "accepted": 91959,
+      "quarantined": 1761
+    },
+    "MAD-TRAFFIC": {
+      "selected": 677724,
+      "quarantined": 20794,
+      "accepted": 656930
+    }
+  },
+  "pg07_notice": "No observed sensor-channel links: technically executed, physical activity not evaluable.",
+  "derived_notice": "Classroom traffic threshold, local alert replay now; no official historical warnings.",
+  "incident_year": 2026,
+  "zone_scope": "current_inventory_not_historically_verified",
+  "source_hashes": {
+    "scripts/validar_v2.py": "78315a246f9301f46ba0c35f75f362e3a1beb8c90504e077cb60141ec35de9c4",
+    "sprint1/postgres/contract_v2.sql": "4caa9bf9cdb225f502770322960da02420039ffccead465f15f332229900d10a",
+    "sprint1/postgres/queries.sql": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9",
+    "sprint1/basico/consultas_mongodb_v2.js": "56c1f931853f296bc2280b4c944f2961f567e52286056697fa5b9d7af80d60fa",
+    "sprint1/basico/cargar_mongodb_v2.js": "ce12006e003fadea712424cec4b422605cfbc12cc59020b7b83e4503f77a0bd2"
+  },
+  "postgresql": {
+    "engine": "postgresql",
+    "image": "postgres:16.6-alpine",
+    "image_id": "sha256:5c773214aed7adab0900cd0a05dbc468348f76fe1e4c2ca5b0e222e9531f7811",
+    "network": "none",
+    "published_ports": [],
+    "local_socket": "unix:///var/run/docker.sock",
+    "memory_limit_bytes": 2147483648,
+    "cpus": 2,
+    "container": "smartcity-full-postgresql-b3b9902f7a55",
+    "container_removed": true,
+    "anonymous_volumes_removed": true,
+    "load_seconds": 335.3020373590007,
+    "replay_seconds": 475.21910185199886,
+    "count": 748889,
+    "metadata_verified": 748889,
+    "count_by_source": {
+      "MAD-AIR": 91959,
+      "MAD-TRAFFIC": 656930
+    },
+    "sensor_links": 0,
+    "results": {
+      "PG01": {
+        "total": 12,
+        "sample": [
+          {
+            "category_id": "MAD-AIR:1",
+            "category_name": "MAD-AIR:1",
+            "sensor_count": 428
+          },
+          {
+            "category_id": "MAD-AIR:10",
+            "category_name": "MAD-AIR:10",
+            "sensor_count": 428
+          },
+          {
+            "category_id": "MAD-AIR:12",
+            "category_name": "MAD-AIR:12",
+            "sensor_count": 428
+          },
+          {
+            "category_id": "MAD-AIR:14",
+            "category_name": "MAD-AIR:14",
+            "sensor_count": 428
+          },
+          {
+            "category_id": "MAD-AIR:20",
+            "category_name": "MAD-AIR:20",
+            "sensor_count": 428
+          }
+        ]
+      },
+      "PG02": {
+        "total": 5133,
+        "sample": [
+          {
+            "station_id": "station:00152fe25d8dd8d8018ca667ea5e69a324db25b385f5e9ea66ff56cc5e00142a",
+            "location_id": "location:473beb3a7fb8a996b0419f8f43c454fbe638bbb87bf85a88c41f5bbd2a0adca3",
+            "location_name": "TÁCTICO - PICO BALAITUS, 1 N-S",
+            "sensor_count": 1
+          },
+          {
+            "station_id": "station:002a60b582f2254cd0fa10583e020a31714b6491fc7aaab3a09ef570d9f8f6e9",
+            "location_id": "location:df55528eaadf7c9b301e41cf85045557f5afb31004befada4f5346b85ed82009",
+            "location_name": "Camino Vinateros  - Cañada-Av. Moratalaz",
+            "sensor_count": 1
+          },
+          {
+            "station_id": "station:002f3d1f3a9d8c644de3dfacf69c1a211c447ae25b4f78ebc90ac566895b37c3",
+            "location_id": "location:315f9eb74274d53a2238d3bf45bdc95425408bd50f376adc7897fdeda165ff99",
+            "location_name": "CJAL. FCO. J. JIMENEZ nº 126 E-O (BERLANAS-SEPULVEDA)",
+            "sensor_count": 1
+          },
+          {
+            "station_id": "station:00344b808bde7e8c1ee9203c6d92a202e37b5ae58df558dffd505a4f58cd54eb",
+            "location_id": "location:c43b037b3ef215ac17948e79eec46237509c743d1adf4c3ba6627289c126cf22",
+            "location_name": "Orense N-S - Fortunata y Jacinta -General Perón",
+            "sensor_count": 1
+          },
+          {
+            "station_id": "station:00351643b2bcea4a9999a3da3e1cc576dcb694875f8fdbe3d73ff8b6ae51c8cd",
+            "location_id": "location:83ff9c362a4ead4ea1eb43f3010c2d9fa3c0c5d40cb22d21d6472ed6657c5b5f",
+            "location_name": "Julian Hernandez O-E - Arturo Soria-Asura",
+            "sensor_count": 1
+          }
+        ]
+      },
+      "PG03": {
+        "total": 2,
+        "sample": [
+          {
+            "administrative_status": "active",
+            "sensor_count": 2567
+          },
+          {
+            "administrative_status": "inactive",
+            "sensor_count": 2566
+          }
+        ]
+      },
+      "PG04": {
+        "total": 1,
+        "sample": [
+          {
+            "organization_id": "organization:8bb9df063a59f22401c72aff29fa5fc0f01c8c5633e5c5d4217651eafa50bba1",
+            "name": "Organización demo 01",
+            "sensor_count": 5133
+          }
+        ]
+      },
+      "PG05": {
+        "total": 5133,
+        "sample": [
+          {
+            "location_id": "location:0051484b70994d9f1b689a2a363440d3dd9f7df6d5916618289e304beb0cfb2a",
+            "name": "Ctra. Acceso Estación de Hortaleza - Virgen del Carmen-Av. San Luis",
+            "sensor_count": 1
+          },
+          {
+            "location_id": "location:007c153cc02e2e2e636f9587a15021888a9195b47545f7e67263f52cb9123d94",
+            "name": "DR. MARTIN AREVALO ENTRE Ø34 Y P.P. O-E(ALBINO HDEZ. LAZARO-REAL PINTO)",
+            "sensor_count": 1
+          },
+          {
+            "location_id": "location:0092abd4da506b75e67a6583b83063f2ff7f5c265559e5b0c764ec3e1c4952f6",
+            "name": "CTRA AL Bº FORTUNA O-E (SENTIDO AV. PESETA)",
+            "sensor_count": 1
+          },
+          {
+            "location_id": "location:0097291fc206c7cbc89ab9256ca1cb9320bd35f2a0f64944ce5b88bcf27ee728",
+            "name": "Ingeniero Emilio Herrera - Ingeniero Emilio Herrera-Arturo Soria",
+            "sensor_count": 1
+          },
+          {
+            "location_id": "location:009c0514a202587e38eb1680b52f39845ce84e697b99c8b3dab885188857106f",
+            "name": "Giro Fuente Carrantona-Ciudad Encantada - Fuente Carrantona-José Bergamín",
+            "sensor_count": 1
+          }
+        ]
+      },
+      "PG06": {
+        "total": 5,
+        "sample": [
+          {
+            "installation_year": 2020,
+            "sensor_count": 887
+          },
+          {
+            "installation_year": 2021,
+            "sensor_count": 1095
+          },
+          {
+            "installation_year": 2022,
+            "sensor_count": 1095
+          },
+          {
+            "installation_year": 2023,
+            "sensor_count": 1095
+          },
+          {
+            "installation_year": 2024,
+            "sensor_count": 961
+          }
+        ]
+      },
+      "PG07": {
+        "total": 0,
+        "sample": []
+      },
+      "PG08": {
+        "total": 21,
+        "sample": [
+          {
+            "zone_id": "madrid:district:8",
+            "name": "madrid:district:8",
+            "sensor_count": 554,
+            "zone_rank": 1
+          },
+          {
+            "zone_id": "madrid:district:15",
+            "name": "madrid:district:15",
+            "sensor_count": 432,
+            "zone_rank": 2
+          },
+          {
+            "zone_id": "madrid:district:16",
+            "name": "madrid:district:16",
+            "sensor_count": 394,
+            "zone_rank": 3
+          },
+          {
+            "zone_id": "madrid:district:11",
+            "name": "madrid:district:11",
+            "sensor_count": 377,
+            "zone_rank": 4
+          },
+          {
+            "zone_id": "madrid:district:5",
+            "name": "madrid:district:5",
+            "sensor_count": 358,
+            "zone_rank": 5
+          }
+        ]
+      },
+      "PG09": {
+        "total": 360,
+        "sample": [
+          {
+            "channel_id": "channel:3aecc8a9ce867323afb156b320f8a1b944b8a8192e42e3d9b845a2d159675743",
+            "readings": 2964,
+            "first_observed_at": "2024-12-31T23:00:00+00:00",
+            "last_observed_at": "2025-01-31T22:45:00+00:00"
+          },
+          {
+            "channel_id": "channel:453ff7e685a5410e6da3ba157bee74e3c7d05763d0f6b573ff900ec816f1646c",
+            "readings": 2964,
+            "first_observed_at": "2024-12-31T23:00:00+00:00",
+            "last_observed_at": "2025-01-31T22:45:00+00:00"
+          },
+          {
+            "channel_id": "channel:50f272bbf486c721c8ff80724265ca9f45571bf01684dc1966905497fb489797",
+            "readings": 2964,
+            "first_observed_at": "2024-12-31T23:00:00+00:00",
+            "last_observed_at": "2025-01-31T22:45:00+00:00"
+          },
+          {
+            "channel_id": "channel:8c19b6ad286c4dc7a845a35ac31dd9f8c73d15a070b5def0d570760df3c41c63",
+            "readings": 2964,
+            "first_observed_at": "2024-12-31T23:00:00+00:00",
+            "last_observed_at": "2025-01-31T22:45:00+00:00"
+          },
+          {
+            "channel_id": "channel:f3284de7460fdf2051da2a4a68bab71d2aba5ff476419222afb2b1b762f5ad80",
+            "readings": 2964,
+            "first_observed_at": "2024-12-31T23:00:00+00:00",
+            "last_observed_at": "2025-01-31T22:45:00+00:00"
+          }
+        ]
+      },
+      "PG10": {
+        "total": 5133,
+        "sample": [
+          {
+            "station_id": "station:00152fe25d8dd8d8018ca667ea5e69a324db25b385f5e9ea66ff56cc5e00142a",
+            "channel_count": 0
+          },
+          {
+            "station_id": "station:002a60b582f2254cd0fa10583e020a31714b6491fc7aaab3a09ef570d9f8f6e9",
+            "channel_count": 0
+          },
+          {
+            "station_id": "station:002f3d1f3a9d8c644de3dfacf69c1a211c447ae25b4f78ebc90ac566895b37c3",
+            "channel_count": 0
+          },
+          {
+            "station_id": "station:00344b808bde7e8c1ee9203c6d92a202e37b5ae58df558dffd505a4f58cd54eb",
+            "channel_count": 0
+          },
+          {
+            "station_id": "station:00351643b2bcea4a9999a3da3e1cc576dcb694875f8fdbe3d73ff8b6ae51c8cd",
+            "channel_count": 0
+          }
+        ]
+      }
+    },
+    "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0",
+    "replay_verified": true,
+    "peak_cgroup_memory_bytes": 2147483648
+  },
+  "finished_at": "2026-10-28T00:46:58.408012+00:00"
+}

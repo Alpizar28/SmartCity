@@ -5,6 +5,14 @@ Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
 
 ## Comprobado
 
+- **PostgreSQL v2: PASS masivo.** 748.889 lecturas (91.959 aire + 656.930
+  tráfico), metadatos comparados, replay sin duplicados y diez consultas ejecutadas.
+  Contenedor y volúmenes eliminados. Evidencia:
+  `research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json`.
+  PG07 devuelve cero por ausencia de vínculos observados: no acredita actividad física.
+- **MongoDB v2 masivo: todavía sin PASS confirmado.** Se corrigió el problema
+  asíncrono y pasó la prueba nativa pequeña; no equivale a aprobar el lote completo.
+
 - Suite unificada: 51 pruebas Python y 13 Node aprobadas; diez consultas SQL
   `smartcity` ejecutadas con resultados comprobados y fixtures revertidas.
   El parser anual vuelve a reconocer PG01–PG10. SQL de práctica separado en

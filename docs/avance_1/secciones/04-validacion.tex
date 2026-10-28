@@ -1,4 +1,14 @@
 \section{Validación y resultados disponibles}
+\subsection{Resultado masivo confirmado de PostgreSQL v2}
+La ejecución \archivo{execution-0652c6cd8bbc.json}, conservada en
+\archivo{research/datasets/results/expanded-v2-2025-01/}, terminó en PASS:
+748.889 lecturas (91.959 aire y 656.930 tráfico), comparación de metadatos,
+reimportación sin duplicados y ejecución de PG01--PG10. El contenedor y sus
+volúmenes fueron eliminados. PG07 devolvió cero porque no existen enlaces
+observados sensor--canal: no acredita actividad de dispositivos físicos.
+La nueva carga masiva MongoDB todavía no tiene PASS confirmado; la prueba
+pequeña corregida no sustituye esa validación.
+
 \subsection{Demostración local del 27 de octubre}
 Se ejecutaron 51 pruebas Python y 13 Node, todas aprobadas. La integración
 PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,

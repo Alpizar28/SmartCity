@@ -1,5 +1,42 @@
 # Sprint 1 — PostgreSQL y MongoDB
 
+## Cómo empezar — compañeros
+
+1. Clonar `main` y descargar de Drive **el ZIP completo y su `.sha256`**.
+2. Verificar el checksum y extraer el ZIP **dentro de la raíz del repositorio**,
+   donde está este archivo. No extraer dentro de `research/datasets` ni sobrescribir
+   archivos propios. En Windows se puede usar «Extraer todo» eligiendo esa raíz;
+   en Linux: `unzip -n /ruta/SmartCity_DATASET_COMPLETO_PRIVADO.zip`.
+3. Si el ZIP trae documentación/código antiguo, conservar el código de `main`.
+   En Windows: copiar únicamente `research/datasets/raw/` y
+   `research/datasets/private_results/` desde la extracción a esas mismas rutas
+   del clon. Los resultados nuevos se consultan en GitHub, no en el respaldo antiguo.
+4. Con Python 3.10+ y Node.js 18+, desde la raíz:
+
+```bash
+git clone --branch main https://github.com/Alpizar28/SmartCity.git
+cd SmartCity
+bash scripts/validate_sprint1.sh
+```
+
+La prueba rápida no necesita Docker ni instalar paquetes Python. Para cargar el
+dataset en motores locales hacen falta Docker, las imágenes y las dependencias
+descritas abajo. En Windows, ejecutar los comandos Bash en WSL o Git Bash;
+las pruebas de motores requieren el socket Docker local indicado por el harness
+(preferir Linux/WSL con Docker configurado, no una conexión remota).
+
+- **Daniel:** `sprint1/postgres/queries.sql`, DDL común y `contract_v2.sql`.
+- **Kembly:** `sprint1/basico/consultas_mongodb_v2.js` y `cargar_mongodb_v2.js`.
+- **Fernanda:** `docs/avance_1/main.tex` en Overleaf y la matriz de consultas.
+- **Todos:** leer `docs/equipo/ESTADO_SPRINT1.md`; no subir ZIP, `raw/`,
+  `private_results/`, `.env` ni credenciales al repo. Drive restringido al equipo.
+
+**Último resultado masivo confirmado:** PostgreSQL v2 PASS con 748.889 lecturas,
+replay, metadatos y diez consultas. Informe
+`research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json`.
+MongoDB masivo aún no está confirmado como PASS. Las bases de prueba se eliminan:
+estos comandos no dejan un servidor persistente para presentar ni cargan el compartido.
+
 ## Alcance
 
 Primer avance del 28/10/2026: modelos, datos, índices, **10 consultas SQL y
