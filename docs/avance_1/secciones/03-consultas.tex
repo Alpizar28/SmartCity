@@ -1,6 +1,7 @@
 \section{Consultas obligatorias y cobertura}
-Las siguientes tablas resumen la evidencia anual y las pruebas del núcleo local,
-diferenciadas por fila; no son una nueva ejecución de las veinte consultas.
+Las siguientes tablas resumen la evidencia anual, las pruebas controladas y la
+ruta local v2, diferenciadas por fila. Una implementación nueva se acredita con
+su informe de ejecución, no solo con que el archivo exista.
 ``Demo'' significa entidades
 administrativas sintéticas autorizadas; no inventario físico observado.
 ``Registrada'' no equivale a aceptación académica ni reproducibilidad actual.
@@ -43,15 +44,15 @@ Esa variedad técnica no reemplaza las preguntas obligatorias sobre sensores.
 \toprule ID & Consulta exigida & Evidencia y límite \\
 \midrule\endhead
 MG01 & Lecturas de un sensor específico. & Búsqueda registrada por canal lógico, no dispositivo físico. \\
-MG02 & Lecturas en un rango de fechas. & Rango BSON probado en el núcleo; falta salida específica del rango anual. \\
-MG03 & Máximos y mínimos. & Agregación probada en el núcleo; la bandera anual no basta como resultado. \\
-MG04 & Eventos críticos detectados. & Bloqueada: regla, umbral y severidad sin aprobación registrada. \\
-MG05 & Alertas emitidas por zona. & Bloqueada: falta fuente o replay autorizado con emisión acreditada. \\
-MG06 & Promedio de mediciones por zona. & Declarada en evidencia anual; verificar pipeline y zonas conocidas. \\
-MG07 & Promedio por tipo de sensor. & Declarada por variable/unidad; no equivale automáticamente a tipo físico. \\
-MG08 & Incidentes por categoría. & Bloqueada: fuente de accidentes no cargada para esta consulta. \\
-MG09 & Consulta con agregaciones. & Pipelines probados en el núcleo; conservar salida anual específica. \\
-MG10 & Consulta con filtros múltiples. & Filtros probados en el núcleo; conservar parámetros y resultado anual. \\
+MG02 & Lecturas en un rango de fechas. & V2: rango BSON semiabierto, contrastado con conteo independiente del archivo. \\
+MG03 & Máximos y mínimos. & V2: extremos de aire por variable/unidad, comparados con Python. \\
+MG04 & Eventos críticos detectados. & V2: regla demo de intensidad superior a 2.000 veh/h; eventos derivados, no oficiales. \\
+MG05 & Alertas emitidas por zona. & V2: emisión actual de replay en colección local; zonas del inventario disponible. \\
+MG06 & Promedio de mediciones por zona. & V2: solo zonas conocidas; vigencia histórica no confirmada. \\
+MG07 & Promedio por tipo de sensor. & V2: por fuente/variable/unidad; alternativa por tipo lógico, no físico. \\
+MG08 & Incidentes por categoría. & V2: accidentes reales de 2026 deduplicados y anonimizados. \\
+MG09 & Consulta con agregaciones. & V2: conteos por fuente y flag de calidad. \\
+MG10 & Consulta con filtros múltiples. & V2: fecha, fuente, flag, valor y zona; resultado comparado con Python. \\
 \bottomrule
 \end{longtable}
 
@@ -60,6 +61,18 @@ El harness anual contiene algunas afirmaciones constantes en
 no ejecuta cada pipeline. Por ello, no se declaran siete consultas anuales
 completamente acreditadas solo por esas banderas. Agrupar una zona nula tampoco
 demuestra un análisis por zona geográfica.
+
+La ruta nueva no reutiliza esas banderas como prueba. El archivo
+\archivo{sprint1/basico/consultas_mongodb_v2.js} contiene los diez pipelines y
+filtros. \archivo{scripts/validar_v2.py} compara cantidades, extremos y promedios
+con cálculos independientes sobre el JSONL verificado. Los informes nuevos
+conservan parámetros, muestras y resultados agregados de cada consulta.
+
+MG04 usa una regla académica de demostración, no un límite legal. MG05 guarda
+\archivo{emitted_at} actual, \archivo{replay=true} y
+\archivo{delivery=local_collection_only}; no fabrica alertas oficiales pasadas
+ni envía notificaciones externas. El uso de distritos del inventario se declara
+como \archivo{current_inventory_not_historically_verified}.
 
 Las operaciones insertOne, insertMany, find, findOne, updateOne, updateMany y
 deleteOne se prueban en la integración con colecciones de demostración aisladas.

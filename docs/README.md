@@ -34,7 +34,7 @@ de las veinte consultas con Daniel, Kembly y Fernanda.
 - [Código y modelo del núcleo local `sprint1`](../sprint1/README.md).
 - [Resultados de carga anual](equipo/CIERRE_VALIDACION_SPRINT1.md).
 - [Autorización de datos administrativos sintéticos](equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md).
-- [Propuesta de tráfico v2, todavía pendiente](decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
+- [Contrato v2 y ruta local de dos fuentes](decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
 - [Preguntas que siguen abiertas](../PREGUNTAS_PROFESOR.md).
 
 ## Archivo de consulta, no instrucciones vigentes de entrega

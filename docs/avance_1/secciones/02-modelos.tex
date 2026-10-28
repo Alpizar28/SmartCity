@@ -1,6 +1,9 @@
 \section{Arquitectura y modelos implementados}
-\subsection{Dos rutas que no deben confundirse}
+\subsection{Contrato canónico y núcleo de práctica}
 \begin{description}
+\item[Entrega local v2:] esquema \archivo{smartcity}, contrato
+\archivo{madrid-draft-v2} y generación \archivo{expanded-v2-2025-01}.
+Añade tráfico en otra base local, sin migrar en sitio ni sobrescribir v1.
 \item[Carga anual:] esquema PostgreSQL \archivo{smartcity}, contrato
 \archivo{madrid-draft-v1} y generación \archivo{expanded-2025}.
 Su evidencia previa comprende 1.076.813 lecturas de aire por motor.
@@ -14,6 +17,12 @@ consultas de \archivo{sprint1/postgres/queries.sql}. El SQL de práctica se
 conserva en \archivo{sprint1/postgres/staging_queries.sql}. La entrada común es
 \archivo{bash scripts/validate_sprint1.sh --engines}: comprueba ambas rutas
 por separado, sin sumar coberturas ni presentar fixtures como carga anual.
+
+La opción \archivo{--datos} añade preparación y carga de las dos fuentes v2.
+\archivo{sprint1/postgres/contract_v2.sql} adapta el esquema recién creado:
+incorpora conteo de muestras y alcance de zona, y exige reglas de aceptación
+específicas para tráfico. Se niega a operar si ya hay fuentes u observaciones.
+No es una migración para bases compartidas o pobladas.
 
 \subsection{Modelo relacional anual}
 El DDL está en \archivo{research/datasets/scripts/phase5_postgresql.sql}.

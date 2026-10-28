@@ -1,0 +1,46 @@
+{
+  "generation": "expanded-v2-2025-01",
+  "contract": "madrid-draft-v2",
+  "status": "FAIL",
+  "shared_server_modified": false,
+  "started_at": "2026-10-27T22:20:33.688346+00:00",
+  "accepted": 748889,
+  "by_source": {
+    "MAD-AIR": {
+      "selected": 93720,
+      "accepted": 91959,
+      "quarantined": 1761
+    },
+    "MAD-TRAFFIC": {
+      "selected": 677724,
+      "quarantined": 20794,
+      "accepted": 656930
+    }
+  },
+  "pg07_notice": "No observed sensor-channel links: technically executed, physical activity not evaluable.",
+  "derived_notice": "Classroom traffic threshold, local alert replay now; no official historical warnings.",
+  "incident_year": 2026,
+  "zone_scope": "current_inventory_not_historically_verified",
+  "source_hashes": {
+    "scripts/validar_v2.py": "d9dd375a48761227173c79be736afb5986b1001748d8caed40b07174e407b0d6",
+    "sprint1/postgres/contract_v2.sql": "4caa9bf9cdb225f502770322960da02420039ffccead465f15f332229900d10a",
+    "sprint1/postgres/queries.sql": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9",
+    "sprint1/basico/consultas_mongodb_v2.js": "56c1f931853f296bc2280b4c944f2961f567e52286056697fa5b9d7af80d60fa",
+    "sprint1/basico/cargar_mongodb_v2.js": "ce12006e003fadea712424cec4b422605cfbc12cc59020b7b83e4503f77a0bd2"
+  },
+  "postgresql": {
+    "engine": "postgresql",
+    "image": "postgres:16.6-alpine",
+    "image_id": "sha256:5c773214aed7adab0900cd0a05dbc468348f76fe1e4c2ca5b0e222e9531f7811",
+    "network": "none",
+    "published_ports": [],
+    "local_socket": "unix:///var/run/docker.sock",
+    "memory_limit_bytes": 2147483648,
+    "cpus": 2,
+    "container": "smartcity-full-postgresql-240663314ce9",
+    "container_removed": true,
+    "anonymous_volumes_removed": true
+  },
+  "error": "Command '['docker', '--host', 'unix:///var/run/docker.sock', 'exec', '-i', 'smartcity-full-postgresql-240663314ce9', 'psql', '-X', '-Atq', '-U', 'postgres', '-v', 'ON_ERROR_STOP=1']' returned non-zero exit status 3.",
+  "finished_at": "2026-10-28T00:29:29.746585+00:00"
+}

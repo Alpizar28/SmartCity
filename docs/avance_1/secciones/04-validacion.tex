@@ -1,6 +1,6 @@
 \section{Validación y resultados disponibles}
 \subsection{Demostración local del 27 de octubre}
-Se ejecutaron 38 pruebas Python y 8 Node, todas aprobadas. La integración
+Se ejecutaron 51 pruebas Python y 12 Node, todas aprobadas. La integración
 PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,
 uno de aire, uno meteorológico y uno de tráfico, adaptados en copias de prueba.
 Los ejemplos de meteo/tráfico en staging no son registros aceptados de la carga anual.
@@ -62,6 +62,18 @@ La entrada unificada ejecuta unidades, consultas canónicas e integración compl
 Los harnesses no descargan imágenes. Las instrucciones completas y su alcance están
 en \archivo{ENTREGA_SPRINT1.md}. Los clientes básicos psycopg/PyMongo aún
 necesitan prueba de extremo a extremo con autenticación real.
+
+Para agregar preparación y carga de las dos fuentes v2 con los snapshots
+privados verificados y el entorno de investigación disponible:
+\begin{lstlisting}
+bash scripts/validate_sprint1.sh --datos
+\end{lstlisting}
+El paquete preparado contiene 748.889 observaciones, 10.841 candidatos de eventos
+de intensidad alta bajo la regla demo y 14.388 accidentes separados de 2026.
+La ejecución nativa debe confirmar esos conteos, metadatos, replay, igualdad
+entre motores y limpieza. Sus resultados quedan en
+\archivo{research/datasets/results/expanded-v2-2025-01/execution-*.json};
+un informe con error no debe presentarse como validación aprobada.
 
 \subsection{Respaldo y restauración}
 La prueba usa pg\_dump/pg\_restore y mongodump/mongorestore, restaura en otra

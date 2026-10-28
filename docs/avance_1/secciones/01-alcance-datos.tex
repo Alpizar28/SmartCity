@@ -45,6 +45,25 @@ Solo aire constituye una fuente de mediciones aceptada en la carga anual.
 Investigar tres fuentes o disponer de inventarios auxiliares no demuestra por sí
 solo el requisito de dos fuentes integradas.
 
+\subsection{Generación local v2: dos fuentes, sin modificar v1}
+La implementación local autorizada el 27/10 prepara un paquete nuevo de
+\textbf{748.889 lecturas reales de enero de 2025}: 91.959 de aire y 656.930 de
+tráfico. Se excluyen 17.774 registros C30 y 3.020 flags vacíos de tráfico, además
+de los rechazos de aire. No se suman estos datos a la carga anual v1 ni se
+presentan como una ampliación de 1.733.743 registros.
+
+\archivo{sprint1/basico/preparar_v2.py} crea la generación
+\archivo{expanded-v2-2025-01} con cuarentena y manifiesto de hashes.
+La preparación está terminada; las cargas nativas y las consultas deben
+acreditarse con el estado y las salidas de los nuevos informes de ejecución.
+Disponer del archivo preparado no demuestra por sí solo una carga en cada motor.
+
+Como complemento separado se preparan 14.388 accidentes de 2026,
+deduplicados desde 33.322 filas de personas \cite{accidentes}.
+Se eliminan sexo, edad, lesiones, dirección y expediente en claro. Las fechas
+se conservan como fechas publicadas sin inventar un reloj UTC; no se unen
+estos accidentes de 2026 con las observaciones de enero de 2025.
+
 \subsection{Calidad y conteos}
 El snapshot de aire produjo 1.103.232 slots de 2025: 1.076.813 aceptados y
 26.419 rechazados. Los rechazos corresponden a 26.167 flags del publicador,
@@ -55,6 +74,13 @@ ni las muestras de prueba \cite{cierre}.
 El campo de tráfico \archivo{periodo_integracion} cuenta muestras, no minutos.
 La duración documentada es de 15 minutos. Esta corrección está en la propuesta
 v2 y no habilita automáticamente la carga de tráfico bajo v1 \cite{v2}.
+
+La versión local v2 aplica esa corrección en una base nueva: duración 15 y
+conteo de muestras positivo, incluso cuando el conteo es 30. Solo admite URB/M30
+con flag N y tiempo local inequívoco. Los negativos opcionales se marcan como
+faltantes; URB no recibe una velocidad inventada y carga es un índice.
+Los distritos provienen del inventario disponible, sin vigencia histórica
+confirmada para enero de 2025.
 
 \subsection{Identidad y trazabilidad}
 Se distinguen estación, canal lógico y sensor físico. Un canal no acredita la

@@ -36,7 +36,7 @@ Solo crea y elimina contenedores propios, sin puertos ni bases persistentes.
 Los informes nuevos quedan en `/tmp/opencode/smartcity-s1-sql-*.json` y
 `/tmp/opencode/smartcity-s1-integration-*.json`; incluyen resultados, hashes y limpieza.
 
-**Verificado el 27/10/2026:** 38 pruebas Python, 8 Node, las diez consultas SQL
+**Verificado localmente:** 51 pruebas Python, 12 Node y las diez consultas SQL
 con resultados esperados e integración SQL/Mongo PASS.
 Se comprobaron consultas, índices, replay, cuarentena, CRUD, respaldo/restauración
 y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticación real.
@@ -91,3 +91,73 @@ El [cierre anual](docs/equipo/CIERRE_VALIDACION_SPRINT1.md) registra 1.076.813
 lecturas reales de aire por motor en contenedores locales desechables.
 Su contrato es [madrid-draft-v1](docs/equipo/CONTRATO_UNIFICADO.md).
 No acredita una segunda fuente aceptada, 20 consultas completas ni carga compartida.
+
+## Dos fuentes y consultas Mongo con datos reales (v2 local)
+
+```bash
+bash scripts/validate_sprint1.sh --datos
+```
+
+Añade la preparación y la carga de la generación `expanded-v2-2025-01`:
+**748.889 lecturas reales de enero** (91.959 aire + 656.930 tráfico).
+No modifica ni suma registros a la generación anual v1. Los snapshots originales,
+inventarios Parquet y PDF oficial deben estar disponibles y pasar sus hashes.
+Los resultados de carga quedan en
+`research/datasets/results/expanded-v2-2025-01/execution-*.json`;
+consultar su `status` y los resultados de cada motor, no inferir PASS de la preparación.
+
+Para verificar informes ya terminados, sin volver a cargar:
+
+```bash
+research/datasets/.venv/bin/python scripts/verificar_v2.py
+```
+
+Exige resultados de ambas cargas, igualdad de IDs/payloads, código sin cambios,
+replay y limpieza. Si falta un motor o solo hay ejecuciones fallidas, rechaza PASS.
+
+El intérprete por defecto es `research/datasets/.venv/bin/python` (con las
+dependencias de `requirements.lock`); se puede elegir otro mediante `PYTHON_DATOS`.
+El PDF requerido es `research/datasets/raw/sprint1-v2/traffic_dictionary.pdf`,
+SHA-256 `17562978ce1b7930c6c720db37f055cb3459e30b8cec50d2a671682b215b9de9`;
+su URL oficial está en la [especificación v2](docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
+
+Código para estudiar:
+
+- `sprint1/basico/preparar_v2.py`: lectura, limpieza, cuarentena y accidentes anonimizados.
+- `sprint1/postgres/contract_v2.sql`: adaptación explícita solo sobre base nueva vacía.
+- `sprint1/basico/consultas_mongodb_v2.js`: las diez consultas comentadas.
+- `sprint1/basico/cargar_mongodb_v2.js`: carga y generación local de eventos/alertas.
+- `scripts/validar_v2.py`: ejecución, comparación con Python y limpieza de contenedores.
+
+MG04/MG05 son **eventos derivados y alertas demo** de intensidad >2.000 veh/h,
+no umbrales legales ni avisos oficiales. La emisión es actual, local y marcada
+como replay. MG08 consulta accidentes reales de **2026**, separados de 2025.
+Las zonas corresponden al inventario actual, sin vigencia histórica confirmada.
+Los canales siguen sin sensor físico acreditado; PG07 no se cierra inventando esa relación.
+
+## Compartir el dataset
+
+Abrir la [muestra CSV](docs/datasets/muestra_v2.csv). Para transferir **todos los
+datos locales**, generar el paquete privado completo y compartirlo por Drive
+con acceso restringido; no subirlo a un release público:
+
+```bash
+research/datasets/.venv/bin/python scripts/empaquetar_dataset.py --completo
+```
+
+Se genera `data/releases/SmartCity_DATASET_COMPLETO_PRIVADO.zip` con todos los
+originales y derivados disponibles de `research/datasets`, incluyendo otras
+ciudades investigadas. Contiene algunos originales con datos de personas;
+no está anonimizado ni cifrado. Excluye entornos Python, cachés, locks y secretos.
+Incluye instrucciones, inventario por archivo y checksum SHA-256. No recupera
+artefactos históricos que ya estaban ausentes.
+
+Para generar **solo el paquete v2 preparado y anonimizado**, separado del completo:
+
+```bash
+research/datasets/.venv/bin/python scripts/empaquetar_dataset.py
+```
+
+Se escribe en `data/releases/` (ignorado por Git) y comprueba el CRC.
+No sobreescribe un ZIP existente. Los manifiestos de los paquetes antiguos
+quedan en `data/releases/historico/`; los archivos de datos únicos se conservan.

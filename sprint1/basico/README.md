@@ -123,3 +123,18 @@ han probado contra una base local autenticada**. No se instalaron esos drivers
 ni se ejecutó `--guardar` en la máquina. El harness prueba por separado el SQL y
 MongoDB reales, no sustituye esa validación del cliente. Tampoco resuelve los
 requisitos académicos bloqueados o la 3FN definitiva.
+# Ruta con dos fuentes reales — v2
+
+Para la implementación nueva de aire + tráfico, usar desde la raíz:
+
+```bash
+bash scripts/validate_sprint1.sh --datos
+```
+
+`preparar_v2.py` limpia enero de 2025 y separa cuarentena; las consultas comentadas
+están en `consultas_mongodb_v2.js`. `cargar_mongodb_v2.js` crea eventos derivados
+y alertas de replay local. Los accidentes son de 2026, deduplicados y sin datos
+personales. Esta ruta utiliza `smartcity`/`madrid-draft-v2`, no el núcleo `sprint1`.
+Ver [instrucciones y límites](../../ENTREGA_SPRINT1.md).
+
+Las instrucciones siguientes se conservan para practicar con el núcleo anterior.

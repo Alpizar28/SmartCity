@@ -1,5 +1,11 @@
 # Contrato común: `madrid-draft-v1`
 
+**Alcance de este documento:** contrato de la generación v1, preservado para
+reproducir su evidencia. La implementación local de dos fuentes solicitada el
+27/10 usa [v2](../decisiones/PROPUESTA_MADRID_DRAFT_V2.md), genera enero en otro
+directorio y se ejecuta con `bash scripts/validate_sprint1.sh --datos`.
+No reemplaza en sitio los paquetes o las bases v1.
+
 Implementación: `unified-v1`. Especificación de integración: **Contrato_Datos_SmartCity.pdf**, Kembly Garro, 14/10/2026, decisiones 1.0. Esta rama implementa la propuesta; no constituye aprobación de los demás integrantes ni autorización para modificar el servidor compartido.
 
 ## Decisiones y límites

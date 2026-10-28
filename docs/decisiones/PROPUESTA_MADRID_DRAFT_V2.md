@@ -1,6 +1,15 @@
 # Propuesta `madrid-draft-v2`: segunda fuente real de tráfico
 
-**Estado: propuesta para aprobación; NO implementada ni aprobada.** No modifica DDL, ETL, observaciones ni cargas del contrato `madrid-draft-v1`. La evaluación incluida es exclusivamente de lectura. No autoriza despliegue remoto.
+**Actualización 27/10/2026:** el usuario autorizó implementar la segunda fuente
+y las consultas Mongo pendientes en un entorno local. La ruta nueva está en
+`sprint1/basico/preparar_v2.py`, `scripts/validar_v2.py` y
+`sprint1/postgres/contract_v2.sql`. La preparación de enero produjo **748.889
+lecturas reales**: 91.959 de aire y 656.930 de tráfico. La carga nativa se
+verifica aparte; preparación no significa carga terminada.
+
+La autorización es de implementación local, no aprobación docente del contrato,
+del umbral demo, de alternativas por canal ni de cambios al servidor compartido.
+La especificación de diseño que sigue se conserva como referencia. V1 no cambia.
 
 ## 1. Por qué se necesita otra revisión
 
@@ -135,4 +144,37 @@ Evidencia compacta: `research/datasets/results/expanded-2025/traffic_v2_assessme
 3. Aprobar la migración por regeneración y bases locales nuevas, manteniendo IDs compartidos y sin actualizaciones destructivas.
 4. Acordar que integración de dos fuentes no significa sincronización temporal demostrada ni inventario de sensores acreditado.
 
-Hasta recibir aprobación no se implementan estos cambios incompatibles, no se añaden lecturas de tráfico a los conteos aceptados y no se ejecutan cargas remotas.
+La restricción original de no implementar queda superada únicamente para la
+ruta local autorizada del 27/10. No se suman sus lecturas a los conteos v1 ni se
+ejecutan cargas remotas. Los permisos académicos restantes no se presuponen.
+
+## 9. Ruta local implementada
+
+```bash
+bash scripts/validate_sprint1.sh --datos
+```
+
+Requiere originales privados verificados, el intérprete oficial de tráfico en
+`research/datasets/raw/sprint1-v2/traffic_dictionary.pdf`, dependencias del entorno
+de investigación y las imágenes locales PostgreSQL/Mongo. No descarga mediciones.
+
+La generación es `expanded-v2-2025-01`, **solo enero**, en un directorio nuevo.
+No son 1.733.743 registros ni una ampliación anual cargada. Se excluyen 17.774
+C30 y 3.020 flags vacíos de tráfico; las 1.761 filas rechazadas de aire conservan
+su motivo. Las variables opcionales negativas pasan a faltantes, URB no recibe
+velocidad inventada y `carga` se etiqueta como índice.
+
+Las diez consultas Mongo están comentadas en
+`sprint1/basico/consultas_mongodb_v2.js`. MG04 usa intensidad **>2.000 veh/h**
+como regla de ejercicio, con `official_rule=false`, versión y severidad demo.
+MG05 registra emisiones reales de replay **ahora**, solo en una colección local;
+no simula alertas oficiales de 2025 ni envía mensajes externos.
+
+MG08 usa **14.388 accidentes de 2026**, deduplicados desde 33.322 filas de
+personas. No exporta edad, sexo, lesiones, dirección ni expediente en claro;
+no une esos accidentes a las lecturas de enero de 2025.
+
+Los distritos proceden del inventario disponible y llevan alcance
+`current_inventory_not_historically_verified`; no se acredita su vigencia en 2025.
+PG07 sigue sin poder acreditar actividad de dispositivos físicos: no se inventan
+enlaces entre sensores demo y canales observados.

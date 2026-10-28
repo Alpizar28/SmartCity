@@ -1,45 +1,50 @@
-# Matriz de evidencia de consultas — Sprint 1
+# Las 20 consultas — Sprint 1
 
-**Alcance:** evidencia registrada de la carga anual `smartcity`, no del núcleo
-local `sprint1`. «Ejecutada» es el estado del manifiesto, no aprobación académica
-ni confirmación de que la consulta actual siga siendo reproducible.
-`synthetic_demo` usa entidades administrativas autorizadas, no sensores físicos observados.
+**Ruta actual:** esquema `smartcity`, paquete local `expanded-v2-2025-01`.
+Ejecutar `bash scripts/validate_sprint1.sh --datos`. El estado de la carga está
+en `research/datasets/results/expanded-v2-2025-01/execution-*.json`;
+un informe con error no cuenta como ejecución aprobada.
 
-| Consulta | Motor | Estado | Alcance de datos | Evidencia |
-|---|---|---|---|---|
-| PG01 | PostgreSQL | ejecutada | `synthetic_demo` | Sensores demo por categoría; semilla y procedencia registradas. |
-| PG02 | PostgreSQL | ejecutada | `synthetic_demo` | Sensores demo con ubicación de estación de catálogo. |
-| PG03 | PostgreSQL | ejecutada | `synthetic_demo` | Estados administrativos demo, no estado observado. |
-| PG04 | PostgreSQL | ejecutada | `synthetic_demo` | Organización demo asignada a sensores demo. |
-| PG05 | PostgreSQL | ejecutada | `synthetic_demo` | Ranking de ubicaciones de sensores demo. |
-| PG06 | PostgreSQL | ejecutada | `synthetic_demo` | Fechas de instalación demo. |
-| PG07 | PostgreSQL | bloqueada | `synthetic_demo` | No existe relación observada sensor–canal; no se inventa. |
-| PG08 | PostgreSQL | ejecutada | `synthetic_demo` | Cobertura por zona de sensores demo. |
-| PG09 | PostgreSQL | ejecutada | `observed` | Vista `channel_activity` sobre lecturas reales. |
-| PG10 | PostgreSQL | ejecutada | `observed` | Función `channels_at_station()` sobre canales reales. |
-| MG01 | MongoDB | ejecutada | `observed` | Búsqueda por canal lógico con lecturas reales. |
-| MG02 | MongoDB | ejecutada | `observed` | Rango BSON Date sobre lecturas reales. |
-| MG03 | MongoDB | ejecutada | `observed` | Extremos por fuente/tipo/unidad. |
-| MG04 | MongoDB | bloqueada | `derived_demo` | Falta regla/umbral/severidad aprobados. |
-| MG05 | MongoDB | bloqueada | `derived_demo` | Falta fuente histórica de emisiones autorizada. |
-| MG06 | MongoDB | ejecutada | `observed` | Agregación por zona/tipo cuando existe zona publicada. |
-| MG07 | MongoDB | ejecutada | `observed` | Agregación por variable/unidad; no por dispositivo físico. |
-| MG08 | MongoDB | bloqueada | `derived_demo` | No hay fuente de accidentes cargada. |
-| MG09 | MongoDB | ejecutada | `observed` | Pipeline nativo de agregación. |
-| MG10 | MongoDB | ejecutada | `observed` | Filtros múltiples e índice natural. |
+SQL: `sprint1/postgres/queries.sql`. Mongo: `sprint1/basico/consultas_mongodb_v2.js`.
+Las consultas no equivalen automáticamente a aceptación académica del alcance.
 
-## Qué falta para cerrar esta lista
+| ID | Consulta | Datos y límite |
+|---|---|---|
+| PG01 | Sensores por tipo | Entidades administrativas sintéticas autorizadas. |
+| PG02 | Sensores por ubicación | Sensores demo ligados al catálogo de estaciones. |
+| PG03 | Cantidad de activos/inactivos | Estados demo; NULL permanece desconocido. |
+| PG04 | Sensores por organismo | Organismos demo; incluye organismos sin sensores. |
+| PG05 | Ubicaciones con más sensores | Ranking de inventario demo. |
+| PG06 | Sensores instalados por año | Fechas demo; se excluyen fechas desconocidas. |
+| PG07 | Sensores sin actividad | SQL probado; no evaluable en datos observados sin relación sensor–canal. |
+| PG08 | Ranking de zonas monitoreadas | Sensores demo y distritos del inventario disponible. |
+| PG09 | Consulta con vista | `channel_activity` sobre lecturas reales. |
+| PG10 | Consulta con función | `channels_at_station()` cuenta canales, no dispositivos físicos. |
+| MG01 | Lecturas de un sensor | Alternativa por canal lógico con snapshot explícito. |
+| MG02 | Lecturas por fechas | BSON Date; ventana semiabierta de enero en Madrid. |
+| MG03 | Máximos y mínimos | Aire válido, separado por variable y unidad. |
+| MG04 | Eventos críticos | Implementada: eventos derivados de intensidad >2.000 veh/h, regla demo no oficial. |
+| MG05 | Alertas por zona | Implementada: emisiones actuales de replay a colección local, no avisos oficiales de 2025. |
+| MG06 | Promedio por zona | Excluye zonas nulas; no acredita vigencia histórica del inventario. |
+| MG07 | Promedio por tipo | Por fuente/variable/unidad; no por dispositivo físico acreditado. |
+| MG08 | Incidentes por categoría | Implementada: accidentes reales de 2026, un documento por expediente anonimizado. |
+| MG09 | Agregación | Conteos por fuente y calidad. |
+| MG10 | Filtros múltiples | Fecha, fuente, flag, umbral y zona conocida. |
 
-- Las diez consultas canónicas están restauradas en `sprint1/postgres/queries.sql`
-  para `smartcity`. Ejecutar `bash scripts/validate_sprint1.sh --engines` prueba
-  sus resultados sobre fixtures controladas, no sobre el lote anual.
-- PG07 ya tiene prueba funcional de ventana semiabierta y exclusión de sensores
-  sin relación conocida; su bloqueo de datos observados continúa en el manifiesto histórico.
-- Guardar parámetros y resultados de cada consulta Mongo: varias banderas de
-  `query_evidence` son constantes y no prueban que se ejecutara el pipeline.
-- Resolver PG07, MG04, MG05 y MG08; confirmar alcance de canal/sensor y zona.
-  No presentar agrupaciones de zonas nulas como análisis geográfico.
+## Cómo se comprueban
 
-Los manifiestos están en `research/datasets/results/expanded-2025/`.
-Su verificador controla estructura y procedencia declarada, no sustituye la
-ejecución ni la revisión del resultado de las 20 consultas.
+- SQL: el informe guarda cantidad de filas y muestra de cada consulta. La prueba
+  controlada independiente contrasta resultados esperados y los límites de PG07.
+- Mongo: el informe guarda parámetros/resultados, no banderas constantes.
+  `scripts/validar_v2.py` compara conteos, promedios, extremos, categorías y filtros
+  con cálculos Python sobre los archivos verificados.
+- Ambas cargas deben conservar los mismos IDs/payloads que el ledger, reimportar
+  sin duplicados y eliminar únicamente sus contenedores y volúmenes propios.
+
+**Pendiente de datos:** PG07 no se cierra inventando que un sensor demo produjo
+una lectura pública. La regla de eventos es un ejercicio, las alertas solo se
+guardan localmente y las zonas no tienen vigencia histórica confirmada.
+Estos alcances requieren revisión docente antes de afirmar cumplimiento académico.
+
+La evidencia anual v1 conserva sus estados históricos (incluidas MG04/05/08
+bloqueadas). No se reescribe: la nueva ejecución v2 aporta evidencia separada.
