@@ -37,7 +37,7 @@ independientes de la normalización.
 
 La [auditoría de impacto y prueba formal](impacto_3nf.md) identifica cada DF y
 las repercusiones en claves, índices, cargadores y consultas. La
-[matriz académica](../../docs/avance_1/secciones/06-equivalencias.tex) detalla la
+[matriz académica histórica](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/avance_1/secciones/06-equivalencias.tex) detalla la
 representación, nulabilidad y origen de cada atributo.
 
 ## Evidencia nueva de ejecución

@@ -2,7 +2,7 @@
 
 Esta generación **no se suma** a enero ni a las muestras previas. Contiene el mismo enero, más febrero–diciembre del mismo snapshot oficial. No hay mediciones inventadas, copiadas o alteradas.
 
-**Cierre verificado:** PostgreSQL y MongoDB terminaron la carga y reimportación de **1.076.813 registros cada uno**, con comparación completa de valores/metadatos, misma huella de IDs/payloads y limpieza de recursos. `verification.json` contiene `verified=true`. Tiempos totales: 1.105,65 s PostgreSQL y 644,91 s MongoDB. [Informe de cierre](../../../../docs/equipo/CIERRE_VALIDACION_SPRINT1.md).
+**Cierre verificado:** PostgreSQL y MongoDB terminaron la carga y reimportación de **1.076.813 registros cada uno**, con comparación completa de valores/metadatos, misma huella de IDs/payloads y limpieza de recursos. `verification.json` contiene `verified=true`. Tiempos totales: 1.105,65 s PostgreSQL y 644,91 s MongoDB. [Informe de cierre histórico](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/CIERRE_VALIDACION_SPRINT1.md).
 
 | Magnitud | Cantidad |
 |---|---:|

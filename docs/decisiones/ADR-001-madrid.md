@@ -28,7 +28,7 @@ La comparación histórica de Fase 4 otorga Madrid **63,665/100**, Londres **49,
 6. Cómputo acordado de mínimos/100 MB y ejecución posterior autorizada: ≥100.000 SQL, ≥500.000 MongoDB, ≥1.000.000 Spark. Enero **832.668** no basta para Spark; 5.000 en pruebas no acredita las cargas finales.
 7. Permisos de publicación, privacidad, prueba cruzada y planificación revisada. Fechas internas de P no se convierten en mandatos docentes.
 
-Registro de respuestas pendiente en [preguntas al profesor](../equipo/preguntas_profesor.md). No existe aprobación implícita por la autorización del usuario para preparar/documentar.
+No existe aprobación implícita por la autorización del usuario para preparar/documentar.
 
 ## Consecuencias y límites
 

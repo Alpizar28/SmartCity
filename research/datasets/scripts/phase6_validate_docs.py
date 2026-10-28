@@ -25,10 +25,10 @@ EXPECTED_DOCS = [
     "docs/datasets/seleccion_dataset.md", "docs/datasets/fuentes_y_procedencia.md",
     "docs/datasets/calidad_y_limitaciones.md", "docs/datasets/indice_evidencias.md",
     "docs/arquitectura/modelos.md", "docs/arquitectura/pipeline.md",
-    "docs/arquitectura/diagramas.md", "docs/equipo/preguntas_profesor.md",
+    "docs/arquitectura/diagramas.md", "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
     "docs/equipo/ESTADO_SPRINT1.md", "CONTRATO_PROVISIONAL_DATASET.md",
-    "PREGUNTAS_PROFESOR.md",
-    "docs/equipo/guia_integrantes.md", "docs/equipo/revision_repositorio.md",
+    "docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md", "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+    "docs/equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md",
     "docs/decisiones/ADR-001-madrid.md",
 ]
 

@@ -31,9 +31,9 @@ Explicar documento, filtro, proyección, orden y las etapas `$match`, `$group` y
 
 ## 3. Informe y resultados
 
-- [PDF compilado](../docs/avance_1/SmartCity_Sprint1_PaqueteA_Editorial_20261028T163407.pdf).
-- [Fuente LaTeX](../docs/avance_1/main.tex): tiene ampliaciones posteriores al PDF;
-  requiere recompilación para incluirlas.
+- [PDF breve de 9 páginas](../docs/avance_1/SmartCity_Sprint1_Entrega.pdf).
+- [Fuente LaTeX autocontenida](../docs/avance_1/SmartCity_Sprint1_Entrega.tex):
+  corresponde al PDF breve y mantiene la estructura del documento de Fernanda.
 - [Resultados PostgreSQL](../sprint1/postgres/cierre_3nf.md).
 - [Resultados MongoDB](../sprint1/mongodb/evidencia_final_mongodb.md).
 

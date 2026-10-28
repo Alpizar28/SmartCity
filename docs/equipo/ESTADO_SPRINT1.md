@@ -82,7 +82,7 @@ para este avance no está acreditada por una rúbrica independiente.
 
 ## Reproducción histórica, separada de la validación actual
 
-La [recuperación histórica](RECUPERACION_INSUMOS_HISTORICOS.md) conserva un
+La [recuperación histórica](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/RECUPERACION_INSUMOS_HISTORICOS.md) conserva un
 checkpoint de 83/85 pruebas y 15 artefactos pendientes. No se reejecutó hoy ni
 se convierte en PASS con las pruebas nuevas. Enero y las muestras ya están
 contenidos en sus generaciones: no sumarlos al volumen anual.

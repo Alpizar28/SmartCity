@@ -134,5 +134,5 @@ La ejecución `20261028T161057-eff98453` demuestra MG01 con un sensor sintético
 explícito y MG07 mediante lectura–sensor–tipo, separado por magnitud y unidad.
 Se conservan las consultas públicas anteriores como funcionalidades adicionales.
 El diagrama de las siete colecciones oficiales está en
-`docs/avance_1/secciones/modelo-documental.tex`; el laboratorio se dibuja aparte.
+`docs/avance_1/SmartCity_Sprint1_Entrega.tex`; el laboratorio se documenta por separado.
 Las nueve lecturas sintéticas no se agregan al volumen Madrid v2.

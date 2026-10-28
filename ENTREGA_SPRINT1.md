@@ -2,7 +2,7 @@
 
 ## Acceso y reproducción
 
-1. Clonar `fix/sprint1-postgresql-3nf` y descargar de Drive **el ZIP completo y su `.sha256`**.
+1. Clonar `main` y descargar de Drive **el ZIP completo y su `.sha256`**.
 2. Verificar el checksum y extraer el ZIP **dentro de la raíz del repositorio**,
    donde está este archivo. No extraer dentro de `research/datasets` ni sobrescribir
    archivos propios. En Windows se puede usar «Extraer todo» eligiendo esa raíz;
@@ -14,7 +14,7 @@
 4. Con Python 3.10+ y Node.js 18+, desde la raíz:
 
 ```bash
-git clone --branch fix/sprint1-postgresql-3nf https://github.com/Alpizar28/SmartCity.git
+git clone --branch main https://github.com/Alpizar28/SmartCity.git
 cd SmartCity
 bash scripts/validate_sprint1.sh
 ```
@@ -27,8 +27,8 @@ las pruebas de motores requieren el socket Docker local indicado por el harness
 
 - **PostgreSQL de entrega:** `sprint1/postgres/schema_v2_3nf.sql`, `queries_v2_3nf.sql` y [análisis de impacto](sprint1/postgres/impacto_3nf.md). El DDL común y `contract_v2.sql` conservan la reproducción histórica.
 - **MongoDB de entrega:** `sprint1/basico/consultas_mongodb_v2.js` y `cargar_mongodb_v2.js` conservan las consultas y cargas públicas. El [laboratorio académico](sprint1/mongodb/academico/README.md) aporta MG01 por sensor y MG07 por tipo con datos sintéticos, además de consultas narrativas.
-- **Informe:** [PDF vigente del paquete A](docs/avance_1/SmartCity_Sprint1_PaqueteA_Editorial_20261028T163407.pdf),
-  [manifiesto editorial](docs/avance_1/MANIFIESTO_EDITORIAL_20261028T163407.json), `docs/avance_1/main.tex` y la matriz de consultas.
+- **Informe:** [PDF final de 9 páginas](docs/avance_1/SmartCity_Sprint1_Entrega.pdf),
+  [LaTeX autocontenido](docs/avance_1/SmartCity_Sprint1_Entrega.tex) y la matriz de consultas.
 - **Estado y distribución:** `docs/equipo/ESTADO_SPRINT1.md`. Los ZIP, `raw/`,
   `private_results/`, `.env` y las credenciales se mantienen fuera de Git; el acceso
   al paquete privado está restringido al equipo.
@@ -75,7 +75,7 @@ los requisitos. El [estado](docs/equipo/ESTADO_SPRINT1.md) y la
 
 El [E-R completo](docs/arquitectura/diagrama_3nf.md) incluye catorce tablas,
 con tipos de dispositivo independientes de magnitudes y asignaciones sensor–canal
-separadas. La [matriz de atributos](docs/avance_1/secciones/06-equivalencias.tex)
+separadas. La [matriz histórica de atributos](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/avance_1/secciones/06-equivalencias.tex)
 representa los 17 atributos mínimos. La instancia nativa es temporal, propia,
 sin TCP ni conexión a bases compartidas:
 
@@ -168,7 +168,7 @@ definir `PYTHON=/ruta/al/python` al ejecutar el validador.
 
 ## Evidencia anual, separada de la demostración
 
-El [cierre anual](docs/equipo/CIERRE_VALIDACION_SPRINT1.md) registra 1.076.813
+El [cierre anual histórico](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/CIERRE_VALIDACION_SPRINT1.md) registra 1.076.813
 lecturas reales de aire por motor en contenedores locales desechables.
 Su contrato es [madrid-draft-v1](docs/equipo/CONTRATO_UNIFICADO.md).
 No acredita una segunda fuente aceptada, 20 consultas completas ni carga compartida.

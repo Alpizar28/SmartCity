@@ -11,50 +11,40 @@
 
 ## Informe del avance en LaTeX
 
-El informe universitario empieza en [avance_1/main.tex](avance_1/main.tex).
-Las seis secciones cubren alcance/datos, modelos, equivalencias de atributos,
-consultas, validación y conclusiones, con resultados y limitaciones explícitos.
+**Versión breve para revisión y entrega:**
+[SmartCity_Sprint1_Entrega.tex](avance_1/SmartCity_Sprint1_Entrega.tex), con
+[PDF de 9 páginas](avance_1/SmartCity_Sprint1_Entrega.pdf), incluida la portada.
+Mantiene las diez secciones del texto compartido por Fernanda, corrige las cifras
+y el alcance técnico, incorpora tres diagramas (flujo, modelo relacional y
+colecciones MongoDB) y omite los anexos de código. El relacional separa catálogos
+y administración en dos paneles, con las FK entre paneles identificadas. Los otros
+diagramas distinguen flujo, derivación y referencias mediante leyendas y estilos.
+Para Overleaf basta subir ese `.tex`: no necesita imágenes externas.
 
-En Overleaf, subir la carpeta `avance_1/`, seleccionar `main.tex` como documento
-principal y compilar con pdfLaTeX. Localmente, con TeX Live y `latexmk` instalados:
+En Overleaf, seleccionar `SmartCity_Sprint1_Entrega.tex` como documento principal
+y compilar con pdfLaTeX o XeLaTeX. Localmente, con TeX Live:
 
 ```bash
 cd docs/avance_1
-make pdf
+pdflatex -halt-on-error SmartCity_Sprint1_Entrega.tex
+pdflatex -halt-on-error SmartCity_Sprint1_Entrega.tex
 ```
 
-Alternativa sin `latexmk`: ejecutar `pdflatex -halt-on-error main.tex` dos veces
-desde esa misma carpeta. `main.pdf` y los auxiliares de compilación están
-ignorados por Git mediante `avance_1/.gitignore`. Los PDF de entrega con nombre
-`SmartCity_Sprint1_3NF_<fechaUTC>.pdf` o `SmartCity_Sprint1_PaqueteA_<fechaUTC>.pdf` no están ignorados: se incluyen como
-artefactos revisados junto con su manifiesto SHA-256. Cada revisión documental
-genera un PDF y un manifiesto nuevos; las versiones anteriores se conservan
-como registros históricos. El manifiesto de cierre documental más reciente
-identifica el PDF vigente y las fuentes exactas utilizadas.
-La revisión vigente es el [PDF del paquete A con limpieza editorial](avance_1/SmartCity_Sprint1_PaqueteA_Editorial_20261028T163407.pdf),
-con su [manifiesto editorial](avance_1/MANIFIESTO_EDITORIAL_20261028T163407.json)
-y [checksum](avance_1/MANIFIESTO_EDITORIAL_20261028T163407.sha256).
-El [PDF previo del paquete A](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/avance_1/SmartCity_Sprint1_PaqueteA_20261028T162209.pdf)
-y su [manifiesto original](../sprint1/mongodb/evidencias/academico/cierre-20261028T162209/MANIFIESTO_PAQUETE_A.json)
-se conservan como snapshot histórico; sus hashes documentales corresponden a esa revisión.
-El [cierre del paquete A](equipo/CIERRE_PAQUETE_A_SPRINT1_20261028T162209.md) detalla los archivos y pruebas.
-La revisión editorial anterior conserva su PDF y manifiesto históricos.
-Los límites de las pruebas se describen en los cierres técnicos vigentes. La
-[revisión académica y editorial](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/REVISION_ACADEMICA_EDITORIAL_SPRINT1_20261028T083357.md)
-conserva el alcance de su propia fecha.
-La [auditoría documental anterior](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md)
-conserva el alcance y las verificaciones de su propia fecha.
-El informe incluye el modelo completo de catorce tablas y la matriz de los 17
-atributos exigidos. El [E-R con atributos y cardinalidades](arquitectura/diagrama_3nf.md)
-se corresponde con el DDL normalizado. Los antecedentes de doce tablas se
-conservan separados de la versión de entrega.
+La carpeta `avance_1/` contiene únicamente el `.tex` y el PDF vigentes, además
+de las reglas de exclusión de auxiliares. Las versiones antiguas del informe y
+sus manifiestos se retiraron de la carpeta; las que estuvieron publicadas pueden
+consultarse en el [historial anterior a la limpieza](https://github.com/Alpizar28/SmartCity/tree/5eb3db7/docs/avance_1).
+Las evidencias de ejecución de PostgreSQL y MongoDB conservan sus propios
+reportes y hashes, separados de la documentación de entrega.
+El [E-R con atributos y cardinalidades](arquitectura/diagrama_3nf.md) complementa
+el diagrama resumido del informe.
 
 ## Referencias técnicas, solo cuando hagan falta
 
 - [Contrato histórico anual `smartcity` v1](equipo/CONTRATO_UNIFICADO.md) y
   [diccionario de campos](equipo/unified_fields.csv).
 - [Código y modelo del núcleo local `sprint1`](../sprint1/README.md).
-- [Resultados históricos de carga anual v1](equipo/CIERRE_VALIDACION_SPRINT1.md).
+- [Resultados históricos de carga anual v1](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/CIERRE_VALIDACION_SPRINT1.md).
 - [Autorización de datos administrativos sintéticos](equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md).
 - [Interfaz v2 implementada](../sprint1/postgres/schema_v2_3nf.sql), vista
   `observation_contract`; [adaptación histórica v2](../sprint1/postgres/contract_v2.sql),

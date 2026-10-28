@@ -62,4 +62,4 @@ Autoridad: [05_volume_strategy.md](../../research/datasets/05_volume_strategy.md
 - La cuota de primeras observaciones válidas usada en las pruebas es reproducible, **no representativa de Madrid**. Una única corrida de tiempos no es benchmark de producción.
 - Hadoop/HDFS, Spark, Streamlit, procesamiento distribuido, backup/restore y rendimiento remoto no fueron ejecutados.
 
-Resolver con fuente real o aceptación explícita de alcance; no completar metadatos mediante invenciones. Véanse [preguntas al profesor](../equipo/preguntas_profesor.md) y [ADR condicionado](../decisiones/ADR-001-madrid.md).
+Resolver con fuente real o aceptación explícita de alcance; no completar metadatos mediante invenciones. Véase el [ADR condicionado](../decisiones/ADR-001-madrid.md).

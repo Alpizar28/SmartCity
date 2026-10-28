@@ -80,7 +80,7 @@ No se recomienda porque «gane en todo»: Londres conserva ventaja en energía s
 
 Antes de ratificar se necesitan: cierre técnico de unidades meteo, clocks meteo/tráfico, CRS e inventarios históricos; aceptación o fuente real para dispositivo físico, instalación, estado y responsables; usuarios consentidos; reglas de críticos y evidencia de emisiones; tratamiento explícito de energía mensual, accidentes de 2026 y KPIs faltantes. El núcleo de enero no alcanza por sí solo el millón de Spark. Las muestras nativas no cumplen mínimos definitivos ni prueban recursos del servidor compartido.
 
-**Estado:** recomendación técnica condicionada, no decisión definitiva de José, Daniel, Kembly y Fernanda ni aprobación docente. El [ADR-001](../decisiones/ADR-001-madrid.md) registra puertas de ratificación; las [preguntas priorizadas](../equipo/preguntas_profesor.md) distinguen decisiones internas de aprobación docente. Londres es reserva condicionada, no un dataset listo para migración automática. Ninguna alternativa satisface actualmente todos los requisitos estrictos con datos acreditados.
+**Estado:** recomendación técnica condicionada, no decisión definitiva de José, Daniel, Kembly y Fernanda ni aprobación docente. El [ADR-001](../decisiones/ADR-001-madrid.md) registra puertas de ratificación y distingue decisiones internas de aprobación docente. Londres es reserva condicionada, no un dataset listo para migración automática. Ninguna alternativa satisface actualmente todos los requisitos estrictos con datos acreditados.
 
 ## 8. Fuentes y referencias
 

@@ -17,7 +17,8 @@ Proyecto académico de Bases de Datos — II Semestre 2026.
 2. [Estado y pendientes](docs/equipo/ESTADO_SPRINT1.md).
 3. [Las 20 consultas y su evidencia](docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md).
 
-El [informe en LaTeX](docs/avance_1/main.tex) se acompaña de
+El [informe breve en LaTeX](docs/avance_1/SmartCity_Sprint1_Entrega.tex),
+con [PDF compilado de 9 páginas](docs/avance_1/SmartCity_Sprint1_Entrega.pdf), se acompaña de
 [instrucciones para Overleaf y compilación local](docs/README.md#informe-del-avance-en-latex).
 
 ## Ver o descargar el dataset

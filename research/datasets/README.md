@@ -16,7 +16,7 @@
 ## Referencias vigentes de la carga anual
 
 - [Contrato `madrid-draft-v1`](../../docs/equipo/CONTRATO_UNIFICADO.md).
-- [Resultados y límites](../../docs/equipo/CIERRE_VALIDACION_SPRINT1.md).
+- [Resultados y límites históricos](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/CIERRE_VALIDACION_SPRINT1.md).
 - [Propuesta de tráfico v2](../../docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
 
 La interpretación histórica de `periodo_integracion` como minutos fue corregida:
@@ -25,5 +25,5 @@ estructurales históricos no equivalen al lote anual aceptado ni se suman a él.
 La demostración de tres ejemplos en `sprint1/` usa otro esquema y contrato.
 
 Para reproducir una fase se necesitan sus snapshots exactos y su versión de código.
-La [recuperación histórica](../../docs/equipo/RECUPERACION_INSUMOS_HISTORICOS.md)
+La [recuperación histórica](https://github.com/Alpizar28/SmartCity/blob/5eb3db7/docs/equipo/RECUPERACION_INSUMOS_HISTORICOS.md)
 documenta lo que falta; instalar dependencias no recupera esos archivos.

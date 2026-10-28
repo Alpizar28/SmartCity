@@ -181,4 +181,4 @@ Leyenda de fuente original: **A**=CSV aire (`MAD-AIR`), **M**=CSV meteorología 
 
 ## Preguntas docentes pendientes
 
-Ver [`PREGUNTAS_PROFESOR.md`](PREGUNTAS_PROFESOR.md). La evidencia técnica pendiente (unidades, clocks, CRS y fuentes administrativas) se resuelve con documentación del publicador, no con una respuesta docente.
+La evidencia técnica pendiente (unidades, clocks, CRS y fuentes administrativas) se resuelve con documentación del publicador; no se sustituye por una aprobación académica.

@@ -8,4 +8,4 @@ El trabajo automatizado no se presenta como un análisis manual independiente re
 
 La normativa institucional sobre uso y declaración de IA **no está disponible en la evidencia revisada**; su formato y requisitos quedan pendientes de confirmación docente. Fernanda deberá ajustar la declaración y conservar los registros que se requieran, con revisión humana de hechos, referencias y código.
 
-Evidencia: [índice de fases](../datasets/indice_evidencias.md), [pruebas de Fase 5](../../research/datasets/05_acceptance_checklist.md) y [preguntas pendientes](../equipo/preguntas_profesor.md). No se publicarán prompts, logs o capturas con credenciales o datos personales.
+Evidencia: [índice de fases](../datasets/indice_evidencias.md) y [pruebas de Fase 5](../../research/datasets/05_acceptance_checklist.md). No se publicarán prompts, logs o capturas con credenciales o datos personales.

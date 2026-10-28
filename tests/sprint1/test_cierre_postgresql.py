@@ -78,8 +78,11 @@ class ClosureTests(unittest.TestCase):
     def test_latex_structure_inputs_and_citations_without_compiler(self):
         # Static smoke test only: cannot validate pagination, TikZ rendering or PDF.
         base = ROOT / 'docs/avance_1'
-        paths = [base / 'main.tex', *sorted((base / 'secciones').glob('*.tex'))]
+        paths = [base / 'SmartCity_Sprint1_Entrega.tex']
+        self.assertTrue((base / 'SmartCity_Sprint1_Entrega.pdf').read_bytes().startswith(b'%PDF-'))
         all_text = '\n'.join(p.read_text() for p in paths)
+        self.assertNotIn(r'\input{', all_text)
+        self.assertNotIn(r'\includegraphics', all_text)
         for path in paths:
             text = path.read_text()
             environments = []
