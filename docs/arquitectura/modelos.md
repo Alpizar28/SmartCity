@@ -2,7 +2,15 @@
 
 Contrato histórico de los diagramas y DDL: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md), pendiente de revisión conjunta. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md); no reinterpreta ni modifica la evidencia histórica. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos. Los [diagramas](diagramas.md) representan el DDL real de prueba y el flujo propuesto, no un despliegue definitivo.
 
-## PostgreSQL: doce tablas en `draft5`
+**Alcance histórico de las secciones de muestra:** las cifras y estados de Fase 5
+de abajo no describen el cierre actual. Para PostgreSQL vigente se utiliza
+`smartcity` con [extensión v2](../../sprint1/postgres/contract_v2.sql), no el
+contrato de staging `v1-frozen`; la [entrega final](../../sprint1/postgres/evidencia_final_postgresql.md)
+distingue explícitamente 748.889 observaciones v2, administración sintética y
+excepciones formales de normalización. No reutilizar las afirmaciones históricas
+de tablas vacías o falta de segunda fuente como estado actual v2.
+
+## PostgreSQL: doce tablas en `smartcity`
 
 Autoridad: [phase5_postgresql.sql](../../research/datasets/scripts/phase5_postgresql.sql). Se ejecutó únicamente en una base local desechable; `postgres/init/` continúa sin inicializadores.
 
@@ -25,9 +33,9 @@ Una fuente puede tener cero o muchas versiones, sitios y tipos; cada hijo con FK
 
 ### Normalización, restricciones e índices
 
-El diseño separa dependencias de fuente, estación, ubicación, categoría, tipo/unidad y dispositivo en catálogos para aproximar 3FN. `observations` no duplica fuente, sitio, zona, tipo ni unidad; `observation_contract` los reconstruye mediante joins. Reloj original, valor, QA, duración y localizador dependen del hecho. El JSONB `measurements` conserva variables opcionales del mismo intervalo de tráfico, no otro conjunto de filas ni un modelo puramente escalar de todos los campos.
+El diseño separa catálogos, pero **sí mantiene source_id redundante** en `channels` y `observations` para validar coherencia con FK compuestas. No son relaciones en 3FN estricta: estación/canal y versión determinan fuente sin ser superclaves de la relación hija. `observations` no repite sitio, zona, tipo ni unidad: `observation_contract` los reconstruye mediante joins. El JSONB `measurements` conserva variables opcionales del mismo intervalo de tráfico, no otro conjunto de filas ni un modelo puramente escalar de todos los campos.
 
-No se declara certificada la 3FN ni resuelta la historia de metadatos: Daniel debe revisar dependencias funcionales, JSONB y vigencias. El DDL no tiene tablas de historial temporal de ubicación/organismo. `inventory_version` y `historical_location_verified=false` hacen visible la limitación.
+La [auditoría formal de Daniel](../../sprint1/postgres/normalizacion_3fn.md) evalúa las doce tablas y los campos v2: diez satisfacen las DF justificadas, con salvedades de dominios SQL/NULL/JSONB; canales y observaciones presentan excepciones de 2FN/3FN. Incluye propuesta sin pérdida y sus controles interrelacionales, no una migración aplicada. El DDL no tiene historial temporal de ubicación/organismo. `inventory_version` y `historical_location_verified=false` hacen visible la limitación. Las afirmaciones históricas de ausencia de source_id en `research/datasets/05_postgresql_design.md` están superadas por este DDL/auditoría; no se reutilizan como prueba de 3FN.
 
 - PK y UNIQUE: `(source_id,source_key)` en estaciones; `(source_id,code)` en tipos; `(station_id,source_key)` en canales; `(channel_id,observed_at,timestamp_role)` en observaciones. `source_versions` también declara UNIQUE de versión/fuente.
 - CHECK: coordenadas en rango y lat/lon ambas presentes o ambas NULL; valor finito; duración 1–30; origen y enums; zona original y versión de contrato.

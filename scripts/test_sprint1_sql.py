@@ -7,6 +7,7 @@ Fixtures are deliberately fabricated tests, never evidence of real sensor activi
 from datetime import datetime, timezone
 from hashlib import sha256
 import json
+import os
 from pathlib import Path
 import subprocess
 import sys
@@ -19,7 +20,7 @@ sys.path.insert(0, str(ROOT / 'tests/sprint1'))
 from validate_real_postgres import read_queries
 
 DOCKER = ['docker', '--host', 'unix:///var/run/docker.sock']
-IMAGE = 'postgres:16.6-alpine'
+IMAGE = os.environ.get('SMARTCITY_PG_IMAGE', 'postgres:16.6-alpine')
 QUERY_PATH = ROOT / 'sprint1/postgres/queries.sql'
 SCHEMA_PATH = ROOT / 'research/datasets/scripts/phase5_postgresql.sql'
 FIXTURE_PATH = ROOT / 'tests/integration/postgres_canonical_fixture.sql'
@@ -107,6 +108,9 @@ def main():
         else:
             raise TimeoutError('Disposable PostgreSQL not ready in 60 seconds')
 
+        report['postgresql_version'] = docker('exec', name, 'psql', '-X', '-Atq', '-U', 'postgres',
+                                              '-c', 'SELECT version();').strip()
+
         sql = "SET timezone='UTC'; SET statement_timeout='15s';\n" + SCHEMA_PATH.read_text()
         for path in inputs[-2:]:
             sql += '\n' + path.read_text()
@@ -133,6 +137,30 @@ SELECT 'FIXTURE_REMAINING=' || (
             if line.startswith('SQL_QUERY_RESULT='):
                 report['query_results'].update(json.loads(line.split('=', 1)[1]))
         check_results(report['query_results'])
+        # Extend only PG07; preserve the original ten-query regression expectations.
+        # Reuse the exact parsed canonical statement, never a rewritten anti-join.
+        # This second phase runs in its own rollback-only fixture transaction.
+        pg07_fixture = ROOT / 'tests/integration/postgres_pg07_cases.sql'
+        report['source_hashes'][str(pg07_fixture.relative_to(ROOT))] = sha256(pg07_fixture.read_bytes()).hexdigest()
+        extended_sql = ("SET timezone='UTC';\n" + FIXTURE_PATH.read_text() + '\n'
+                        + pg07_fixture.read_text() + '\n'
+                        + "SELECT 'PG07_EXTENDED=' || COALESCE(jsonb_agg(t), '[]')::text FROM ("
+                        + queries['PG07'] + ") t;\nROLLBACK;\n"
+                        + "SELECT 'PG07_REMAINING=' || ((SELECT count(*) FROM smartcity.sensors)"
+                        + " + (SELECT count(*) FROM smartcity.channels)"
+                        + " + (SELECT count(*) FROM smartcity.observations))::text;")
+        extended = docker('exec', '-i', name, 'psql', '-X', '-Atq', '-U', 'postgres',
+                          '-v', 'ON_ERROR_STOP=1', stdin=extended_sql)
+        rows = json.loads(next(line.split('=', 1)[1] for line in extended.splitlines()
+                               if line.startswith('PG07_EXTENDED=')))
+        expected_pg07 = [{'sensor_id': s} for s in
+                         ('sensor-before', 'sensor-no-readings', 'sensor-outside')]
+        if rows != expected_pg07 or 'PG07_REMAINING=0' not in extended.splitlines():
+            raise ValueError('Extended canonical PG07 cases or rollback failed: ' + extended)
+        report['pg07_extended'] = {'results': rows, 'rollback': True,
+            'cases': ['inclusive_start', 'exclusive_end', 'before_start', 'just_before_end',
+                      'no_readings', 'unlinked', 'multiple_channels_one_active',
+                      'multiple_empty_channels_no_duplicates', 'administrative_state_independent']}
         if 'FIXTURE_REMAINING=0' not in output.splitlines():
             raise ValueError('Controlled fixtures were not rolled back')
         report.update(status='PASS', queries_checked=10, fixtures_rolled_back=True,

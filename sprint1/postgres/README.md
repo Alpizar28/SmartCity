@@ -1,5 +1,19 @@
 # PostgreSQL — ruta canónica del Sprint 1
 
+## Cierre para revisión del equipo
+
+- [Auditoría formal 3FN de las doce tablas](normalizacion_3fn.md): excepciones
+  reales en `channels` y `observations`; no se modificó el DDL común.
+- [PG07: prueba exacta y límite de evidencia física](pg07_limite_evidencia.md).
+- [Matriz PG01–PG10, muestras y trazabilidad SQL](evidencia_final_postgresql.md).
+- [Reproducción y prerrequisitos reales](reproduccion_cierre.md).
+- [Tres reportes acotados verificables](evidencias/README.md).
+
+V2 prioritaria: `contract_v2.sql` se aplica únicamente después del DDL común
+en una base local nueva. No sumar sus lecturas de enero a la carga anual v1.
+El encabezado v1 del SQL canónico conserva su identidad histórica; los diez
+SELECT también se ejecutaron con el contrato v2 sin cambiar sus bytes.
+
 ## Qué archivo usar
 
 - **DDL común:** `research/datasets/scripts/phase5_postgresql.sql`, esquema `smartcity`.
@@ -31,6 +45,10 @@ PYTHONDONTWRITEBYTECODE=1 python3 scripts/test_sprint1_sql.py
 El informe `/tmp/opencode/smartcity-s1-sql-*.json` incluye las filas obtenidas
 por cada consulta, hashes, rollback y limpieza del contenedor. Es una prueba
 con fixtures fabricadas y explícitas, no una carga de mediciones reales.
+
+Si ya existe otra imagen PostgreSQL 16 local, se puede seleccionar explícitamente
+con `SMARTCITY_PG_IMAGE=postgres:16-alpine`; el informe registra imagen, ID y versión.
+No descarga imágenes ni afirma haber usado el pin 16.6 si se seleccionó otra.
 
 ## Semántica de las consultas
 

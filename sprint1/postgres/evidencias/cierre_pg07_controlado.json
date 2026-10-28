@@ -1,0 +1,180 @@
+{
+  "status": "PASS",
+  "started_at": "2026-10-28T01:23:12.968790+00:00",
+  "scope": "canonical smartcity SQL with fabricated rollback-only fixtures; not a real-data load",
+  "image": "postgres:16-alpine",
+  "schema": "smartcity",
+  "contract": "madrid-draft-v1",
+  "container_removed": true,
+  "query_results": {
+    "PG01": [
+      {
+        "category_id": "category-air",
+        "category_name": "Test air",
+        "sensor_count": 2
+      },
+      {
+        "category_id": "category-other",
+        "category_name": "Test other",
+        "sensor_count": 2
+      }
+    ],
+    "PG02": [
+      {
+        "station_id": "station-1",
+        "location_id": "location-1",
+        "location_name": "Test location 1",
+        "sensor_count": 2
+      },
+      {
+        "station_id": "station-2",
+        "location_id": "location-2",
+        "location_name": "Test location 2",
+        "sensor_count": 2
+      }
+    ],
+    "PG03": [
+      {
+        "administrative_status": "active",
+        "sensor_count": 2
+      },
+      {
+        "administrative_status": "inactive",
+        "sensor_count": 1
+      },
+      {
+        "administrative_status": null,
+        "sensor_count": 1
+      }
+    ],
+    "PG04": [
+      {
+        "organization_id": "org-assigned",
+        "name": "Test organization",
+        "sensor_count": 3
+      },
+      {
+        "organization_id": "org-empty",
+        "name": "Test empty organization",
+        "sensor_count": 0
+      }
+    ],
+    "PG05": [
+      {
+        "location_id": "location-1",
+        "name": "Test location 1",
+        "sensor_count": 2
+      },
+      {
+        "location_id": "location-2",
+        "name": "Test location 2",
+        "sensor_count": 2
+      }
+    ],
+    "PG06": [
+      {
+        "installation_year": 2024,
+        "sensor_count": 2
+      },
+      {
+        "installation_year": 2025,
+        "sensor_count": 1
+      }
+    ],
+    "PG07": [
+      {
+        "sensor_id": "sensor-no-readings"
+      },
+      {
+        "sensor_id": "sensor-outside"
+      }
+    ],
+    "PG08": [
+      {
+        "zone_id": "zone-1",
+        "name": "Test zone 1",
+        "sensor_count": 2,
+        "zone_rank": 1
+      },
+      {
+        "zone_id": "zone-2",
+        "name": "Test zone 2",
+        "sensor_count": 2,
+        "zone_rank": 1
+      }
+    ],
+    "PG09": [
+      {
+        "channel_id": "channel-active",
+        "readings": 1,
+        "first_observed_at": "2024-12-31T23:00:00+00:00",
+        "last_observed_at": "2024-12-31T23:00:00+00:00"
+      },
+      {
+        "channel_id": "channel-outside",
+        "readings": 1,
+        "first_observed_at": "2025-01-31T23:00:00+00:00",
+        "last_observed_at": "2025-01-31T23:00:00+00:00"
+      },
+      {
+        "channel_id": "channel-unassigned",
+        "readings": 1,
+        "first_observed_at": "2025-01-01T00:00:00+00:00",
+        "last_observed_at": "2025-01-01T00:00:00+00:00"
+      }
+    ],
+    "PG10": [
+      {
+        "station_id": "station-1",
+        "channel_count": 2
+      },
+      {
+        "station_id": "station-2",
+        "channel_count": 2
+      }
+    ]
+  },
+  "source_hashes": {
+    "scripts/test_sprint1_sql.py": "54ee378c6a9f6d6a33f55b9288a78c82eff6ca79210bee68f255968d9c5e2a84",
+    "sprint1/postgres/queries.sql": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9",
+    "research/datasets/scripts/phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
+    "tests/integration/postgres_canonical_fixture.sql": "4cb6380d5237c259e0ce680af8da109559505f60415602b45ba3d1306786f569",
+    "tests/sprint1/validate_real_postgres.py": "472869352b2db12a6b331329247179477f75b7fac7406cc8af5ea7d34c2fb104",
+    "tests/sprint1/test_schema.sql": "7317c5dc71dd0167b7839e226841c3a33757d8e051bc3efdde6b04b6925f6e89",
+    "tests/sprint1/test_queries.sql": "bd47a86babf231f726e2592b5fbe093c32415164cda8766a3390799d7bea6afc",
+    "tests/integration/postgres_pg07_cases.sql": "df69efb64dd17d352458a653e536d86ad430172350663bf8564495fa5ad84de9"
+  },
+  "image_id": "sha256:721873c34ceb9f8d8fc265984940dc982404c105f19ad51be9fdc5970a6080ea",
+  "postgresql_version": "PostgreSQL 16.15 on x86_64-pc-linux-musl, compiled by gcc (Alpine 15.2.0) 15.2.0, 64-bit",
+  "output": "category-air|Test air|2\ncategory-other|Test other|2\nstation-1|location-1|Test location 1|2\nstation-2|location-2|Test location 2|2\nactive|2\ninactive|1\n|1\norg-assigned|Test organization|3\norg-empty|Test empty organization|0\nlocation-1|Test location 1|2\nlocation-2|Test location 2|2\n2024|2\n2025|1\nsensor-no-readings\nsensor-outside\nzone-1|Test zone 1|2|1\nzone-2|Test zone 2|2|1\nchannel-active|1|2024-12-31 23:00:00+00|2024-12-31 23:00:00+00\nchannel-outside|1|2025-01-31 23:00:00+00|2025-01-31 23:00:00+00\nchannel-unassigned|1|2025-01-01 00:00:00+00|2025-01-01 00:00:00+00\nstation-1|2\nstation-2|2\nMAD-AIR:8|ug/m3|2|20|10|10|10\nIndex Scan using observations_channel_id_observed_at_timestamp_role_key on observations  (cost=0.14..8.16 rows=1 width=40)\n  Index Cond: (channel_id = 'channel:22b22793147c07679ab9c6519ef25e4878314823835845b139091c1aa9033415'::text)\nSQL_QUERY_RESULT={\"PG01\" : [{\"category_id\":\"category-air\",\"category_name\":\"Test air\",\"sensor_count\":2}, {\"category_id\":\"category-other\",\"category_name\":\"Test other\",\"sensor_count\":2}]}\nSQL_QUERY_RESULT={\"PG02\" : [{\"station_id\":\"station-1\",\"location_id\":\"location-1\",\"location_name\":\"Test location 1\",\"sensor_count\":2}, {\"station_id\":\"station-2\",\"location_id\":\"location-2\",\"location_name\":\"Test location 2\",\"sensor_count\":2}]}\nSQL_QUERY_RESULT={\"PG03\" : [{\"administrative_status\":\"active\",\"sensor_count\":2}, {\"administrative_status\":\"inactive\",\"sensor_count\":1}, {\"administrative_status\":null,\"sensor_count\":1}]}\nSQL_QUERY_RESULT={\"PG04\" : [{\"organization_id\":\"org-assigned\",\"name\":\"Test organization\",\"sensor_count\":3}, {\"organization_id\":\"org-empty\",\"name\":\"Test empty organization\",\"sensor_count\":0}]}\nSQL_QUERY_RESULT={\"PG05\" : [{\"location_id\":\"location-1\",\"name\":\"Test location 1\",\"sensor_count\":2}, {\"location_id\":\"location-2\",\"name\":\"Test location 2\",\"sensor_count\":2}]}\nSQL_QUERY_RESULT={\"PG06\" : [{\"installation_year\":2024,\"sensor_count\":2}, {\"installation_year\":2025,\"sensor_count\":1}]}\nSQL_QUERY_RESULT={\"PG07\" : [{\"sensor_id\":\"sensor-no-readings\"}, {\"sensor_id\":\"sensor-outside\"}]}\nSQL_QUERY_RESULT={\"PG08\" : [{\"zone_id\":\"zone-1\",\"name\":\"Test zone 1\",\"sensor_count\":2,\"zone_rank\":1}, {\"zone_id\":\"zone-2\",\"name\":\"Test zone 2\",\"sensor_count\":2,\"zone_rank\":1}]}\nSQL_QUERY_RESULT={\"PG09\" : [{\"channel_id\":\"channel-active\",\"readings\":1,\"first_observed_at\":\"2024-12-31T23:00:00+00:00\",\"last_observed_at\":\"2024-12-31T23:00:00+00:00\"}, {\"channel_id\":\"channel-outside\",\"readings\":1,\"first_observed_at\":\"2025-01-31T23:00:00+00:00\",\"last_observed_at\":\"2025-01-31T23:00:00+00:00\"}, {\"channel_id\":\"channel-unassigned\",\"readings\":1,\"first_observed_at\":\"2025-01-01T00:00:00+00:00\",\"last_observed_at\":\"2025-01-01T00:00:00+00:00\"}]}\nSQL_QUERY_RESULT={\"PG10\" : [{\"station_id\":\"station-1\",\"channel_count\":2}, {\"station_id\":\"station-2\",\"channel_count\":2}]}\nFIXTURE_REMAINING=0\n",
+  "pg07_extended": {
+    "results": [
+      {
+        "sensor_id": "sensor-before"
+      },
+      {
+        "sensor_id": "sensor-no-readings"
+      },
+      {
+        "sensor_id": "sensor-outside"
+      }
+    ],
+    "rollback": true,
+    "cases": [
+      "inclusive_start",
+      "exclusive_end",
+      "before_start",
+      "just_before_end",
+      "no_readings",
+      "unlinked",
+      "multiple_channels_one_active",
+      "multiple_empty_channels_no_duplicates",
+      "administrative_state_independent"
+    ]
+  },
+  "queries_checked": 10,
+  "fixtures_rolled_back": true,
+  "pg07_unlinked_sensor_excluded": true,
+  "pg07_half_open_bounds_checked": true,
+  "finished_at": "2026-10-28T01:23:16.344107+00:00"
+}

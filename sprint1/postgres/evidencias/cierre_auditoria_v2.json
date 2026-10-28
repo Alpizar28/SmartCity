@@ -1,0 +1,298 @@
+{
+  "status": "PASS",
+  "base_commit": "b77e5497fa28f8c2b483b06e2e593d96b7bd0a5d",
+  "started_at": "2026-10-28T01:33:12.783225+00:00",
+  "archive_name": "SmartCity_DATASET_COMPLETO_PRIVADO.zip",
+  "archive_bytes": 729101163,
+  "generation": "expanded-v2-2025-01",
+  "contract": "madrid-draft-v2",
+  "shared_server_modified": false,
+  "scope": "v2 outputs, source hashes, accepted rows and historical PostgreSQL evidence; not a new massive SQL load",
+  "files_verified": {
+    "research/datasets/private_results/expanded-v2-2025-01/preparation.json": {
+      "bytes": 3447,
+      "sha256": "fa35e14e44edf4dcb5965038b780c0a9cb478b38354ba65af60273a115aa3636"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/quarantine.extjsonl": {
+      "bytes": 5352286,
+      "sha256": "a87e16d402e82234038343def4067d155110f3102979e129402f1f6c902131f2"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/incidents.extjsonl": {
+      "bytes": 7366117,
+      "sha256": "53e76b0762da4e04c6415231fbc43aa20df1f452e883e721e0b28cd41dfe0563"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/catalogs.json": {
+      "bytes": 5455014,
+      "sha256": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/administrative_seed.json": {
+      "bytes": 7405490,
+      "sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/identities.sqlite": {
+      "bytes": 407670784,
+      "sha256": "b50c1db33f21e4dcfde4142d675821ed49b67d4656cf1f4df1e3f2f2f2a11f81"
+    },
+    "research/datasets/raw/MAD-AIR-file.attempt1.bin": {
+      "bytes": 20166384,
+      "sha256": "9122af41d3e73e71f5a0e0a22b99a0cefbd4c7f8abe9e2fae344207482398471"
+    },
+    "research/datasets/raw/MAD-METEO-file.attempt1.bin": {
+      "bytes": 15267750,
+      "sha256": "ada9304d302ead850e45c404d279762b774cd6671391febfc531f6c3033f3852"
+    },
+    "research/datasets/raw/MAD-TRAFFIC-Jan2025.record89.bin": {
+      "bytes": 93223315,
+      "sha256": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+    },
+    "research/datasets/raw/212629-0-estaciones-control-aire-inventory.record39.bin": {
+      "bytes": 5310,
+      "sha256": "2c84ca974088a6d5de13509489196ddefeee83fcae4999798b00603aa951cd1b"
+    },
+    "research/datasets/raw/300360-0-meteorologicos-estaciones-inventory.record41.bin": {
+      "bytes": 4880,
+      "sha256": "a95a5d26d27912751589526dc13e6cf729cf49fd8222dc990d3030660acdb7c6"
+    },
+    "research/datasets/raw/MAD-TRAFFIC-META-file.attempt1.bin": {
+      "bytes": 714026,
+      "sha256": "2cd3a4e97a4e25589068616148cd84841dfa1db71844247f5bb874648e961286"
+    },
+    "research/datasets/raw/MAD-CRASH-file.attempt1.bin": {
+      "bytes": 6595925,
+      "sha256": "25a84e6af0b213d6194df7c378490ef9c68e0156c165e0761a0a6c7b7ae4e321"
+    },
+    "research/datasets/raw/sprint1-v2/traffic_dictionary.pdf": {
+      "bytes": 991314,
+      "sha256": "17562978ce1b7930c6c720db37f055cb3459e30b8cec50d2a671682b215b9de9"
+    },
+    "research/datasets/private_results/phase5/catalogs.json": {
+      "bytes": 5511397,
+      "sha256": "e69fe76717ff94a03229baa0c4020ac07202ed37b2a24e084f36c33e60d8eac5"
+    },
+    "research/datasets/results/LON-AIR-META-schema_quality.json": {
+      "bytes": 6416,
+      "sha256": "9d5aa3462857a1858c30ccba557dc273b1a4c8cc0802e331b29e06524167e83d"
+    },
+    "research/datasets/results/MAD-AIR-META-schema_quality.json": {
+      "bytes": 9644,
+      "sha256": "f4752f53bff1c0ecd57ad36f681be0cbd78974913e862892d6da24bd6cd9c43c"
+    },
+    "research/datasets/results/MAD-METEO-META-schema_quality.json": {
+      "bytes": 8993,
+      "sha256": "b4fe8a6f460fe9c0ce904b5bc61156f76ea0b70a6bb9c4fe90a94aa8645f712a"
+    },
+    "research/datasets/results/MAD-TRAFFIC-META-schema_quality.json": {
+      "bytes": 3800,
+      "sha256": "a88afd9fbc99b95b9f087c50e5f2f87ed01a7d98de21d041ccf60a3f10a903a2"
+    },
+    "research/datasets/results/expanded-2025/administrative_manifest.json": {
+      "bytes": 470,
+      "sha256": "72567593767123bc35b00230e547338076c295782f0397c5cda6fd94359a51c0"
+    },
+    "research/datasets/private_results/expanded-v2-2025-01/accepted.extjsonl": {
+      "bytes": 1472550998,
+      "sha256": "842052ca68b331121cc843bb6dd8273465c6442b1d99955d46f461a8af06daae"
+    }
+  },
+  "source_hashes": {
+    "sprint1/basico/preparar_v2.py": "c1eea65c2ca0eb1aecbfbe0d5a216985e14b265cd22ed05c2cc3b165f0b4f556",
+    "research/datasets/scripts/phase5_contract.py": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0",
+    "research/datasets/scripts/phase5_prepare.py": "df1eeb17c701554f0cfc66a4f75079841afe52bf0f3c088b7ce08477bc92c6a4",
+    "research/datasets/scripts/unified_expand.py": "16d8f9c907daba9c08000b52b4bfc4eab5e2822a6630898523db648ba21ce73b",
+    "research/datasets/scripts/unified_synthetic.py": "1c9728258894f65f1866c90ceb4e910f5a1550b5e49d2534cbdde438a84cb911",
+    "scripts/validar_v2.py": "78315a246f9301f46ba0c35f75f362e3a1beb8c90504e077cb60141ec35de9c4",
+    "sprint1/postgres/contract_v2.sql": "4caa9bf9cdb225f502770322960da02420039ffccead465f15f332229900d10a",
+    "sprint1/postgres/queries.sql": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9",
+    "research/datasets/scripts/phase5_postgresql.sql": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315",
+    "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json": "6800775f103b5dd50da838ff8a7e461cec113fb275a82ed6e6f73363d09a52b3",
+    "scripts/auditar_cierre_postgresql.py": "c1a06c0b8c6b9fe326cc08ec751cc5cfb030e62d4deea58775eb93d3655c48d1"
+  },
+  "catalog_search": [
+    {
+      "path": "research/datasets/private_results/expanded-v2-2025-01/catalogs.json",
+      "top_level_fields": [
+        "schema_version",
+        "stations",
+        "channels",
+        "zones",
+        "measurement_types",
+        "source_versions",
+        "sources"
+      ],
+      "sensor_id_fields": {
+        "null": 360
+      }
+    },
+    {
+      "path": "research/datasets/private_results/phase5/catalogs.json",
+      "top_level_fields": [
+        "stations",
+        "channels",
+        "zones"
+      ],
+      "sensor_id_fields": {
+        "null": 462
+      }
+    },
+    {
+      "path": "research/datasets/results/LON-AIR-META-schema_quality.json",
+      "top_level_fields": [
+        "source",
+        "rows",
+        "columns",
+        "keys",
+        "duplicate_key_rows",
+        "exact_duplicate_rows",
+        "required_missing_rows",
+        "attributes"
+      ],
+      "sensor_id_fields": {}
+    },
+    {
+      "path": "research/datasets/results/MAD-AIR-META-schema_quality.json",
+      "top_level_fields": [
+        "source",
+        "rows",
+        "columns",
+        "keys",
+        "duplicate_key_rows",
+        "exact_duplicate_rows",
+        "required_missing_rows",
+        "attributes"
+      ],
+      "sensor_id_fields": {}
+    },
+    {
+      "path": "research/datasets/results/MAD-METEO-META-schema_quality.json",
+      "top_level_fields": [
+        "source",
+        "rows",
+        "columns",
+        "keys",
+        "duplicate_key_rows",
+        "exact_duplicate_rows",
+        "required_missing_rows",
+        "attributes"
+      ],
+      "sensor_id_fields": {}
+    },
+    {
+      "path": "research/datasets/results/MAD-TRAFFIC-META-schema_quality.json",
+      "top_level_fields": [
+        "source",
+        "rows",
+        "columns",
+        "keys",
+        "duplicate_key_rows",
+        "exact_duplicate_rows",
+        "required_missing_rows",
+        "attributes"
+      ],
+      "sensor_id_fields": {}
+    },
+    {
+      "path": "research/datasets/results/expanded-2025/administrative_manifest.json",
+      "top_level_fields": [
+        "administrative_seed_file",
+        "administrative_seed_sha256",
+        "catalogs_sha256",
+        "generator_version",
+        "seed",
+        "counts",
+        "synthetic_measurements",
+        "channels_assigned_to_synthetic_sensors"
+      ],
+      "sensor_id_fields": {}
+    }
+  ],
+  "catalog_counts": {
+    "stations": 5133,
+    "channels": 360,
+    "zones": 21,
+    "measurement_types": 12,
+    "source_versions": 6,
+    "sources": 3
+  },
+  "administration": {
+    "counts": {
+      "sensors": 5133,
+      "users": 5133,
+      "organizations": 1
+    },
+    "generator": "admin-demo-v2",
+    "seed": 20261010,
+    "origin": "synthetic",
+    "reproduced_exactly": true,
+    "physical_sensor_channel_links": 0
+  },
+  "official_headers": {
+    "raw/MAD-AIR-file.attempt1.bin": "\"PROVINCIA\";\"MUNICIPIO\";\"ESTACION\";\"MAGNITUD\";\"PUNTO_MUESTREO\";\"ANO\";\"MES\";\"DIA\";\"H01\";\"V01\";\"H02\";\"V02\";\"H03\";\"V03\";\"H04\";\"V04\";\"H05\";\"V05\";\"H06\";\"V06\";\"H07\";\"V07\";\"H08\";\"V08\";\"H09\";\"V09\";\"H10\";\"V10\";\"H11\";\"V11\";\"H12\";\"V12\";\"H13\";\"V13\";\"H14\";\"V14\";\"H15\";\"V15\";\"H16\";\"V16\";\"H17\";\"V17\";\"H18\";\"V18\";\"H19\";\"V19\";\"H20\";\"V20\";\"H21\";\"V21\";\"H22\";\"V22\";\"H23\";\"V23\";\"H24\";\"V24\"",
+    "raw/212629-0-estaciones-control-aire-inventory.record39.bin": "CODIGO;CODIGO_CORTO;ESTACION;DIRECCION;LONGITUD_ETRS89;LATITUD_ETRS89;ALTITUD;COD_TIPO;NOM_TIPO;NO2;SO2;CO;PM10;PM2_5;O3;BTX;COD_VIA;VIA_CLASE;VIA_PAR;VIA_NOMBRE;Fecha alta;COORDENADA_X_ETRS89;COORDENADA_Y_ETRS89;LONGITUD;LATITUD",
+    "raw/300360-0-meteorologicos-estaciones-inventory.record41.bin": "CÓDIGO;CÓDIGO_CORTO;ESTACION;DIRECCION;LONGITUD_ETRS89;LATITUD_ETRS89;ALTITUD;VV (81);DV (82);T (83);HR (86);PB (87);RS (88);P (89);COD_VIA;VIA_CLASE;VIA_PAR;VIA_NOMBRE;NUM_VIA;COORDENADA_X_ETRS89;COORDENADA_Y_ETRS89;LONGITUD;LATITUD",
+    "raw/MAD-TRAFFIC-META-file.attempt1.bin": "\"tipo_elem\";distrito;id;\"cod_cent\";\"nombre\";utm_x;utm_y;longitud;latitud",
+    "traffic_zip/01-2025.csv": "id;\"fecha\";\"tipo_elem\";\"intensidad\";\"ocupacion\";\"carga\";\"vmed\";\"error\";periodo_integracion"
+  },
+  "query_checks": {
+    "PG01": {
+      "rows": 12,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "a0089ffd832331c342fa7e2a16017077fc107a8ca05521fefb4d73fa22578b87"
+    },
+    "PG02": {
+      "rows": 5133,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "84152c98d5744ff43caa0e503b1e51dd46e70c1c21669e2633b01cc0708e9d0d"
+    },
+    "PG03": {
+      "rows": 2,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "f9a3eba4dd3038149d5035fae0d20bd24e2117c99aac5409e68a85632f69089a"
+    },
+    "PG04": {
+      "rows": 1,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "3a06c86e55d6c8d85e96f5b28f152abdb3bde7224caf2c9fd5809e6cca14ca74"
+    },
+    "PG05": {
+      "rows": 5133,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "7c38cc706d0d9c9f4c07d18bdac1c2f1fda1bd867dd403f42ed57900306196cf"
+    },
+    "PG06": {
+      "rows": 5,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "7c2dd3da5fe597457d6af9540810a80e020c78d4f2a7e85ef0bfb1b573ede2be"
+    },
+    "PG07": {
+      "rows": 0,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "PG08": {
+      "rows": 21,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "d3581acaefb25e5aa9291079afe95bbd4eb2ea61f0ff6be813074c36a71892a0"
+    },
+    "PG09": {
+      "rows": 360,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "237ee562d49935781d5909bf3541144390a35156d8290cb2df430eb77cd54e0c"
+    },
+    "PG10": {
+      "rows": 5133,
+      "historical_total_and_sample_match": true,
+      "independent_result_sha256": "3ce98321e631d879df9582f3dd858df5de1c2a28812b05bc460a58a337010309"
+    }
+  },
+  "accepted": 748889,
+  "by_source": {
+    "MAD-AIR": 91959,
+    "MAD-TRAFFIC": 656930
+  },
+  "duplicates": 0,
+  "accepted_rows_references_checked": 748889,
+  "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0",
+  "physical_accreditation": "BLOCKED: no independently identified device or dated device-channel mapping",
+  "historical_report": "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json",
+  "finished_at": "2026-10-28T01:36:09.592445+00:00"
+}

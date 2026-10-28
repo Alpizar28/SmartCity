@@ -46,6 +46,12 @@ Reanudación actual: reutilizar cache completa/hash válido o reconstruir determ
 
 ## 3. E-R PostgreSQL — doce tablas preliminares
 
+Revisión PostgreSQL v2: se mantienen las mismas doce tablas y FK. La extensión
+`sprint1/postgres/contract_v2.sql` añade dos atributos de observación y cambia
+CHECK, no cardinalidades. [Auditoría formal](../../sprint1/postgres/normalizacion_3fn.md):
+`channels` y `observations` **no cumplen 3FN estricta**; el diagrama refleja el
+DDL implementado, no la descomposición propuesta.
+
 Leyenda: `||` exactamente uno; `o|` cero o uno; `o{` cero o muchos. Se permite un padre sin hijos; una FK nullable permite hijo sin padre. Las FK NOT NULL obligan a cada hijo a un padre. Se usan relaciones no identificadoras porque las PK de los hijos son independientes de las FK. **No se infiere obligatoriedad de hijos ni unicidad uno-a-uno de la muestra.**
 
 ```mermaid
@@ -150,10 +156,13 @@ erDiagram
     text payload_hash
     text transformation_version
     text catalog_version
+    text schema_version
+    int integration_sample_count
+    text zone_scope
   }
 ```
 
-Este diagrama muestra atributos seleccionados, no sustituye el diccionario/DDL completo. `users` es independiente, sin FK. `sensors`, `users` y maestros físicos no se pueblan con datos ficticios. El trigger de fuente coherente es una restricción adicional, no otra FK. Las relaciones de `inventory_version` y unidad/tipo son las reales del DDL.
+Este diagrama muestra atributos seleccionados, no sustituye el diccionario/DDL completo. `users` es independiente, sin FK. En la muestra histórica los maestros físicos quedaron vacíos; la entrega v2 sí carga `sensors`, `users` y `organizations` **sintéticos administrativos**, sin enlazarlos a canales observados. El trigger de fuente coherente es una restricción adicional, no otra FK. Las relaciones de `inventory_version` y unidad/tipo son las reales del DDL. Las UNIQUE compuestas y sus atributos NOT NULL están detallados en la auditoría formal; el dibujo no representa una restricción uno-a-uno por estación ni sensor.
 
 ## 4. Relación entre motores: coherencia, no FK cruzada
 

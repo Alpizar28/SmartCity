@@ -24,7 +24,7 @@ incorpora conteo de muestras y alcance de zona, y exige reglas de aceptación
 específicas para tráfico. Se niega a operar si ya hay fuentes u observaciones.
 No es una migración para bases compartidas o pobladas.
 
-\subsection{Modelo relacional anual}
+\subsection{Modelo relacional canónico}
 El DDL está en \archivo{research/datasets/scripts/phase5_postgresql.sql}.
 Contiene doce tablas centrales: fuentes, versiones, zonas, ubicaciones,
 estaciones, categorías, tipos de medición, organismos, usuarios, sensores,
@@ -63,11 +63,50 @@ Un trigger rechaza modificaciones de observaciones y comprueba coherencia tempor
 La vista \archivo{channel_activity} resume actividad por canal y la función
 \archivo{channels_at_station} cuenta canales, no sensores físicos.
 
-La separación de catálogos evita repetir nombres y propiedades de entidades en
-cada hecho. No obstante, esta motivación no sustituye una demostración formal
-de tercera forma normal. \pendiente{Daniel debe documentar claves candidatas,
-dependencias funcionales y justificación de 3FN para todas las relaciones,
-incluyendo redundancias mantenidas para integridad y trazabilidad.}
+\subsubsection{Claves, dependencias y resultado formal de normalización}
+La auditoría completa de Daniel queda en
+\archivo{sprint1/postgres/normalizacion_3fn.md}; evalúa las doce relaciones,
+incluidos todos los atributos de v2. El E--R completo reutilizado está en
+\archivo{docs/arquitectura/diagramas.md}, sección 3: incluye doce tablas y las
+FK reales, no la tabla demo. Un padre admite cero a muchos hijos; cada FK
+obligatoria exige un padre y cada FK nullable admite cero o uno. Usuarios no
+tiene FK. La figura de este informe es solamente un extracto.
+
+Además de las PK, son claves candidatas el correo NOT NULL UNIQUE de usuarios,
+fuente/código de estación, fuente/código de magnitud, estación/clave de canal y
+canal/fecha UTC/rol de observación. Las UNIQUE que contienen una PK más otra
+columna son superclaves no mínimas, no candidatas nuevas. No se deducen claves
+de coincidencias del lote, como un sensor demo por estación.
+
+Se usa la definición formal: para toda dependencia funcional no trivial
+\(X\to A\), \(X\) debe ser superclave o \(A\) atributo primo.
+Diez relaciones satisfacen 3FN respecto de las dependencias justificadas;
+\textbf{canales y observaciones no satisfacen 3FN estricta}.
+En canales, estación determina fuente mediante la FK compuesta al catálogo:
+estación no es superclave y fuente no es atributo primo. También magnitud
+determina fuente. En observaciones, canal determina fuente y versión de origen
+determina fuente, sin ser superclaves. La dependencia canal--fuente es parcial
+respecto de la clave candidata canal/fecha/rol; estación--fuente también es
+parcial respecto de estación/clave del canal. Por ello estas dos relaciones
+tampoco cumplen 2FN respecto de todas sus candidatas.
+
+Las redundancias se mantienen deliberadamente para coherencia y trazabilidad,
+pero una FK no las convierte en 3FN. La propuesta sin pérdida consiste en
+proyectar la fuente fuera de canales y observaciones y reconstruirla desde
+estación/canal; la intersección es clave del catálogo correspondiente. Las
+reglas de igualdad de fuente entre estación, magnitud y snapshot requerirían
+controles de join adicionales. También se analizan reloj original, constantes
+contractuales, referencia JSON y reglas de aceptación por fuente de v2;
+eliminar solo fuente no certifica toda la descomposición. No se aplicó migración
+ni se rompió el DTO compartido. El equipo debe resolver esta excepción antes
+de declarar normalización estricta del esquema completo.
+
+JSONB se trata como dominio tipado atómico para la evaluación relacional; no se
+afirma normalización escalar recursiva de listas u objetos. Los CHECK y el
+trigger no sustituyen la validación del ETL: CHECK admite UNKNOWN en campos
+opcionales, y el bloqueo de UPDATE no impide DELETE o TRUNCATE. La evidencia
+local v2 enumera 12 PK, 10 UNIQUE, 22 FK, 27 CHECK y 27 índices B-tree; no hay
+historial temporal automático ni integridad distribuida con MongoDB.
 
 \subsection{Núcleo relacional de demostración}
 \archivo{sprint1/postgres/schema_proposal.sql} define fuentes, versiones,

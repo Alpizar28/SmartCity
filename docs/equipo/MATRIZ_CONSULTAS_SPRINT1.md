@@ -8,6 +8,13 @@ un informe con error no cuenta como ejecución aprobada.
 SQL: `sprint1/postgres/queries.sql`. Mongo: `sprint1/basico/consultas_mongodb_v2.js`.
 Las consultas no equivalen automáticamente a aceptación académica del alcance.
 
+**Cierre PostgreSQL:** [fichas PG01–PG10 y resultados v2](../../sprint1/postgres/evidencia_final_postgresql.md),
+[normalización formal](../../sprint1/postgres/normalizacion_3fn.md) y
+[PG07: pruebas y solicitud de inventario](../../sprint1/postgres/pg07_limite_evidencia.md).
+El PASS masivo PostgreSQL se cotejó con el paquete privado y un cálculo Python
+independiente; tres reportes nuevos separan auditoría completa, SQL controlado y
+subconjunto observado v2. No certifican inactividad física ni cierre MongoDB.
+
 | ID | Consulta | Datos y límite |
 |---|---|---|
 | PG01 | Sensores por tipo | Entidades administrativas sintéticas autorizadas. |

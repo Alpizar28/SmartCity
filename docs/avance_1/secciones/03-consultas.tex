@@ -32,8 +32,40 @@ de cada consulta con resultados esperados sobre fixtures revertidas al finalizar
 
 PG07 requiere una relación conocida sensor--canal antes de evaluar ausencia
 de lecturas en enero. Excluye relaciones desconocidas y usa una ventana
-semiabierta en hora de Madrid. La prueba incluye ambos límites, un sensor con
-canal sin lecturas y un sensor sin canal; no acredita identidad física observada.
+semiabierta en hora de Madrid. La prueba ampliada ejecuta el SQL canónico exacto:
+inicio incluido, fin excluido, instantes adyacentes, varios canales con uno
+activo, varios canales vacíos sin duplicados y estado administrativo independiente.
+Las fixtures se revierten; no acreditan identidad física observada. La revisión
+del paquete v2 confirma cero vínculos físicos y catálogos de canales derivados
+de observaciones. La solicitud de inventario independiente fechado para José
+queda en \archivo{sprint1/postgres/pg07_limite_evidencia.md}.
+
+\begin{center}
+\begin{tabular}{lr@{\qquad}lr}
+\toprule Consulta & Filas v2 & Consulta & Filas v2 \\
+\midrule
+PG01 & 12 & PG06 & 5 \\
+PG02 & 5.133 & PG07 & 0 \\
+PG03 & 2 & PG08 & 21 \\
+PG04 & 1 & PG09 & 360 \\
+PG05 & 5.133 & PG10 & 5.133 \\
+\bottomrule
+\end{tabular}
+\end{center}
+Estas cantidades proceden del PASS masivo v2, no del benchmark anual v1.
+La auditoría actual verificó hashes, todas las identidades y referencias del
+archivo, y contrastó independientemente cantidades y muestras de PG01--PG10.
+PG01--PG06 y PG08 usan administración sintética, PG09 lecturas reales y PG10
+canales de catálogo. Sus fichas, muestras y limitaciones académicas están en
+\archivo{sprint1/postgres/evidencia_final_postgresql.md}.
+
+Se demostró además CTE y DENSE\_RANK sobre canales con lecturas reales, sin
+depender de sensores demo: \archivo{sprint1/postgres/sql_avanzado_observado.sql}.
+La prueba v2 local cargó solo 2.907 lecturas auténticas seleccionadas (2.843 aire
+del primer día local y 64 tráfico), no todo enero. El ranking devuelve cinco
+filas y preserva empates; las once agregaciones de aire por magnitud/unidad
+demuestran SUM, AVG, MIN y MAX sin mezclar unidades. Son evidencia de operaciones,
+no un ranking representativo de toda la red física.
 
 El núcleo demuestra SELECT, filtros, ordenamiento, DISTINCT, JOIN, GROUP BY,
 HAVING, agregaciones, CTE, ventanas, subconsultas y fechas en distintos archivos.
@@ -79,7 +111,8 @@ deleteOne se prueban en la integración con colecciones de demostración aislada
 Las actualizaciones y borrados no deben aplicarse a las observaciones originales.
 
 \subsection{Ficha mínima para completar cada consulta}
-Daniel y Kembly deben registrar, para cada ID:
+Las fichas PostgreSQL de Daniel están adjuntas en el documento técnico citado.
+Para MongoDB, Kembly debe completar o cotejar, para cada ID:
 \begin{enumerate}
 \item Pregunta, contrato, esquema/colección y generación utilizada.
 \item Archivo y SQL o pipeline exacto, con sus parámetros.

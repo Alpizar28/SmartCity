@@ -10,6 +10,8 @@ La nueva carga masiva MongoDB todavía no tiene PASS confirmado; la prueba
 pequeña corregida no sustituye esa validación.
 
 \subsection{Demostración local del 27 de octubre}
+Esta subsección conserva evidencia histórica del equipo, no reejecutada en el
+cierre PostgreSQL de esta sesión.
 Se ejecutaron 51 pruebas Python y 13 Node, todas aprobadas. La integración
 PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,
 uno de aire, uno meteorológico y uno de tráfico, adaptados en copias de prueba.
@@ -32,6 +34,35 @@ NULL, organismos vacíos, empates de ranking y los límites temporales de PG07.
 Las fixtures son fabricadas exclusivamente para probar SQL, se revierten y nunca
 se presentan como observaciones de la fuente pública. El informe nuevo queda en
 \archivo{/tmp/opencode/smartcity-s1-sql-*.json}.
+
+\subsection{Cierre verificable del aporte PostgreSQL}
+La evidencia revisable queda en \archivo{sprint1/postgres/evidencias/}:
+\archivo{cierre_auditoria_v2.json}, \archivo{cierre_pg07_controlado.json} y
+\archivo{cierre_subconjunto_v2.json}. La primera valida los seis derivados v2,
+sus originales referenciados, 748.889 identidades, payloads y referencias, sin
+duplicados ni atribuciones a sensores demo. Conserva la huella de identidades
+del PASS masivo previo; no representa una nueva carga masiva.
+
+La segunda ejecuta PG01--PG10 y los casos ampliados de PG07 con ROLLBACK.
+La tercera ejecuta el contrato v2 sobre un subconjunto real explícito, coteja
+las diez consultas con Python, agrega aire y prueba CTE/ventanas, inventaría
+restricciones e índices y guarda EXPLAIN ANALYZE en transacciones READ ONLY.
+El filtro selectivo utiliza el índice natural canal/fecha/rol; el ranking
+recorre el subconjunto con Seq Scan y WindowAgg. Estos planes no son un benchmark
+de las 748.889 filas. Los tiempos anuales de
+\archivo{sprint1/postgres/performance_real_2025.md} siguen etiquetados v1.
+
+Se aprobaron 59 pruebas Python y la prueba SQL canónica ampliada en PostgreSQL
+16.15, usando la imagen local identificada por hash. La entrada unificada
+offline se detuvo por ausencia de Node.js; no se declara PASS completo de esa
+entrada ni se instaló software. No se repitieron MongoDB, la integración
+\archivo{--engines} completa ni la carga \archivo{--datos}: faltan sus imágenes
+fijadas y dependencias de preparación. No se modificaron servidores compartidos.
+Los contenedores PostgreSQL propios fueron eliminados.
+
+No hay distribución LaTeX disponible: se realizaron controles estáticos, pero
+\textbf{no se compiló ni se declara un PDF verificado}. Fernanda debe compilar
+en su entorno y revisar maquetación y referencias antes de entregar.
 
 \subsection{Carga anual: evidencia previa, no reejecución de hoy}
 El mínimo es de 100.000 registros PostgreSQL y 500.000 documentos MongoDB
@@ -93,8 +124,10 @@ retención externa o restauración del servidor compartido.
 
 \subsection{Qué evidencia falta adjuntar}
 \begin{itemize}
-\item Salidas verificables de cada una de las veinte consultas en la ruta elegida.
-\item Diagrama E--R completo y dependencias funcionales revisados por Daniel.
+\item Completar las salidas MongoDB y la revisión cruzada de las veinte consultas;
+PostgreSQL ya tiene matriz, muestras y comprobación independiente adjuntas.
+\item Aprobar con el equipo la excepción de normalización identificada por Daniel
+y la propuesta de descomposición; el E--R completo está enlazado.
 \item Modelo documental final, ejemplos BSON y revisión de Kembly.
 \item Capturas legibles y registro de revisión cruzada, sin credenciales ni hosts privados.
 \item Comprobación de acceso, conteos y respaldo compartidos si se usan en la entrega.
