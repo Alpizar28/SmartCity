@@ -1,0 +1,466 @@
+% Versión breve basada en el documento compartido por Fernanda.
+% Autocontenida: no necesita imágenes ni otros archivos para compilar.
+\documentclass[12pt,letterpaper]{article}
+\usepackage[letterpaper,margin=1in]{geometry}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[utf8]{inputenc}
+\fi
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-tabla]{babel}
+\usepackage{mathptmx}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage{amsmath}
+\usepackage{microtype}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta}
+\definecolor{scAzul}{HTML}{244C65}
+\definecolor{scVerde}{HTML}{32685D}
+\definecolor{scGris}{HTML}{F3F5F7}
+\usepackage{xurl}
+\usepackage[hidelinks]{hyperref}
+\setlength{\emergencystretch}{2em}
+\hypersetup{pdftitle={SmartCity Analytics: documentación técnica del Sprint 1},
+  pdfauthor={Daniel Burger, José Pablo Alpízar, Fernanda Vargas, Kembly Garro}}
+
+\begin{document}
+\hypersetup{pageanchor=false}
+\begin{titlepage}
+    \centering
+    \vspace*{1.8cm}
+    {\large Instituto Tecnológico de Costa Rica\par}
+    \vspace{0.8cm}
+    {\large Escuela de Ingeniería en Computadores\par}
+    \vspace{0.8cm}
+    {\large CE-3191 Base de Datos\par}
+    \vspace{1.8cm}
+    {\large SmartCity Analytics\par}
+    \vspace{0.5cm}
+    {\Large\scshape Documentación técnica --- Sprint 1\par}
+    \vspace{1.8cm}
+    {\large Integrantes:\par}
+    \vspace{0.5cm}
+    {\large Daniel Burger --- 2024145222\par}
+    \vspace{0.2cm}
+    {\large José Pablo Alpízar --- 2024088025\par}
+    \vspace{0.2cm}
+    {\large Fernanda Vargas --- 2022008164\par}
+    \vspace{0.2cm}
+    {\large Kembly Garro --- 2024134020\par}
+    \vfill
+    {\large Cartago, Costa Rica\par}
+    \vspace{0.2cm}
+    {\large Octubre, 2026\par}
+\end{titlepage}
+\pagenumbering{arabic}
+\hypersetup{pageanchor=true}
+
+\section{Descripción del problema}
+
+Las ciudades generan constantemente grandes volúmenes de información provenientes
+de distintas fuentes, como sensores, dispositivos IoT y plataformas de monitoreo
+urbano. Estos datos son útiles para la gestión municipal, por ejemplo, en calidad
+del aire, condiciones climáticas y tráfico vehicular. El reto consiste en gestionar
+información con estructuras y necesidades diferentes mediante tecnologías de
+almacenamiento complementarias.
+
+Por un lado, existen datos estructurados y relacionales, como ubicaciones,
+usuarios y organismos responsables, que requieren consistencia e integridad
+referencial. Por otro, las lecturas y los eventos pueden contener atributos
+variables y estructuras anidadas. Para abordar esta problemática, el primer sprint
+implementa una arquitectura híbrida: PostgreSQL organiza la información mediante
+un modelo normalizado hasta la tercera forma normal, mientras que MongoDB permite
+trabajar con documentos BSON y Aggregation Framework.
+
+\section{Fuentes de datos}
+
+Tras evaluar distintas opciones, se seleccionaron los datos abiertos del
+Ayuntamiento de Madrid. La generación v2 validada contiene \textbf{748.889 lecturas
+de enero de 2025}: 91.959 de calidad del aire y 656.930 de tráfico vehicular.
+Meteorología fue investigada, pero no forma parte del lote aceptado. El tráfico
+corresponde a una selección de puntos de medida, no a todo el conjunto de Madrid.
+
+Como complemento, se utilizan 14.388 accidentes de 2026, agrupados por expediente
+y anonimizados en la salida preparada. Estos incidentes se mantienen separados
+de las lecturas de 2025 y no se suman a su volumen.
+
+Las fuentes oficiales omiten algunos atributos administrativos solicitados por el
+proyecto. Por ello se incorporan 5.133 sensores, 5.133 usuarios y un organismo
+\textbf{sintéticos}, generados de forma determinista y con su procedencia
+identificada. Estos datos permiten demostrar las entidades del modelo, pero no
+acreditan dispositivos físicos, instalaciones ni responsables municipales reales.
+Las mediciones observadas no se modifican para completar esos atributos.
+
+\section{Arquitectura}
+
+La arquitectura de SmartCity Analytics se concibe bajo un enfoque híbrido y
+modular para atender las diferencias entre datos relacionales y documentales.
+
+\subsection{Enfoque híbrido de persistencia}
+\begin{itemize}
+    \item \textbf{Capa relacional:} PostgreSQL almacena catálogos, entidades
+    administrativas y observaciones mediante catorce tablas normalizadas.
+    Las claves, restricciones y triggers comprueban las relaciones del modelo.
+    \item \textbf{Capa documental:} MongoDB almacena lecturas, incidentes,
+    eventos derivados, alertas y entidades administrativas. Los documentos
+    conservan metadatos de calidad, fechas y procedencia.
+\end{itemize}
+
+\subsection{Flujo de integración e ingestión}
+\begin{enumerate}
+    \item \textbf{Extracción y normalización:} Se procesan archivos históricos
+    para revisar fechas, unidades y referencias a los originales mediante SHA-256.
+    \item \textbf{Carga y control de integridad:} Se cargan las lecturas aceptadas
+    y se comprueba que repetir el procesamiento no duplique ni altere su contenido.
+    \item \textbf{Consulta y verificación:} Se ejecutan las consultas de ambos
+    motores y se contrastan los resultados con cálculos independientes en Python.
+\end{enumerate}
+
+Ambos motores reciben la misma generación preparada; no se implementa una
+sincronización continua ni una transacción distribuida entre ellos.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+ bloque/.style={draw=scAzul!65,rounded corners=3pt,fill=scGris,
+ align=flush center,text width=3.7cm,minimum height=1.15cm,
+ inner sep=6pt,font=\small},
+ flecha/.style={-{Latex[length=2mm]},draw=scAzul,line width=0.8pt}]
+\node[bloque] (origen) at (0,0)
+ {\textbf{1. Fuentes oficiales}\\Archivos históricos\\Aire y tráfico, enero 2025};
+\node[bloque,fill=scAzul!6] (preparacion) at (4.6,0)
+ {\textbf{2. Preparación}\\Fechas, unidades y calidad\\Referencias y hashes};
+\node[bloque,draw=scVerde,fill=scVerde!8] (lote) at (9.2,0)
+ {\textbf{3. Paquete aceptado}\\748.889 lecturas\\misma generación v2};
+\node[bloque,fill=scAzul!6] (pg) at (6.7,-2.3)
+ {\textbf{PostgreSQL}\\Catorce tablas en 3FN\\Relaciones y vistas};
+\node[bloque,draw=scVerde,fill=scVerde!8] (mongo) at (11.7,-2.3)
+ {\textbf{MongoDB}\\Documentos BSON\\Índices y agregaciones};
+\node[bloque,text width=6.8cm] (comparacion) at (9.2,-4.5)
+ {\textbf{4. Verificación independiente}\\Consultas frente a Python; identidad, contenido y replay};
+\draw[flecha] (origen) -- (preparacion);
+\draw[flecha] (preparacion) -- (lote);
+\coordinate (reparto) at (9.2,-1.15);
+\draw[draw=scAzul,line width=0.8pt] (lote.south) -- (reparto);
+\fill[scAzul] (reparto) circle (1.3pt);
+\draw[flecha] (reparto) -| (pg.north);
+\draw[flecha] (reparto) -| (mongo.north);
+\draw[flecha] (pg.south) -- ++(0,-0.35) -| ([xshift=-1.6cm]comparacion.north);
+\draw[flecha] (mongo.south) -- ++(0,-0.35) -| ([xshift=1.6cm]comparacion.north);
+\end{tikzpicture}%
+}
+\caption{Flujo del lote observado. Los dos motores reciben el mismo paquete;
+las flechas no representan sincronización entre bases ni procesamiento distribuido.}
+\label{fig:flujo}
+\end{figure}
+
+\section{Justificación tecnológica}
+
+\subsection{PostgreSQL y tercera forma normal}
+PostgreSQL permite representar relaciones mediante claves primarias y foráneas,
+evitando referencias inconsistentes. La normalización separa información de
+fuentes, estaciones, tipos de dispositivos y observaciones para reducir redundancias
+y anomalías de actualización. Las consultas SQL permiten relacionar estos datos
+y obtener resultados verificables.
+
+\subsection{MongoDB}
+MongoDB permite conservar documentos con estructuras anidadas y atributos
+variables. Sus validadores establecen controles sobre las colecciones principales,
+mientras que Aggregation Framework facilita filtros, agrupaciones, conteos y
+promedios. Esta flexibilidad resulta útil para representar lecturas y documentos
+con distinta estructura, sin implicar ausencia de reglas de calidad.
+
+\subsection{Sinergia del enfoque híbrido}
+Ambos paradigmas permiten estudiar representaciones complementarias de los datos.
+La consistencia entre las lecturas se comprueba comparando identificadores y
+hashes de contenido. No se realizó una comparación de rendimiento que permita
+declarar un motor superior al otro.
+
+\section{Modelo relacional}
+
+La implementación PostgreSQL se diseñó bajo un modelo de catorce tablas normalizado
+hasta 3FN respecto de las dependencias funcionales documentadas. Los campos JSONB
+se consideran dominios SQL indivisibles; no se afirma normalización recursiva de
+sus propiedades. El modelo organiza la información de forma que las observaciones
+no repitan atributos determinados por los catálogos.
+
+Se distingue entre estación, canal lógico y sensor físico. Una estación identifica
+un sitio de la fuente; un canal representa una serie de una magnitud; una
+observación registra un valor en un instante. La relación entre canal y sensor
+solo se incorpora cuando se conoce. En las lecturas públicas actuales no existen
+asignaciones físicas acreditadas.
+
+\begin{figure}[htbp]
+\centering
+{\small\textbf{A. Observaciones y catálogos}}\par\smallskip
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+ entidad/.style={draw=scAzul!65,rounded corners=3pt,fill=scAzul!5,
+ align=flush center,text width=3.9cm,minimum height=1.2cm,inner sep=5pt,font=\small},
+ relacion/.style={-{Latex[length=2mm]},draw=scAzul,line width=0.7pt}]
+\node[entidad] (sta) at (0,0)
+ {\textbf{stations}\\PK: station\_id\\FK: location\_id $\to$ B};
+\node[entidad] (cha) at (5.1,0)
+ {\textbf{channels}\\PK: channel\_id\\Serie de una magnitud};
+\node[entidad] (obs) at (10.2,0)
+ {\textbf{observations}\\PK: measurement\_id\\Valor, instante y procedencia};
+\node[entidad] (src) at (0,-2.1)
+ {\textbf{sources}\\PK: source\_id};
+\node[entidad] (mag) at (5.1,-2.1)
+ {\textbf{measurement\_types}\\PK: measurement\_type\\Magnitud y unidad};
+\node[entidad] (ver) at (10.2,-2.1)
+ {\textbf{source\_versions}\\PK: source\_version\\Snapshot original};
+\draw[relacion] (cha.west) -- (sta.east);
+\draw[relacion] (obs.west) -- (cha.east);
+\draw[relacion] (sta.south) -- (src.north);
+\draw[relacion] (cha.south) -- (mag.north);
+\draw[relacion] (obs.south) -- (ver.north);
+\draw[relacion] (mag.west) -- (src.east);
+\draw[relacion] (ver.south) -- ++(0,-0.55) -| (src.south);
+\end{tikzpicture}%
+}
+\par\medskip
+{\small\textbf{B. Territorio y administración}}\par\smallskip
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+ entidad/.style={draw=scVerde!70,rounded corners=3pt,fill=scVerde!5,
+ align=flush center,text width=3.9cm,minimum height=1.2cm,inner sep=5pt,font=\small},
+ relacion/.style={-{Latex[length=2mm]},draw=scVerde,line width=0.7pt},
+ nota/.style={font=\scriptsize,align=flush center}]
+\node[entidad] (cat) at (0,0)
+ {\textbf{sensor\_categories}\\PK: category\_id};
+\node[entidad] (typ) at (5.1,0)
+ {\textbf{sensor\_types}\\PK: sensor\_type};
+\node[entidad] (sen) at (10.2,0)
+ {\textbf{sensors}\\PK: sensor\_id\\FK: station\_id $\to$ A};
+\node[entidad] (loc) at (0,-2.4)
+ {\textbf{locations}\\PK: location\_id\\FK: inventory\_version $\to$ A};
+\node[entidad] (lnk) at (5.1,-2.4)
+ {\textbf{channel\_sensors}\\PK/FK: channel\_id $\to$ A\\Asignación física conocida};
+\node[entidad] (org) at (10.2,-2.4)
+ {\textbf{organizations}\\PK: organization\_id};
+\node[entidad] (zon) at (0,-5.1)
+ {\textbf{zones}\\PK: zone\_id\\FK propia: parent\_zone\_id};
+\node[entidad] (usr) at (10.2,-5.1)
+ {\textbf{users}\\PK: user\_id\\Sin FK en este esquema};
+\draw[relacion] (typ.west) -- (cat.east);
+\draw[relacion] (sen.west) -- (typ.east);
+\draw[relacion] (sen.south) -- (org.north);
+\draw[relacion] (lnk.north) -- ++(0,0.35) -| ([xshift=-0.75cm]sen.south);
+\draw[relacion] (loc.south) -- (zon.north);
+\draw[relacion] (zon.west) -- ++(-0.45,0) |- ([yshift=-0.25cm]zon.south) -- (zon.south);
+\node[nota,text width=4cm] at (5.1,-5.1)
+ {A y B son dos vistas del mismo esquema.\\Las referencias entre paneles se indican en los campos FK.};
+\end{tikzpicture}%
+}
+\caption{Las catorce tablas, agrupadas para facilitar la lectura. Las flechas
+apuntan de hija a padre; las cuatro FK entre paneles se indican dentro de las cajas.
+PK: clave primaria. FK: clave foránea.}
+\label{fig:relacional}
+\end{figure}
+
+El esquema contiene diecisiete claves foráneas. Cada referencia obligatoria exige
+un padre y las opcionales permiten su ausencia. Un padre puede tener varias filas
+hijas, salvo la asignación de canal a sensor, limitada a una fila por canal.
+Las vistas reconstruyen los atributos compartidos sin duplicarlos en las tablas.
+El DDL completo, con atributos y restricciones, está en
+\path{sprint1/postgres/schema_v2_3nf.sql}.
+
+\section{Modelo documental}
+
+Para gestionar la información semiestructurada se implementa un entorno documental
+basado en MongoDB. La generación v2 utiliza siete colecciones:
+\texttt{readings}, \texttt{derived\_events}, \texttt{alerts},
+\texttt{incidents}, \texttt{organizations}, \texttt{users} y \texttt{sensors}.
+Las lecturas incluyen valor, unidad, calidad, fecha BSON y referencias al origen.
+
+\begin{figure}[htbp]
+\centering
+\resizebox{\linewidth}{!}{%
+\begin{tikzpicture}[
+ coleccion/.style={draw=scAzul!65,rounded corners=3pt,align=flush center,
+ text width=4.1cm,minimum height=1.2cm,inner sep=5pt,font=\small},
+ derivacion/.style={-{Latex[length=2mm]},draw=scAzul,line width=0.8pt},
+ referencia/.style={-{Latex[length=2mm]},draw=scVerde,dashed,line width=0.8pt},
+ grupo/.style={anchor=south west,font=\small\bfseries,text=scAzul}]
+\node[grupo] at (-2.2,1.2) {Lecturas observadas y derivados --- enero de 2025};
+\node[coleccion,fill=scAzul!6] (lecturas) at (0,0)
+ {\textbf{readings}\\748.889 lecturas\\Valor, fecha, canal y origen};
+\node[coleccion,fill=scAzul!6] (eventos) at (5.2,0)
+ {\textbf{derived\_events}\\10.841 eventos demo\\Intensidad $>2\,000$ veh/h};
+\node[coleccion,fill=scAzul!6] (alertas) at (10.4,0)
+ {\textbf{alerts}\\10.841 alertas locales\\Replay; no avisos oficiales};
+\draw[derivacion] (lecturas) -- (eventos);
+\draw[derivacion] (eventos) -- (alertas);
+\node[grupo,text=scVerde] at (-2.2,-1.9) {Administración sintética --- sin enlace a lecturas públicas};
+\node[coleccion,draw=scVerde,fill=scVerde!5] (organismos) at (0,-2.8)
+ {\textbf{organizations}\\1 organismo demo};
+\node[coleccion,draw=scVerde,fill=scVerde!5] (sensores) at (5.2,-2.8)
+ {\textbf{sensors}\\5.133 sensores demo};
+\node[coleccion,draw=scVerde,fill=scVerde!5] (usuarios) at (10.4,-2.8)
+ {\textbf{users}\\5.133 usuarios demo};
+\draw[referencia] (sensores) -- (organismos);
+\node[grupo] at (-2.2,-4.15) {Incidentes --- período independiente};
+\node[coleccion,fill=scAzul!6] (incidentes) at (0,-5.15)
+ {\textbf{incidents}\\14.388 accidentes\\Anonimizados; año 2026};
+\node[align=flush left,text width=9.5cm,font=\small,anchor=west] at (2.9,-5.15)
+ {\textbf{Flecha continua:} derivación de eventos y alertas.\\
+ \textbf{Flecha discontinua:} referencia lógica al organismo.\\
+ Las referencias no son claves foráneas MongoDB.};
+\end{tikzpicture}%
+}
+\caption{Las siete colecciones, separadas por origen y período. Las cuatro cajas
+azules tienen validador; las tres administrativas no. El laboratorio sintético
+se mantiene en otra base.}
+\label{fig:documental}
+\end{figure}
+
+\subsection{Validación e integridad}
+El cargador \path{sprint1/basico/cargar_mongodb_v2.js} define validadores para
+lecturas, incidentes, eventos y alertas. Las tres colecciones administrativas
+conservan su procedencia sintética, pero no tienen validadores adicionales.
+La identidad de cada lectura y el hash de su contenido permiten comprobar que
+el replay mantenga los documentos sin sobrescribir cambios incompatibles.
+
+\subsection{Indexación y consultas}
+Se registraron trece índices entre las siete colecciones. Las lecturas incorporan
+un índice único por canal, fecha y rol temporal, además de índices compuestos
+por fuente, magnitud y fecha, y por zona y magnitud. Los eventos, alertas e
+incidentes tienen índices orientados a sus consultas. Se capturaron planes de
+ejecución, sin afirmar que todos los filtros estén completamente optimizados.
+
+El núcleo complementario de práctica utiliza \texttt{stageReading},
+\texttt{staging\_key} y cuarentena para demostrar duplicados y conflictos con
+ejemplos acotados. Es una implementación distinta de la carga masiva v2.
+Un laboratorio sintético separado demuestra consultas por sensor, por tipo de
+dispositivo y recuperación de texto narrativo con atributos variables y revisiones.
+
+\section{Estrategia Big Data}
+
+La estrategia de manejo de volumen se fundamenta en cargas históricas por lotes,
+trazabilidad e índices para apoyar las consultas. Las 748.889 lecturas aceptadas
+superan los objetivos de 100.000 registros PostgreSQL y 500.000 documentos MongoDB.
+Los catálogos, replay, incidentes y datos sintéticos no se suman a ese volumen.
+
+MongoDB carga lotes de 1.000 documentos para evitar mantener todo el archivo en
+memoria. Las agregaciones permiten producir métricas y eventos derivados sin
+mezclar unidades ni fuentes. Los hashes ayudan a verificar que ambos motores
+conserven las mismas identidades y contenidos.
+
+El alcance implementado no incluye recepción en tiempo real ni almacenamiento
+distribuido. MongoDB se probó en modo standalone: no se demostraron replica set
+ni sharding. Hadoop/HDFS y Spark corresponden a la continuación del proyecto.
+El requisito de almacenamiento distribuido MongoDB sigue abierto y su modalidad
+suficiente debe aclararse con el docente. Tampoco se implementaron vistas
+materializadas ni particionamiento PostgreSQL; su exigencia para este avance
+permanece por confirmar. Un índice parcial no equivale a particionamiento.
+
+\section{Procesamiento}
+
+\subsection{Preparación y capa relacional}
+El módulo \texttt{preparar\_v2.py} revisa los archivos originales, estandariza
+fechas y unidades y aplica reglas de calidad por fuente. Los rechazos se registran
+por su motivo; los valores ausentes no se convierten en cero ni se inventan
+atributos físicos. Los accidentes se deduplican por expediente y se anonimizan
+en la salida, manteniendo separado su período de 2026.
+
+En PostgreSQL, el ejecutor aplica el modelo normalizado en una instancia temporal
+y carga catálogos y observaciones. La vista \texttt{observation\_contract}
+reconstruye la representación compartida. Se compara con los documentos de
+entrada para comprobar que la normalización conserva identificadores, valores,
+fechas y metadatos. Las consultas se contrastan con Python.
+
+\subsection{Pipeline documental}
+La carga v2 de MongoDB inserta lecturas por lotes y comprueba conteos y replay.
+Después deriva eventos de tráfico con intensidad superior a 2.000 veh/h y
+genera alertas locales para zonas conocidas. La regla es de demostración:
+no se presenta como umbral legal ni como aviso oficial emitido en 2025.
+
+Las consultas emplean filtros, proyecciones, ordenamiento y Aggregation Framework.
+Se calculan cantidades, extremos y promedios por grupos compatibles de fuente,
+magnitud y unidad. Los resultados se comparan con cálculos independientes sobre
+los archivos preparados. Las pruebas temporales no acreditan el estado de un
+servidor compartido ni una operación de producción.
+
+\section{Resultados}
+
+\subsection{Modelo relacional}
+La carga normalizada PostgreSQL terminó en \texttt{PASS}, con
+\textbf{748.889 lecturas aceptadas}. Se registraron catorce tablas, diecisiete FK
+y veinticinco índices. La reconstrucción contractual presentó cero diferencias
+respecto a la entrada y el replay conservó el lote.
+
+Las diez consultas \texttt{PG01--PG10} se compararon completamente con Python:
+\begin{itemize}
+    \item \textbf{Catálogos e inventario:} PG01 produjo doce grupos de tipos
+    administrativos de dispositivos, no doce magnitudes de aire. PG02 y PG05
+    produjeron 5.133 filas; PG04, un organismo demo; PG08, veintiún grupos de zona.
+    \item \textbf{Estados y fechas:} PG03 produjo dos estados administrativos
+    y PG06 cinco grupos anuales de instalación, con datos sintéticos identificados.
+    \item \textbf{Actividad, vista y función:} PG09 produjo 360 canales y PG10
+    5.133 filas de conteo por estación. PG07 devolvió cero: al no existir vínculos
+    físicos acreditados sensor--canal, ese resultado no demuestra actividad ni
+    inactividad de dispositivos. Su lógica se comprobó con casos controlados.
+\end{itemize}
+
+\subsection{Modelo documental}
+La ejecución masiva MongoDB también terminó en \texttt{PASS}, con 748.889 lecturas:
+91.959 de \texttt{MAD-AIR} y 656.930 de \texttt{MAD-TRAFFIC}. Se verificaron las
+diez consultas, el replay, siete operaciones CRUD y la reconciliación de
+identificadores y hashes con PostgreSQL.
+
+\begin{itemize}
+    \item \textbf{Consultas y derivados:} MG02 encontró 748.765 lecturas dentro
+    de su ventana temporal; las otras 124 quedan fuera del filtro, no son rechazos.
+    Se generaron 10.841 eventos y 10.841 alertas demo, además de almacenar por
+    separado 14.388 incidentes anonimizados de 2026.
+    \item \textbf{CRUD y laboratorio:} Las siete operaciones se ejecutaron en
+    una colección de práctica aislada sin modificar las lecturas fuente.
+    El laboratorio sintético verificó dieciocho documentos y trece rechazos,
+    con consultas por sensor, por tipo y por texto narrativo.
+    \item \textbf{Rendimiento observado:} MG10 examinó 656.930 documentos y
+    registró 6.470 ms en la ejecución conservada. Esto no demuestra optimización
+    completa ni permite afirmar superioridad de rendimiento entre motores.
+\end{itemize}
+
+Los resultados masivos corresponden a ejecuciones identificadas por hashes y
+versiones. La suite offline posterior aprobó 66 pruebas Python y 19 Node.
+La integración de práctica aprobó respaldo/restauración en ambos motores y una
+carrera PostgreSQL de ocho conexiones. Estas pruebas acotadas no sustituyen
+las evidencias masivas ni demuestran concurrencia de producción.
+
+\section{Conclusiones}
+\begin{enumerate}
+    \item \textbf{Complementariedad del modelo híbrido:} PostgreSQL permitió
+    organizar las relaciones y restricciones del modelo normalizado, mientras
+    que MongoDB permitió consultar documentos con estructuras variables.
+    La comparación de identidades y hashes confirmó la consistencia del lote
+    observado entre ambos motores.
+    \item \textbf{Trazabilidad y control:} Las referencias a originales,
+    validaciones y comprobaciones de replay permiten detectar diferencias y
+    preservar el contenido aceptado. Los datos administrativos, el laboratorio
+    sintético y los eventos derivados se identifican por separado para no
+    atribuirles carácter de mediciones o avisos oficiales.
+    \item \textbf{Alcance del avance:} Se cuenta con evidencia técnica de
+    volumen, consultas, CRUD e integridad dentro de los entornos probados.
+    Persisten límites de identidad física, vigencia geográfica y optimización.
+    El almacenamiento distribuido MongoDB permanece sin demostración, por lo
+    que los resultados no equivalen a aceptación académica global del avance.
+\end{enumerate}
+
+\section*{Fuentes y evidencias de consulta}
+\begin{itemize}
+    \item Ayuntamiento de Madrid: calidad del aire, tráfico y accidentes.
+    \url{https://datos.madrid.es/}
+    \item Código, modelos, consultas y documentación:
+    \url{https://github.com/Alpizar28/SmartCity}
+    \item Evidencia PostgreSQL normalizada:
+    \path{sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json}.
+    Evidencia MongoDB masiva:
+    \path{research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json}.
+    Los cierres de cada motor describen sus resultados y limitaciones.
+\end{itemize}
+
+\end{document}
