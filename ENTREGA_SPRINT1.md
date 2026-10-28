@@ -1,20 +1,20 @@
 # Sprint 1 — PostgreSQL y MongoDB
 
-## Cómo empezar — compañeros
+## Acceso y reproducción
 
-1. Clonar `main` y descargar de Drive **el ZIP completo y su `.sha256`**.
+1. Clonar `fix/sprint1-postgresql-3nf` y descargar de Drive **el ZIP completo y su `.sha256`**.
 2. Verificar el checksum y extraer el ZIP **dentro de la raíz del repositorio**,
    donde está este archivo. No extraer dentro de `research/datasets` ni sobrescribir
    archivos propios. En Windows se puede usar «Extraer todo» eligiendo esa raíz;
    en Linux: `unzip -n /ruta/SmartCity_DATASET_COMPLETO_PRIVADO.zip`.
-3. Si el ZIP trae documentación/código antiguo, conservar el código de `main`.
+3. Si el ZIP trae documentación/código antiguo, conservar el código de la rama de entrega.
    En Windows: copiar únicamente `research/datasets/raw/` y
    `research/datasets/private_results/` desde la extracción a esas mismas rutas
    del clon. Los resultados nuevos se consultan en GitHub, no en el respaldo antiguo.
 4. Con Python 3.10+ y Node.js 18+, desde la raíz:
 
 ```bash
-git clone --branch main https://github.com/Alpizar28/SmartCity.git
+git clone --branch fix/sprint1-postgresql-3nf https://github.com/Alpizar28/SmartCity.git
 cd SmartCity
 bash scripts/validate_sprint1.sh
 ```
@@ -26,14 +26,18 @@ las pruebas de motores requieren el socket Docker local indicado por el harness
 (preferir Linux/WSL con Docker configurado, no una conexión remota).
 
 - **PostgreSQL de entrega:** `sprint1/postgres/schema_v2_3nf.sql`, `queries_v2_3nf.sql` y [análisis de impacto](sprint1/postgres/impacto_3nf.md). El DDL común y `contract_v2.sql` conservan la reproducción histórica.
-- **Kembly:** `sprint1/basico/consultas_mongodb_v2.js` y `cargar_mongodb_v2.js`.
-- **Fernanda:** `docs/avance_1/main.tex` en Overleaf y la matriz de consultas.
-- **Todos:** leer `docs/equipo/ESTADO_SPRINT1.md`; no subir ZIP, `raw/`,
-  `private_results/`, `.env` ni credenciales al repo. Drive restringido al equipo.
+- **MongoDB de entrega:** `sprint1/basico/consultas_mongodb_v2.js` y `cargar_mongodb_v2.js` conservan las consultas y cargas públicas. El [laboratorio académico](sprint1/mongodb/academico/README.md) aporta MG01 por sensor y MG07 por tipo con datos sintéticos, además de consultas narrativas.
+- **Informe:** [PDF vigente del paquete A](docs/avance_1/SmartCity_Sprint1_PaqueteA_Editorial_20261028T163407.pdf),
+  [manifiesto editorial](docs/avance_1/MANIFIESTO_EDITORIAL_20261028T163407.json), `docs/avance_1/main.tex` y la matriz de consultas.
+- **Estado y distribución:** `docs/equipo/ESTADO_SPRINT1.md`. Los ZIP, `raw/`,
+  `private_results/`, `.env` y las credenciales se mantienen fuera de Git; el acceso
+  al paquete privado está restringido al equipo.
 
-**Resultados masivos confirmados:** PostgreSQL v2 PASS con 748.889 filas
-(`execution-0652c6cd8bbc.json`) y MongoDB v2 PASS con 748.889 lecturas
-(`execution-d26e40706dcd.json`), ambos bajo
+**Resultados masivos confirmados:** PostgreSQL normalizado PASS con 748.889 filas
+en `sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json`.
+La ejecución PostgreSQL v2 anterior conserva también 748.889 filas
+(`execution-0652c6cd8bbc.json`). MongoDB v2 alcanzó PASS con 748.889 lecturas
+(`execution-d26e40706dcd.json`). Estos dos últimos informes se encuentran bajo
 `research/datasets/results/expanded-v2-2025-01/`. MongoDB acredita MG01–MG10,
 replay, CRUD aislado, índices/validadores y reconciliación actual contra la
 referencia PostgreSQL; ver [cierre MongoDB](sprint1/mongodb/evidencia_final_mongodb.md).
@@ -42,14 +46,16 @@ estos comandos no dejan un servidor persistente para presentar ni cargan el comp
 
 ## Alcance
 
-La aclaración del profesor comunicada por Kembly fija la **«Sección de PostgreSQL
-y MongoDB»**, sin rúbrica independiente. El
+La aclaración docente del 28/10/2026 comunicada al equipo fija la **«Sección de
+PostgreSQL y MongoDB»**, sin rúbrica independiente. El
 [alcance documentado](docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md) toma como referencia
 principal «Uso de PostgreSQL» y «Uso de MongoDB» del enunciado (pp. 8–12): modelos,
 justificación, 3FN, tablas/relaciones/llaves, índices, SQL básico/relacional/analítico
 y avanzado, diez consultas por motor, documentos, siete operaciones CRUD y
 Aggregation Framework. Incluye información dinámica no estructurada, cuya
-cobertura debe justificarse; no basta ejecutar las veinte consultas.
+cobertura se demuestra con textos sintéticos separados; no basta usar BSON.
+El almacenamiento distribuido mencionado expresamente en MongoDB sigue sin
+demostración y no se excluye automáticamente del Sprint 1.
 
 Los mínimos de **100.000 registros PostgreSQL y 500.000 documentos MongoDB** se
 consideran objetivos del avance y están acreditados por las cargas v2. La corrección normalizada separa las dependencias de fuente, reloj y contrato;
@@ -57,8 +63,8 @@ la prueba formal y las nuevas ejecuciones se registran separadamente de los PASS
 históricos. Se conservan las limitaciones semánticas de dispositivos físicos. Los aspectos ambiguos se marcan como
 **transversales o pendientes de confirmación**.
 
-No implementar ahora Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos,
-comparación final entre cuatro motores ni funcionalidades exclusivas de noviembre.
+Hadoop/HDFS, Spark, el dashboard completo, los análisis distribuidos y la
+comparación final entre cuatro motores corresponden a la continuación de noviembre.
 
 La ruta siguiente prueba las diez consultas SQL con fixtures controladas y añade
 una demostración complementaria SQL/Mongo de tres ejemplos. No sustituye todos
@@ -107,10 +113,11 @@ Solo crea y elimina contenedores propios, sin puertos ni bases persistentes.
 Los informes nuevos quedan en `/tmp/opencode/smartcity-s1-sql-*.json` y
 `/tmp/opencode/smartcity-s1-integration-*.json`; incluyen resultados, hashes y limpieza.
 
-**Verificado localmente:** 51 pruebas Python, 13 Node y las diez consultas SQL
-con resultados esperados e integración SQL/Mongo PASS.
-Se comprobaron consultas, índices, replay, cuarentena, CRUD, respaldo/restauración
-y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticación real.
+**Suite offline vigente:** 65 pruebas Python y dos archivos de pruebas Node.
+Las diez consultas SQL y la integración de práctica cuentan con evidencia nativa
+anterior de consultas, índices, replay, cuarentena, CRUD, respaldo/restauración y
+concurrencia PostgreSQL acotada. La suite offline no vuelve a ejecutar esos motores
+ni acredita clientes Python con autenticación real.
 
 ## Archivos para explicar en clase
 
@@ -119,7 +126,9 @@ y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticaci
   `sprint1/postgres/queries.sql` y `contract_v2.sql`, conservados para reproducibilidad.
 - SQL de práctica: `schema_proposal.sql`, `staging_queries.sql` y `staging.sql`
   dentro de `sprint1/postgres/`; solo para el esquema `sprint1`.
-- MongoDB: `sprint1/mongodb/validator.js`, `indexes.js`, `queries.js` y `staging.js`.
+- MongoDB de entrega: `sprint1/basico/cargar_mongodb_v2.js`,
+  `consultas_mongodb_v2.js` y `crud_mongodb.js`.
+- MongoDB de práctica: `sprint1/mongodb/validator.js`, `indexes.js`, `queries.js` y `staging.js`.
 - Ejemplos comentados y CRUD: [sprint1/basico](sprint1/basico/README.md).
 
 PG07 evalúa enero de 2025 en Madrid y excluye sensores sin vínculo a un canal:
@@ -127,13 +136,13 @@ una relación desconocida no significa falta de actividad. La prueba incluye un
 sensor con lectura en el inicio incluido y otro solo en el final excluido.
 Su PASS con fixtures no acredita inventario físico ni cierra el bloqueo de datos anuales.
 
-Para ejecutar el archivo completo manualmente en una base **local ya preparada**:
+Para consultar el modelo normalizado en una base **local ya preparada**:
 
 ```bash
 PGOPTIONS='-c default_transaction_read_only=on' \
 psql -X --set=ON_ERROR_STOP=1 --single-transaction \
   --host=127.0.0.1 --port=5433 --username=smartcity \
-  --dbname=smartcity --file=sprint1/postgres/queries.sql
+  --dbname=smartcity --file=sprint1/postgres/queries_v2_3nf.sql
 ```
 
 El comando impone una transacción de solo lectura. El usuario, puerto y nombre de base deben corresponder
@@ -196,7 +205,10 @@ El intérprete por defecto es `research/datasets/.venv/bin/python` (con las
 dependencias de `requirements.lock`); se puede elegir otro mediante `PYTHON_DATOS`.
 El PDF requerido es `research/datasets/raw/sprint1-v2/traffic_dictionary.pdf`,
 SHA-256 `17562978ce1b7930c6c720db37f055cb3459e30b8cec50d2a671682b215b9de9`;
-su URL oficial está en la [especificación v2](docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md).
+el [intérprete oficial de históricos de tráfico](https://datos.madrid.es/dataset/208627-0-transporte-ptomedida-historico/resource/208627-81-transporte-ptomedida-historico/download/208627-81-transporte-ptomedida-historico.pdf), pp. 4–5, documenta su semántica.
+La revisión implementada se identifica mediante `sprint1/postgres/contract_v2.sql`,
+`sprint1/basico/preparar_v2.py` y las evidencias v2; la propuesta previa se conserva
+como antecedente, no como especificación definitiva.
 
 Código para estudiar:
 

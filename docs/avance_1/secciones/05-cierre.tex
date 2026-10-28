@@ -16,11 +16,13 @@ MongoDB conserva su contrato y sus evidencias nativas: lecturas reales, eventos
 por regla académica, alertas de replay local e incidentes anonimizados de 2026.
 Las consultas por canal o variable no se presentan como identificación de un
 dispositivo físico. No se atribuyen alertas oficiales ni causalidad entre períodos.
-La información variable se representa con objetos anidados y atributos opcionales.
-La evidencia disponible describe una cobertura parcial del requisito de información
-dinámica no estructurada; no demuestra su cumplimiento académico completo.
-La aceptación de las equivalencias entre canal y sensor, tipos lógicos y físicos,
-y períodos diferentes tampoco queda acreditada por la ejecución de los pipelines.
+El laboratorio separado demuestra MG01 por identidad de sensor ficticio y MG07
+mediante tipos administrativos, sin equiparar canal y dispositivo. Tres documentos
+con texto libre, atributos heterogéneos y revisiones demuestran almacenamiento y
+recuperación de información narrativa sintética. La procedencia limita la
+interpretación: no acredita dispositivos físicos ni reportes ciudadanos reales.
+El almacenamiento distribuido MongoDB permanece sin demostración. Por ese
+requisito abierto no se declara el Sprint 1 académicamente completo.
 
 \section{Conclusiones}
 La separación entre almacenamiento relacional y vista contractual permite
@@ -29,20 +31,21 @@ restricciones interrelacionales se mantienen mediante FK y triggers sin repetir
 atributos determinados por catálogos. La verificación combina prueba formal de
 DF, ejecución nativa, comparación independiente y reconciliación de identidades.
 
+\begin{samepage}
 Los mínimos de volumen se evalúan por motor y por generación, sin sumar replay
 ni datos administrativos. La ejecución local no acredita el estado de servidores
 compartidos. Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos y la
 comparación final entre cuatro motores corresponden a la continuación de
-noviembre. Los componentes transversales sin alcance confirmado para octubre se
-identifican como tales, sin desarrollar funcionalidades adicionales.
+noviembre. Esta exclusión no se extiende al almacenamiento distribuido mencionado
+en MongoDB: su demostración y modalidad suficiente permanecen abiertas. Las
+vistas materializadas y el particionamiento requieren aclaración de alcance.
+
+\end{samepage}
 
 \begin{thebibliography}{99}
 \bibitem{enunciado} Instituto Tecnológico de Costa Rica.
 \emph{Enunciado Proyecto SmartCity Analytics, II Semestre 2026}.
 PDF facilitado al equipo; entrega general del 25/11/2026.
-\bibitem{plan} Equipo SmartCity.
-\emph{Plan de trabajo y distribución de responsabilidades: primer avance}.
-Archivo local \archivo{Plan_de_trabajo.pdf}; planificación de avance del 28/10/2026.
 \bibitem{aire} Ayuntamiento de Madrid.
 \emph{Calidad del aire: datos horarios}.
 \url{https://datos.madrid.es/dataset/201200-0-calidad-aire-horario}.
@@ -57,28 +60,39 @@ Archivo local \archivo{Plan_de_trabajo.pdf}; planificación de avance del 28/10/
 \url{https://datos.madrid.es/dataset/300228-0-accidentes-trafico-detalle}.
 Snapshot verificado de 2026; datos personales excluidos de la exportación.
 \bibitem{contrato} Repositorio SmartCity.
-\emph{Contrato común madrid-draft-v1}.
-\archivo{docs/equipo/CONTRATO_UNIFICADO.md}.
+\emph{Contrato implementado de la generación histórica madrid-draft-v1}.
+\archivo{research/datasets/scripts/phase5_postgresql.sql};
+\archivo{research/datasets/scripts/unified_synthetic.py};
+\archivo{docs/equipo/CONTRATO_UNIFICADO.md}, antecedente de esa generación.
 \bibitem{permiso} Repositorio SmartCity.
-\emph{Evidencia de autorización para datos sintéticos administrativos}.
+\emph{Registro de comunicación docente del 10/10/2026:
+alcance de los datos administrativos sintéticos}.
 \archivo{docs/equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md}.
 \bibitem{v2} Repositorio SmartCity.
-\emph{Contrato local Madrid draft v2}.
-\archivo{docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md}.
+\emph{Implementación y evidencia de la interfaz Madrid v2}.
+\archivo{sprint1/postgres/schema_v2_3nf.sql}, vista
+\archivo{observation_contract}; adaptación histórica
+\archivo{sprint1/postgres/contract_v2.sql};
+\archivo{sprint1/basico/preparar_v2.py};
+\archivo{research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json}.
 \bibitem{cierre} Repositorio SmartCity.
-\emph{Cierre de validación local del contrato madrid-draft-v1}.
+\emph{Validación histórica de la generación anual madrid-draft-v1}.
 \archivo{docs/equipo/CIERRE_VALIDACION_SPRINT1.md}.
-\bibitem{integracion} Repositorio SmartCity.
-\emph{Integración local nueva: alcance y evidencia}.
-\archivo{sprint1/INTEGRACION.md}.
-\bibitem{respaldos} Repositorio SmartCity.
-\emph{Respaldos y restauración del núcleo local}.
-\archivo{sprint1/RESPALDOS.md}.
 \bibitem{alcance} Equipo SmartCity.
-\emph{Alcance confirmado del Sprint 1, aclaración comunicada por Kembly el 28/10/2026}.
+\emph{Alcance del Sprint 1: registro de la aclaración docente
+del 28/10/2026 comunicada al equipo}.
 \archivo{docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md}.
-\bibitem{mongocierre} Equipo SmartCity, Kembly.
+\bibitem{mongocierre} Equipo SmartCity.
 \emph{Cierre técnico nativo MongoDB Madrid v2 y resultados verificables}.
 \archivo{sprint1/mongodb/evidencia_final_mongodb.md};
-\archivo{sprint1/mongodb/evidencias/20261028T055755-3fea400d/RESUMEN_FERNANDA.md}.
+\archivo{sprint1/mongodb/evidencias/20261028T055755-3fea400d/comprobacion_cierre.json};
+código de la ejecución: \archivo{804d6a551dc84e22d901b64554c30a712b951f77}.
+\bibitem{pg3nf} Equipo SmartCity.
+\emph{Modelo PostgreSQL normalizado: dependencias funcionales y validación nativa}.
+\archivo{sprint1/postgres/impacto_3nf.md};
+\archivo{sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json}.
+\bibitem{laboratorio} Equipo SmartCity.
+\emph{Demostración académica aislada MongoDB: consultas por sensor, tipos y textos narrativos}.
+\archivo{sprint1/mongodb/academico/README.md}; ejecución
+\archivo{sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/execution.json}.
 \end{thebibliography}

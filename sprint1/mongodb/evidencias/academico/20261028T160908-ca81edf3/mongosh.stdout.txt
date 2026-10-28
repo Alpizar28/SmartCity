@@ -1,0 +1,11 @@
+Error: El servidor no pertenece al ejecutor
+    at /home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/ejecutar_demo.js:80:57
+    at comprobar (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/ejecutar_demo.js:93:5)
+    at ejecutar (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/ejecutar_demo.js:160:53)
+    at async ShellEvaluator.innerEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475008)
+    at async ShellEvaluator.customEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475276)
+    at async MongoshNodeRepl.eval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:69199)
+    at async MongoshNodeRepl.loadExternalCode (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70632)
+    at async evaluate (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70113)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:442654)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:323177)

@@ -1,0 +1,11 @@
+TypeError: base.readings.find(...).sort is not a function
+    at lecturasPorSensor (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/consultas_demo.js:9:6)
+    at ejecutar (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/ejecutar_demo.js:765:19)
+    at async ShellEvaluator.innerEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475008)
+    at async ShellEvaluator.customEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475276)
+    at async MongoshNodeRepl.eval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:69199)
+    at async MongoshNodeRepl.loadExternalCode (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70632)
+    at async evaluate (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70113)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:442654)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:323177)
+    at async o.eval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:317788)

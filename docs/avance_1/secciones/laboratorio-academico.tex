@@ -1,0 +1,69 @@
+\subsection{Demostración aislada por sensor y tipo de dispositivo}
+La identidad física de los productores de Madrid v2 no está acreditada. Para
+demostrar MG01 y MG07 sin atribuirles dispositivos ficticios, se utiliza una base
+académica independiente con versión \archivo{smartcity-academic-v1}. Contiene dos
+tipos de dispositivo, cuatro sensores, nueve lecturas y tres documentos narrativos,
+todos sintéticos. Las identidades de los sensores proceden del paquete
+administrativo de demostración. Los tipos reproducen la definición administrativa
+del modelo relacional, sin consultar ni modificar PostgreSQL \cite{laboratorio}.
+
+\begin{figure}[ht]
+\centering
+\begin{tikzpicture}[box/.style={draw,rounded corners,align=center,font=\small,
+  text width=3.1cm,minimum height=1.1cm},ref/.style={-{Latex[length=2mm]}}]
+\node[box] (r) {readings\\sensor\_id; valor; magnitud; unidad; fecha BSON};
+\node[box,right=1.2cm of r] (s) {sensors\\sensor\_id; sensor\_type; procedencia};
+\node[box,right=1.2cm of s] (t) {sensor\_types\\identificador; nombre; categoría};
+\node[box,text width=3.7cm,below=1.3cm of s] (n) {dynamic\_information\\texto libre; atributos variables; revisión; fecha BSON};
+\draw[ref] (r) -- (s);
+\draw[ref] (s) -- (t);
+\draw[ref] (n) -- node[right,font=\scriptsize]{sujeto ficticio} (s);
+\end{tikzpicture}
+\caption{Laboratorio sintético separado de las siete colecciones Madrid v2.
+Las referencias se comprueban en la aplicación; no son FK MongoDB.}
+\end{figure}
+
+MG01 recibe un \archivo{sensor_id} explícito y recupera sus documentos completos,
+ordenados por fecha e identificador. El sensor A1 tiene dos valores de prueba:
+10 y 14 grados Celsius. Un identificador inexistente devuelve cero documentos;
+la omisión del parámetro se rechaza. No se renombra un canal como sensor.
+
+MG07 usa dos \texttt{\$lookup} para relacionar lecturas, sensores y tipos. El
+promedio se pondera por lectura y se calcula por tipo, magnitud y unidad, sin
+promediar unidades incompatibles ni promedios de sensores. A y B son alias de dos
+tipos administrativos sintéticos, no magnitudes ni modelos físicos observados.
+
+\begin{center}
+\begin{tabular}{llllr}
+\toprule Tipo & Magnitud & Unidad & Lecturas & Promedio \\
+\midrule
+A & Temperatura & °C & 4 & 17 \\
+B & Temperatura & °C & 3 & $100/3$ \\
+B & Humedad relativa & \% & 2 & 50 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Las funciones ejecutables están en
+\archivo{sprint1/mongodb/academico/consultas_demo.js}. Las consultas públicas
+anteriores por canal y por fuente/magnitud/unidad permanecen como funcionalidades
+adicionales con sus evidencias originales. Las nueve lecturas de prueba no se
+suman a las 748.889 observaciones públicas.
+
+\subsection{Información dinámica y texto no estructurado}
+Tres documentos narran escenarios ficticios de inspección y percepción ciudadana.
+El texto libre conserva el contexto descriptivo sin reducirlo a columnas de
+medición. El sobre tiene identificador, sujeto ficticio, fecha BSON, revisión y
+origen sintético; el objeto de atributos admite estructuras heterogéneas.
+
+La búsqueda del término ``vibración'' recupera dos documentos. La consulta por
+existencia del atributo de mantenimiento devuelve uno. La selección por sujeto
+recupera las revisiones 1 y 2 de A1, conservadas como documentos independientes.
+Un tercer relato utiliza atributos diferentes. El contenido narrativo es no
+estructurado; el sobre y sus atributos son estructurados o semiestructurados.
+No se equipara almacenamiento BSON con información no estructurada.
+
+La ejecución nativa y el contraste Python verifican los documentos completos,
+los valores agregados y el contenido de las selecciones. La demostración acredita
+almacenamiento y recuperación de textos sintéticos; no incorpora reportes
+ciudadanos reales ni observaciones municipales nuevas.

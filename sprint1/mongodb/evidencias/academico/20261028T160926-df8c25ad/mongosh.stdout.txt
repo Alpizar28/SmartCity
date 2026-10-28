@@ -1,0 +1,11 @@
+ReferenceError: EJSON is not defined
+    at cargar (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/modelo_demo.js:87:32)
+    at async ejecutar (/home/kemgarro/TEC/Bases/SmartCity/sprint1/mongodb/academico/ejecutar_demo.js:198:5)
+    at async ShellEvaluator.innerEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475008)
+    at async ShellEvaluator.customEval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:475276)
+    at async MongoshNodeRepl.eval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:69199)
+    at async MongoshNodeRepl.loadExternalCode (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70632)
+    at async evaluate (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:135:70113)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:442654)
+    at async o.load (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:323177)
+    at async o.eval (eval at module.exports (node:lib-boxednode/mongosh:103:20), <anonymous>:214:317788)

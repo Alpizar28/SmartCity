@@ -1,7 +1,10 @@
-# Modelos nuevos del núcleo — revisión pendiente del equipo
+# Modelos del núcleo complementario de práctica
 
-Este documento describe los archivos de `sprint1/`, no reemplaza los diagramas
-históricos de Fase 5 ni declara cobertura de entidades académicas ausentes.
+Este documento describe `sprint1/core/`, `schema_proposal.sql` y el staging de
+práctica. El modelo PostgreSQL de entrega está en el
+[E-R normalizado de catorce tablas](../docs/arquitectura/diagrama_3nf.md).
+Los diagramas siguientes conservan el alcance del núcleo complementario y no
+representan el esquema normalizado ni sus entidades administrativas.
 
 ## Relacional
 

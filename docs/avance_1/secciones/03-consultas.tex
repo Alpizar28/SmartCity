@@ -59,19 +59,20 @@ superioridad de rendimiento entre motores.
 \subsection{MongoDB}
 La ejecución nativa \archivo{execution-d26e40706dcd.json} acredita PASS técnico
 de MG01--MG10 con 748.889 lecturas; sus resultados se contrastaron con Python y
-se preservaron con hashes. No sustituye la aceptación de las adaptaciones de
-sensor/canal, reglas demo o períodos distintos \cite{mongocierre}.
+se preservaron con hashes. La consulta por sensor y la agrupación por tipo de dispositivo se demuestran
+adicionalmente en un laboratorio sintético aislado; las reglas demo y los
+períodos de los conjuntos públicos conservan sus límites \cite{mongocierre,laboratorio}.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.39\textwidth}>{\raggedright\arraybackslash}p{0.43\textwidth}}
 \toprule ID & Consulta exigida & Evidencia y límite \\
 \midrule\endhead
-MG01 & Lecturas de un sensor específico. & Búsqueda registrada por canal lógico, no dispositivo físico. \\
+MG01 & Lecturas de un sensor específico. & Laboratorio sintético: sensor explícito, dos lecturas; búsqueda pública por canal conservada como adicional. \\
 MG02 & Lecturas en un rango de fechas. & V2: rango BSON semiabierto, contrastado con conteo independiente del archivo. \\
 MG03 & Máximos y mínimos. & V2: extremos de aire por variable/unidad, comparados con Python. \\
 MG04 & Eventos críticos detectados. & V2: regla demo de intensidad superior a 2.000 veh/h; eventos derivados, no oficiales. \\
 MG05 & Alertas emitidas por zona. & V2: emisión actual de replay en colección local; zonas del inventario disponible. \\
 MG06 & Promedio de mediciones por zona. & V2: solo zonas conocidas; vigencia histórica no confirmada. \\
-MG07 & Promedio por tipo de sensor. & V2: por fuente/variable/unidad; alternativa por tipo lógico, no físico. \\
+MG07 & Promedio por tipo de sensor. & Laboratorio: lectura--sensor--tipo, separado por magnitud y unidad; tres grupos sintéticos. \\
 MG08 & Incidentes por categoría. & V2: accidentes reales de 2026 deduplicados y anonimizados. \\
 MG09 & Consulta con agregaciones. & V2: conteos por fuente y flag de calidad. \\
 MG10 & Consulta con filtros múltiples. & V2: fecha, fuente, flag, valor y zona; resultado comparado con Python. \\
@@ -86,6 +87,10 @@ filtros. \archivo{scripts/validar_v2.py} compara cantidades, extremos y promedio
 con cálculos independientes sobre el JSONL verificado. Los informes nuevos
 conservan parámetros, muestras y resultados agregados de cada consulta.
 
+MG02 incluye 748.765 de las 748.889 lecturas aceptadas. Las 124 restantes quedan
+fuera de su ventana semiabierta, sin convertirse por ello en rechazos o duplicados.
+El volumen cargado y el resultado del filtro temporal son conteos distintos.
+
 MG04 usa una regla académica de demostración, no un límite legal. MG05 guarda
 \archivo{emitted_at} actual, \archivo{replay=true} y
 \archivo{delivery=local_collection_only}; no fabrica alertas oficiales pasadas
@@ -98,6 +103,8 @@ copias de tres lecturas. El log y las comprobaciones acreditan las siete
 operaciones, eliminación de la colección de práctica y conservación de 748.889
 documentos en \archivo{readings}. No se alteraron los archivos privados.
 
+
+\input{secciones/laboratorio-academico}
 
 \subsection{Trazabilidad de resultados}
 Cada ejecución registra contrato, generación, hashes del código e insumos,

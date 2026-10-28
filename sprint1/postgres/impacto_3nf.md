@@ -56,7 +56,7 @@ Los 21 nombres de distrito proceden de las columnas públicas de código/nombre
 del snapshot de accidentes de 2026. `distritos_madrid.json` registra SHA-256 y
 alcance: es un diccionario administrativo, no una unión temporal entre accidentes
 y mediciones ni evidencia de ubicación histórica en 2025. Las 55 ubicaciones
-sin distrito permanecen sin asignación. Las 22 sin nombre permanecen NULL.
+sin distrito permanecen sin asignación. Las 22 sin nombre conservan cadenas vacías del catálogo; no se convierten en NULL durante la carga.
 
 ## Prueba formal de 3FN
 

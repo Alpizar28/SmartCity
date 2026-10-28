@@ -4,8 +4,7 @@ reglas de calidad e identificadores. SmartCity Analytics estudia cómo almacenar
 estos datos y consultarlos sin perder su procedencia ni atribuirles información
 que no existe en los originales.
 
-Según la aclaración del profesor comunicada por Kembly, el avance del 28 de
-octubre corresponde a la Sección de PostgreSQL y MongoDB, sin una rúbrica
+Según la aclaración docente del 28/10/2026 comunicada al equipo, el avance corresponde a la Sección de PostgreSQL y MongoDB, sin una rúbrica
 independiente. La referencia principal son Uso de PostgreSQL y Uso de MongoDB
 del enunciado: modelo E--R, normalización hasta 3FN, entidades/atributos mínimos,
 tablas, PK/FK, relaciones, índices, SQL básico/relacional/analítico/avanzado,
@@ -15,9 +14,11 @@ siete operaciones CRUD y Aggregation Framework \cite{enunciado,alcance}.
 Se incluyen como objetivos los mínimos de 100.000 registros PostgreSQL y
 500.000 documentos MongoDB. Hadoop/HDFS, Spark, el dashboard completo, los
 análisis distribuidos y la comparación final de cuatro motores corresponden a
-la continuación de noviembre. Las vistas materializadas, el particionamiento
-y el componente distribuido citado en MongoDB son aspectos transversales cuyo
-alcance para octubre no está confirmado. Este avance no acredita su ejecución.
+la continuación de noviembre. Las vistas materializadas y el particionamiento
+permanecen pendientes de aclaración para octubre. El almacenamiento distribuido
+figura expresamente en la sección MongoDB: este avance no acredita su ejecución.
+La modalidad suficiente debe aclararse con el docente; no se deduce una exigencia
+específica de replica set o sharding.
 El PASS técnico se interpreta junto con la prueba formal de normalización y
 las adaptaciones semánticas \cite{alcance}.
 
@@ -58,8 +59,8 @@ Investigar tres fuentes o disponer de inventarios auxiliares no demuestra por s�
 solo el requisito de dos fuentes integradas.
 
 \subsection{Generación local v2: dos fuentes, sin modificar v1}
-La implementación local autorizada el 27/10 prepara un paquete nuevo de
-\textbf{748.889 lecturas reales de enero de 2025}: 91.959 de aire y 656.930 de
+La generación local v2 contiene
+\textbf{748.889 lecturas observadas del lote de enero de 2025}: 91.959 de aire y 656.930 de
 tráfico. Se excluyen 17.774 registros C30 y 3.020 flags vacíos de tráfico, además
 de los rechazos de aire. No se suman estos datos a la carga anual v1 ni se
 presentan como una ampliación de 1.733.743 registros.
@@ -117,3 +118,20 @@ o lecturas observadas: la asignación en \archivo{channel_sensors} está ausente
 \archivo{sensor_id} permanece nulo en la proyección documental de las lecturas reales.
 La autorización se conoce por el registro
 aportado al repositorio, no por una captura original adjunta a este informe.
+
+
+\subsection{Volumen, variedad y estrategia de almacenamiento}
+El volumen observado supera los mínimos académicos por motor. Aire aporta
+mediciones horarias y tráfico intervalos documentados de quince minutos, con
+estructuras y políticas de calidad distintas. La carga es histórica por lotes;
+no se presenta como recepción continua ni se inventan tasas de llegada actuales.
+Los incidentes y los documentos sintéticos mantienen procedencia y períodos propios.
+
+La ejecución MongoDB anterior midió recursos y planes: MG10 examinó 656.930
+documentos y registró 6.470 ms en ese entorno. Es un límite observado de esa
+consulta, no una prueba de que distribuirla mejore el rendimiento. El tamaño
+acredita el mínimo del curso, pero no demuestra por sí solo que un clúster sea
+operativamente necesario. La replicación mantiene copias; el sharding reparte
+particiones; ninguna de esas expresiones acredita automáticamente procesamiento
+analítico distribuido. El laboratorio actual es standalone. La demostración de
+almacenamiento distribuido sigue abierta, separada de Hadoop y Spark.

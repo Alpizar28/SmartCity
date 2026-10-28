@@ -1,7 +1,7 @@
 \section{Modelo relacional y documental}
 \subsection{Estructura relacional normalizada}
 El esquema de entrega se define en
-\archivo{sprint1/postgres/schema_v2_3nf.sql}. Conserva las doce entidades del
+\archivo{sprint1/postgres/schema_v2_3nf.sql} \cite{pg3nf}. Conserva las doce entidades del
 núcleo anterior y añade dos relaciones auxiliares: tipos de dispositivo y
 asignaciones sensor--canal. El modelo definitivo contiene catorce tablas.
 El esquema de práctica \archivo{sprint1}, que usa \archivo{readings} y
@@ -74,7 +74,8 @@ la relación hija y apunta a la relación referenciada. Usuarios es independient
 El E--R con atributos y cardinalidades se conserva en
 \archivo{docs/arquitectura/diagrama_3nf.md}.
 
-Cada padre admite cero o muchos hijos. Zona, distrito padre, versión de inventario, ubicación de
+Las relaciones admiten cero o muchos hijos, salvo canal--asignación, limitada
+a una fila por canal. Zona, distrito padre, versión de inventario, ubicación de
 estación, tipo de dispositivo y organismo son referencias opcionales; las demás
 FK exigen un padre por hijo. Una zona local puede pertenecer a un distrito.
 \archivo{location_geography} reconstruye ambos nombres, sin repetirlos en cada
@@ -119,9 +120,12 @@ MongoDB conserva \archivo{readings}, \archivo{incidents}, \archivo{derived_event
 Las lecturas reúnen valor, calidad, reloj y procedencia, con BSON Date e
 \archivo{_id=measurement_id}. Los objetos \archivo{measurements} y
 \archivo{provenance} representan información semiestructurada. Esa flexibilidad
-y los patrones de acceso justifican el modelo documental, sin acreditar la
-cobertura completa del requisito de información dinámica no estructurada.
+y los patrones de acceso justifican el modelo documental. La recuperación de
+información narrativa se demuestra por separado con documentos sintéticos, sin
+atribuir contenido no estructurado a toda lectura por el solo hecho de usar BSON.
 
 \archivo{observation_contract} conserva la interfaz compartida, identidad y
 payload, sin cambiar MongoDB ni establecer FK o transacciones distribuidas entre
 motores. Persisten los límites de sensores físicos, geografía y reglas demo.
+
+\input{secciones/modelo-documental}

@@ -1,14 +1,14 @@
 # Estado del Sprint 1 — 28/10/2026
 
 **Alcance:** secciones completas «Uso de PostgreSQL» y «Uso de MongoDB» del
-enunciado, según la aclaración del profesor comunicada por Kembly, sin rúbrica
-independiente. Incluye modelos, 3FN, tablas/relaciones/llaves, índices, SQL
+enunciado, según la aclaración docente del 28/10/2026 comunicada al equipo,
+sin rúbrica independiente. Incluye modelos, 3FN, tablas/relaciones/llaves, índices, SQL
 avanzado, documentos, CRUD y Aggregation Framework, además de las veinte consultas.
 Los mínimos de 100.000 registros PostgreSQL y 500.000 documentos MongoDB son
 objetivos del avance. Véanse [alcance confirmado](ALCANCE_CONFIRMADO_SPRINT1.md),
 [checklist](CHECKLIST_CIERRE_SPRINT1.md) e
 [instrucciones](../../ENTREGA_SPRINT1.md). Los aspectos ambiguos son transversales
-o pendientes de confirmación, sin implementar funcionalidades por precaución.
+o pendientes de confirmación; su estado se distingue de la evidencia técnica.
 
 ## Comprobado
 
@@ -58,29 +58,29 @@ La 3FN está técnicamente verificada en el modelo normalizado, con DF declarada
 JSONB como dominio indivisible y las limitaciones indicadas en el cierre. La
 auditoría del DDL histórico conserva su alcance original.
 
-1. **Modelo documental:** justificar con ejemplos la cobertura de información
-   dinámica no estructurada. Los objetos anidados y atributos opcionales son
-   evidencia disponible; su correspondencia con ese requisito debe explicarse.
-   El enunciado no exige una colección de nombre específico.
-2. **Semántica académica:** mantener visibles PG07, canal/sensor, tipos de
-   medición, administración sintética, zonas actuales, reglas demo y accidentes
-   de 2026. Las veinte consultas tienen evidencia técnica, no aceptación física
-   o académica automática. Ver [matriz](MATRIZ_CONSULTAS_SPRINT1.md).
-3. **Auditoría general:** el informe integra ambos motores y conserva sus
-   limitaciones; la revisión documental y visual se registra por separado en la
-   [auditoría interna](AUDITORIA_DOCUMENTAL_SPRINT1.md). No sustituye la auditoría
-   general académica del Sprint 1. Las evidencias y sus FAIL históricos permanecen intactos.
-4. **Transversales por confirmar:** vistas materializadas/particionamiento de
-   objetivos generales y componente distribuido mencionado en MongoDB. Registrar
-   la duda, sin iniciar implementaciones adicionales. La carga compartida,
-   autenticación real y respaldo remoto requieren verificación separada si se
-   confirma ese entorno para la demostración; los contenedores no lo acreditan.
+1. **Almacenamiento distribuido MongoDB:** requisito expreso de la p. 11 sin
+   demostración. La modalidad suficiente requiere aclaración docente. Las pruebas fueron
+   standalone; no se demostraron replica set, sharding ni almacenamiento distribuido.
+   El requisito no se excluye automáticamente del avance.
+2. **Límites de los datos:** sensores físicos desconocidos, PG07 sin asignación
+   observada, geografía sin vigencia histórica, reglas demo y accidentes de 2026.
+   El laboratorio sintético no transforma esos límites en evidencia municipal.
+3. **Objetivos generales por aclarar:** vistas materializadas, particionamiento y
+   alcance de optimización PostgreSQL pendientes de aclaración docente.
+4. **Mejoras opcionales:** negativos individuales de CHECK/FK, plan MG10 y unificación
+   de `--datos` con el ejecutor 3FN. La entrega distingue las rutas actuales.
 
-No desarrollar ahora Hadoop/HDFS, Apache Spark, dashboard completo, análisis
-distribuidos, comparación final de cuatro motores ni funcionalidades exclusivas
-de noviembre. Su ausencia no bloquea este avance por una rúbrica inventada.
+El [laboratorio académico](../../sprint1/mongodb/academico/README.md) terminó en
+PASS con dos lecturas para MG01, tres grupos para MG07 y tres textos con
+revisiones y atributos heterogéneos. Python cotejó 18 documentos completos y
+13 rechazos. La instancia temporal quedó detenida y eliminada. El diagrama
+documental vigente representa las siete colecciones oficiales por separado.
 
-## Antecedentes que no bloquean desarrollar
+Hadoop/HDFS, Apache Spark, dashboard completo, análisis distribuidos y comparación
+final de cuatro motores corresponden a la continuación de noviembre. Su exigencia
+para este avance no está acreditada por una rúbrica independiente.
+
+## Reproducción histórica, separada de la validación actual
 
 La [recuperación histórica](RECUPERACION_INSUMOS_HISTORICOS.md) conserva un
 checkpoint de 83/85 pruebas y 15 artefactos pendientes. No se reejecutó hoy ni

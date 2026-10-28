@@ -1,0 +1,44 @@
+{
+  "status": "PASS",
+  "method": "Python joins, full document comparison, sums/counts and text selection",
+  "MG01_count": 2,
+  "MG07": [
+    {
+      "key": [
+        "demo-type:MAD-AIR:1",
+        "demo:temperature",
+        "degC"
+      ],
+      "count": 4,
+      "sum": 68.0,
+      "mean": 17.0
+    },
+    {
+      "key": [
+        "demo-type:MAD-AIR:10",
+        "demo:humidity",
+        "%"
+      ],
+      "count": 2,
+      "sum": 100.0,
+      "mean": 50.0
+    },
+    {
+      "key": [
+        "demo-type:MAD-AIR:10",
+        "demo:temperature",
+        "degC"
+      ],
+      "count": 3,
+      "sum": 100.0,
+      "mean": 33.333333333333336
+    }
+  ],
+  "dynamic_counts": {
+    "texto": 2,
+    "atributo": 1,
+    "revisiones": 2
+  },
+  "full_documents_verified": 18,
+  "negative_cases_verified": 13
+}

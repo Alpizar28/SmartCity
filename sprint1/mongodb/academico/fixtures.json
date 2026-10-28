@@ -1,0 +1,247 @@
+{
+  "schema_version": "smartcity-academic-v1",
+  "data_origin": "synthetic",
+  "purpose": "Demostración académica aislada; sin vínculos con lecturas municipales.",
+  "administrative_seed_sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+  "catalogs_sha256": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b",
+  "type_mapping": "demo-type: + category_id; misma regla del modelo relacional, solo para entidades sintéticas",
+  "mg01_sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+  "sensor_types": [
+    {
+      "_id": "demo-type:MAD-AIR:1",
+      "name": "Tipo de dispositivo sintético 01",
+      "category_id": "MAD-AIR:1",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "demo-type:MAD-AIR:10",
+      "name": "Tipo de dispositivo sintético 02",
+      "category_id": "MAD-AIR:10",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    }
+  ],
+  "sensors": [
+    {
+      "_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "name": "Sensor demo 25",
+      "fixture_label": "A1",
+      "sensor_type": "demo-type:MAD-AIR:1",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1",
+      "provenance": {
+        "administrative_seed_sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+        "physical_device_evidence": false
+      }
+    },
+    {
+      "_id": "sensor:009d29705a76e5dffab328bc78ddb7c3e2cfd38162a533fe2c4dddad7f73e6bd",
+      "sensor_id": "sensor:009d29705a76e5dffab328bc78ddb7c3e2cfd38162a533fe2c4dddad7f73e6bd",
+      "name": "Sensor demo 2089",
+      "fixture_label": "A2",
+      "sensor_type": "demo-type:MAD-AIR:1",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1",
+      "provenance": {
+        "administrative_seed_sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+        "physical_device_evidence": false
+      }
+    },
+    {
+      "_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "name": "Sensor demo 3446",
+      "fixture_label": "B1",
+      "sensor_type": "demo-type:MAD-AIR:10",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1",
+      "provenance": {
+        "administrative_seed_sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+        "physical_device_evidence": false
+      }
+    },
+    {
+      "_id": "sensor:02172b6e18f97e8da5b61a5a766798952462cc55bb5193105d63c655314c56cf",
+      "sensor_id": "sensor:02172b6e18f97e8da5b61a5a766798952462cc55bb5193105d63c655314c56cf",
+      "name": "Sensor demo 1166",
+      "fixture_label": "B2",
+      "sensor_type": "demo-type:MAD-AIR:10",
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1",
+      "provenance": {
+        "administrative_seed_sha256": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+        "physical_device_evidence": false
+      }
+    }
+  ],
+  "readings": [
+    {
+      "_id": "academic-reading:01",
+      "sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 10.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:01:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:02",
+      "sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 14.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:02:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:03",
+      "sensor_id": "sensor:009d29705a76e5dffab328bc78ddb7c3e2cfd38162a533fe2c4dddad7f73e6bd",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 20.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:03:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:04",
+      "sensor_id": "sensor:009d29705a76e5dffab328bc78ddb7c3e2cfd38162a533fe2c4dddad7f73e6bd",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 24.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:04:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:05",
+      "sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 30.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:05:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:06",
+      "sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 34.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:06:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:07",
+      "sensor_id": "sensor:02172b6e18f97e8da5b61a5a766798952462cc55bb5193105d63c655314c56cf",
+      "measurement_type": "demo:temperature",
+      "unit": "degC",
+      "value": 36.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:07:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:08",
+      "sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "measurement_type": "demo:humidity",
+      "unit": "%",
+      "value": 40.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:08:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-reading:09",
+      "sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "measurement_type": "demo:humidity",
+      "unit": "%",
+      "value": 60.0,
+      "observed_at": {
+        "$date": "2026-10-28T00:09:00Z"
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    }
+  ],
+  "dynamic_information": [
+    {
+      "_id": "academic-note:A1:r1",
+      "subject_sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "revision": 1,
+      "created_at": {
+        "$date": "2026-10-28T01:00:00Z"
+      },
+      "body": "En este escenario sintético, la persona operadora describe una vibración intermitente durante la inspección del sensor ficticio. El relato conserva el contexto sin transformarlo en una medición municipal.",
+      "attributes": {
+        "operating_context": {
+          "mode": "intermittent"
+        },
+        "tags": [
+          "inspection",
+          "synthetic"
+        ]
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-note:A1:r2",
+      "subject_sensor_id": "sensor:000b9f5bb765601da6fff82facabbedb81f950ff329b2271ed9f8754a556a21d",
+      "revision": 2,
+      "created_at": {
+        "$date": "2026-10-28T02:00:00Z"
+      },
+      "body": "La revisión del mismo escenario sintético amplía el relato de vibración: el soporte ficticio se ajusta y se solicita una nueva inspección. Esta versión conserva el texto anterior como documento independiente.",
+      "attributes": {
+        "maintenance": {
+          "action": "adjustment",
+          "follow_up": true
+        },
+        "reviewer_note": "Relato ficticio de seguimiento; sin intervención municipal."
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    },
+    {
+      "_id": "academic-note:B1:r1",
+      "subject_sensor_id": "sensor:018e9b59efcbec2264312c88051432f405852fba81b97d032f66b3ece2eb46e9",
+      "revision": 1,
+      "created_at": {
+        "$date": "2026-10-28T03:00:00Z"
+      },
+      "body": "El reporte ciudadano ficticio describe una sensación de olor intenso cerca de un equipo simulado. La descripción es narrativa y no acredita una concentración química ni una ubicación real.",
+      "attributes": {
+        "reported_context": [
+          "odor",
+          "outdoor"
+        ],
+        "confidence_note": "Percepción ficticia, sin valor instrumental."
+      },
+      "data_origin": "synthetic",
+      "schema_version": "smartcity-academic-v1"
+    }
+  ]
+}

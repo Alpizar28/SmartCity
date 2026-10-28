@@ -1,14 +1,33 @@
-# Código básico para estudiar el Sprint 1
+# Carga y consultas básicas del Sprint 1
 
-Esta es la entrada recomendada para aprender: diccionarios, listas, `for`, `if`,
-consultas directas y funciones cortas. No usa clases nuevas, decoradores,
-programación asíncrona, frameworks, menús complicados ni SQL dinámico.
+## Ruta v2 de entrega
+
+La generación `expanded-v2-2025-01` contiene aire y tráfico observados. Sus
+consultas MongoDB están en `consultas_mongodb_v2.js`; `cargar_mongodb_v2.js`
+genera eventos derivados y alertas de replay local. Los incidentes corresponden
+a accidentes anonimizados de 2026 y se mantienen separados de las lecturas de 2025.
+
+Desde la raíz, `bash scripts/validate_sprint1.sh --datos` reproduce esta ruta con
+los snapshots y dependencias disponibles. PostgreSQL normalizado tiene un
+[DDL](../postgres/schema_v2_3nf.sql) y un validador independientes:
+`python scripts/validar_postgresql_3nf.py`. La entrada `--datos` conserva el DDL
+relacional anterior y no sustituye esa validación normalizada.
+
+Los [cierres técnicos](../../ENTREGA_SPRINT1.md) distinguen código, evidencia
+histórica y límites académicos. Los módulos siguientes describen exclusivamente
+la carga acotada y el núcleo complementario de práctica.
+
+## Núcleo de práctica
+
+La ruta de práctica utiliza diccionarios, listas, consultas directas y funciones
+pequeñas. Los módulos de carga y consulta v2 son una implementación separada;
+sus consultas MongoDB utilizan `async`/`await`.
 
 El núcleo `sprint1/core/` se conserva: contiene los controles delicados de IDs,
 reloj, procedencia y calidad ya probados. Simplificar el código no significa
 eliminar esos controles ni inventar los campos que faltan.
 
-## Qué leer primero
+### Qué leer primero
 
 1. `consultas_postgres.sql`: SELECT, WHERE, ORDER BY, DISTINCT, JOIN, GROUP BY,
    HAVING, COUNT, MIN, MAX, AVG y SUM, con comentarios en español.
@@ -19,7 +38,7 @@ eliminar esos controles ni inventar los campos que faltan.
 5. `cargar_postgres.py` y `cargar_mongodb.py`: validación, conexión local y carga
    una lectura a la vez. No contienen un importador masivo ni recuperan originales.
 
-## Revisar un archivo sin instalar drivers ni conectar
+### Revisar un archivo sin instalar drivers ni conectar
 
 Desde la raíz del repositorio:
 
@@ -45,7 +64,7 @@ se rechaza su versión. Tampoco se recalculan hashes o IDs para esconder errores
 Sin `--guardar`, estos programas validan todos los registros y terminan sin
 abrir una conexión. Un archivo con errores produce un código de salida 1.
 
-## Guardar: solo en una base local preparada y autorizada
+### Guardar: solo en una base local preparada y autorizada
 
 Antes de guardar debe existir una base **exclusivamente local de práctica** llamada
 `smartcity_sprint1_local`. No usar un túnel hacia un servidor compartido aunque
@@ -89,7 +108,7 @@ guarda por documento: puede quedar una carga parcial ante un error. Repetir el
 archivo permite reconocer duplicados; una cuarentena fallida nunca se anuncia
 como exitosa. No hay reintentos automáticos ni carga concurrente en estos scripts.
 
-## Ejecutar las consultas y el CRUD básico
+### Ejecutar las consultas y el CRUD básico
 
 Usar clientes autenticados en la base local preparada. Los parámetros de
 conexión y las credenciales se configuran fuera de los archivos de consultas.
@@ -112,7 +131,7 @@ terminar. Si ya existe esa colección, aborta sin tocarla. Si falla la práctica
 puede quedar esa colección para inspección: no borres trabajo sin revisarlo.
 No aplica cambios de práctica sobre `readings`, sensores ni alertas históricas.
 
-## Qué se probó y qué no
+### Qué se probó y qué no
 
 `bash scripts/validate_sprint1.sh` incluye pruebas de archivos, conversiones,
 modo sin conexión y lógica de carga con clientes simulados. El harness de motores
@@ -122,19 +141,13 @@ Las conexiones completas de estos nuevos CLI mediante psycopg/PyMongo **no se
 han probado contra una base local autenticada**. No se instalaron esos drivers
 ni se ejecutó `--guardar` en la máquina. El harness prueba por separado el SQL y
 MongoDB reales, no sustituye esa validación del cliente. Tampoco resuelve los
-requisitos académicos bloqueados o la 3FN definitiva.
-# Ruta con dos fuentes reales — v2
+requisitos académicos no demostrados. La verificación de 3FN corresponde al
+modelo normalizado y a su evidencia independiente.
 
-Para la implementación nueva de aire + tráfico, usar desde la raíz:
 
-```bash
-bash scripts/validate_sprint1.sh --datos
-```
+## Complemento académico aislado
 
-`preparar_v2.py` limpia enero de 2025 y separa cuarentena; las consultas comentadas
-están en `consultas_mongodb_v2.js`. `cargar_mongodb_v2.js` crea eventos derivados
-y alertas de replay local. Los accidentes son de 2026, deduplicados y sin datos
-personales. Esta ruta utiliza `smartcity`/`madrid-draft-v2`, no el núcleo `sprint1`.
-Ver [instrucciones y límites](../../ENTREGA_SPRINT1.md).
-
-Las instrucciones siguientes se conservan para practicar con el núcleo anterior.
+El [laboratorio MongoDB](../mongodb/academico/README.md) demuestra MG01 por
+sensor sintético, MG07 por tipo de dispositivo y recuperación de textos libres.
+Los cargadores, consultas y evidencias públicas de esta carpeta permanecen
+intactos. El laboratorio no demuestra almacenamiento distribuido.

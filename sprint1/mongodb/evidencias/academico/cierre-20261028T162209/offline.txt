@@ -1,0 +1,93 @@
+test_cli_por_defecto_no_necesita_drivers_ni_conecta (test_basico.PruebasBasicas.test_cli_por_defecto_no_necesita_drivers_ni_conecta) ... ok
+test_conversion_mongo_coincide_con_adaptador_probado (test_basico.PruebasBasicas.test_conversion_mongo_coincide_con_adaptador_probado) ... ok
+test_conversion_postgres_mantiene_documento_y_fechas (test_basico.PruebasBasicas.test_conversion_postgres_mantiene_documento_y_fechas) ... ok
+test_json_y_catalogos_validos (test_basico.PruebasBasicas.test_json_y_catalogos_validos) ... ok
+test_limite_archivo (test_basico.PruebasBasicas.test_limite_archivo) ... ok
+test_mongo_acepta_duplicado_y_conflicto (test_basico.PruebasBasicas.test_mongo_acepta_duplicado_y_conflicto) ... ok
+test_mongo_exige_indice_completo_y_validador (test_basico.PruebasBasicas.test_mongo_exige_indice_completo_y_validador) ... ok
+test_mongo_no_oculta_fallos (test_basico.PruebasBasicas.test_mongo_no_oculta_fallos) ... ok
+test_postgres_rechaza_catalogo_distinto (test_basico.PruebasBasicas.test_postgres_rechaza_catalogo_distinto) ... ok
+test_postgres_usa_parametros_y_catalogo_existente (test_basico.PruebasBasicas.test_postgres_usa_parametros_y_catalogo_existente) ... ok
+test_accidentes_no_cuentan_personas_ni_exportan_campos_personales (test_basico_v2.BasicoV2Tests.test_accidentes_no_cuentan_personas_ni_exportan_campos_personales) ... ok
+test_clases_flags_y_campos_invalidos_se_rechazan (test_basico_v2.BasicoV2Tests.test_clases_flags_y_campos_invalidos_se_rechazan) ... ok
+test_dst_no_se_adivina (test_basico_v2.BasicoV2Tests.test_dst_no_se_adivina) ... ok
+test_generacion_no_puede_apuntar_fuera_del_paquete_v2 (test_basico_v2.BasicoV2Tests.test_generacion_no_puede_apuntar_fuera_del_paquete_v2) ... ok
+test_incidente_con_categoria_contradictoria_no_se_inventa (test_basico_v2.BasicoV2Tests.test_incidente_con_categoria_contradictoria_no_se_inventa) ... ok
+test_migracion_conserva_id_y_valor_sin_mutar_v1 (test_basico_v2.BasicoV2Tests.test_migracion_conserva_id_y_valor_sin_mutar_v1) ... ok
+test_muestras_no_son_minutos_y_el_reloj_es_madrid (test_basico_v2.BasicoV2Tests.test_muestras_no_son_minutos_y_el_reloj_es_madrid) ... ok
+test_opcional_cero_es_valido_y_negativo_no (test_basico_v2.BasicoV2Tests.test_opcional_cero_es_valido_y_negativo_no) ... ok
+test_urb_no_inventa_velocidad_y_sentinelas_son_faltantes (test_basico_v2.BasicoV2Tests.test_urb_no_inventa_velocidad_y_sentinelas_son_faltantes) ... ok
+test_audit_fail_closed (test_cierre_postgresql.ClosureTests.test_audit_fail_closed) ... ok
+test_audit_rejects_failed_stale_or_unclean_historical_report (test_cierre_postgresql.ClosureTests.test_audit_rejects_failed_stale_or_unclean_historical_report) ... ok
+test_latex_structure_inputs_and_citations_without_compiler (test_cierre_postgresql.ClosureTests.test_latex_structure_inputs_and_citations_without_compiler) ... ok
+test_observed_ranking_is_not_based_on_synthetic_sensors (test_cierre_postgresql.ClosureTests.test_observed_ranking_is_not_based_on_synthetic_sensors) ... ok
+test_persisted_closure_evidence_matches_current_code (test_cierre_postgresql.ClosureTests.test_persisted_closure_evidence_matches_current_code) ... ok
+test_pg07_extra_fixture_keeps_rollback_owned_by_runner (test_cierre_postgresql.ClosureTests.test_pg07_extra_fixture_keeps_rollback_owned_by_runner) ... ok
+test_safe_archive_accepts_relative_regular_member (test_cierre_postgresql.ClosureTests.test_safe_archive_accepts_relative_regular_member) ... ok
+test_safe_archive_rejects_traversal_absolute_and_symlink (test_cierre_postgresql.ClosureTests.test_safe_archive_rejects_traversal_absolute_and_symlink) ... ok
+test_catalog_unit_cannot_be_changed_by_incoming_reading (test_contract.ContractTests.test_catalog_unit_cannot_be_changed_by_incoming_reading) ... ok
+test_content_fingerprint_is_verified (test_contract.ContractTests.test_content_fingerprint_is_verified) ... ok
+test_dst_fails_closed (test_contract.ContractTests.test_dst_fails_closed) ... ok
+test_dto_copies_and_projects_without_assigning_final_identity (test_contract.ContractTests.test_dto_copies_and_projects_without_assigning_final_identity) ... ok
+test_dto_rejects_invalid_document_and_preserves_optional_null_time (test_contract.ContractTests.test_dto_rejects_invalid_document_and_preserves_optional_null_time) ... ok
+test_duplicate_and_conflict_never_overwrite (test_contract.ContractTests.test_duplicate_and_conflict_never_overwrite) ... ok
+test_explicit_test_copies_validate_for_all_sources (test_contract.ContractTests.test_explicit_test_copies_validate_for_all_sources) ... ok
+test_h24_and_utc (test_contract.ContractTests.test_h24_and_utc) ... ok
+test_historical_documents_not_automatically_retagged (test_contract.ContractTests.test_historical_documents_not_automatically_retagged) ... ok
+test_identity_matches_published_station (test_contract.ContractTests.test_identity_matches_published_station) ... ok
+test_no_invented_physical_identity (test_contract.ContractTests.test_no_invented_physical_identity) ... ok
+test_null_is_not_zero_and_booleans_are_not_numbers (test_contract.ContractTests.test_null_is_not_zero_and_booleans_are_not_numbers) ... ok
+test_pending_units_and_clock_cannot_be_promoted (test_contract.ContractTests.test_pending_units_and_clock_cannot_be_promoted) ... ok
+test_provenance_and_catalog_mismatch_rejected (test_contract.ContractTests.test_provenance_and_catalog_mismatch_rejected) ... ok
+test_snapshot_version_cannot_change_source (test_contract.ContractTests.test_snapshot_version_cannot_change_source) ... ok
+test_staging_identity_uses_original_key_not_utc_or_value (test_contract.ContractTests.test_staging_identity_uses_original_key_not_utc_or_value) ... ok
+test_storage_key_is_derived_not_trusted_from_incoming_payload (test_contract.ContractTests.test_storage_key_is_derived_not_trusted_from_incoming_payload) ... ok
+test_traffic_raw_payload_and_qa_preserved (test_contract.ContractTests.test_traffic_raw_payload_and_qa_preserved) ... ok
+test_utc_and_source_key_must_match (test_contract.ContractTests.test_utc_and_source_key_must_match) ... ok
+test_declared_dependencies_and_candidate_keys (test_modelo_3nf.NormalizedModelTests.test_declared_dependencies_and_candidate_keys) ... ok
+test_detects_constant_attribute_dependency (test_modelo_3nf.NormalizedModelTests.test_detects_constant_attribute_dependency) ... ok
+test_detects_partial_dependency_instead_of_assuming_keys_prove_3nf (test_modelo_3nf.NormalizedModelTests.test_detects_partial_dependency_instead_of_assuming_keys_prove_3nf) ... ok
+test_district_dictionary_has_public_names_and_snapshot_scope (test_modelo_3nf.NormalizedModelTests.test_district_dictionary_has_public_names_and_snapshot_scope) ... ok
+test_native_runner_has_no_tcp_or_shared_host_option (test_modelo_3nf.NormalizedModelTests.test_native_runner_has_no_tcp_or_shared_host_option) ... ok
+test_type_query_is_independent_of_measured_variable (test_modelo_3nf.NormalizedModelTests.test_type_query_is_independent_of_measured_variable) ... ok
+test_function_is_snapshot_and_evidence_scoped (test_postgres.PostgresProposalTests.test_function_is_snapshot_and_evidence_scoped) ... ok
+test_init_directories_remain_empty (test_postgres.PostgresProposalTests.test_init_directories_remain_empty) ... ok
+test_proposal_has_composite_references_and_original_key_uniqueness (test_postgres.PostgresProposalTests.test_proposal_has_composite_references_and_original_key_uniqueness) ... ok
+test_resultados_coherentes_pasan (test_resultados_v2.ResultadosV2Tests.test_resultados_coherentes_pasan) ... ok
+test_resultados_incorrectos_no_se_aceptan_por_tener_pass (test_resultados_v2.ResultadosV2Tests.test_resultados_incorrectos_no_se_aceptan_por_tener_pass) ... ok
+test_benchmark_keeps_documented_air_and_valid_quality (test_sql_route.SQLRouteTests.test_benchmark_keeps_documented_air_and_valid_quality) ... ok
+test_canonical_file_has_all_ten_smartcity_queries (test_sql_route.SQLRouteTests.test_canonical_file_has_all_ten_smartcity_queries) ... ok
+test_pg07_requires_known_link_and_half_open_madrid_window (test_sql_route.SQLRouteTests.test_pg07_requires_known_link_and_half_open_madrid_window) ... ok
+test_rejects_missing_duplicate_and_unterminated_queries (test_sql_route.SQLRouteTests.test_rejects_missing_duplicate_and_unterminated_queries) ... ok
+test_rejects_numbered_ddl (test_sql_route.SQLRouteTests.test_rejects_numbered_ddl) ... ok
+test_staging_demo_is_not_accepted_as_canonical_queries (test_sql_route.SQLRouteTests.test_staging_demo_is_not_accepted_as_canonical_queries) ... ok
+test_exige_dos_motores_con_las_mismas_identidades (test_verificar_v2.VerificacionV2Tests.test_exige_dos_motores_con_las_mismas_identidades) ... ok
+test_rechaza_motor_fallido_consultas_faltantes_y_limpieza_fallida (test_verificar_v2.VerificacionV2Tests.test_rechaza_motor_fallido_consultas_faltantes_y_limpieza_fallida) ... ok
+
+----------------------------------------------------------------------
+Ran 65 tests in 0.298s
+
+OK
+TAP version 13
+# Subtest: tests/sprint1/test_mongodb.js
+ok 1 - tests/sprint1/test_mongodb.js
+  ---
+  duration_ms: 46.027953
+  type: 'test'
+  ...
+# Subtest: tests/sprint1/test_mongodb_v2.js
+ok 2 - tests/sprint1/test_mongodb_v2.js
+  ---
+  duration_ms: 44.05858
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 53.805255
+New Sprint 1 offline suite passed. No engine or historical reproduction PASS implied.

@@ -1,0 +1,32 @@
+{
+  "status": "FAIL",
+  "run_id": "20261028T160926-df8c25ad",
+  "scope": "synthetic_academic_only",
+  "topology": "standalone",
+  "distributed_storage_demonstrated": false,
+  "public_data_loaded": false,
+  "shared_server_modified": false,
+  "source_hashes": {
+    "scripts/validar_mongodb_academico.py": "6a10704e4b0f39a935b37e7b57f5e80a174cad6f5802d775b8b636b021ef70af",
+    "sprint1/mongodb/academico/consultas_demo.js": "989221e0fcd898de01b909e9f5d445dc0709d9891ee0b0df7b140070653f2e71",
+    "sprint1/mongodb/academico/ejecutar_demo.js": "df8787a0b74a05043e5090c7ac736797b0f27a587ea25e70f3aa87867d7dac08",
+    "sprint1/mongodb/academico/modelo_demo.js": "ad3c1b8c0b2dc9b2740c07246a6527aba318c4b71f872ef8f61045e42054c3c4",
+    "sprint1/mongodb/academico/fixtures.json": "63de49d05156e883eb382388862f88c3a65d26ddc59d504e6e73bc9e9bd2ccd0",
+    "tests/sprint1/test_mongodb_academico.js": "af1a4ba79635da0c5020f3c10140bce9f7ca736d448d2c1414821d8f9d14b5b2"
+  },
+  "input_hashes": {
+    "research/datasets/private_results/expanded-v2-2025-01/administrative_seed.json": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+    "research/datasets/private_results/expanded-v2-2025-01/catalogs.json": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b"
+  },
+  "executables": {
+    "/tmp/smartcity-mongo-package-a/bin/mongod": "9884a88f0c171513db19f74ce4ad8ceab15fe734a9f828278146695e3d233ada",
+    "/tmp/smartcity-mongosh-package-a/bin/mongosh": "38ec2b5d24cc86a8dbd955247629cad8752917acb697faaceb98fc15a077b434"
+  },
+  "instance_stopped": true,
+  "temporary_data_removed": true,
+  "bind_ip": "127.0.0.1",
+  "port": 40833,
+  "database": "smartcity_academic_d2d987c53e284e39",
+  "error": "mongosh falló; consultar evidencia de ejecución",
+  "finished_at": "2026-10-28T16:09:27.249820+00:00"
+}

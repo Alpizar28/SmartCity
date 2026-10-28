@@ -1,19 +1,19 @@
-# Modelos y pruebas técnicas — preliminares de Fase 5
+# Modelos y pruebas técnicas — antecedentes de Fase 5
 
 **Modelo PostgreSQL vigente:** [E-R normalizado completo](diagrama_3nf.md),
 con catorce tablas y DTO v2 compatible. Las doce tablas y diagramas siguientes
 corresponden al DDL histórico conservado para reproducir sus evidencias.
 
 
-Contrato histórico de los diagramas y DDL: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md), pendiente de revisión conjunta. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md); no reinterpreta ni modifica la evidencia histórica. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos. Los [diagramas](diagramas.md) representan el DDL real de prueba y el flujo propuesto, no un despliegue definitivo.
+Contrato histórico de los diagramas y DDL: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md). El contrato [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md) corresponde al núcleo complementario de práctica. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos de esa generación. Los [diagramas](diagramas.md) representan el DDL histórico de prueba y el flujo propuesto, no un despliegue definitivo.
 
 **Alcance histórico de las secciones de muestra:** las cifras y estados de Fase 5
-de abajo no describen el cierre actual. Para PostgreSQL vigente se utiliza
-`smartcity` con [extensión v2](../../sprint1/postgres/contract_v2.sql), no el
-contrato de staging `v1-frozen`; la [entrega final](../../sprint1/postgres/evidencia_final_postgresql.md)
-distingue explícitamente 748.889 observaciones v2, administración sintética y
-excepciones formales de normalización. No reutilizar las afirmaciones históricas
-de tablas vacías o falta de segunda fuente como estado actual v2.
+de abajo no describen el cierre actual. La extensión histórica v2 se conserva en
+`contract_v2.sql`; el modelo PostgreSQL vigente utiliza
+[schema_v2_3nf.sql](../../sprint1/postgres/schema_v2_3nf.sql), con
+[normalización técnicamente verificada](../../sprint1/postgres/cierre_3nf.md).
+Las excepciones de 3FN, tablas vacías o ausencia de segunda fuente descritas en
+los antecedentes no se atribuyen al nuevo DDL ni a su generación verificada.
 
 ## PostgreSQL: doce tablas en `smartcity`
 

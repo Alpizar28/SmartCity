@@ -1,12 +1,19 @@
 # Código del Sprint 1 y núcleo de práctica
 
-La ruta SQL canónica usa `smartcity` y las diez consultas de
+El modelo PostgreSQL de entrega utiliza `smartcity` con el
+[DDL normalizado](postgres/schema_v2_3nf.sql) y las diez consultas de
+[queries_v2_3nf.sql](postgres/queries_v2_3nf.sql). Su evidencia comprende 748.889
+lecturas y la [verificación de 3FN](postgres/cierre_3nf.md).
+MongoDB utiliza los [módulos v2](basico/consultas_mongodb_v2.js) y conserva su
+[cierre nativo](mongodb/evidencia_final_mongodb.md).
+
+La ruta SQL histórica usa `smartcity` y las diez consultas de
 [`postgres/queries.sql`](postgres/queries.sql). La prueba de motor está en
 `scripts/test_sprint1_sql.py`. La entrada común desde la raíz es
 `bash scripts/validate_sprint1.sh --engines`.
 
-El resto de esta guía describe el núcleo **complementario** `sprint1`, no el DDL
-anual. Su SQL está en `postgres/staging_queries.sql`.
+El resto de esta guía describe el núcleo **complementario** `sprint1`, separado
+del modelo normalizado. Su SQL está en `postgres/staging_queries.sql`.
 
 Implementación nueva e independiente de la recuperación histórica. Sin paquetes
 Python externos ni cargas automáticas. Importar los módulos no conecta a motores;
@@ -71,13 +78,13 @@ ambos y una carrera PostgreSQL de ocho conexiones; no se declara estrés sosteni
 concurrencia MongoDB entre procesos, durabilidad tras reinicio ni rendimiento
 representativo con tres filas. Detalles en [respaldos](RESPALDOS.md).
 
-## Pendientes para la entrega
+## Límites del núcleo de práctica
 
-Revisión del modelo y aceptación docente; catálogos independientes completos;
-carga masiva autorizada desde originales verificados; probar de extremo a extremo
-los clientes básicos psycopg/PyMongo en un entorno local autenticado, resolver
-errores/reintentos; volumen, política de respaldos reales, recuperación ante
-caídas, concurrencia de mayor alcance y rendimiento.
-No hay sensores, usuarios, alertas ni geografía inventados. PG03/04/06, MG04/05/08
-y alcance espacial siguen pendientes. Véanse [modelo](MODELOS.md) y
-[evidencia de integración](INTEGRACION.md).
+La prueba de tres lecturas no acredita volumen, clientes psycopg/PyMongo con
+autenticación real, recuperación ante caídas ni concurrencia o rendimiento de
+producción. Este núcleo tampoco implementa la administración sintética ni los
+eventos y alertas derivados de v2. Esas funcionalidades y sus resultados se
+documentan por separado en los cierres de entrega; sus límites semánticos
+permanecen explícitos. Véanse el [modelo de práctica](MODELOS.md), la
+[evidencia de integración](INTEGRACION.md) y el
+[alcance del avance](../docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md).

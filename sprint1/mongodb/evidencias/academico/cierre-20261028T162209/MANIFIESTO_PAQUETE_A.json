@@ -1,0 +1,334 @@
+{
+  "kind": "academic_package_a_snapshot",
+  "branch": "fix/sprint1-postgresql-3nf",
+  "base_commit": "3c12f8ee5602b6b822036cddc404420df982e569",
+  "generated_at": "2026-10-28T16:24:17.964825+00:00",
+  "scope": "Synthetic MongoDB semantic demonstrations and documentation only; standalone, no claim of distributed storage or complete Sprint compliance",
+  "pdf": "docs/avance_1/SmartCity_Sprint1_PaqueteA_20261028T162209.pdf",
+  "pdf_sha256": "13ab3d1ec859e3ab44762d76a484a22adf90ae596e9b9d2e0c2a485aa3b5c332",
+  "internal_review": "docs/equipo/CIERRE_PAQUETE_A_SPRINT1_20261028T162209.md",
+  "native_execution": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/execution.json",
+  "validation": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/validation.json",
+  "historical_pdf_preserved": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T083357.pdf",
+  "historical_manifest_preserved": "sprint1/postgres/evidencias/3nf/MANIFIESTO_REVISION_EDITORIAL_20261028T083357.json",
+  "modified_files_this_package": [
+    "ENTREGA_SPRINT1.md",
+    "README.md",
+    "docs/README.md",
+    "docs/avance_1/main.tex",
+    "docs/avance_1/secciones/01-alcance-datos.tex",
+    "docs/avance_1/secciones/02-modelos.tex",
+    "docs/avance_1/secciones/03-consultas.tex",
+    "docs/avance_1/secciones/04-validacion.tex",
+    "docs/avance_1/secciones/05-cierre.tex",
+    "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
+    "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+    "docs/equipo/ESTADO_SPRINT1.md",
+    "docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md",
+    "sprint1/basico/README.md",
+    "sprint1/mongodb/README.md",
+    "sprint1/postgres/impacto_3nf.md"
+  ],
+  "new_files_this_package": [
+    "docs/avance_1/SmartCity_Sprint1_PaqueteA_20261028T162209.pdf",
+    "docs/avance_1/secciones/laboratorio-academico.tex",
+    "docs/avance_1/secciones/modelo-documental.tex",
+    "docs/equipo/CIERRE_PAQUETE_A_SPRINT1_20261028T162209.md",
+    "scripts/validar_mongodb_academico.py",
+    "sprint1/mongodb/academico/README.md",
+    "sprint1/mongodb/academico/consultas_demo.js",
+    "sprint1/mongodb/academico/ejecutar_demo.js",
+    "sprint1/mongodb/academico/fixtures.json",
+    "sprint1/mongodb/academico/modelo_demo.js",
+    "sprint1/mongodb/evidencias/academico/20261028T160049-29d6bbed/SHA256SUMS",
+    "sprint1/mongodb/evidencias/academico/20261028T160049-29d6bbed/execution.json",
+    "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/SHA256SUMS",
+    "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/execution.json",
+    "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/mongosh.stderr.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/mongosh.stdout.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/SHA256SUMS",
+    "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/execution.json",
+    "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/mongosh.stderr.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/mongosh.stdout.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/SHA256SUMS",
+    "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/execution.json",
+    "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/mongosh.stderr.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/mongosh.stdout.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/SHA256SUMS",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/execution.json",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/independent.json",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/mongosh.stderr.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/mongosh.stdout.txt",
+    "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/native.json",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/MANIFIESTO_PAQUETE_A.json",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/MANIFIESTO_PAQUETE_A.sha256",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/academic-node.txt",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/documentation.txt",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/latex.txt",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/offline.txt",
+    "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/validation.json",
+    "tests/sprint1/test_mongodb_academico.js"
+  ],
+  "files": [
+    {
+      "path": "ENTREGA_SPRINT1.md",
+      "sha256": "a85541e44996005c8eb8590bd46e3e084f0d009f31f27540c7117e4cfbe6b9ef",
+      "bytes": 12946
+    },
+    {
+      "path": "README.md",
+      "sha256": "18a8b592b16bc0f67f3b54d0696c19de72505f65a6e6d1df0040cc361701baca",
+      "bytes": 5473
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "522e1c4b69742e07c8da69923f6514ee1e8bd5fdd49537619235f88f544c4a0d",
+      "bytes": 4284
+    },
+    {
+      "path": "docs/avance_1/SmartCity_Sprint1_PaqueteA_20261028T162209.pdf",
+      "sha256": "13ab3d1ec859e3ab44762d76a484a22adf90ae596e9b9d2e0c2a485aa3b5c332",
+      "bytes": 374985
+    },
+    {
+      "path": "docs/avance_1/main.tex",
+      "sha256": "ebb44f3d2de27efc0a90cfe982f98e3d82b8abb656b24aff84c3ca921523b2a5",
+      "bytes": 2216
+    },
+    {
+      "path": "docs/avance_1/secciones/01-alcance-datos.tex",
+      "sha256": "a8dc61196d8de7f880fedbae075e0ef2d8cde9910a1969cd75e84895b3470003",
+      "bytes": 8082
+    },
+    {
+      "path": "docs/avance_1/secciones/02-modelos.tex",
+      "sha256": "22603ba2f9be44fa215341af4b2f422eb739a894f02040b22b11ed5533f6d95d",
+      "bytes": 7182
+    },
+    {
+      "path": "docs/avance_1/secciones/03-consultas.tex",
+      "sha256": "38c6740f51324eeac4583f096db364e3dd5843f5aae56500640d91b2cd53d231",
+      "bytes": 6845
+    },
+    {
+      "path": "docs/avance_1/secciones/04-validacion.tex",
+      "sha256": "5b5b01378b1e1697ed28e5fadb637ce67ef16b7519c5bafbc105a5a7fcb1381c",
+      "bytes": 8018
+    },
+    {
+      "path": "docs/avance_1/secciones/05-cierre.tex",
+      "sha256": "cf6c308f2d18e990f145b56f7376722addd9bd85fb7212e6c6efb343508074ae",
+      "bytes": 5241
+    },
+    {
+      "path": "docs/avance_1/secciones/laboratorio-academico.tex",
+      "sha256": "8bf49c642a3dc9a9840a681e38afc24d828863728be8bdb9b1ba01e954364417",
+      "bytes": 3840
+    },
+    {
+      "path": "docs/avance_1/secciones/modelo-documental.tex",
+      "sha256": "1774f7d2774ec6ebcb0383076081738a995bdd1a4000a780e3a1cbcddbb734ef",
+      "bytes": 4208
+    },
+    {
+      "path": "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
+      "sha256": "eea592c577d82cb7b7579bf5898c637bb2235487051c48b7438c1f1d1a1d1e20",
+      "bytes": 11373
+    },
+    {
+      "path": "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+      "sha256": "0c4551ab96604b0d85ceeeb543ef741b1082c7a01551ff8bfb6ff45bc062dc69",
+      "bytes": 4482
+    },
+    {
+      "path": "docs/equipo/CIERRE_PAQUETE_A_SPRINT1_20261028T162209.md",
+      "sha256": "c1c1dfaa1b2b54e632eab852000691d2a18301c96a782cc4c04d13bb7a2e0462",
+      "bytes": 4050
+    },
+    {
+      "path": "docs/equipo/ESTADO_SPRINT1.md",
+      "sha256": "d256f57d222ec293e1aa63f09278addb1eccf624e0943deddc11819ce25da4b8",
+      "bytes": 5681
+    },
+    {
+      "path": "docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md",
+      "sha256": "b1b96aa9d10431d78c89ba91c2d6168433a9e662eb70e08fa624f7e0288640a1",
+      "bytes": 6209
+    },
+    {
+      "path": "scripts/validar_mongodb_academico.py",
+      "sha256": "6a10704e4b0f39a935b37e7b57f5e80a174cad6f5802d775b8b636b021ef70af",
+      "bytes": 10582
+    },
+    {
+      "path": "sprint1/basico/README.md",
+      "sha256": "afde3d48a34d44b8c35a5befa3cae3abdf22a87619b573058326f86f27351e89",
+      "bytes": 7887
+    },
+    {
+      "path": "sprint1/mongodb/README.md",
+      "sha256": "4d8deac353a72e17d95f24980e12f049884797964c35d988179cce2c752caece",
+      "bytes": 3676
+    },
+    {
+      "path": "sprint1/mongodb/academico/README.md",
+      "sha256": "8960476e1cc47a7fd4edc6363da978db318f20d9b360c13758ef4ae1e003ac47",
+      "bytes": 4494
+    },
+    {
+      "path": "sprint1/mongodb/academico/consultas_demo.js",
+      "sha256": "9fc7c89bbc02d362700f1e804209f276947daacafc260d61a5045b2341e5bc89",
+      "bytes": 1792
+    },
+    {
+      "path": "sprint1/mongodb/academico/ejecutar_demo.js",
+      "sha256": "df8787a0b74a05043e5090c7ac736797b0f27a587ea25e70f3aa87867d7dac08",
+      "bytes": 4652
+    },
+    {
+      "path": "sprint1/mongodb/academico/fixtures.json",
+      "sha256": "63de49d05156e883eb382388862f88c3a65d26ddc59d504e6e73bc9e9bd2ccd0",
+      "bytes": 9034
+    },
+    {
+      "path": "sprint1/mongodb/academico/modelo_demo.js",
+      "sha256": "a6ea255c3a4e7ffca21cb6f2fa995243e4ca00282cb3bf652cb647b567ca2691",
+      "bytes": 5209
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160049-29d6bbed/SHA256SUMS",
+      "sha256": "fc1d7898f7810c3185c961af2d04135ff4d8525f263d4dd3a1712bc9bd7a2631",
+      "bytes": 81
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160049-29d6bbed/execution.json",
+      "sha256": "d7ac5c3cf92097d9fa7188c9e5b757250cdae56b1bee2eda03d861f3ecab953a",
+      "bytes": 1706
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/SHA256SUMS",
+      "sha256": "67b81b633b2fb5bfcd0235e6c4aa35fe92594019e9a2352b3eb6912d4d49af7d",
+      "bytes": 251
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/execution.json",
+      "sha256": "e6bcd565dbb8cfaf39eabb8b4223da2ea2834e8be5383ede8ad9cafd20917fc0",
+      "bytes": 1816
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/mongosh.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160908-ca81edf3/mongosh.stdout.txt",
+      "sha256": "473d6171abc246407de89cb6e9677d732e574bfb192d53245b0b3add8b9cfdae",
+      "bytes": 1151
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/SHA256SUMS",
+      "sha256": "65dbac39f9627c17bc729e9bc73da0edeea0a9dc2f9e10f7a57f5dcbd918020f",
+      "bytes": 251
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/execution.json",
+      "sha256": "8054e25c10019671d4769bc50383f450a9fb1e2132230805d10b8bc35dcf7fc2",
+      "bytes": 1816
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/mongosh.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T160926-df8c25ad/mongosh.stdout.txt",
+      "sha256": "1d485002c8d1691524ab90f55c1c414c3bb9f3f6f36a1c6a573e88d1a2ca48c9",
+      "bytes": 1159
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/SHA256SUMS",
+      "sha256": "c7fe7b4b6ad9bd59c09672cdcb5aabe9bd0a4e4bcb7e706392e41b8a67966326",
+      "bytes": 251
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/execution.json",
+      "sha256": "189eafe838ef37462bca81611087afb9fbf3eed2ae1eb39b4ec787b2dc0fd31f",
+      "bytes": 1816
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/mongosh.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161008-4726d25b/mongosh.stdout.txt",
+      "sha256": "c1507827c05e85c3d6e83403cbcba0ef5b932e5700bd3dbec94d265a4e1f36c5",
+      "bytes": 1187
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/SHA256SUMS",
+      "sha256": "04e5aa39a44a2ad0b9177a6f452a6ce4e096a1437142c0d06dadc120ec74b631",
+      "bytes": 412
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/execution.json",
+      "sha256": "565ad1fffbedac8f32dc5299219aec4c9450bd91b8e480c7eeb593aebb5a6540",
+      "bytes": 2792
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/independent.json",
+      "sha256": "7bc5541b7a23902a0e51e679b1a8fb0359bb57d3662f675d5f9e8dbee75ee75e",
+      "bytes": 805
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/mongosh.stderr.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/mongosh.stdout.txt",
+      "sha256": "7ae48bf13db879a6db333a0f553bbb30f8cca528bf275419e9fd5e137732ba4b",
+      "bytes": 15190
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/20261028T161057-eff98453/native.json",
+      "sha256": "d01b365eb254facce71c005f2b4c1c5a7098e1a41a7bd2e8a2179caaf99fcf0c",
+      "bytes": 23702
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/academic-node.txt",
+      "sha256": "8910fd6299cbc7d044f0e8c436c280ec2134437d1e727b46573eadbb2ec2ffbf",
+      "bytes": 171
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/documentation.txt",
+      "sha256": "a4ce3c4d2d126cf54794b588fe0568dcf174b80e68913316f73e0da7b9f1c64b",
+      "bytes": 98
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/latex.txt",
+      "sha256": "347fcac2bc700b2ea3534e1128a5a544ab373102d6f3e0d5bc7f1ef52f1b4607",
+      "bytes": 39260
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/offline.txt",
+      "sha256": "f77fc72dec21f79bdfc6a8d4e171243bdf242d6bb6ea9ccf6a840d7d69906617",
+      "bytes": 9388
+    },
+    {
+      "path": "sprint1/mongodb/evidencias/academico/cierre-20261028T162209/validation.json",
+      "sha256": "281bbd2c0ca0112d51968873b9421f52487ee6428073e96c74a018c828f225b7",
+      "bytes": 59815
+    },
+    {
+      "path": "sprint1/postgres/impacto_3nf.md",
+      "sha256": "14e835103e4f20fc8474c735b6153777ba6f37cdd5530475c3a586df31de2338",
+      "bytes": 8841
+    },
+    {
+      "path": "tests/sprint1/test_mongodb_academico.js",
+      "sha256": "af1a4ba79635da0c5020f3c10140bce9f7ca736d448d2c1414821d8f9d14b5b2",
+      "bytes": 1583
+    }
+  ]
+}

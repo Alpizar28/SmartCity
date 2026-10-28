@@ -4,7 +4,7 @@ La ejecución \archivo{20261028T071812-55791345.json} terminó en PASS con
 PostgreSQL 16.15 nativo. Su intervalo fue de 07:18:12 a 07:38:09 UTC del
 28/10/2026. Se utilizó una instancia temporal propia, con socket Unix privado,
 TCP deshabilitado y sin conexión a servidores compartidos. La instancia se
-detuvo y sus archivos se eliminaron al finalizar.
+detuvo y sus archivos se eliminaron al finalizar \cite{pg3nf}.
 
 \begin{longtable}{>{\raggedright\arraybackslash}p{0.57\textwidth}>{\raggedright\arraybackslash}p{0.32\textwidth}}
 \toprule Comprobación & Resultado \\
@@ -91,6 +91,29 @@ optimización completa ni comparación de rendimiento entre motores.
 Se conservaron 10.841 eventos y 10.841 alertas demo, además de 14.388 incidentes
 anonimizados de 2026. Los eventos siguen una regla académica y las alertas son
 replay local, sin emisiones oficiales retrospectivas ni notificaciones externas.
+
+\subsection{Ejecución académica sintética}
+La ejecución \archivo{20261028T161057-eff98453} terminó en PASS con MongoDB
+7.0.16 nativo standalone. Se creó una base exclusiva, un directorio temporal y
+un socket Unix privado; el ejecutor verificó el PID del servidor. La instancia
+se detuvo y el directorio se eliminó al finalizar. No se utilizaron bases previas,
+contenedores, volúmenes existentes ni servidores compartidos \cite{laboratorio}.
+
+Python verificó los 18 documentos completos, las dos lecturas de MG01, los tres
+grupos de MG07 y los resultados narrativos. El replay no alteró documentos.
+El archivo de pruebas Node del laboratorio también finalizó correctamente.
+Trece controles negativos acreditan rechazo de referencias inexistentes, unidad
+incompatible, conflicto de contenido, procedencia incorrecta, fecha no BSON,
+duplicados, parámetro ausente y destinos no exclusivos. Las referencias y la
+unidad se controlan en la aplicación; los errores nativos de validación e índice
+registran códigos 121 y 11000. No se atribuyen FK al modelo documental.
+
+Los intentos previos conservaron estados FAIL por permisos o incompatibilidades
+del ejecutor; no certifican el código aprobado. La ejecución PASS identifica las
+huellas exactas de sus fuentes e insumos. Los registros se encuentran en
+\archivo{sprint1/mongodb/evidencias/academico/}, con manifiestos propios. Las
+lecturas, incidentes, eventos y alertas anteriores no se cargaron ni modificaron.
+Esta ejecución no demuestra almacenamiento distribuido.
 
 \subsection{Integridad y alcance de la evidencia}
 Cada informe normalizado tiene nombre único y SHA-256. El informe masivo tiene

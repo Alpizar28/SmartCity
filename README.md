@@ -2,13 +2,13 @@
 
 Proyecto académico de Bases de Datos — II Semestre 2026.
 
-## Leer solo esto para trabajar
+## Documentación de la entrega
 
 1. [Sprint 1: alcance y ejecución](ENTREGA_SPRINT1.md).
 2. [Estado y pendientes](docs/equipo/ESTADO_SPRINT1.md).
 3. [Las 20 consultas y su evidencia](docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md).
 
-Para redactar la entrega: [informe en LaTeX](docs/avance_1/main.tex), con
+El [informe en LaTeX](docs/avance_1/main.tex) se acompaña de
 [instrucciones para Overleaf y compilación local](docs/README.md#informe-del-avance-en-latex).
 
 ## Ver o descargar el dataset
@@ -16,7 +16,7 @@ Para redactar la entrega: [informe en LaTeX](docs/avance_1/main.tex), con
 - [Muestra CSV de 200 lecturas](docs/datasets/muestra_v2.csv): visible en GitHub
   o en LibreOffice/Excel; 100 de aire y 100 de tráfico, no el conjunto completo.
 - **Dataset completo:** `data/releases/SmartCity_DATASET_COMPLETO_PRIVADO.zip`
-  en la máquina de José; compartir por Drive con acceso restringido al equipo.
+  distribuido por el canal privado del equipo, con acceso restringido.
   Incluye todos los originales y derivados locales, no solo v2. Su manifiesto y
   checksum permiten verificar qué contiene. No se publica porque algunos originales
   contienen información de personas y fuentes con permisos distintos.
@@ -27,14 +27,17 @@ Los datos grandes no van al historial Git. Para reconstruir el ZIP privado:
 `research/datasets/.venv/bin/python scripts/empaquetar_dataset.py --completo`.
 
 **Primer avance, 28 de octubre:** secciones completas «Uso de PostgreSQL» y
-«Uso de MongoDB» del enunciado, según la aclaración del profesor comunicada por
-Kembly, sin rúbrica independiente. Incluye modelos, 3FN, tablas/relaciones/llaves,
+«Uso de MongoDB» del enunciado, según la aclaración docente del 28/10/2026 comunicada al
+equipo, sin rúbrica independiente. Incluye modelos, 3FN, tablas/relaciones/llaves,
 índices, SQL avanzado, documentos, siete CRUD y Aggregation Framework, además de
 diez consultas por motor. Los mínimos son objetivos de 100.000 registros SQL y
 500.000 documentos MongoDB. Ver [alcance y cobertura](docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md).
 Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos y comparación final
-quedan para noviembre; los aspectos ambiguos se registran como transversales o
-pendientes de confirmación, sin implementarlos por precaución.
+quedan para noviembre. El alcance de los aspectos transversales no confirmados
+se distingue de los resultados técnicos acreditados. El almacenamiento
+distribuido MongoDB sigue sin demostración dentro del avance. El
+[laboratorio académico aislado](sprint1/mongodb/academico/README.md) aporta
+MG01 por sensor, MG07 por tipo y contenido narrativo con datos sintéticos.
 
 ## Ruta de ejecución
 

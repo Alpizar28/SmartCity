@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "run_id": "20261028T161057-eff98453",
+  "scope": "synthetic_academic_only",
+  "topology": "standalone",
+  "distributed_storage_demonstrated": false,
+  "public_data_loaded": false,
+  "shared_server_modified": false,
+  "source_hashes": {
+    "scripts/validar_mongodb_academico.py": "6a10704e4b0f39a935b37e7b57f5e80a174cad6f5802d775b8b636b021ef70af",
+    "sprint1/mongodb/academico/consultas_demo.js": "9fc7c89bbc02d362700f1e804209f276947daacafc260d61a5045b2341e5bc89",
+    "sprint1/mongodb/academico/ejecutar_demo.js": "df8787a0b74a05043e5090c7ac736797b0f27a587ea25e70f3aa87867d7dac08",
+    "sprint1/mongodb/academico/modelo_demo.js": "a6ea255c3a4e7ffca21cb6f2fa995243e4ca00282cb3bf652cb647b567ca2691",
+    "sprint1/mongodb/academico/fixtures.json": "63de49d05156e883eb382388862f88c3a65d26ddc59d504e6e73bc9e9bd2ccd0",
+    "tests/sprint1/test_mongodb_academico.js": "af1a4ba79635da0c5020f3c10140bce9f7ca736d448d2c1414821d8f9d14b5b2"
+  },
+  "input_hashes": {
+    "research/datasets/private_results/expanded-v2-2025-01/administrative_seed.json": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+    "research/datasets/private_results/expanded-v2-2025-01/catalogs.json": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b"
+  },
+  "executables": {
+    "/tmp/smartcity-mongo-package-a/bin/mongod": "9884a88f0c171513db19f74ce4ad8ceab15fe734a9f828278146695e3d233ada",
+    "/tmp/smartcity-mongosh-package-a/bin/mongosh": "38ec2b5d24cc86a8dbd955247629cad8752917acb697faaceb98fc15a077b434"
+  },
+  "instance_stopped": true,
+  "temporary_data_removed": true,
+  "bind_ip": "127.0.0.1",
+  "port": 48595,
+  "database": "smartcity_academic_bd868f25f1194fa9",
+  "version": "7.0.16",
+  "independent": {
+    "status": "PASS",
+    "method": "Python joins, full document comparison, sums/counts and text selection",
+    "MG01_count": 2,
+    "MG07": [
+      {
+        "key": [
+          "demo-type:MAD-AIR:1",
+          "demo:temperature",
+          "degC"
+        ],
+        "count": 4,
+        "sum": 68.0,
+        "mean": 17.0
+      },
+      {
+        "key": [
+          "demo-type:MAD-AIR:10",
+          "demo:humidity",
+          "%"
+        ],
+        "count": 2,
+        "sum": 100.0,
+        "mean": 50.0
+      },
+      {
+        "key": [
+          "demo-type:MAD-AIR:10",
+          "demo:temperature",
+          "degC"
+        ],
+        "count": 3,
+        "sum": 100.0,
+        "mean": 33.333333333333336
+      }
+    ],
+    "dynamic_counts": {
+      "texto": 2,
+      "atributo": 1,
+      "revisiones": 2
+    },
+    "full_documents_verified": 18,
+    "negative_cases_verified": 13
+  },
+  "counts": {
+    "sensor_types": 2,
+    "sensors": 4,
+    "readings": 9,
+    "dynamic_information": 3
+  },
+  "finished_at": "2026-10-28T16:10:58.561127+00:00"
+}
