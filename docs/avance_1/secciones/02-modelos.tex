@@ -81,6 +81,48 @@ FK exigen un padre por hijo. Una zona local puede pertenecer a un distrito.
 \archivo{location_geography} reconstruye ambos nombres, sin repetirlos en cada
 ubicación. Los 21 nombres de distrito publicados no acreditan vigencia histórica.
 
+\subsection{Lectura del modelo y cardinalidades}
+Una estación identifica un punto lógico de la fuente de datos. Un canal identifica
+la serie de una magnitud en esa estación, y una observación registra su valor en
+un instante. No se equipara un canal con un dispositivo físico: esa asociación
+se almacena por separado en \archivo{channel_sensors}, únicamente cuando se conoce.
+En la generación observada actual no hay asignaciones físicas acreditadas.
+
+La tabla siguiente complementa las flechas del diagrama. Cada fila describe la
+referencia desde la tabla hija hacia su padre. Una referencia obligatoria exige
+exactamente un padre; una opcional permite cero o uno. Cada padre admite cero o
+muchas filas hijas, salvo la asignación de canal indicada al pie.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.14\textwidth}}
+\toprule Tabla hija & Clave foránea & Tabla padre & Referencia \\
+\midrule\endhead
+\archivo{source_versions} & \archivo{source_id} & \archivo{sources} & Obligatoria \\
+\archivo{zones} & \archivo{parent_zone_id} & \archivo{zones} & Opcional \\
+\archivo{locations} & \archivo{zone_id} & \archivo{zones} & Opcional \\
+\archivo{locations} & \archivo{inventory_version} & \archivo{source_versions} & Opcional \\
+\archivo{stations} & \archivo{source_id} & \archivo{sources} & Obligatoria \\
+\archivo{stations} & \archivo{location_id} & \archivo{locations} & Opcional \\
+\archivo{measurement_types} & \archivo{source_id} & \archivo{sources} & Obligatoria \\
+\archivo{sensor_types} & \archivo{category_id} & \archivo{sensor_categories} & Obligatoria \\
+\archivo{sensors} & \archivo{sensor_type} & \archivo{sensor_types} & Opcional \\
+\archivo{sensors} & \archivo{station_id} & \archivo{stations} & Obligatoria \\
+\archivo{sensors} & \archivo{organization_id} & \archivo{organizations} & Opcional \\
+\archivo{channels} & \archivo{station_id} & \archivo{stations} & Obligatoria \\
+\archivo{channels} & \archivo{measurement_type} & \archivo{measurement_types} & Obligatoria \\
+\archivo{channel_sensors} & \archivo{channel_id} & \archivo{channels} & Obligatoria \\
+\archivo{channel_sensors} & \archivo{sensor_id} & \archivo{sensors} & Obligatoria \\
+\archivo{observations} & \archivo{channel_id} & \archivo{channels} & Obligatoria \\
+\archivo{observations} & \archivo{source_version} & \archivo{source_versions} & Obligatoria \\
+\bottomrule
+\end{longtable}
+
+\archivo{channel_sensors.channel_id} es también clave primaria: un canal admite
+cero o una asignación, mientras que un sensor puede estar asociado a varios
+canales. \archivo{users} no tiene claves foráneas en este modelo; no se dibujan
+relaciones con usuarios que el esquema no implementa. La autorreferencia de
+\archivo{zones} permite un distrito padre opcional para una zona local; el trigger
+comprueba el nivel del padre.
+
 \subsection{Dependencias funcionales y tercera forma normal}
 La condición de 3FN exige que, en cada DF no trivial \(X\to A\), \(X\) sea
 superclave o \(A\) atributo primo. La cobertura de DF y las claves candidatas se
