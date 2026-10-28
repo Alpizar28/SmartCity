@@ -1,0 +1,917 @@
+{
+  "status": "PASS",
+  "started_at": "2026-10-28T07:13:56.304280+00:00",
+  "scope": "sample",
+  "sample_limit": 1000,
+  "contract": "madrid-draft-v2",
+  "shared_server_modified": false,
+  "tcp_enabled": false,
+  "postgresql_stopped": true,
+  "private_files_unchanged": true,
+  "source_hashes": {
+    "scripts/validar_postgresql_3nf.py": "0cc8442677aff44fdb7f5ac478ecf3d18b7fb55e18881533cf5520bd8c25add0",
+    "sprint1/postgres/schema_v2_3nf.sql": "1d34b91a20c499bb5d2b273678bc29514c573d72aea6c26dfe7b7e9ee6294771",
+    "sprint1/postgres/queries_v2_3nf.sql": "b344309fbbaad24a0f05fe1f3fa5a6f94e959f50083d4cdd7a4d9978c0e2acb0",
+    "sprint1/postgres/dependencias_3nf.json": "7f853f7235b99712a4405b48f3164cf2ece2884f415195dafedbb4079a837233",
+    "tests/integration/postgres_3nf.sql": "37952e58ce56c4e9fcb977d875dfe18d71e98341e6f57af9cc139abdb6752512"
+  },
+  "input_hashes": {
+    "accepted.extjsonl": "842052ca68b331121cc843bb6dd8273465c6442b1d99955d46f461a8af06daae",
+    "quarantine.extjsonl": "a87e16d402e82234038343def4067d155110f3102979e129402f1f6c902131f2",
+    "incidents.extjsonl": "53e76b0762da4e04c6415231fbc43aa20df1f452e883e721e0b28cd41dfe0563",
+    "catalogs.json": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b",
+    "administrative_seed.json": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+    "identities.sqlite": "b50c1db33f21e4dcfde4142d675821ed49b67d4656cf1f4df1e3f2f2f2a11f81"
+  },
+  "historical_report_hashes": {
+    "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json": "6800775f103b5dd50da838ff8a7e461cec113fb275a82ed6e6f73363d09a52b3",
+    "research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585"
+  },
+  "version": "PostgreSQL 16.15 (Ubuntu 16.15-0ubuntu0.24.04.1) on x86_64-pc-linux-gnu, compiled by gcc (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0, 64-bit",
+  "listen_addresses": "",
+  "load_seconds": 0.604129990999354,
+  "counts": {
+    "users": 5133,
+    "sensors": 5133,
+    "channels": 360,
+    "observations": 1000,
+    "organizations": 1,
+    "physical_assignments": 0
+  },
+  "dto_mismatches": 0,
+  "replay_verified": true,
+  "queries": {
+    "PG01": {
+      "rows": 12,
+      "sha256": "60a4c2384db42a0107fc880819bde2578075fa7147a15e212784bc43b608baab",
+      "independent_full_result_match": true,
+      "independent_type_counts_match": true,
+      "semantic_change": "device type, formerly measurement-derived category"
+    },
+    "PG02": {
+      "rows": 5133,
+      "sha256": "84152c98d5744ff43caa0e503b1e51dd46e70c1c21669e2633b01cc0708e9d0d",
+      "independent_full_result_match": true
+    },
+    "PG03": {
+      "rows": 2,
+      "sha256": "f9a3eba4dd3038149d5035fae0d20bd24e2117c99aac5409e68a85632f69089a",
+      "independent_full_result_match": true
+    },
+    "PG04": {
+      "rows": 1,
+      "sha256": "3a06c86e55d6c8d85e96f5b28f152abdb3bde7224caf2c9fd5809e6cca14ca74",
+      "independent_full_result_match": true
+    },
+    "PG05": {
+      "rows": 5133,
+      "sha256": "7c38cc706d0d9c9f4c07d18bdac1c2f1fda1bd867dd403f42ed57900306196cf",
+      "independent_full_result_match": true
+    },
+    "PG06": {
+      "rows": 5,
+      "sha256": "7c2dd3da5fe597457d6af9540810a80e020c78d4f2a7e85ef0bfb1b573ede2be",
+      "independent_full_result_match": true
+    },
+    "PG07": {
+      "rows": 0,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "independent_full_result_match": true
+    },
+    "PG08": {
+      "rows": 21,
+      "sha256": "d3581acaefb25e5aa9291079afe95bbd4eb2ea61f0ff6be813074c36a71892a0",
+      "independent_full_result_match": true
+    },
+    "PG09": {
+      "rows": 2,
+      "sha256": "3f26d8c769ba50a0450bbd8a2f3ac2c8cffd649c9e4ac4703f3c9388c5bca844",
+      "independent_full_result_match": true
+    },
+    "PG10": {
+      "rows": 5133,
+      "sha256": "3ce98321e631d879df9582f3dd858df5de1c2a28812b05bc460a58a337010309",
+      "independent_full_result_match": true
+    }
+  },
+  "by_source": {
+    "MAD-AIR": 1000
+  },
+  "ids_payload_sha256": "1415f8ccdf45be5aeb3dc3660d938cada198ad66de404c1a2dd20f9f20887733",
+  "indexes": [
+    {
+      "indexdef": "CREATE INDEX channel_sensor ON smartcity.channel_sensors USING btree (sensor_id)",
+      "indexname": "channel_sensor",
+      "tablename": "channel_sensors"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX channel_sensors_pkey ON smartcity.channel_sensors USING btree (channel_id)",
+      "indexname": "channel_sensors_pkey",
+      "tablename": "channel_sensors"
+    },
+    {
+      "indexdef": "CREATE INDEX channel_station ON smartcity.channels USING btree (station_id)",
+      "indexname": "channel_station",
+      "tablename": "channels"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX channels_pkey ON smartcity.channels USING btree (channel_id)",
+      "indexname": "channels_pkey",
+      "tablename": "channels"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX channels_station_id_source_key_key ON smartcity.channels USING btree (station_id, source_key)",
+      "indexname": "channels_station_id_source_key_key",
+      "tablename": "channels"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX locations_pkey ON smartcity.locations USING btree (location_id)",
+      "indexname": "locations_pkey",
+      "tablename": "locations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX measurement_types_pkey ON smartcity.measurement_types USING btree (measurement_type)",
+      "indexname": "measurement_types_pkey",
+      "tablename": "measurement_types"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX measurement_types_source_id_code_key ON smartcity.measurement_types USING btree (source_id, code)",
+      "indexname": "measurement_types_source_id_code_key",
+      "tablename": "measurement_types"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX observations_channel_id_observed_at_key ON smartcity.observations USING btree (channel_id, observed_at)",
+      "indexname": "observations_channel_id_observed_at_key",
+      "tablename": "observations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX observations_pkey ON smartcity.observations USING btree (measurement_id)",
+      "indexname": "observations_pkey",
+      "tablename": "observations"
+    },
+    {
+      "indexdef": "CREATE INDEX observations_time ON smartcity.observations USING btree (observed_at)",
+      "indexname": "observations_time",
+      "tablename": "observations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX organizations_pkey ON smartcity.organizations USING btree (organization_id)",
+      "indexname": "organizations_pkey",
+      "tablename": "organizations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX sensor_categories_pkey ON smartcity.sensor_categories USING btree (category_id)",
+      "indexname": "sensor_categories_pkey",
+      "tablename": "sensor_categories"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX sensor_types_pkey ON smartcity.sensor_types USING btree (sensor_type)",
+      "indexname": "sensor_types_pkey",
+      "tablename": "sensor_types"
+    },
+    {
+      "indexdef": "CREATE INDEX sensor_org ON smartcity.sensors USING btree (organization_id)",
+      "indexname": "sensor_org",
+      "tablename": "sensors"
+    },
+    {
+      "indexdef": "CREATE INDEX sensor_station ON smartcity.sensors USING btree (station_id)",
+      "indexname": "sensor_station",
+      "tablename": "sensors"
+    },
+    {
+      "indexdef": "CREATE INDEX sensor_type ON smartcity.sensors USING btree (sensor_type)",
+      "indexname": "sensor_type",
+      "tablename": "sensors"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX sensors_pkey ON smartcity.sensors USING btree (sensor_id)",
+      "indexname": "sensors_pkey",
+      "tablename": "sensors"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX source_versions_pkey ON smartcity.source_versions USING btree (source_version)",
+      "indexname": "source_versions_pkey",
+      "tablename": "source_versions"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX sources_pkey ON smartcity.sources USING btree (source_id)",
+      "indexname": "sources_pkey",
+      "tablename": "sources"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX stations_pkey ON smartcity.stations USING btree (station_id)",
+      "indexname": "stations_pkey",
+      "tablename": "stations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX stations_source_id_source_key_key ON smartcity.stations USING btree (source_id, source_key)",
+      "indexname": "stations_source_id_source_key_key",
+      "tablename": "stations"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX users_email_key ON smartcity.users USING btree (email)",
+      "indexname": "users_email_key",
+      "tablename": "users"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX users_pkey ON smartcity.users USING btree (user_id)",
+      "indexname": "users_pkey",
+      "tablename": "users"
+    },
+    {
+      "indexdef": "CREATE UNIQUE INDEX zones_pkey ON smartcity.zones USING btree (zone_id)",
+      "indexname": "zones_pkey",
+      "tablename": "zones"
+    }
+  ],
+  "constraints": [
+    {
+      "conname": "channel_sensors_channel_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (channel_id) REFERENCES smartcity.channels(channel_id)",
+      "table_name": "channel_sensors"
+    },
+    {
+      "conname": "channel_sensors_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (channel_id)",
+      "table_name": "channel_sensors"
+    },
+    {
+      "conname": "channel_sensors_sensor_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (sensor_id) REFERENCES smartcity.sensors(sensor_id)",
+      "table_name": "channel_sensors"
+    },
+    {
+      "conname": "channels_catalog_basis_check",
+      "contype": "c",
+      "definition": "CHECK ((catalog_basis = ANY (ARRAY['observations'::text, 'independent_inventory'::text])))",
+      "table_name": "channels"
+    },
+    {
+      "conname": "channels_measurement_type_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (measurement_type) REFERENCES smartcity.measurement_types(measurement_type)",
+      "table_name": "channels"
+    },
+    {
+      "conname": "channels_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (channel_id)",
+      "table_name": "channels"
+    },
+    {
+      "conname": "channels_station_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (station_id) REFERENCES smartcity.stations(station_id)",
+      "table_name": "channels"
+    },
+    {
+      "conname": "channels_station_id_source_key_key",
+      "contype": "u",
+      "definition": "UNIQUE (station_id, source_key)",
+      "table_name": "channels"
+    },
+    {
+      "conname": "locations_check",
+      "contype": "c",
+      "definition": "CHECK (((latitude IS NULL) = (longitude IS NULL)))",
+      "table_name": "locations"
+    },
+    {
+      "conname": "locations_inventory_version_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (inventory_version) REFERENCES smartcity.source_versions(source_version)",
+      "table_name": "locations"
+    },
+    {
+      "conname": "locations_latitude_check",
+      "contype": "c",
+      "definition": "CHECK (((latitude >= ('-90'::integer)::double precision) AND (latitude <= (90)::double precision)))",
+      "table_name": "locations"
+    },
+    {
+      "conname": "locations_longitude_check",
+      "contype": "c",
+      "definition": "CHECK (((longitude >= ('-180'::integer)::double precision) AND (longitude <= (180)::double precision)))",
+      "table_name": "locations"
+    },
+    {
+      "conname": "locations_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (location_id)",
+      "table_name": "locations"
+    },
+    {
+      "conname": "locations_zone_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (zone_id) REFERENCES smartcity.zones(zone_id)",
+      "table_name": "locations"
+    },
+    {
+      "conname": "measurement_types_check",
+      "contype": "c",
+      "definition": "CHECK (((unit IS NULL) = (unit_status = 'pending_dictionary'::text)))",
+      "table_name": "measurement_types"
+    },
+    {
+      "conname": "measurement_types_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (measurement_type)",
+      "table_name": "measurement_types"
+    },
+    {
+      "conname": "measurement_types_source_id_code_key",
+      "contype": "u",
+      "definition": "UNIQUE (source_id, code)",
+      "table_name": "measurement_types"
+    },
+    {
+      "conname": "measurement_types_source_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (source_id) REFERENCES smartcity.sources(source_id)",
+      "table_name": "measurement_types"
+    },
+    {
+      "conname": "observations_channel_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (channel_id) REFERENCES smartcity.channels(channel_id)",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_channel_id_observed_at_key",
+      "contype": "u",
+      "definition": "UNIQUE (channel_id, observed_at)",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_element_type_check",
+      "contype": "c",
+      "definition": "CHECK ((element_type = ANY (ARRAY['URB'::text, 'M30'::text])))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_payload_hash_check",
+      "contype": "c",
+      "definition": "CHECK ((payload_hash ~ '^payload:[0-9a-f]{64}$'::text))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (measurement_id)",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_raw_locator_check",
+      "contype": "c",
+      "definition": "CHECK (((jsonb_typeof(raw_locator) = 'object'::text) AND (NOT (raw_locator ? 'sha256'::text))))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_source_version_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (source_version) REFERENCES smartcity.source_versions(source_version)",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_transformation_method_check",
+      "contype": "c",
+      "definition": "CHECK ((length(transformation_method) > 0))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_transformation_version_check",
+      "contype": "c",
+      "definition": "CHECK ((length(transformation_version) > 0))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_value_check",
+      "contype": "c",
+      "definition": "CHECK (((value > '-Infinity'::double precision) AND (value < 'Infinity'::double precision)))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "observations_zone_scope_check",
+      "contype": "c",
+      "definition": "CHECK ((zone_scope = ANY (ARRAY['unknown'::text, 'current_inventory_not_historically_verified'::text])))",
+      "table_name": "observations"
+    },
+    {
+      "conname": "organizations_data_origin_check",
+      "contype": "c",
+      "definition": "CHECK ((data_origin = ANY (ARRAY['observed'::text, 'synthetic'::text])))",
+      "table_name": "organizations"
+    },
+    {
+      "conname": "organizations_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (organization_id)",
+      "table_name": "organizations"
+    },
+    {
+      "conname": "sensor_categories_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (category_id)",
+      "table_name": "sensor_categories"
+    },
+    {
+      "conname": "sensor_types_category_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (category_id) REFERENCES smartcity.sensor_categories(category_id)",
+      "table_name": "sensor_types"
+    },
+    {
+      "conname": "sensor_types_data_origin_check",
+      "contype": "c",
+      "definition": "CHECK ((data_origin = ANY (ARRAY['observed'::text, 'synthetic'::text])))",
+      "table_name": "sensor_types"
+    },
+    {
+      "conname": "sensor_types_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (sensor_type)",
+      "table_name": "sensor_types"
+    },
+    {
+      "conname": "sensors_administrative_status_check",
+      "contype": "c",
+      "definition": "CHECK ((administrative_status = ANY (ARRAY['active'::text, 'inactive'::text])))",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "sensors_data_origin_check",
+      "contype": "c",
+      "definition": "CHECK ((data_origin = ANY (ARRAY['observed'::text, 'synthetic'::text])))",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "sensors_organization_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (organization_id) REFERENCES smartcity.organizations(organization_id)",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "sensors_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (sensor_id)",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "sensors_sensor_type_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (sensor_type) REFERENCES smartcity.sensor_types(sensor_type)",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "sensors_station_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (station_id) REFERENCES smartcity.stations(station_id)",
+      "table_name": "sensors"
+    },
+    {
+      "conname": "source_versions_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (source_version)",
+      "table_name": "source_versions"
+    },
+    {
+      "conname": "source_versions_source_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (source_id) REFERENCES smartcity.sources(source_id)",
+      "table_name": "source_versions"
+    },
+    {
+      "conname": "source_versions_source_version_check",
+      "contype": "c",
+      "definition": "CHECK ((source_version ~ '^[0-9a-f]{64}$'::text))",
+      "table_name": "source_versions"
+    },
+    {
+      "conname": "sources_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (source_id)",
+      "table_name": "sources"
+    },
+    {
+      "conname": "sources_source_id_check",
+      "contype": "c",
+      "definition": "CHECK ((source_id = ANY (ARRAY['MAD-AIR'::text, 'MAD-METEO'::text, 'MAD-TRAFFIC'::text])))",
+      "table_name": "sources"
+    },
+    {
+      "conname": "stations_location_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (location_id) REFERENCES smartcity.locations(location_id)",
+      "table_name": "stations"
+    },
+    {
+      "conname": "stations_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (station_id)",
+      "table_name": "stations"
+    },
+    {
+      "conname": "stations_source_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (source_id) REFERENCES smartcity.sources(source_id)",
+      "table_name": "stations"
+    },
+    {
+      "conname": "stations_source_id_source_key_key",
+      "contype": "u",
+      "definition": "UNIQUE (source_id, source_key)",
+      "table_name": "stations"
+    },
+    {
+      "conname": "users_data_origin_check",
+      "contype": "c",
+      "definition": "CHECK ((data_origin = ANY (ARRAY['observed'::text, 'synthetic'::text])))",
+      "table_name": "users"
+    },
+    {
+      "conname": "users_email_key",
+      "contype": "u",
+      "definition": "UNIQUE (email)",
+      "table_name": "users"
+    },
+    {
+      "conname": "users_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (user_id)",
+      "table_name": "users"
+    },
+    {
+      "conname": "zones_check",
+      "contype": "c",
+      "definition": "CHECK (((parent_zone_id IS NULL) OR (level = 'local'::text)))",
+      "table_name": "zones"
+    },
+    {
+      "conname": "zones_check1",
+      "contype": "c",
+      "definition": "CHECK (((parent_zone_id IS NULL) OR (parent_zone_id <> zone_id)))",
+      "table_name": "zones"
+    },
+    {
+      "conname": "zones_level_check",
+      "contype": "c",
+      "definition": "CHECK ((level = ANY (ARRAY['city'::text, 'district'::text, 'local'::text])))",
+      "table_name": "zones"
+    },
+    {
+      "conname": "zones_parent_zone_id_fkey",
+      "contype": "f",
+      "definition": "FOREIGN KEY (parent_zone_id) REFERENCES smartcity.zones(zone_id)",
+      "table_name": "zones"
+    },
+    {
+      "conname": "zones_pkey",
+      "contype": "p",
+      "definition": "PRIMARY KEY (zone_id)",
+      "table_name": "zones"
+    }
+  ],
+  "tables": [
+    "channel_sensors",
+    "channels",
+    "locations",
+    "measurement_types",
+    "observations",
+    "organizations",
+    "sensor_categories",
+    "sensor_types",
+    "sensors",
+    "source_versions",
+    "sources",
+    "stations",
+    "users",
+    "zones"
+  ],
+  "negative_tests": {
+    "channel_source": "rejected",
+    "sensor_station": "rejected",
+    "parent_source_update": "rejected",
+    "payload_conflict": "rejected",
+    "raw_locator_sha": "rejected",
+    "observation_version": "rejected",
+    "zone_parent": "rejected",
+    "duplicate_natural": "rejected"
+  },
+  "positive_tests": {
+    "local_zone_district": "PASS with rollback",
+    "same_station_assignment": "PASS with rollback"
+  },
+  "pg07_controlled": [
+    {
+      "sensor_id": "test-sensor-before"
+    },
+    {
+      "sensor_id": "test-sensor-empty"
+    },
+    {
+      "sensor_id": "test-sensor-outside"
+    }
+  ],
+  "fd_check": {
+    "method": "all determinant closures over explicit FD cover",
+    "relations": {
+      "sources": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "source_id"
+          ]
+        ]
+      },
+      "source_versions": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "source_version"
+          ]
+        ]
+      },
+      "zones": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "zone_id"
+          ]
+        ]
+      },
+      "locations": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "location_id"
+          ]
+        ]
+      },
+      "stations": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "station_id"
+          ],
+          [
+            "source_id",
+            "source_key"
+          ]
+        ]
+      },
+      "sensor_categories": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "category_id"
+          ]
+        ]
+      },
+      "measurement_types": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "measurement_type"
+          ],
+          [
+            "code",
+            "source_id"
+          ]
+        ]
+      },
+      "organizations": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "organization_id"
+          ]
+        ]
+      },
+      "users": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "email"
+          ],
+          [
+            "user_id"
+          ]
+        ]
+      },
+      "sensor_types": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "sensor_type"
+          ]
+        ]
+      },
+      "sensors": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "sensor_id"
+          ]
+        ]
+      },
+      "channels": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "channel_id"
+          ],
+          [
+            "source_key",
+            "station_id"
+          ]
+        ]
+      },
+      "channel_sensors": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "channel_id"
+          ]
+        ]
+      },
+      "observations": {
+        "third_normal_form": true,
+        "candidate_keys": [
+          [
+            "measurement_id"
+          ],
+          [
+            "channel_id",
+            "observed_at"
+          ]
+        ]
+      }
+    },
+    "structured_domains": "SQL JSONB treated as atomic typed domains; not recursive scalar normalization"
+  },
+  "plan": [
+    {
+      "Plan": {
+        "Node Type": "Limit",
+        "Parallel Aware": false,
+        "Async Capable": false,
+        "Startup Cost": 0.77,
+        "Total Cost": 4.87,
+        "Plan Rows": 5,
+        "Plan Width": 85,
+        "Actual Startup Time": 0.087,
+        "Actual Total Time": 0.088,
+        "Actual Rows": 0,
+        "Actual Loops": 1,
+        "Shared Hit Blocks": 5,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0,
+        "Plans": [
+          {
+            "Node Type": "Result",
+            "Parent Relationship": "InitPlan",
+            "Subplan Name": "InitPlan 2 (returns $1)",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Startup Cost": 0.49,
+            "Total Cost": 0.5,
+            "Plan Rows": 1,
+            "Plan Width": 32,
+            "Actual Startup Time": 0.064,
+            "Actual Total Time": 0.065,
+            "Actual Rows": 1,
+            "Actual Loops": 1,
+            "Shared Hit Blocks": 3,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0,
+            "Plans": [
+              {
+                "Node Type": "Limit",
+                "Parent Relationship": "InitPlan",
+                "Subplan Name": "InitPlan 1 (returns $0)",
+                "Parallel Aware": false,
+                "Async Capable": false,
+                "Startup Cost": 0.27,
+                "Total Cost": 0.49,
+                "Plan Rows": 1,
+                "Plan Width": 73,
+                "Actual Startup Time": 0.062,
+                "Actual Total Time": 0.062,
+                "Actual Rows": 1,
+                "Actual Loops": 1,
+                "Shared Hit Blocks": 3,
+                "Shared Read Blocks": 0,
+                "Shared Dirtied Blocks": 0,
+                "Shared Written Blocks": 0,
+                "Local Hit Blocks": 0,
+                "Local Read Blocks": 0,
+                "Local Dirtied Blocks": 0,
+                "Local Written Blocks": 0,
+                "Temp Read Blocks": 0,
+                "Temp Written Blocks": 0,
+                "Plans": [
+                  {
+                    "Node Type": "Index Only Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Async Capable": false,
+                    "Scan Direction": "Forward",
+                    "Index Name": "channels_pkey",
+                    "Relation Name": "channels",
+                    "Alias": "channels",
+                    "Startup Cost": 0.27,
+                    "Total Cost": 78.31,
+                    "Plan Rows": 360,
+                    "Plan Width": 73,
+                    "Actual Startup Time": 0.061,
+                    "Actual Total Time": 0.061,
+                    "Actual Rows": 1,
+                    "Actual Loops": 1,
+                    "Index Cond": "(channel_id IS NOT NULL)",
+                    "Rows Removed by Index Recheck": 0,
+                    "Heap Fetches": 1,
+                    "Shared Hit Blocks": 3,
+                    "Shared Read Blocks": 0,
+                    "Shared Dirtied Blocks": 0,
+                    "Shared Written Blocks": 0,
+                    "Local Hit Blocks": 0,
+                    "Local Read Blocks": 0,
+                    "Local Dirtied Blocks": 0,
+                    "Local Written Blocks": 0,
+                    "Temp Read Blocks": 0,
+                    "Temp Written Blocks": 0
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "Node Type": "Index Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Async Capable": false,
+            "Scan Direction": "Forward",
+            "Index Name": "observations_channel_id_observed_at_key",
+            "Relation Name": "observations",
+            "Alias": "observations",
+            "Startup Cost": 0.28,
+            "Total Cost": 410.21,
+            "Plan Rows": 500,
+            "Plan Width": 85,
+            "Actual Startup Time": 0.086,
+            "Actual Total Time": 0.086,
+            "Actual Rows": 0,
+            "Actual Loops": 1,
+            "Index Cond": "(channel_id = $1)",
+            "Rows Removed by Index Recheck": 0,
+            "Shared Hit Blocks": 5,
+            "Shared Read Blocks": 0,
+            "Shared Dirtied Blocks": 0,
+            "Shared Written Blocks": 0,
+            "Local Hit Blocks": 0,
+            "Local Read Blocks": 0,
+            "Local Dirtied Blocks": 0,
+            "Local Written Blocks": 0,
+            "Temp Read Blocks": 0,
+            "Temp Written Blocks": 0
+          }
+        ]
+      },
+      "Planning": {
+        "Shared Hit Blocks": 207,
+        "Shared Read Blocks": 0,
+        "Shared Dirtied Blocks": 0,
+        "Shared Written Blocks": 0,
+        "Local Hit Blocks": 0,
+        "Local Read Blocks": 0,
+        "Local Dirtied Blocks": 0,
+        "Local Written Blocks": 0,
+        "Temp Read Blocks": 0,
+        "Temp Written Blocks": 0
+      },
+      "Planning Time": 1.04,
+      "Triggers": [],
+      "Execution Time": 0.144
+    }
+  ],
+  "temporary_database_removed": true,
+  "finished_at": "2026-10-28T07:14:12.043217+00:00"
+}

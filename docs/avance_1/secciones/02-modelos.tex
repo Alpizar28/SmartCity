@@ -1,138 +1,127 @@
-\section{Arquitectura y modelos implementados}
-\subsection{Contrato canónico y núcleo de práctica}
-\begin{description}
-\item[Entrega local v2:] esquema \archivo{smartcity}, contrato
-\archivo{madrid-draft-v2} y generación \archivo{expanded-v2-2025-01}.
-Añade tráfico en otra base local, sin migrar en sitio ni sobrescribir v1.
-\item[Carga anual:] esquema PostgreSQL \archivo{smartcity}, contrato
-\archivo{madrid-draft-v1} y generación \archivo{expanded-2025}.
-Su evidencia previa comprende 1.076.813 lecturas de aire por motor.
-\item[Núcleo local:] esquema PostgreSQL \archivo{sprint1}, contrato
-\archivo{madrid-draft-v1-frozen} y una demostración con tres ejemplos publicados
-adaptados en copias de prueba. No es una migración de la carga anual.
-\end{description}
+\section{Modelo relacional y documental}
+\subsection{Estructura relacional normalizada}
+El esquema de entrega se define en
+\archivo{sprint1/postgres/schema_v2_3nf.sql}. Conserva las doce entidades del
+núcleo anterior y añade dos relaciones auxiliares: tipos de dispositivo y
+asignaciones sensor--canal. El modelo definitivo contiene catorce tablas.
+El esquema de práctica \archivo{sprint1}, que usa \archivo{readings} y
+\archivo{storage_id}, es independiente y no representa este modelo.
 
-La ruta SQL canónica usa el esquema anual \archivo{smartcity} y las diez
-consultas de \archivo{sprint1/postgres/queries.sql}. El SQL de práctica se
-conserva en \archivo{sprint1/postgres/staging_queries.sql}. La entrada común es
-\archivo{bash scripts/validate_sprint1.sh --engines}: comprueba ambas rutas
-por separado, sin sumar coberturas ni presentar fixtures como carga anual.
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.25\textwidth}>{\raggedright\arraybackslash}p{0.26\textwidth}>{\raggedright\arraybackslash}p{0.40\textwidth}}
+\toprule Tabla & Claves candidatas & Función \\
+\midrule\endhead
+sources & source\_id & Dataset y publicador. \\
+source\_versions & source\_version & Snapshot y fuente. \\
+zones & zone\_id & Zona administrativa y distrito padre opcional. \\
+locations & location\_id & Nombre del sitio, coordenadas y zona opcional. \\
+stations & station\_id; fuente/código & Sitio lógico del inventario. \\
+sensor\_categories & category\_id & Clasificación administrativa de dispositivos. \\
+measurement\_types & measurement\_type; fuente/código & Magnitud medida y unidad; independiente del tipo físico. \\
+organizations & organization\_id & Organismo y responsable. \\
+users & user\_id; email & Usuario de aplicación. \\
+sensor\_types & sensor\_type & Tipo de dispositivo y categoría. \\
+sensors & sensor\_id & Dispositivo administrativo, instalación y estado. \\
+channels & channel\_id; estación/clave & Serie lógica de una magnitud. \\
+channel\_sensors & channel\_id & Asignación conocida de canal a dispositivo. \\
+observations & measurement\_id; canal/UTC & Hecho observado y procedencia variable. \\
+\bottomrule
+\end{longtable}
 
-La opción \archivo{--datos} añade preparación y carga de las dos fuentes v2.
-\archivo{sprint1/postgres/contract_v2.sql} adapta el esquema recién creado:
-incorpora conteo de muestras y alcance de zona, y exige reglas de aceptación
-específicas para tráfico. Se niega a operar si ya hay fuentes u observaciones.
-No es una migración para bases compartidas o pobladas.
-
-\subsection{Modelo relacional canónico}
-El DDL está en \archivo{research/datasets/scripts/phase5_postgresql.sql}.
-Contiene doce tablas centrales: fuentes, versiones, zonas, ubicaciones,
-estaciones, categorías, tipos de medición, organismos, usuarios, sensores,
-canales y observaciones. Las entidades demo se identifican por origen;
-también existe el espacio separado \archivo{smartcity_demo}.
-
-\begin{figure}[htbp]
+\clearpage
+\begin{figure}[p]
 \centering
-\begin{tikzpicture}[
-  entidad/.style={draw,rounded corners,align=center,font=\small,
-    minimum width=2.5cm,minimum height=0.8cm},
-  relacion/.style={-{Latex}},node distance=1cm and 0.6cm]
-\node[entidad] (fuente) {Fuentes};
-\node[entidad,right=of fuente] (version) {Versiones};
-\node[entidad,below=of fuente] (estacion) {Estaciones};
-\node[entidad,right=of estacion] (canal) {Canales};
-\node[entidad,right=of canal] (observacion) {Observaciones};
-\node[entidad,below=of estacion] (ubicacion) {Ubicaciones};
-\node[entidad,below=of canal] (tipo) {Tipos de medición};
-\draw[relacion] (version) -- (fuente);
-\draw[relacion] (estacion) -- (fuente);
-\draw[relacion] (estacion) -- (ubicacion);
-\draw[relacion] (canal) -- (estacion);
-\draw[relacion] (canal) -- (tipo);
-\draw[relacion] (observacion) -- (canal);
-\draw[relacion] (observacion) -- (version);
+\begin{tikzpicture}[x=3.65cm,y=2.1cm,
+ entidad/.style={draw,fill=white,rounded corners,align=center,font=\scriptsize,minimum width=2.9cm,minimum height=0.75cm},
+ relacion/.style={-{Latex},thin}]
+\node[entidad] (src) at (0,0) {sources};
+\node[entidad] (ver) at (1,0) {source\_versions};
+\node[entidad] (org) at (2,0) {organizations};
+\node[entidad] (usr) at (3,0) {users};
+\node[entidad] (sta) at (0,-1) {stations};
+\node[entidad] (mag) at (1,-1) {measurement\_types};
+\node[entidad] (cat) at (2,-1) {sensor\_categories};
+\node[entidad] (zon) at (3,-1) {zones};
+\node[entidad] (cha) at (0,-2) {channels};
+\node[entidad] (sen) at (1,-2) {sensors};
+\node[entidad] (typ) at (2,-2) {sensor\_types};
+\node[entidad] (loc) at (3,-2) {locations};
+\node[entidad] (obs) at (0,-3) {observations};
+\node[entidad] (lnk) at (1,-3) {channel\_sensors};
+\draw[relacion] (ver) -- (src);
+\draw[relacion] (sta) -- (src);
+\draw[relacion] (sta.south) -- ++(0,-0.22) -| ([xshift=-3mm]loc.west) -- (loc.west);
+\draw[relacion] (mag) -- (src);
+\draw[relacion] (typ) -- (cat);
+\draw[relacion] (sen) -- (typ);
+\draw[relacion] (sen) -- (sta);
+\draw[relacion] (sen.north) -- (1,-1.5) -- (2.5,-1.5)
+ -- (2.5,-0.5) -- (2,-0.5) -- (org.south);
+\draw[relacion] (cha) -- (sta);
+\draw[relacion] (cha) -- (mag);
+\draw[relacion] (lnk) -- (cha);
+\draw[relacion] (lnk) -- (sen);
+\draw[relacion] (obs) -- (cha);
+\draw[relacion] (obs.east) -- ++(0.10,0) |- ([yshift=-4mm]ver.south) -- (ver.south);
+\draw[relacion] (loc) -- (zon);
+\draw[relacion] (loc.east) -- ++(0.15,0) -- ++(0,2.5) -| (ver.north);
+\draw[relacion] (zon) edge[loop right] (zon);
 \end{tikzpicture}
-\caption{Extracto del modelo anual. Las flechas indican referencias hacia
-catálogos; no es el diagrama E--R completo ni representa cardinalidades.}
+\caption{Modelo relacional completo de catorce tablas. Cada flecha parte de
+la relación hija y apunta a la relación referenciada. Usuarios es independiente.}
 \end{figure}
+\clearpage
 
-Las PK identifican entidades; las FK compuestas comprueban que canal, estación,
-tipo y versión pertenezcan a la fuente correspondiente. La unicidad de
-\archivo{(channel_id, observed_at, timestamp_role)} evita repetir una observación.
-Un trigger rechaza modificaciones de observaciones y comprueba coherencia temporal.
-La vista \archivo{channel_activity} resume actividad por canal y la función
-\archivo{channels_at_station} cuenta canales, no sensores físicos.
+El E--R con atributos y cardinalidades se conserva en
+\archivo{docs/arquitectura/diagrama_3nf.md}.
 
-\subsubsection{Claves, dependencias y resultado formal de normalización}
-La auditoría completa de Daniel queda en
-\archivo{sprint1/postgres/normalizacion_3fn.md}; evalúa las doce relaciones,
-incluidos todos los atributos de v2. El E--R completo reutilizado está en
-\archivo{docs/arquitectura/diagramas.md}, sección 3: incluye doce tablas y las
-FK reales, no la tabla demo. Un padre admite cero a muchos hijos; cada FK
-obligatoria exige un padre y cada FK nullable admite cero o uno. Usuarios no
-tiene FK. La figura de este informe es solamente un extracto.
+Cada padre admite cero o muchos hijos. Zona, distrito padre, versión de inventario, ubicación de
+estación, tipo de dispositivo y organismo son referencias opcionales; las demás
+FK exigen un padre por hijo. Una zona local puede pertenecer a un distrito.
+\archivo{location_geography} reconstruye ambos nombres, sin repetirlos en cada
+ubicación. Los 21 nombres de distrito publicados no acreditan vigencia histórica.
 
-Además de las PK, son claves candidatas el correo NOT NULL UNIQUE de usuarios,
-fuente/código de estación, fuente/código de magnitud, estación/clave de canal y
-canal/fecha UTC/rol de observación. Las UNIQUE que contienen una PK más otra
-columna son superclaves no mínimas, no candidatas nuevas. No se deducen claves
-de coincidencias del lote, como un sensor demo por estación.
+\subsection{Dependencias funcionales y tercera forma normal}
+La condición de 3FN exige que, en cada DF no trivial \(X\to A\), \(X\) sea
+superclave o \(A\) atributo primo. La cobertura de DF y las claves candidatas se
+registran en \archivo{sprint1/postgres/dependencias_3nf.json}. Se calcularon los
+cierres de todos los subconjuntos de atributos y se comparó el inventario con
+las columnas reales de PostgreSQL. Con esa cobertura, las catorce relaciones
+satisfacen 3FN y BCNF.
 
-Se usa la definición formal: para toda dependencia funcional no trivial
-\(X\to A\), \(X\) debe ser superclave o \(A\) atributo primo.
-Diez relaciones satisfacen 3FN respecto de las dependencias justificadas;
-\textbf{canales y observaciones no satisfacen 3FN estricta}.
-En canales, estación determina fuente mediante la FK compuesta al catálogo:
-estación no es superclave y fuente no es atributo primo. También magnitud
-determina fuente. En observaciones, canal determina fuente y versión de origen
-determina fuente, sin ser superclaves. La dependencia canal--fuente es parcial
-respecto de la clave candidata canal/fecha/rol; estación--fuente también es
-parcial respecto de estación/clave del canal. Por ello estas dos relaciones
-tampoco cumplen 2FN respecto de todas sus candidatas.
+Estación--fuente y magnitud--fuente permanecen en sus catálogos; canales y
+observaciones no repiten fuente. La asignación sensor--canal evita duplicar la
+estación del dispositivo. Tipo--categoría se conserva en \archivo{sensor_types}.
 
-Las redundancias se mantienen deliberadamente para coherencia y trazabilidad,
-pero una FK no las convierte en 3FN. La propuesta sin pérdida consiste en
-proyectar la fuente fuera de canales y observaciones y reconstruirla desde
-estación/canal; la intersección es clave del catálogo correspondiente. Las
-reglas de igualdad de fuente entre estación, magnitud y snapshot requerirían
-controles de join adicionales. También se analizan reloj original, constantes
-contractuales, referencia JSON y reglas de aceptación por fuente de v2;
-eliminar solo fuente no certifica toda la descomposición. No se aplicó migración
-ni se rompió el DTO compartido. El equipo debe resolver esta excepción antes
-de declarar normalización estricta del esquema completo.
+La vista contractual calcula la hora local desde UTC, proyecta constantes y
+obtiene calidad, estado temporal, rol e intervalo desde la política por fuente.
+También repone el SHA del snapshot en la referencia original. La reconstrucción
+conserva el DTO v2, sus identificadores y valores.
 
-JSONB se trata como dominio tipado atómico para la evaluación relacional; no se
-afirma normalización escalar recursiva de listas u objetos. Los CHECK y el
-trigger no sustituyen la validación del ETL: CHECK admite UNKNOWN en campos
-opcionales, y el bloqueo de UPDATE no impide DELETE o TRUNCATE. La evidencia
-local v2 enumera 12 PK, 10 UNIQUE, 22 FK, 27 CHECK y 27 índices B-tree; no hay
-historial temporal automático ni integridad distribuida con MongoDB.
+La reunión por claves de catálogo conserva la información; las asignaciones
+opcionales usan LEFT JOIN. Los triggers comprueban fuentes, estación del sensor,
+inmutabilidad y aceptación v2. Se acreditan ocho rechazos de operaciones, sin
+aislar cada CHECK o FK; las pruebas positivas y PG07 utilizan rollback.
 
-\subsection{Núcleo relacional de demostración}
-\archivo{sprint1/postgres/schema_proposal.sql} define fuentes, versiones,
-estaciones, canales, lecturas y cuarentena. Usa un identificador interno
-\archivo{storage_id}, no una identidad científica definitiva.
-La clave única de staging combina snapshot, canal y clave original.
-La vista \archivo{quality_summary} y la función \archivo{air_statistics}
-pertenecen a este núcleo y no son las vistas/funciones de la carga anual.
+JSONB es un dominio SQL tipado indivisible; no se afirma normalización escalar
+recursiva. Los NULL opcionales denotan ausencia y no se usan como claves. No se
+infieren DF de coincidencias del lote o de condiciones solo para valores no nulos.
 
-\subsection{Modelo documental e integración}
-MongoDB mantiene una colección estándar \archivo{readings}, validación BSON e
-índices. Los documentos reúnen valor, calidad, referencia al original y metadatos
-variables; esto facilita conservar estructuras semiestructuradas sin convertir
-cada atributo opcional en una entidad relacional.
+\subsection{Dispositivos, magnitudes y procedencia}
+\archivo{sensor_types} representa tipos de dispositivos administrativos;
+\archivo{measurement_types} representa variables y unidades medidas. No hay FK
+entre magnitudes y categorías físicas. Los doce tipos demostrativos y sus
+categorías son explícitamente sintéticos. Se conservan 5.133 sensores y usuarios
+demo y un organismo demo, sin enlaces inventados con canales observados.
 
-En la carga anual, \archivo{_id = measurement_id}; el tiempo aceptado es BSON
-Date. Los índices incluyen la clave natural canal/fecha/rol y filtros por fuente,
-tipo y zona. Las comprobaciones de catálogos se realizan antes de importar:
-MongoDB no ofrece FK automáticas hacia PostgreSQL.
+\subsection{Modelo documental y compatibilidad}
+MongoDB conserva \archivo{readings}, \archivo{incidents}, \archivo{derived_events},
+\archivo{alerts}, \archivo{organizations}, \archivo{users} y \archivo{sensors}.
+Las lecturas reúnen valor, calidad, reloj y procedencia, con BSON Date e
+\archivo{_id=measurement_id}. Los objetos \archivo{measurements} y
+\archivo{provenance} representan información semiestructurada. Esa flexibilidad
+y los patrones de acceso justifican el modelo documental, sin acreditar la
+cobertura completa del requisito de información dinámica no estructurada.
 
-En el núcleo local, \archivo{sprint1/mongodb/validator.js} usa un ObjectId
-interno y \archivo{staging_key}; no permite asignar identidades físicas o una
-identidad científica final a los ejemplos. Su política no debe mezclarse con
-la importación anual.
-
-La justificación de MongoDB se apoya en la estructura documental y Aggregation
-Framework, no en que cualquier JSON necesite NoSQL. PostgreSQL conserva ventajas
-para relaciones, restricciones y consultas entre catálogos. Las pruebas pequeñas
-no demuestran superioridad de rendimiento de un motor sobre el otro.
+\archivo{observation_contract} conserva la interfaz compartida, identidad y
+payload, sin cambiar MongoDB ni establecer FK o transacciones distribuidas entre
+motores. Persisten los límites de sensores físicos, geografía y reglas demo.

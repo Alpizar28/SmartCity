@@ -1,4 +1,23 @@
-# PostgreSQL — ruta canónica del Sprint 1
+# PostgreSQL — modelo relacional del Sprint 1
+
+## Modelo de entrega normalizado
+
+Autoridad: [schema_v2_3nf.sql](schema_v2_3nf.sql),
+[queries_v2_3nf.sql](queries_v2_3nf.sql), [prueba formal e impacto](impacto_3nf.md)
+y [E-R completo](../../docs/arquitectura/diagrama_3nf.md).
+El modelo tiene catorce tablas y conserva los 17 atributos exigidos. La vista
+contractual reconstruye las mediciones v2 sin cambiar identidad ni payload.
+Las [evidencias normalizadas](evidencias/3nf/) son nuevas y no sobrescriben las
+anteriores. Reproducción local nativa:
+
+```bash
+python scripts/validar_postgresql_3nf.py --sample 1000
+python scripts/validar_postgresql_3nf.py
+```
+
+Los apartados siguientes describen la ruta histórica de doce tablas y sus
+excepciones, preservadas para reproducir los resultados anteriores.
+
 
 ## Cierre para revisión del equipo
 

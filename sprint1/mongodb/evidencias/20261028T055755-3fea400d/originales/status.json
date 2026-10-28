@@ -1,0 +1,812 @@
+{
+  "overall_status": "PASS",
+  "started_at": "2026-10-28T05:57:55.363357+00:00",
+  "native_sample": "PASS",
+  "massive_mongodb": "PASS",
+  "reconciliation": "PASS",
+  "seven_crud_operations": "PASS",
+  "indexes_validators_plans": "PASS",
+  "shared_server_used": false,
+  "persistent_group_or_socket_permissions_changed": false,
+  "head": "804d6a551dc84e22d901b64554c30a712b951f77",
+  "package": "PASS",
+  "docker_version": "29.1.3",
+  "new_official_reports": [
+    "research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json"
+  ],
+  "private_files_unchanged": true,
+  "tracked_files_unchanged": true,
+  "readings": 748889,
+  "results": {
+    "MG01": {
+      "parametros": {
+        "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+        "source_version": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+      },
+      "total": 2936,
+      "muestra": [
+        {
+          "_id": "measurement:13d46d64ec441ad6a7ba5aa1c9ec5025f8fa5662e12bcad2907c593e99d5262c",
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "unit": "veh/h",
+          "value": 14
+        },
+        {
+          "_id": "measurement:1ca488a0c82ffaeed05145c91c25cfaf6595b5ccc1d6ab1db8c5aadb0cade760",
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "observed_at": "2024-12-31T23:15:00.000Z",
+          "unit": "veh/h",
+          "value": 83
+        },
+        {
+          "_id": "measurement:7d95ba81a0be8e456af6712da28f6bdd54926276f702b6caa90c201b1f8bc993",
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "observed_at": "2024-12-31T23:30:00.000Z",
+          "unit": "veh/h",
+          "value": 44
+        },
+        {
+          "_id": "measurement:a4a3d334d6560ef1c6cfdf223530f6329381b77a90ea224961f778710059810d",
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "observed_at": "2024-12-31T23:45:00.000Z",
+          "unit": "veh/h",
+          "value": 69
+        },
+        {
+          "_id": "measurement:248a0e6901b1fb24b3740f2a808ff6a4e4d60c522408191613c42c627a75825c",
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "observed_at": "2025-01-01T00:00:00.000Z",
+          "unit": "veh/h",
+          "value": 134
+        }
+      ]
+    },
+    "MG02": {
+      "parametros": {
+        "observed_at": {
+          "$gte": "2024-12-31T23:00:00.000Z",
+          "$lt": "2025-01-31T23:00:00.000Z"
+        }
+      },
+      "total": 748765,
+      "muestra": [
+        {
+          "_id": "measurement:02ca6ae7ab0731be514f4f125035bc7e8b34cb0b674099618944123c0e65a4db",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "source_id": "MAD-TRAFFIC"
+        },
+        {
+          "_id": "measurement:033a15418bc1a2686f4eb5e43d8d9841acce7ba2b526f5b7375e228c677f3f36",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "source_id": "MAD-TRAFFIC"
+        },
+        {
+          "_id": "measurement:03e96f1f13140575e6389acc0e7f6ea258ea584b024b8fffda86d0395910a457",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "source_id": "MAD-TRAFFIC"
+        },
+        {
+          "_id": "measurement:0912a65602fca34e81c17dd8fed56d286a3cc56a52c392a18bacd9eb1fb5c358",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "source_id": "MAD-TRAFFIC"
+        },
+        {
+          "_id": "measurement:092dce09263396bec4d30da64c9b451caa921172fbb0ce668ab7ea59b9e311cb",
+          "observed_at": "2024-12-31T23:00:00.000Z",
+          "source_id": "MAD-TRAFFIC"
+        }
+      ]
+    },
+    "MG03": [
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:1",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2201,
+        "minimo": 1,
+        "maximo": 10,
+        "promedio": 3.473875511131304
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:10",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 10138,
+        "minimo": 0,
+        "maximo": 162,
+        "promedio": 15.541329650818701
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:12",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "minimo": 2,
+        "maximo": 898,
+        "promedio": 52.836363636363636
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:14",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 9515,
+        "minimo": 1,
+        "maximo": 89,
+        "promedio": 37.786967945349446
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:20",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2853,
+        "minimo": 0.1,
+        "maximo": 27.4,
+        "promedio": 2.4042411496670173
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:30",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2876,
+        "minimo": 0.1,
+        "maximo": 5.8,
+        "promedio": 0.5931849791376912
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:35",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2899,
+        "minimo": 0.1,
+        "maximo": 4.9,
+        "promedio": 0.422180062090376
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:6",
+          "unidad": "mg/m3"
+        },
+        "cantidad": 2927,
+        "minimo": 0.1,
+        "maximo": 1.6,
+        "promedio": 0.36289716433208064
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:7",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "minimo": 0,
+        "maximo": 487,
+        "promedio": 13.84933372816109
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:8",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "minimo": 1,
+        "maximo": 157,
+        "promedio": 31.60319810482677
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:9",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 7895,
+        "minimo": 0,
+        "maximo": 48,
+        "promedio": 8.264724509183027
+      }
+    ],
+    "MG04": {
+      "regla": {
+        "field": "intensidad",
+        "operator": "gt",
+        "threshold": 2000,
+        "unit": "veh/h",
+        "official_rule": false,
+        "version": "traffic-intensity-demo-v1"
+      },
+      "total": 10841,
+      "muestra": [
+        {
+          "_id": "traffic-intensity-demo-v1:gt2000:measurement:000b5023e8c6aca62fc125e399a94db0e8c0ff349f41ce3e46c81e4e47c745f6",
+          "data_origin": "derived",
+          "measurement_id": "measurement:000b5023e8c6aca62fc125e399a94db0e8c0ff349f41ce3e46c81e4e47c745f6",
+          "threshold": 2000,
+          "value": 2972,
+          "zone_id": "madrid:district:9"
+        },
+        {
+          "_id": "traffic-intensity-demo-v1:gt2000:measurement:0010f07cb3218559ba00760ba58e3527232781e0c29d68e3c5f65ba4e143baea",
+          "data_origin": "derived",
+          "measurement_id": "measurement:0010f07cb3218559ba00760ba58e3527232781e0c29d68e3c5f65ba4e143baea",
+          "threshold": 2000,
+          "value": 3389,
+          "zone_id": "madrid:district:15"
+        },
+        {
+          "_id": "traffic-intensity-demo-v1:gt2000:measurement:0017da8c56cd5610f9a185b510b634d020572880002b3b5249a0e04541f2377f",
+          "data_origin": "derived",
+          "measurement_id": "measurement:0017da8c56cd5610f9a185b510b634d020572880002b3b5249a0e04541f2377f",
+          "threshold": 2000,
+          "value": 2764,
+          "zone_id": "madrid:district:8"
+        },
+        {
+          "_id": "traffic-intensity-demo-v1:gt2000:measurement:0023e281cabeee2828e7c827c3b3952820f11f9a96a0a20ad1dea0e2124698db",
+          "data_origin": "derived",
+          "measurement_id": "measurement:0023e281cabeee2828e7c827c3b3952820f11f9a96a0a20ad1dea0e2124698db",
+          "threshold": 2000,
+          "value": 2153,
+          "zone_id": "madrid:district:8"
+        },
+        {
+          "_id": "traffic-intensity-demo-v1:gt2000:measurement:0027049d9b5a2c053c3692054759ba13515895cac2910f939024fbeb56729544",
+          "data_origin": "derived",
+          "measurement_id": "measurement:0027049d9b5a2c053c3692054759ba13515895cac2910f939024fbeb56729544",
+          "threshold": 2000,
+          "value": 2420,
+          "zone_id": "madrid:district:4"
+        }
+      ]
+    },
+    "MG05": [
+      {
+        "_id": "madrid:district:10",
+        "cantidad": 554,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:13",
+        "cantidad": 5,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:14",
+        "cantidad": 125,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:15",
+        "cantidad": 1656,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:16",
+        "cantidad": 53,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:2",
+        "cantidad": 1675,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:20",
+        "cantidad": 398,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:3",
+        "cantidad": 255,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:4",
+        "cantidad": 3346,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:5",
+        "cantidad": 382,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:6",
+        "cantidad": 162,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:7",
+        "cantidad": 37,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:8",
+        "cantidad": 1024,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      },
+      {
+        "_id": "madrid:district:9",
+        "cantidad": 1169,
+        "primera_emision": "2026-10-28T06:12:22.691Z",
+        "ultima_emision": "2026-10-28T06:12:22.691Z"
+      }
+    ],
+    "MG06": [
+      {
+        "_id": {
+          "zona": "madrid:district:1",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 13028,
+        "promedio": 360.84717531470676
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:10",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 27203,
+        "promedio": 241.51836194537367
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:11",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 36241,
+        "promedio": 194.74835131480918
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:12",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 17617,
+        "promedio": 280.4597831639893
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:13",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 32527,
+        "promedio": 326.5631321671227
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:14",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 14683,
+        "promedio": 362.74793979431996
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:15",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 59060,
+        "promedio": 338.93559092448356
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:16",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 49847,
+        "promedio": 242.72531947760146
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:17",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 14637,
+        "promedio": 133.82981485277037
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:18",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 14793,
+        "promedio": 207.71317515040897
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:19",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 8863,
+        "promedio": 155.42367144307798
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:2",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 26117,
+        "promedio": 500.44492093272584
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:20",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 58494,
+        "promedio": 275.74337538892877
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:21",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 5922,
+        "promedio": 555.8292806484296
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:3",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 17484,
+        "promedio": 422.93210935712654
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:4",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 32184,
+        "promedio": 706.7897091722596
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:5",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 59264,
+        "promedio": 370.4438276187905
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:6",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 29044,
+        "promedio": 339.2294794105495
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:7",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 14784,
+        "promedio": 422.6473890692641
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:8",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 77767,
+        "promedio": 269.08841796648966
+      },
+      {
+        "_id": {
+          "zona": "madrid:district:9",
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 44438,
+        "promedio": 284.8774922363743
+      }
+    ],
+    "MG07": [
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:1",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2201,
+        "promedio": 3.473875511131304
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:10",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 10138,
+        "promedio": 15.541329650818701
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:12",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "promedio": 52.836363636363636
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:14",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 9515,
+        "promedio": 37.786967945349446
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:20",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2853,
+        "promedio": 2.4042411496670173
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:30",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2876,
+        "promedio": 0.5931849791376912
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:35",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 2899,
+        "promedio": 0.422180062090376
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:6",
+          "unidad": "mg/m3"
+        },
+        "cantidad": 2927,
+        "promedio": 0.36289716433208064
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:7",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "promedio": 13.84933372816109
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:8",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 16885,
+        "promedio": 31.60319810482677
+      },
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "tipo": "MAD-AIR:9",
+          "unidad": "ug/m3"
+        },
+        "cantidad": 7895,
+        "promedio": 8.264724509183027
+      },
+      {
+        "_id": {
+          "fuente": "MAD-TRAFFIC",
+          "tipo": "MAD-TRAFFIC:intensidad",
+          "unidad": "veh/h"
+        },
+        "cantidad": 656930,
+        "promedio": 323.6264914069992
+      }
+    ],
+    "MG08": [
+      {
+        "_id": "Alcance",
+        "cantidad": 2876
+      },
+      {
+        "_id": "Atropello a animal",
+        "cantidad": 50
+      },
+      {
+        "_id": "Atropello a persona",
+        "cantidad": 873
+      },
+      {
+        "_id": "Caída",
+        "cantidad": 1230
+      },
+      {
+        "_id": "Choque contra obstáculo fijo",
+        "cantidad": 1964
+      },
+      {
+        "_id": "Colisión frontal",
+        "cantidad": 316
+      },
+      {
+        "_id": "Colisión fronto-lateral",
+        "cantidad": 3401
+      },
+      {
+        "_id": "Colisión lateral",
+        "cantidad": 2254
+      },
+      {
+        "_id": "Colisión múltiple",
+        "cantidad": 388
+      },
+      {
+        "_id": "Despeñamiento",
+        "cantidad": 2
+      },
+      {
+        "_id": "Otro",
+        "cantidad": 839
+      },
+      {
+        "_id": "Solo salida de la vía",
+        "cantidad": 126
+      },
+      {
+        "_id": "Vuelco",
+        "cantidad": 67
+      },
+      {
+        "_id": "sin_categoria",
+        "cantidad": 2
+      }
+    ],
+    "MG09": [
+      {
+        "_id": {
+          "fuente": "MAD-AIR",
+          "calidad": "V"
+        },
+        "cantidad": 91959
+      },
+      {
+        "_id": {
+          "fuente": "MAD-TRAFFIC",
+          "calidad": "N"
+        },
+        "cantidad": 656930
+      }
+    ],
+    "MG10": {
+      "parametros": {
+        "observed_at": {
+          "$gte": "2024-12-31T23:00:00.000Z",
+          "$lt": "2025-01-31T23:00:00.000Z"
+        },
+        "source_id": "MAD-TRAFFIC",
+        "quality_flag": "N",
+        "value": {
+          "$gt": 2000
+        },
+        "zone_id": {
+          "$ne": null
+        }
+      },
+      "total": 10841,
+      "muestra": [
+        {
+          "_id": "measurement:89c277f53fddd33e80c566bacc90deee30f8379fdef1414d30d3501507e8f356",
+          "unit": "veh/h",
+          "value": 20969,
+          "zone_id": "madrid:district:7"
+        },
+        {
+          "_id": "measurement:3df5767cdadfe448e470d7249a2a1f9cf83ddb46de7168001b45ab34fb73e276",
+          "unit": "veh/h",
+          "value": 16370,
+          "zone_id": "madrid:district:14"
+        },
+        {
+          "_id": "measurement:75dec0a7e6abc5c5e0723492e256673f2ecca91369d93e11682b4d1aeb4bcb45",
+          "unit": "veh/h",
+          "value": 5448,
+          "zone_id": "madrid:district:10"
+        },
+        {
+          "_id": "measurement:0794c44b06f44de50c88efe589a5bcf2a012f729ff951f853ef5bc9d8c96f7ec",
+          "unit": "veh/h",
+          "value": 5336,
+          "zone_id": "madrid:district:10"
+        },
+        {
+          "_id": "measurement:ceeffaa2e0576d25c4f7b0027d2ade39ea0bb7cb75ec8717d0c2dcdbf5a584ad",
+          "unit": "veh/h",
+          "value": 5184,
+          "zone_id": "madrid:district:10"
+        }
+      ]
+    }
+  },
+  "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0",
+  "cleanup_verified": true,
+  "finished_at": "2026-10-28T06:14:05.401290+00:00"
+}

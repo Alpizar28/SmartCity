@@ -1,0 +1,17 @@
+{
+  "status": "PASS",
+  "script": "sprint1/basico/crud_mongodb.js",
+  "script_sha256": "89a0201abfdceb503ac70667cd5bcecd6a28da15633f77f56d9f6df15fa0b0f9",
+  "collection": "practica_crud",
+  "operations": [
+    "insertOne",
+    "insertMany",
+    "findOne",
+    "find",
+    "updateOne",
+    "updateMany",
+    "deleteOne"
+  ],
+  "readings_before_and_after": 748889,
+  "practice_collection_removed": true
+}

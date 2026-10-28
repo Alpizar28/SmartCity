@@ -1,0 +1,34 @@
+{
+  "verified": true,
+  "generation": "expanded-v2-2025-01",
+  "engines": {
+    "postgresql": {
+      "report": "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json",
+      "report_sha256": "6800775f103b5dd50da838ff8a7e461cec113fb275a82ed6e6f73363d09a52b3",
+      "count": 748889,
+      "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0"
+    },
+    "mongodb": {
+      "report": "research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json",
+      "report_sha256": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585",
+      "count": 748889,
+      "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0"
+    }
+  },
+  "accepted": 748889,
+  "sources": [
+    "MAD-AIR",
+    "MAD-TRAFFIC"
+  ],
+  "two_sources": true,
+  "events": 10841,
+  "alerts": 10841,
+  "incidents": 14388,
+  "incident_year": 2026,
+  "limits": [
+    "No physical sensor-channel relationship is invented.",
+    "Events/alerts use an academic demo rule and local replay, not official warnings.",
+    "District inventory has no verified historical validity.",
+    "No shared server modified; academic acceptance remains separate."
+  ]
+}

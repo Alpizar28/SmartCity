@@ -1,19 +1,38 @@
-# Estado del Sprint 1 — 27/10/2026
+# Estado del Sprint 1 — 28/10/2026
 
-**Alcance:** PostgreSQL y MongoDB. Spark, Hadoop e interfaz no bloquean este avance.
-Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
+**Alcance:** secciones completas «Uso de PostgreSQL» y «Uso de MongoDB» del
+enunciado, según la aclaración del profesor comunicada por Kembly, sin rúbrica
+independiente. Incluye modelos, 3FN, tablas/relaciones/llaves, índices, SQL
+avanzado, documentos, CRUD y Aggregation Framework, además de las veinte consultas.
+Los mínimos de 100.000 registros PostgreSQL y 500.000 documentos MongoDB son
+objetivos del avance. Véanse [alcance confirmado](ALCANCE_CONFIRMADO_SPRINT1.md),
+[checklist](CHECKLIST_CIERRE_SPRINT1.md) e
+[instrucciones](../../ENTREGA_SPRINT1.md). Los aspectos ambiguos son transversales
+o pendientes de confirmación, sin implementar funcionalidades por precaución.
 
 ## Comprobado
+
+- **PostgreSQL normalizado: PASS nuevo.** [Cierre 3FN](../../sprint1/postgres/cierre_3nf.md):
+  748.889 lecturas, cero diferencias del DTO, replay, PG01–PG10 comparadas
+  completamente con Python, SQL avanzado, restricciones y reconciliación con
+  MongoDB. Catorce tablas, tipos separados de magnitudes y jerarquía territorial.
+  La instancia PostgreSQL 16.15 nativa fue detenida y eliminada.
 
 - **PostgreSQL v2: PASS masivo.** 748.889 lecturas (91.959 aire + 656.930
   tráfico), metadatos comparados, replay sin duplicados y diez consultas ejecutadas.
   Contenedor y volúmenes eliminados. Evidencia:
   `research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json`.
   PG07 devuelve cero por ausencia de vínculos observados: no acredita actividad física.
-- **MongoDB v2 masivo: todavía sin PASS confirmado.** Se corrigió el problema
-  asíncrono y pasó la prueba nativa pequeña; no equivale a aprobar el lote completo.
+- **MongoDB v2: PASS masivo actual.** 748.889 lecturas, MG01–MG10 contrastadas,
+  replay, siete CRUD aislados, 13 índices, validadores y planes capturados;
+  contenedor y volúmenes eliminados. Evidencia:
+  `research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json` y
+  [cierre MongoDB](../../sprint1/mongodb/evidencia_final_mongodb.md).
+- **Reconciliación actual verificada:** ambas referencias contienen 748.889
+  identidades/payloads con la misma huella. El informe MongoDB conservado se compara también con la nueva ejecución
+  PostgreSQL normalizada, sin repetir ni modificar MongoDB.
 
-- Suite unificada: 51 pruebas Python y 13 Node aprobadas; diez consultas SQL
+- Suite offline actual: 65 pruebas Python y dos archivos Node aprobados; diez consultas SQL
   `smartcity` ejecutadas con resultados comprobados y fixtures revertidas.
   El parser anual vuelve a reconocer PG01–PG10. SQL de práctica separado en
   `staging_queries.sql`; PG07 excluye relaciones sensor–canal desconocidas.
@@ -33,20 +52,33 @@ Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
   replay de alertas locales y accidentes de 2026 anonimizados (14.388 expedientes,
   deduplicados desde 33.322 filas de personas). No son avisos oficiales históricos.
 
-## Pendientes de entrega
+## Pendientes de ambas secciones
 
-1. Completar la evidencia de las [20 consultas](MATRIZ_CONSULTAS_SPRINT1.md).
-   La ruta SQL canónica es `smartcity`; el núcleo `sprint1` queda como práctica
-   complementaria. Los manifiestos anuales v1 mantienen sus bloqueos originales;
-   la ruta v2 crea resultados nuevos, no cambia esas banderas históricas.
-   Faltan aceptación del alcance canal/sensor, zonas de inventario y reglas demo.
-2. Confirmar las cargas y comparaciones de las dos fuentes en los informes v2.
-   El lote anual v1 sigue admitiendo solo aire; no sumar ambos paquetes.
-   Meteorología conserva bloqueos de reloj. PG07 sigue sin relación física observada.
-3. Probar los cargadores Python con autenticación real y cerrar el informe/diagramas.
-   La CI ya invoca la suite offline unificada; su ejecución remota falta hasta publicar.
-4. Si la entrega usa bases compartidas, comprobar acceso, carga y respaldo por separado.
-   Las pruebas desechables no acreditan su estado.
+La 3FN está técnicamente verificada en el modelo normalizado, con DF declaradas,
+JSONB como dominio indivisible y las limitaciones indicadas en el cierre. La
+auditoría del DDL histórico conserva su alcance original.
+
+1. **Modelo documental:** justificar con ejemplos la cobertura de información
+   dinámica no estructurada. Los objetos anidados y atributos opcionales son
+   evidencia disponible; su correspondencia con ese requisito debe explicarse.
+   El enunciado no exige una colección de nombre específico.
+2. **Semántica académica:** mantener visibles PG07, canal/sensor, tipos de
+   medición, administración sintética, zonas actuales, reglas demo y accidentes
+   de 2026. Las veinte consultas tienen evidencia técnica, no aceptación física
+   o académica automática. Ver [matriz](MATRIZ_CONSULTAS_SPRINT1.md).
+3. **Auditoría general:** el informe integra ambos motores y conserva sus
+   limitaciones; la revisión documental y visual se registra por separado en la
+   [auditoría interna](AUDITORIA_DOCUMENTAL_SPRINT1.md). No sustituye la auditoría
+   general académica del Sprint 1. Las evidencias y sus FAIL históricos permanecen intactos.
+4. **Transversales por confirmar:** vistas materializadas/particionamiento de
+   objetivos generales y componente distribuido mencionado en MongoDB. Registrar
+   la duda, sin iniciar implementaciones adicionales. La carga compartida,
+   autenticación real y respaldo remoto requieren verificación separada si se
+   confirma ese entorno para la demostración; los contenedores no lo acreditan.
+
+No desarrollar ahora Hadoop/HDFS, Apache Spark, dashboard completo, análisis
+distribuidos, comparación final de cuatro motores ni funcionalidades exclusivas
+de noviembre. Su ausencia no bloquea este avance por una rúbrica inventada.
 
 ## Antecedentes que no bloquean desarrollar
 

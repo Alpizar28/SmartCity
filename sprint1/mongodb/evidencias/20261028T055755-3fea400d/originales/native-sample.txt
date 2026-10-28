@@ -1,0 +1,1 @@
+Mongo v2 native sample: PASS (3 readings, 10 queries, 1 event, 1 alert; not volume evidence)

@@ -3,15 +3,16 @@
 ## Uso diario
 
 - [Alcance y ejecución del Sprint 1](../ENTREGA_SPRINT1.md).
+- [Alcance confirmado: requisitos completos de PostgreSQL y MongoDB](equipo/ALCANCE_CONFIRMADO_SPRINT1.md).
 - [Estado y pendientes](equipo/ESTADO_SPRINT1.md).
 - [Las 20 consultas](equipo/MATRIZ_CONSULTAS_SPRINT1.md).
+- [Cierre técnico MongoDB y evidencias actuales](../sprint1/mongodb/evidencia_final_mongodb.md).
 
 ## Informe del avance en LaTeX
 
-El borrador editable empieza en [avance_1/main.tex](avance_1/main.tex).
-Las cinco secciones de `avance_1/secciones/` cubren alcance/datos, modelos,
-consultas, validación y cierre. Ya tienen contenido; no es una plantilla vacía.
-Los pendientes están señalados y no deben presentarse como resultados terminados.
+El informe universitario empieza en [avance_1/main.tex](avance_1/main.tex).
+Las seis secciones cubren alcance/datos, modelos, equivalencias de atributos,
+consultas, validación y conclusiones, con resultados y limitaciones explícitos.
 
 En Overleaf, subir la carpeta `avance_1/`, seleccionar `main.tex` como documento
 principal y compilar con pdfLaTeX. Localmente, con TeX Live y `latexmk` instalados:
@@ -22,10 +23,21 @@ make pdf
 ```
 
 Alternativa sin `latexmk`: ejecutar `pdflatex -halt-on-error main.tex` dos veces
-desde esa misma carpeta. El PDF es un artefacto local ignorado por Git.
-El diagrama incluido es un extracto del modelo, no el E-R completo aprobado.
-Antes de entregar, completar portada, revisar 3FN/modelos y adjuntar resultados
-de las veinte consultas con Daniel, Kembly y Fernanda.
+desde esa misma carpeta. `main.pdf` y los auxiliares de compilación están
+ignorados por Git mediante `avance_1/.gitignore`. Los PDF de entrega con nombre
+`SmartCity_Sprint1_3NF_<fechaUTC>.pdf` no están ignorados: se incluyen como
+artefactos revisados junto con su manifiesto SHA-256. Cada revisión documental
+genera un PDF y un manifiesto nuevos; las versiones anteriores se conservan
+como registros históricos. El manifiesto de cierre documental más reciente
+identifica el PDF vigente y las fuentes exactas utilizadas.
+La revisión vigente es el [PDF de cierre documental](avance_1/SmartCity_Sprint1_3NF_20261028T080911.pdf),
+con su [manifiesto](../sprint1/postgres/evidencias/3nf/MANIFIESTO_CIERRE_DOCUMENTAL_20261028T080911.json).
+Los límites académicos y la cobertura de pruebas se registran en la
+[auditoría interna](equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md).
+El informe incluye el modelo completo de catorce tablas y la matriz de los 17
+atributos exigidos. El [E-R con atributos y cardinalidades](arquitectura/diagrama_3nf.md)
+se corresponde con el DDL normalizado. Los antecedentes de doce tablas se
+conservan separados de la versión de entrega.
 
 ## Referencias técnicas, solo cuando hagan falta
 

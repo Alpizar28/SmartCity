@@ -1,0 +1,15 @@
+{
+  "verified_at_utc": "2026-10-28T06:19:25.822728+00:00",
+  "method": "Read-only recheck with current official verificar_paquete, revisar_entrada and comprobar_consultas; no database execution",
+  "official_code_revision": "804d6a551dc84e22d901b64554c30a712b951f77",
+  "current_private_hashes_match_execution_snapshot": true,
+  "all_ten_query_results_match_independent_python_calculation": true,
+  "accepted": 748889,
+  "expected_date_window_count": 748765,
+  "expected_events": 10841,
+  "expected_alerts": 10841,
+  "expected_type_groups": 12,
+  "expected_zone_groups": 21,
+  "ledger_hash_matches_native_mongodb": true,
+  "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0"
+}

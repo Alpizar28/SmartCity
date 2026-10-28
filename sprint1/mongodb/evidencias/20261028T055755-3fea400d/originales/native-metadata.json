@@ -1,0 +1,1018 @@
+{
+  "version": "7.0.16",
+  "database": "smartcity_v2_188fb2b9ec89",
+  "scope": "Owned v2 disposable container; metadata captured before official cleanup",
+  "collections": [
+    {
+      "name": "users",
+      "count": 5133,
+      "options": {},
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        }
+      ]
+    },
+    {
+      "name": "sensors",
+      "count": 5133,
+      "options": {},
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        }
+      ]
+    },
+    {
+      "name": "derived_events",
+      "count": 10841,
+      "options": {
+        "validator": {
+          "$jsonSchema": {
+            "bsonType": "object",
+            "required": [
+              "measurement_id",
+              "rule_version",
+              "threshold",
+              "data_origin",
+              "official_event"
+            ],
+            "properties": {
+              "data_origin": {
+                "enum": [
+                  "derived"
+                ]
+              },
+              "official_event": {
+                "enum": [
+                  false
+                ]
+              }
+            }
+          }
+        },
+        "validationAction": "error"
+      },
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        },
+        {
+          "v": 2,
+          "key": {
+            "rule_version": 1,
+            "observed_at": 1
+          },
+          "name": "rule_version_1_observed_at_1"
+        }
+      ]
+    },
+    {
+      "name": "incidents",
+      "count": 14388,
+      "options": {
+        "validator": {
+          "$jsonSchema": {
+            "bsonType": "object",
+            "required": [
+              "_id",
+              "category",
+              "reported_date",
+              "source_id",
+              "source_version",
+              "person_fields_removed"
+            ],
+            "properties": {
+              "source_id": {
+                "enum": [
+                  "MAD-CRASH"
+                ]
+              },
+              "person_fields_removed": {
+                "enum": [
+                  true
+                ]
+              },
+              "reported_date": {
+                "bsonType": "string",
+                "pattern": "^2026-"
+              }
+            }
+          }
+        },
+        "validationAction": "error"
+      },
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        },
+        {
+          "v": 2,
+          "key": {
+            "category": 1
+          },
+          "name": "category_1"
+        }
+      ]
+    },
+    {
+      "name": "organizations",
+      "count": 1,
+      "options": {},
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        }
+      ]
+    },
+    {
+      "name": "readings",
+      "count": 748889,
+      "options": {
+        "validator": {
+          "$and": [
+            {
+              "$jsonSchema": {
+                "bsonType": "object",
+                "required": [
+                  "_id",
+                  "measurement_id",
+                  "source_id",
+                  "source_version",
+                  "channel_id",
+                  "station_id",
+                  "observed_at",
+                  "value",
+                  "unit",
+                  "quality_flag",
+                  "payload_hash",
+                  "raw_reference",
+                  "schema_version",
+                  "catalog_version",
+                  "data_origin",
+                  "sensor_id",
+                  "zone_scope",
+                  "integration_sample_count"
+                ],
+                "properties": {
+                  "_id": {
+                    "bsonType": "string"
+                  },
+                  "measurement_id": {
+                    "bsonType": "string"
+                  },
+                  "observed_at": {
+                    "bsonType": "date"
+                  },
+                  "value": {
+                    "bsonType": [
+                      "double",
+                      "int",
+                      "long",
+                      "decimal"
+                    ]
+                  },
+                  "sensor_id": {
+                    "bsonType": "null"
+                  },
+                  "schema_version": {
+                    "enum": [
+                      "madrid-draft-v2"
+                    ]
+                  },
+                  "catalog_version": {
+                    "enum": [
+                      "madrid-draft-v2"
+                    ]
+                  },
+                  "data_origin": {
+                    "enum": [
+                      "observed"
+                    ]
+                  },
+                  "source_id": {
+                    "enum": [
+                      "MAD-AIR",
+                      "MAD-TRAFFIC"
+                    ]
+                  },
+                  "integration_sample_count": {
+                    "bsonType": [
+                      "int",
+                      "long",
+                      "null"
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "$expr": {
+                "$and": [
+                  {
+                    "$eq": [
+                      "$_id",
+                      "$measurement_id"
+                    ]
+                  },
+                  {
+                    "$eq": [
+                      "$source_version",
+                      "$raw_reference.sha256"
+                    ]
+                  },
+                  {
+                    "$gt": [
+                      "$value",
+                      {
+                        "$numberDouble": "-Infinity"
+                      }
+                    ]
+                  },
+                  {
+                    "$lt": [
+                      "$value",
+                      {
+                        "$numberDouble": "Infinity"
+                      }
+                    ]
+                  }
+                ]
+              }
+            },
+            {
+              "$or": [
+                {
+                  "source_id": "MAD-AIR",
+                  "quality_flag": "V",
+                  "timestamp_status": "documented_local",
+                  "integration_sample_count": null
+                },
+                {
+                  "source_id": "MAD-TRAFFIC",
+                  "quality_flag": "N",
+                  "element_type": {
+                    "$in": [
+                      "URB",
+                      "M30"
+                    ]
+                  },
+                  "value": {
+                    "$gte": 0
+                  },
+                  "interval_minutes": 15,
+                  "integration_sample_count": {
+                    "$gt": 0
+                  },
+                  "timestamp_role": "publisher_label",
+                  "timestamp_status": "publisher_confirmed_local"
+                }
+              ]
+            }
+          ]
+        },
+        "validationLevel": "strict",
+        "validationAction": "error"
+      },
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        },
+        {
+          "v": 2,
+          "key": {
+            "channel_id": 1,
+            "observed_at": 1,
+            "timestamp_role": 1
+          },
+          "name": "channel_id_1_observed_at_1_timestamp_role_1",
+          "unique": true
+        },
+        {
+          "v": 2,
+          "key": {
+            "source_id": 1,
+            "measurement_type": 1,
+            "observed_at": 1
+          },
+          "name": "source_id_1_measurement_type_1_observed_at_1"
+        },
+        {
+          "v": 2,
+          "key": {
+            "zone_id": 1,
+            "measurement_type": 1
+          },
+          "name": "zone_id_1_measurement_type_1"
+        }
+      ]
+    },
+    {
+      "name": "alerts",
+      "count": 10841,
+      "options": {
+        "validator": {
+          "$jsonSchema": {
+            "bsonType": "object",
+            "required": [
+              "event_id",
+              "emitted_at",
+              "data_origin",
+              "delivery",
+              "replay",
+              "official_alert"
+            ],
+            "properties": {
+              "emitted_at": {
+                "bsonType": "date"
+              },
+              "data_origin": {
+                "enum": [
+                  "derived"
+                ]
+              },
+              "delivery": {
+                "enum": [
+                  "local_collection_only"
+                ]
+              },
+              "replay": {
+                "enum": [
+                  true
+                ]
+              },
+              "official_alert": {
+                "enum": [
+                  false
+                ]
+              }
+            }
+          }
+        },
+        "validationAction": "error"
+      },
+      "indexes": [
+        {
+          "v": 2,
+          "key": {
+            "_id": 1
+          },
+          "name": "_id_"
+        },
+        {
+          "v": 2,
+          "key": {
+            "zone_id": 1,
+            "emitted_at": 1
+          },
+          "name": "zone_id_1_emitted_at_1"
+        }
+      ]
+    }
+  ],
+  "contracts": [
+    {
+      "_id": {
+        "contract": "madrid-draft-v2",
+        "catalog": "madrid-draft-v2",
+        "source": "MAD-AIR"
+      },
+      "count": 91959
+    },
+    {
+      "_id": {
+        "contract": "madrid-draft-v2",
+        "catalog": "madrid-draft-v2",
+        "source": "MAD-TRAFFIC"
+      },
+      "count": 656930
+    }
+  ],
+  "plans": {
+    "channel_sample_MG01": {
+      "explainVersion": "1",
+      "queryPlanner": {
+        "namespace": "smartcity_v2_188fb2b9ec89.readings",
+        "indexFilterSet": false,
+        "parsedQuery": {
+          "$and": [
+            {
+              "channel_id": {
+                "$eq": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845"
+              }
+            },
+            {
+              "source_version": {
+                "$eq": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+              }
+            }
+          ]
+        },
+        "queryHash": "7FC65E5C",
+        "planCacheKey": "1499072A",
+        "maxIndexedOrSolutionsReached": false,
+        "maxIndexedAndSolutionsReached": false,
+        "maxScansToExplodeReached": false,
+        "winningPlan": {
+          "stage": "LIMIT",
+          "limitAmount": 5,
+          "inputStage": {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "_id": 1,
+              "observed_at": 1,
+              "value": 1
+            },
+            "inputStage": {
+              "stage": "FETCH",
+              "filter": {
+                "source_version": {
+                  "$eq": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+                }
+              },
+              "inputStage": {
+                "stage": "IXSCAN",
+                "keyPattern": {
+                  "channel_id": 1,
+                  "observed_at": 1,
+                  "timestamp_role": 1
+                },
+                "indexName": "channel_id_1_observed_at_1_timestamp_role_1",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "channel_id": [],
+                  "observed_at": [],
+                  "timestamp_role": []
+                },
+                "isUnique": true,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "direction": "forward",
+                "indexBounds": {
+                  "channel_id": [
+                    "[\"channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845\", \"channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845\"]"
+                  ],
+                  "observed_at": [
+                    "[MinKey, MaxKey]"
+                  ],
+                  "timestamp_role": [
+                    "[MinKey, MaxKey]"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "rejectedPlans": []
+      },
+      "executionStats": {
+        "executionSuccess": true,
+        "nReturned": 5,
+        "executionTimeMillis": 1,
+        "totalKeysExamined": 5,
+        "totalDocsExamined": 5,
+        "executionStages": {
+          "stage": "LIMIT",
+          "nReturned": 5,
+          "executionTimeMillisEstimate": 0,
+          "works": 6,
+          "advanced": 5,
+          "needTime": 0,
+          "needYield": 0,
+          "saveState": 0,
+          "restoreState": 0,
+          "isEOF": 1,
+          "limitAmount": 5,
+          "inputStage": {
+            "stage": "PROJECTION_SIMPLE",
+            "nReturned": 5,
+            "executionTimeMillisEstimate": 0,
+            "works": 5,
+            "advanced": 5,
+            "needTime": 0,
+            "needYield": 0,
+            "saveState": 0,
+            "restoreState": 0,
+            "isEOF": 0,
+            "transformBy": {
+              "_id": 1,
+              "observed_at": 1,
+              "value": 1
+            },
+            "inputStage": {
+              "stage": "FETCH",
+              "filter": {
+                "source_version": {
+                  "$eq": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+                }
+              },
+              "nReturned": 5,
+              "executionTimeMillisEstimate": 0,
+              "works": 5,
+              "advanced": 5,
+              "needTime": 0,
+              "needYield": 0,
+              "saveState": 0,
+              "restoreState": 0,
+              "isEOF": 0,
+              "docsExamined": 5,
+              "alreadyHasObj": 0,
+              "inputStage": {
+                "stage": "IXSCAN",
+                "nReturned": 5,
+                "executionTimeMillisEstimate": 0,
+                "works": 5,
+                "advanced": 5,
+                "needTime": 0,
+                "needYield": 0,
+                "saveState": 0,
+                "restoreState": 0,
+                "isEOF": 0,
+                "keyPattern": {
+                  "channel_id": 1,
+                  "observed_at": 1,
+                  "timestamp_role": 1
+                },
+                "indexName": "channel_id_1_observed_at_1_timestamp_role_1",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "channel_id": [],
+                  "observed_at": [],
+                  "timestamp_role": []
+                },
+                "isUnique": true,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "direction": "forward",
+                "indexBounds": {
+                  "channel_id": [
+                    "[\"channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845\", \"channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845\"]"
+                  ],
+                  "observed_at": [
+                    "[MinKey, MaxKey]"
+                  ],
+                  "timestamp_role": [
+                    "[MinKey, MaxKey]"
+                  ]
+                },
+                "keysExamined": 5,
+                "seeks": 1,
+                "dupsTested": 0,
+                "dupsDropped": 0
+              }
+            }
+          }
+        }
+      },
+      "command": {
+        "find": "readings",
+        "filter": {
+          "channel_id": "channel:f6f9495a00118d7f11625047a09a9151beeb839c12f5fd19094557121c013845",
+          "source_version": "4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c"
+        },
+        "sort": {
+          "observed_at": 1
+        },
+        "projection": {
+          "_id": 1,
+          "observed_at": 1,
+          "value": 1
+        },
+        "limit": 5,
+        "$db": "smartcity_v2_188fb2b9ec89"
+      },
+      "serverInfo": {
+        "host": "a4d5526d402a",
+        "port": 27017,
+        "version": "7.0.16",
+        "gitVersion": "18b949444cfdaa88e30b0e10243bc18268251c1f"
+      },
+      "serverParameters": {
+        "internalQueryFacetBufferSizeBytes": 104857600,
+        "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+        "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+        "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+        "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+        "internalQueryProhibitBlockingMergeOnMongoS": 0,
+        "internalQueryMaxAddToSetBytes": 104857600,
+        "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+        "internalQueryFrameworkControl": "trySbeRestricted"
+      },
+      "ok": 1
+    },
+    "multiple_filters_sample_MG10": {
+      "explainVersion": "1",
+      "queryPlanner": {
+        "namespace": "smartcity_v2_188fb2b9ec89.readings",
+        "indexFilterSet": false,
+        "parsedQuery": {
+          "$and": [
+            {
+              "quality_flag": {
+                "$eq": "N"
+              }
+            },
+            {
+              "source_id": {
+                "$eq": "MAD-TRAFFIC"
+              }
+            },
+            {
+              "observed_at": {
+                "$lt": {
+                  "$date": "2025-01-31T23:00:00Z"
+                }
+              }
+            },
+            {
+              "value": {
+                "$gt": 2000
+              }
+            },
+            {
+              "observed_at": {
+                "$gte": {
+                  "$date": "2024-12-31T23:00:00Z"
+                }
+              }
+            },
+            {
+              "zone_id": {
+                "$not": {
+                  "$eq": null
+                }
+              }
+            }
+          ]
+        },
+        "queryHash": "AA9A1D0C",
+        "planCacheKey": "05472831",
+        "maxIndexedOrSolutionsReached": false,
+        "maxIndexedAndSolutionsReached": false,
+        "maxScansToExplodeReached": false,
+        "winningPlan": {
+          "stage": "PROJECTION_SIMPLE",
+          "transformBy": {
+            "_id": 1,
+            "zone_id": 1,
+            "value": 1,
+            "unit": 1
+          },
+          "inputStage": {
+            "stage": "SORT",
+            "sortPattern": {
+              "value": -1,
+              "_id": 1
+            },
+            "memLimit": 104857600,
+            "limitAmount": 5,
+            "type": "simple",
+            "inputStage": {
+              "stage": "FETCH",
+              "filter": {
+                "$and": [
+                  {
+                    "zone_id": {
+                      "$not": {
+                        "$eq": null
+                      }
+                    }
+                  },
+                  {
+                    "quality_flag": {
+                      "$eq": "N"
+                    }
+                  },
+                  {
+                    "value": {
+                      "$gt": 2000
+                    }
+                  }
+                ]
+              },
+              "inputStage": {
+                "stage": "IXSCAN",
+                "keyPattern": {
+                  "source_id": 1,
+                  "measurement_type": 1,
+                  "observed_at": 1
+                },
+                "indexName": "source_id_1_measurement_type_1_observed_at_1",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "source_id": [],
+                  "measurement_type": [],
+                  "observed_at": []
+                },
+                "isUnique": false,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "direction": "forward",
+                "indexBounds": {
+                  "source_id": [
+                    "[\"MAD-TRAFFIC\", \"MAD-TRAFFIC\"]"
+                  ],
+                  "measurement_type": [
+                    "[MinKey, MaxKey]"
+                  ],
+                  "observed_at": [
+                    "[new Date(1735686000000), new Date(1738364400000))"
+                  ]
+                }
+              }
+            }
+          }
+        },
+        "rejectedPlans": [
+          {
+            "stage": "PROJECTION_SIMPLE",
+            "transformBy": {
+              "_id": 1,
+              "zone_id": 1,
+              "value": 1,
+              "unit": 1
+            },
+            "inputStage": {
+              "stage": "SORT",
+              "sortPattern": {
+                "value": -1,
+                "_id": 1
+              },
+              "memLimit": 104857600,
+              "limitAmount": 5,
+              "type": "simple",
+              "inputStage": {
+                "stage": "FETCH",
+                "filter": {
+                  "$and": [
+                    {
+                      "observed_at": {
+                        "$lt": {
+                          "$date": "2025-01-31T23:00:00Z"
+                        }
+                      }
+                    },
+                    {
+                      "observed_at": {
+                        "$gte": {
+                          "$date": "2024-12-31T23:00:00Z"
+                        }
+                      }
+                    },
+                    {
+                      "quality_flag": {
+                        "$eq": "N"
+                      }
+                    },
+                    {
+                      "source_id": {
+                        "$eq": "MAD-TRAFFIC"
+                      }
+                    },
+                    {
+                      "value": {
+                        "$gt": 2000
+                      }
+                    }
+                  ]
+                },
+                "inputStage": {
+                  "stage": "IXSCAN",
+                  "keyPattern": {
+                    "zone_id": 1,
+                    "measurement_type": 1
+                  },
+                  "indexName": "zone_id_1_measurement_type_1",
+                  "isMultiKey": false,
+                  "multiKeyPaths": {
+                    "zone_id": [],
+                    "measurement_type": []
+                  },
+                  "isUnique": false,
+                  "isSparse": false,
+                  "isPartial": false,
+                  "indexVersion": 2,
+                  "direction": "forward",
+                  "indexBounds": {
+                    "zone_id": [
+                      "[MinKey, undefined)",
+                      "(null, MaxKey]"
+                    ],
+                    "measurement_type": [
+                      "[MinKey, MaxKey]"
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        ]
+      },
+      "executionStats": {
+        "executionSuccess": true,
+        "nReturned": 5,
+        "executionTimeMillis": 6470,
+        "totalKeysExamined": 656930,
+        "totalDocsExamined": 656930,
+        "executionStages": {
+          "stage": "PROJECTION_SIMPLE",
+          "nReturned": 5,
+          "executionTimeMillisEstimate": 2832,
+          "works": 656937,
+          "advanced": 5,
+          "needTime": 656931,
+          "needYield": 0,
+          "saveState": 899,
+          "restoreState": 899,
+          "isEOF": 1,
+          "transformBy": {
+            "_id": 1,
+            "zone_id": 1,
+            "value": 1,
+            "unit": 1
+          },
+          "inputStage": {
+            "stage": "SORT",
+            "nReturned": 5,
+            "executionTimeMillisEstimate": 2813,
+            "works": 656937,
+            "advanced": 5,
+            "needTime": 656931,
+            "needYield": 0,
+            "saveState": 899,
+            "restoreState": 899,
+            "isEOF": 1,
+            "sortPattern": {
+              "value": -1,
+              "_id": 1
+            },
+            "memLimit": 104857600,
+            "limitAmount": 5,
+            "type": "simple",
+            "totalDataSizeSorted": 11202,
+            "usedDisk": false,
+            "spills": 0,
+            "spilledDataStorageSize": 0,
+            "inputStage": {
+              "stage": "FETCH",
+              "filter": {
+                "$and": [
+                  {
+                    "zone_id": {
+                      "$not": {
+                        "$eq": null
+                      }
+                    }
+                  },
+                  {
+                    "quality_flag": {
+                      "$eq": "N"
+                    }
+                  },
+                  {
+                    "value": {
+                      "$gt": 2000
+                    }
+                  }
+                ]
+              },
+              "nReturned": 10841,
+              "executionTimeMillisEstimate": 2797,
+              "works": 656931,
+              "advanced": 10841,
+              "needTime": 646089,
+              "needYield": 0,
+              "saveState": 899,
+              "restoreState": 899,
+              "isEOF": 1,
+              "docsExamined": 656930,
+              "alreadyHasObj": 0,
+              "inputStage": {
+                "stage": "IXSCAN",
+                "nReturned": 656930,
+                "executionTimeMillisEstimate": 367,
+                "works": 656931,
+                "advanced": 656930,
+                "needTime": 0,
+                "needYield": 0,
+                "saveState": 899,
+                "restoreState": 899,
+                "isEOF": 1,
+                "keyPattern": {
+                  "source_id": 1,
+                  "measurement_type": 1,
+                  "observed_at": 1
+                },
+                "indexName": "source_id_1_measurement_type_1_observed_at_1",
+                "isMultiKey": false,
+                "multiKeyPaths": {
+                  "source_id": [],
+                  "measurement_type": [],
+                  "observed_at": []
+                },
+                "isUnique": false,
+                "isSparse": false,
+                "isPartial": false,
+                "indexVersion": 2,
+                "direction": "forward",
+                "indexBounds": {
+                  "source_id": [
+                    "[\"MAD-TRAFFIC\", \"MAD-TRAFFIC\"]"
+                  ],
+                  "measurement_type": [
+                    "[MinKey, MaxKey]"
+                  ],
+                  "observed_at": [
+                    "[new Date(1735686000000), new Date(1738364400000))"
+                  ]
+                },
+                "keysExamined": 656930,
+                "seeks": 1,
+                "dupsTested": 0,
+                "dupsDropped": 0
+              }
+            }
+          }
+        }
+      },
+      "command": {
+        "find": "readings",
+        "filter": {
+          "observed_at": {
+            "$gte": {
+              "$date": "2024-12-31T23:00:00Z"
+            },
+            "$lt": {
+              "$date": "2025-01-31T23:00:00Z"
+            }
+          },
+          "source_id": "MAD-TRAFFIC",
+          "quality_flag": "N",
+          "value": {
+            "$gt": 2000
+          },
+          "zone_id": {
+            "$ne": null
+          }
+        },
+        "sort": {
+          "value": -1,
+          "_id": 1
+        },
+        "projection": {
+          "_id": 1,
+          "zone_id": 1,
+          "value": 1,
+          "unit": 1
+        },
+        "limit": 5,
+        "$db": "smartcity_v2_188fb2b9ec89"
+      },
+      "serverInfo": {
+        "host": "a4d5526d402a",
+        "port": 27017,
+        "version": "7.0.16",
+        "gitVersion": "18b949444cfdaa88e30b0e10243bc18268251c1f"
+      },
+      "serverParameters": {
+        "internalQueryFacetBufferSizeBytes": 104857600,
+        "internalQueryFacetMaxOutputDocSizeBytes": 104857600,
+        "internalLookupStageIntermediateDocumentMaxSizeBytes": 104857600,
+        "internalDocumentSourceGroupMaxMemoryBytes": 104857600,
+        "internalQueryMaxBlockingSortMemoryUsageBytes": 104857600,
+        "internalQueryProhibitBlockingMergeOnMongoS": 0,
+        "internalQueryMaxAddToSetBytes": 104857600,
+        "internalDocumentSourceSetWindowFieldsMaxMemoryBytes": 104857600,
+        "internalQueryFrameworkControl": "trySbeRestricted"
+      },
+      "ok": 1
+    }
+  }
+}

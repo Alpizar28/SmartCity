@@ -1,0 +1,138 @@
+{
+  "commit": "804d6a551dc84e22d901b64554c30a712b951f77",
+  "files": [
+    {
+      "path": "sprint1/basico/cargar_mongodb_v2.js",
+      "role": "Carga, validadores BSON, índices, replay, eventos y alertas v2",
+      "sha256": "7ad98da86e8cf2c97f8ecd7d9c9fc90c31b4101d573247def5c0204cd68c16b0",
+      "git_blob": "c761638534cadbe9344078a9eca0cd15d14c87e4",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "sprint1/basico/consultas_mongodb_v2.js",
+      "role": "consultar(), buscar() y agrupar(); MG01–MG10",
+      "sha256": "f5a8ab9041be4611b91b3bfb3cf5f179b108b0afb3bb9ec0799ea99d6351a2d0",
+      "git_blob": "33b7f39eb69b58ea832f42240e7459e830f6aa49",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "sprint1/basico/crud_mongodb.js",
+      "role": "Siete operaciones sobre practica_crud",
+      "sha256": "89a0201abfdceb503ac70667cd5bcecd6a28da15633f77f56d9f6df15fa0b0f9",
+      "git_blob": "83e2d81918b57346a0afa7194bee4f3bb70a5b8d",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "scripts/test_mongo_v2_sample.py",
+      "role": "Muestra nativa previa de tres lecturas",
+      "sha256": "ceec218b0f36deedcbe55ced0bf1935959e3b13779af5ce2089feeb1571ea897",
+      "git_blob": "cd386a0480a8a674474dab889641fa336cb4d42c",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "scripts/validar_v2.py",
+      "role": "Cálculo independiente, carga aislada y contraste de resultados",
+      "sha256": "78315a246f9301f46ba0c35f75f362e3a1beb8c90504e077cb60141ec35de9c4",
+      "git_blob": "1f48b82c3ca8b2d5ffae9d1199795270c9106e24",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "scripts/verificar_v2.py",
+      "role": "Reconciliación de informes e identidades SQL/Mongo",
+      "sha256": "fb69e2a5306e82ed96643f4a35a50b9e91f9db6ea82f918a4617836ff53ceecf",
+      "git_blob": "ed50b7f89f9c786034d2d47660a7e8cd34d08af8",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "sprint1/basico/preparar_v2.py",
+      "role": "Contrato v2, preparación y verificar_paquete()",
+      "sha256": "c1eea65c2ca0eb1aecbfbe0d5a216985e14b265cd22ed05c2cc3b165f0b4f556",
+      "git_blob": "c022c801034c4dbc253c0ca0ddc939fa72347157",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/phase5_contract.py",
+      "role": "IDs, hash de payload y conversión temporal compartidos",
+      "sha256": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0",
+      "git_blob": "48383435f5e324907844facc5ae3c2d0fdaa5265",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/unified_full_load.py",
+      "role": "Docker local, límites y limpieza de contenedores propios",
+      "sha256": "f64d70a478169a429ef27a95f13560694787ab8fb6486e05010be2323ec80214",
+      "git_blob": "23df9ae98e1a299822a4146503d6d8b26e378a99",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/phase5_postgres_sample.py",
+      "role": "Dependencia importada: sql_literal(); no ejecuta PostgreSQL en este cierre",
+      "sha256": "28240f370be3f311125c444782329f018df68eb8050714cdfadd3a8b6284e9ab",
+      "git_blob": "50ece3eaae5938bcecd24878f166b5895248b4aa",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/unified_expand.py",
+      "role": "Dependencias de generaciones y atomic_json()",
+      "sha256": "16d8f9c907daba9c08000b52b4bfc4eab5e2822a6630898523db648ba21ce73b",
+      "git_blob": "88d421f6a9bccc8d358a377b6385d59e53742d45",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/phase5_prepare.py",
+      "role": "Helpers y diccionario importados por las dependencias",
+      "sha256": "df1eeb17c701554f0cfc66a4f75079841afe52bf0f3c088b7ce08477bc92c6a4",
+      "git_blob": "6b5c5e3cd7e0682ed718a70769bb848ff360169f",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/unified_synthetic.py",
+      "role": "Procedencia de administración sintética",
+      "sha256": "1c9728258894f65f1866c90ceb4e910f5a1550b5e49d2534cbdde438a84cb911",
+      "git_blob": "210c96155e08017c63833083c6eb74db42f0f5d7",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "tests/sprint1/validate_real_postgres.py",
+      "role": "Dependencia del parser read_queries(); no carga PostgreSQL",
+      "sha256": "472869352b2db12a6b331329247179477f75b7fac7406cc8af5ea7d34c2fb104",
+      "git_blob": "ff4e322ad63fe7423fc5acb2e1ed654f4b951dfd",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "sprint1/postgres/queries.sql",
+      "role": "Archivo referenciado en hashes y parser del harness",
+      "sha256": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9",
+      "git_blob": "d30d1eb5c4c5cc87692dc5ab3f97936ee6f4cb04",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "sprint1/postgres/contract_v2.sql",
+      "role": "Archivo incluido en los hashes del informe; sin ejecución SQL nueva",
+      "sha256": "4caa9bf9cdb225f502770322960da02420039ffccead465f15f332229900d10a",
+      "git_blob": "1d6b0082b9b9b81168c5fb3439c2a56774b657ce",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "research/datasets/scripts/requirements.lock",
+      "role": "Veinte dependencias exactas de Python",
+      "sha256": "9d7bdc7b67a58af36307129995b6ff5ef534b3925fc5688e61a8032115002d01",
+      "git_blob": "a1e1398331d4077e095f88dc76204d6f6c6a9998",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "tests/sprint1/test_mongodb_v2.js",
+      "role": "Pruebas complementarias del módulo de consultas; no se presentan como prueba nativa de este cierre",
+      "sha256": "58fedd1719db27933a2696c77adc680bd41028442e97c02962fd49bb148329e3",
+      "git_blob": "1306b25b5c8daf867455c451ec74d669d0b975c1",
+      "identical_to_official_commit": true
+    },
+    {
+      "path": "tests/sprint1/test_resultados_v2.py",
+      "role": "Pruebas complementarias del comparador; no se presentan como prueba nativa de este cierre",
+      "sha256": "5485de3ec81e6426697a67e55784e581c7f2cd54656a26a4c44423ed73c338bc",
+      "git_blob": "e6a828584e0441702c435cd65f543e4dc719e2c0",
+      "identical_to_official_commit": true
+    }
+  ]
+}

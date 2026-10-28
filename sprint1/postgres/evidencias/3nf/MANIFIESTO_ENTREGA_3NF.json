@@ -1,0 +1,226 @@
+{
+  "branch": "fix/sprint1-postgresql-3nf",
+  "base_main_commit": "804d6a551dc84e22d901b64554c30a712b951f77",
+  "generated_at": "2026-10-28T07:51:48.099705+00:00",
+  "scope": "normalized SQL model, academic report and new evidence; no private datasets",
+  "native_full_report": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json",
+  "preserved_mongodb_sealed_files": 29,
+  "preserved_official_code_files": 19,
+  "python_tests_passed": 65,
+  "node_test_files_passed": 2,
+  "documentation_tests_passed": 6,
+  "markdown_internal_links_checked": 400,
+  "er_tables_checked": 14,
+  "er_foreign_keys_checked": 17,
+  "latex": {
+    "exit_codes": [
+      0,
+      0
+    ],
+    "pages": 14,
+    "pdf": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T075148.pdf",
+    "undefined_references": false,
+    "nonfatal_log_messages": [
+      "Package epstopdf Warning: Shell escape feature is not enabled.",
+      "ignored error: Infinite glue shrinkage found in box being split [3]",
+      "ignored error: Infinite glue shrinkage found in box being split [11]"
+    ]
+  },
+  "files": [
+    {
+      "path": "ENTREGA_SPRINT1.md",
+      "sha256": "3b6b02d627a822a7cdeccc1e602394af54d3f8c1f26b483aa601631166a49703",
+      "bytes": 12035
+    },
+    {
+      "path": "README.md",
+      "sha256": "bc5d9e5df3aec5a5c4d3a40f1cc0f7fa598161c728fe03aa0a0d7439a584196d",
+      "bytes": 5259
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "45a5455c2b5e0c18afd39d6f97c5af91930b19444185c9190a989af900618d60",
+      "bytes": 2815
+    },
+    {
+      "path": "docs/arquitectura/diagrama_3nf.md",
+      "sha256": "fe7a3745cc347b7fe6ba305b93c53c2857e59821d12024dd5da4b6f7f7164584",
+      "bytes": 4604
+    },
+    {
+      "path": "docs/arquitectura/diagramas.md",
+      "sha256": "faa2888d89977a5a2203d53ef7661dc17b577992b1df9b57c0a556e200e4b4ba",
+      "bytes": 8824
+    },
+    {
+      "path": "docs/arquitectura/modelos.md",
+      "sha256": "0f64bf2e765eddc0df5b8602942ae8df4638fac90de78e4e4ae03eca549c238f",
+      "bytes": 12006
+    },
+    {
+      "path": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T075148.pdf",
+      "sha256": "0066ecf5d2327cc0da6e042ecc64222c7f5a021f4c36a7f4ad4815131a4f4e89",
+      "bytes": 278960
+    },
+    {
+      "path": "docs/avance_1/main.tex",
+      "sha256": "26d06d82093877273a4b98a70d287014fd093982654ada86288efa50564c7976",
+      "bytes": 1902
+    },
+    {
+      "path": "docs/avance_1/secciones/01-alcance-datos.tex",
+      "sha256": "f73e9e24de7b0c56beedcd22bb03f8bb2c60ce48b8ac92041559d15acb18c578",
+      "bytes": 7008
+    },
+    {
+      "path": "docs/avance_1/secciones/02-modelos.tex",
+      "sha256": "fff477b0b1390493067b448d771f108877e70c0a4320e83208e3aa2790d2541e",
+      "bytes": 7648
+    },
+    {
+      "path": "docs/avance_1/secciones/03-consultas.tex",
+      "sha256": "62e7202134dfae039e41fb02d39a1c5f0e56d260a509d2ca9c39ec22f52fa32d",
+      "bytes": 6581
+    },
+    {
+      "path": "docs/avance_1/secciones/04-validacion.tex",
+      "sha256": "25836e997563f5e6ac70ae18e78ab6c6972e68fa0f3b9f06756dad76f334a3f6",
+      "bytes": 5644
+    },
+    {
+      "path": "docs/avance_1/secciones/05-cierre.tex",
+      "sha256": "789cc6aea7a4facf22c4f64305c64b98d37911d187a4fe6cb5374da7883ea3ec",
+      "bytes": 4671
+    },
+    {
+      "path": "docs/avance_1/secciones/06-equivalencias.tex",
+      "sha256": "42ecc5fd9bc6f986777ab9194e9c2ebe5aea07b24d6064badcece400bba190b9",
+      "bytes": 3049
+    },
+    {
+      "path": "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
+      "sha256": "90df1b27674849e2d08b5272f0a924169f8d48cdbda9b07f2c8e19f6022146b0",
+      "bytes": 9695
+    },
+    {
+      "path": "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+      "sha256": "63e7e6e8d5dc676810a6b87285d9418cc59acc67b9e54f41f486a4409dd290fd",
+      "bytes": 4161
+    },
+    {
+      "path": "docs/equipo/ESTADO_SPRINT1.md",
+      "sha256": "0851f6677d0b25b9ba2583b7b7ef1c49f6b0db7921d39e2cc3bae4968fb27587",
+      "bytes": 5710
+    },
+    {
+      "path": "docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md",
+      "sha256": "4e6b020ccd6831f33d9494bc00339794ed1ea2df4caba4f489f4627563b911e9",
+      "bytes": 5158
+    },
+    {
+      "path": "scripts/capturar_sql_avanzado_3nf.py",
+      "sha256": "6251e604ecf6e83451f385929e44cbf7659f617ea1c8749a73682dcf21455857",
+      "bytes": 4923
+    },
+    {
+      "path": "scripts/validar_postgresql_3nf.py",
+      "sha256": "217ee35b632acbdb1df6e20f72190b55d11b854d2342cbbbe277a5bd3eee6da1",
+      "bytes": 24739
+    },
+    {
+      "path": "sprint1/postgres/README.md",
+      "sha256": "98c1fce2acb983e6ecaa9147173953e01e53e3b121ba1a94a5b5ebd86d62d173",
+      "bytes": 4542
+    },
+    {
+      "path": "sprint1/postgres/cierre_3nf.md",
+      "sha256": "962761d3ca94fef763b9b3219d414c38f25b2a7286ea97a100a333de233ae7bf",
+      "bytes": 6276
+    },
+    {
+      "path": "sprint1/postgres/dependencias_3nf.json",
+      "sha256": "7f853f7235b99712a4405b48f3164cf2ece2884f415195dafedbb4079a837233",
+      "bytes": 9329
+    },
+    {
+      "path": "sprint1/postgres/distritos_madrid.json",
+      "sha256": "aaf64100065cf943ee5fd130bb2fbcc4f9399b31bd3cd2a2bad75fe717db3e3d",
+      "bytes": 1144
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.json",
+      "sha256": "1fa7a04200f5f3299a71daf823df5a0420fea8b8ff6fcff27494a076df8b76d1",
+      "bytes": 1956
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.sha256",
+      "sha256": "6e28705a27893c06cb1e8dc1444662c900641148fb11780bc831821298ae2940",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.json",
+      "sha256": "f61b0079143d3b515e31b00600e51414d5bf87a2dea7f63e3ea8bc7d79c57e37",
+      "bytes": 28972
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.sha256",
+      "sha256": "30e7f89d633a0831e1ae5980d55e4ab29c87698ec934f0e402b9d921666aa549",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.json",
+      "sha256": "07f791b355f0331b61ae2f657e52138cfc5354d1e3a259cbea10dbccac3ee875",
+      "bytes": 29717
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.sha256",
+      "sha256": "a2b0ca7a593db6f3ea7aa1072f4b286b49bd025e834f7135eec14a19f901e3f5",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json",
+      "sha256": "111881d7b699a00ff0a890157e8e5cbadea8c1e715ac270c30b93f137994614a",
+      "bytes": 30671
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.sha256",
+      "sha256": "e0cd524cfcc30260dd1bfe3a9a62799ed361cc627defbff1e792b6f42e361101",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.json",
+      "sha256": "3d4e57d8baaf1cc78241c244befe6a7cdcef6e21fe2e1801e7426ffe137141f7",
+      "bytes": 4447
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.sha256",
+      "sha256": "48d1c46a207e8e7f0f843fac6124c92c4acfa710fd80a4d173abecf3d5070e5c",
+      "bytes": 105
+    },
+    {
+      "path": "sprint1/postgres/impacto_3nf.md",
+      "sha256": "33c8eec0bff1c9e94d9a787a4921898bd702ba51a287dba6823a7910e44b0924",
+      "bytes": 8774
+    },
+    {
+      "path": "sprint1/postgres/queries_v2_3nf.sql",
+      "sha256": "b344309fbbaad24a0f05fe1f3fa5a6f94e959f50083d4cdd7a4d9978c0e2acb0",
+      "bytes": 6963
+    },
+    {
+      "path": "sprint1/postgres/schema_v2_3nf.sql",
+      "sha256": "1d34b91a20c499bb5d2b273678bc29514c573d72aea6c26dfe7b7e9ee6294771",
+      "bytes": 12393
+    },
+    {
+      "path": "tests/integration/postgres_3nf.sql",
+      "sha256": "37952e58ce56c4e9fcb977d875dfe18d71e98341e6f57af9cc139abdb6752512",
+      "bytes": 2295
+    },
+    {
+      "path": "tests/sprint1/test_modelo_3nf.py",
+      "sha256": "638ca1a2f6b4266b227accbdaa44137610dc606f35304252859c41a92c0e882a",
+      "bytes": 3915
+    }
+  ]
+}

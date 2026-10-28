@@ -1,0 +1,30 @@
+7.0.16: Pulling from library/mongo
+f2a3c0e28664: Pulling fs layer
+9cb31e2e37ea: Pulling fs layer
+6fd932e33dad: Pulling fs layer
+53fe8a8c4619: Pulling fs layer
+dfc10604355c: Pulling fs layer
+bce7aaa046ee: Pulling fs layer
+96efcbef81ea: Pulling fs layer
+78813a729457: Pulling fs layer
+6fd932e33dad: Download complete
+bce7aaa046ee: Download complete
+dfc10604355c: Download complete
+713b38209908: Download complete
+f2a3c0e28664: Download complete
+96efcbef81ea: Download complete
+53fe8a8c4619: Download complete
+32c51368f238: Download complete
+9cb31e2e37ea: Download complete
+dfc10604355c: Pull complete
+9cb31e2e37ea: Pull complete
+96efcbef81ea: Pull complete
+6fd932e33dad: Pull complete
+bce7aaa046ee: Pull complete
+53fe8a8c4619: Pull complete
+78813a729457: Download complete
+78813a729457: Pull complete
+f2a3c0e28664: Pull complete
+Digest: sha256:c630c59342c1493d50345136df2af14a76b9e827dd5316bfabee07a0880a5f3a
+Status: Downloaded newer image for mongo:7.0.16
+docker.io/library/mongo:7.0.16

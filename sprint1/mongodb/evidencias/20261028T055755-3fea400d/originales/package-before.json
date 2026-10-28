@@ -1,0 +1,12 @@
+{
+  "accepted": 748889,
+  "hashes": {
+    "accepted.extjsonl": "842052ca68b331121cc843bb6dd8273465c6442b1d99955d46f461a8af06daae",
+    "quarantine.extjsonl": "a87e16d402e82234038343def4067d155110f3102979e129402f1f6c902131f2",
+    "incidents.extjsonl": "53e76b0762da4e04c6415231fbc43aa20df1f452e883e721e0b28cd41dfe0563",
+    "catalogs.json": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b",
+    "administrative_seed.json": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+    "identities.sqlite": "b50c1db33f21e4dcfde4142d675821ed49b67d4656cf1f4df1e3f2f2f2a11f81",
+    "preparation.json": "fa35e14e44edf4dcb5965038b780c0a9cb478b38354ba65af60273a115aa3636"
+  }
+}

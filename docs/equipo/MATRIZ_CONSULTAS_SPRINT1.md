@@ -1,19 +1,35 @@
 # Las 20 consultas — Sprint 1
 
+Esta matriz cubre las consultas, **no todo el avance**. El
+[alcance confirmado](ALCANCE_CONFIRMADO_SPRINT1.md) incluye también modelos,
+3FN, tablas/relaciones, índices, SQL avanzado, clases de documentos, siete
+operaciones CRUD y Aggregation Framework. Lo transversal o ambiguo no se
+convierte automáticamente en una implementación obligatoria para octubre.
+
 **Ruta actual:** esquema `smartcity`, paquete local `expanded-v2-2025-01`.
 Ejecutar `bash scripts/validate_sprint1.sh --datos`. El estado de la carga está
 en `research/datasets/results/expanded-v2-2025-01/execution-*.json`;
 un informe con error no cuenta como ejecución aprobada.
 
-SQL: `sprint1/postgres/queries.sql`. Mongo: `sprint1/basico/consultas_mongodb_v2.js`.
+SQL de entrega: `sprint1/postgres/queries_v2_3nf.sql`. El SQL anterior se conserva
+para reproducir sus informes. [Cierre normalizado](../../sprint1/postgres/cierre_3nf.md):
+PG01–PG10 completas contra Python, 748.889 lecturas y reconciliación. Mongo: `sprint1/basico/consultas_mongodb_v2.js`.
 Las consultas no equivalen automáticamente a aceptación académica del alcance.
 
 **Cierre PostgreSQL:** [fichas PG01–PG10 y resultados v2](../../sprint1/postgres/evidencia_final_postgresql.md),
 [normalización formal](../../sprint1/postgres/normalizacion_3fn.md) y
 [PG07: pruebas y solicitud de inventario](../../sprint1/postgres/pg07_limite_evidencia.md).
 El PASS masivo PostgreSQL se cotejó con el paquete privado y un cálculo Python
-independiente; tres reportes nuevos separan auditoría completa, SQL controlado y
-subconjunto observado v2. No certifican inactividad física ni cierre MongoDB.
+independiente; tres reportes separan auditoría completa, SQL controlado y
+subconjunto observado v2. Esos tres informes históricos no certifican el DDL
+normalizado; su nueva evidencia se referencia arriba. Tampoco acreditan actividad física.
+
+**Cierre MongoDB actual:** [MG01–MG10, CRUD, índices y límites](../../sprint1/mongodb/evidencias/20261028T055755-3fea400d/RESUMEN_FERNANDA.md).
+`execution-d26e40706dcd.json` acredita PASS masivo de 748.889 lecturas; las diez
+consultas fueron contrastadas con Python, con replay y limpieza. La reconciliación original usa el informe PostgreSQL previo. El nuevo cierre
+normalizado vuelve a confirmar su huella contra esa misma ejecución MongoDB.
+La justificación de información dinámica no estructurada sigue siendo un punto
+documental distinto del PASS de las diez consultas.
 
 | ID | Consulta | Datos y límite |
 |---|---|---|

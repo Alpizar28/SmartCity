@@ -1,0 +1,29 @@
+{
+  "source_member": "research/datasets/raw/MAD-CRASH-file.attempt1.bin",
+  "source_sha256": "25a84e6af0b213d6194df7c378490ef9c68e0156c165e0761a0a6c7b7ae4e321",
+  "snapshot_year": 2026,
+  "scope": "Public administrative labels only; no historical geographic assignment inferred",
+  "names": {
+    "madrid:district:1": "CENTRO",
+    "madrid:district:10": "LATINA",
+    "madrid:district:11": "CARABANCHEL",
+    "madrid:district:12": "USERA",
+    "madrid:district:13": "PUENTE DE VALLECAS",
+    "madrid:district:14": "MORATALAZ",
+    "madrid:district:15": "CIUDAD LINEAL",
+    "madrid:district:16": "HORTALEZA",
+    "madrid:district:17": "VILLAVERDE",
+    "madrid:district:18": "VILLA DE VALLECAS",
+    "madrid:district:19": "VICÁLVARO",
+    "madrid:district:2": "ARGANZUELA",
+    "madrid:district:20": "SAN BLAS-CANILLEJAS",
+    "madrid:district:21": "BARAJAS",
+    "madrid:district:3": "RETIRO",
+    "madrid:district:4": "SALAMANCA",
+    "madrid:district:5": "CHAMARTÍN",
+    "madrid:district:6": "TETUÁN",
+    "madrid:district:7": "CHAMBERÍ",
+    "madrid:district:8": "FUENCARRAL-EL PARDO",
+    "madrid:district:9": "MONCLOA-ARAVACA"
+  }
+}

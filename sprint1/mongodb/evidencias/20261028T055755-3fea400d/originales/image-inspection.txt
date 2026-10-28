@@ -1,0 +1,67 @@
+[
+    {
+        "Id": "sha256:c630c59342c1493d50345136df2af14a76b9e827dd5316bfabee07a0880a5f3a",
+        "RepoTags": [
+            "mongo:7.0.16"
+        ],
+        "RepoDigests": [
+            "mongo@sha256:c630c59342c1493d50345136df2af14a76b9e827dd5316bfabee07a0880a5f3a"
+        ],
+        "Comment": "buildkit.dockerfile.v0",
+        "Created": "2024-12-20T23:06:36Z",
+        "Config": {
+            "ExposedPorts": {
+                "27017/tcp": {}
+            },
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.17",
+                "JSYAML_VERSION=3.13.1",
+                "JSYAML_CHECKSUM=662e32319bdd378e91f67578e56a34954b0a2e33aca11d70ab9f4826af24b941",
+                "MONGO_PACKAGE=mongodb-org",
+                "MONGO_REPO=repo.mongodb.org",
+                "MONGO_MAJOR=7.0",
+                "MONGO_VERSION=7.0.16",
+                "HOME=/data/db"
+            ],
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Cmd": [
+                "mongod"
+            ],
+            "Volumes": {
+                "/data/configdb": {},
+                "/data/db": {}
+            },
+            "Labels": {
+                "org.opencontainers.image.ref.name": "ubuntu",
+                "org.opencontainers.image.version": "22.04"
+            }
+        },
+        "Architecture": "amd64",
+        "Os": "linux",
+        "Size": 270235669,
+        "RootFS": {
+            "Type": "layers",
+            "Layers": [
+                "sha256:270a1170e7e398434ff1b31e17e233f7d7b71aa99a40473615860068e86720af",
+                "sha256:41c09d895eea0c54bcbcb7d7171554f34addaa345d5a9d635a3dce9881263d0e",
+                "sha256:2e42ae8789bddcb5a789b28210c13e5781b848f8ffa8ed58268af7dfe60d36e1",
+                "sha256:7c7bae04a8826435c1a9bbe5b8c0550e75f4a06b0e5c63172d30a35f42ad4e1e",
+                "sha256:a47786ffd54addf61a7f03a63fb01e5e77a2386b94cf9714516f8ca37d5d2396",
+                "sha256:6525351a7906609ce38219fe00977f466a38e3ff02a4edb0f8f59ea9d4b35d33",
+                "sha256:995040646f441dccdfbf8aac2140411e04e989600536729b03584ee754482247",
+                "sha256:bd218e100f31d6edbf822edf33f78e7a0557f62764d87e8712c672872ebb85fe"
+            ]
+        },
+        "Metadata": {
+            "LastTagTime": "2026-10-28T05:58:33.804695389Z"
+        },
+        "Descriptor": {
+            "mediaType": "application/vnd.oci.image.index.v1+json",
+            "digest": "sha256:c630c59342c1493d50345136df2af14a76b9e827dd5316bfabee07a0880a5f3a",
+            "size": 3571
+        }
+    }
+]

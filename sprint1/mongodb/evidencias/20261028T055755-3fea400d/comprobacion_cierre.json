@@ -1,0 +1,98 @@
+{
+  "verified_at_utc": "2026-10-28T06:23:01.459623+00:00",
+  "source_execution": "execution-20261028T055755-3fea400d",
+  "scope": "Cotejo de esta ejecución; sin nueva carga ni acceso a bases",
+  "original_checksums_verified": 18,
+  "original_bytes_preserved_in_delivery": true,
+  "official_mongodb_report_sha256": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585",
+  "native_sample_log_marker_verified": true,
+  "massive_log_marker_verified": true,
+  "seven_crud_log_operation_markers_verified": true,
+  "independent_python_recheck": {
+    "verified_at_utc": "2026-10-28T06:19:25.822728+00:00",
+    "method": "Read-only recheck with current official verificar_paquete, revisar_entrada and comprobar_consultas; no database execution",
+    "official_code_revision": "804d6a551dc84e22d901b64554c30a712b951f77",
+    "current_private_hashes_match_execution_snapshot": true,
+    "all_ten_query_results_match_independent_python_calculation": true,
+    "accepted": 748889,
+    "expected_date_window_count": 748765,
+    "expected_events": 10841,
+    "expected_alerts": 10841,
+    "expected_type_groups": 12,
+    "expected_zone_groups": 21,
+    "ledger_hash_matches_native_mongodb": true,
+    "ids_payload_sha256": "9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0"
+  },
+  "queries": {
+    "MG01": {
+      "status": "PASS",
+      "total": 2936,
+      "scope": "canal lógico y snapshot; no sensor físico"
+    },
+    "MG02": {
+      "status": "PASS",
+      "total": 748765,
+      "accepted_outside_query_window": 124
+    },
+    "MG03": {
+      "status": "PASS",
+      "groups": 11,
+      "readings": 91959
+    },
+    "MG04": {
+      "status": "PASS",
+      "events": 10841,
+      "official_rule": false
+    },
+    "MG05": {
+      "status": "PASS",
+      "zone_groups": 14,
+      "alerts": 10841
+    },
+    "MG06": {
+      "status": "PASS",
+      "zone_type_unit_groups": 21,
+      "readings_with_zone": 653997
+    },
+    "MG07": {
+      "status": "PASS",
+      "type_source_unit_groups": 12,
+      "readings": 748889
+    },
+    "MG08": {
+      "status": "PASS",
+      "categories": 14,
+      "incidents": 14388,
+      "year": 2026
+    },
+    "MG09": {
+      "status": "PASS",
+      "source_quality_groups": 2,
+      "readings": 748889
+    },
+    "MG10": {
+      "status": "PASS",
+      "total": 10841
+    }
+  },
+  "collections": 7,
+  "indexes": 13,
+  "collections_with_validator": [
+    "derived_events",
+    "incidents",
+    "readings",
+    "alerts"
+  ],
+  "collections_without_validator": [
+    "users",
+    "sensors",
+    "organizations"
+  ],
+  "postgresql_reference_hash_verified": true,
+  "postgresql_reference_is_prior_report_not_new_postgresql_execution": true,
+  "private_snapshot_hashes_rechecked": true,
+  "official_commit_and_origin_main_unchanged": true,
+  "all_existing_tracked_files_unchanged": true,
+  "credential_pattern_scan_findings": [],
+  "delivery_contains_private_datasets": false
+}

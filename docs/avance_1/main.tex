@@ -1,10 +1,13 @@
 \documentclass[11pt,letterpaper]{article}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath}
 \usepackage[spanish,es-tabla]{babel}
 \usepackage[margin=2.5cm]{geometry}
 \usepackage{microtype}
 \usepackage{booktabs,longtable,array}
+\usepackage[skip=0.5em]{parskip}
 \usepackage{xurl}
 \usepackage[hidelinks]{hyperref}
 \usepackage{tikz}
@@ -12,32 +15,34 @@
 \usepackage{listings}
 \lstset{basicstyle=\ttfamily\small,breaklines=true,columns=fullflexible,
   keepspaces=true,showstringspaces=false,frame=single}
-\setlength{\parindent}{0pt}
-\setlength{\parskip}{0.5em}
 \newcommand{\archivo}[1]{\path{#1}}
-\newcommand{\pendiente}[1]{\textbf{Pendiente de revisión:} #1}
 \title{SmartCity Analytics\\Primer avance: PostgreSQL y MongoDB}
-\author{Equipo: José, Daniel, Kembly y Fernanda}
-\date{Entrega prevista: 28 de octubre de 2026\\
-  Borrador técnico actualizado el 27 de octubre de 2026}
+\author{José, Daniel, Kembly y Fernanda\\
+  Ingeniería en Computadores\\Instituto Tecnológico de Costa Rica}
+\date{28 de octubre de 2026}
 
 \begin{document}
 \maketitle
 \begin{abstract}
 Este informe documenta el avance de almacenamiento relacional y documental de
-SmartCity Analytics. Presenta las fuentes de Madrid, las dos implementaciones
-que actualmente conviven en el repositorio y las pruebas disponibles. Se separa
-la evidencia histórica de carga anual de la demostración local de tres ejemplos.
-Los mínimos de volumen cuentan con evidencia local previa, pero no se declara
-completo el conjunto de veinte consultas ni una carga en servidores compartidos.
+SmartCity Analytics. El alcance son las secciones Uso de PostgreSQL y Uso de
+MongoDB del enunciado: modelos, 3FN, estructuras, índices, SQL avanzado,
+documentos, CRUD y Aggregation Framework, además de veinte consultas.
+La generación Madrid v2 acredita 748.889 lecturas por motor y la ejecución
+técnica de las consultas. La ejecución PostgreSQL normalizada se contrasta con
+la evidencia MongoDB conservada y con los resultados relacionales anteriores.
+El modelo relacional separa las dependencias funcionales y reconstruye el
+contrato documental mediante vistas, conservando la identidad de las mediciones.
+Los datos administrativos sintéticos se distinguen de las observaciones públicas.
+El alcance comprende únicamente PostgreSQL y MongoDB; los componentes de
+procesamiento distribuido corresponden a la continuación del proyecto.
 \end{abstract}
-\textbf{Estado del documento: borrador, no entrega aprobada.} Los integrantes
-deben revisar nombres completos, identificación del curso, modelos, resultados
-y aceptación de los alcances pendientes antes de presentar este documento.
+\newpage
 \tableofcontents
 \newpage
 \input{secciones/01-alcance-datos}
 \input{secciones/02-modelos}
+\input{secciones/06-equivalencias}
 \input{secciones/03-consultas}
 \input{secciones/04-validacion}
 \input{secciones/05-cierre}

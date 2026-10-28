@@ -1,0 +1,102 @@
+1. insertOne: insertar la primera copia
+2. insertMany: insertar las otras dos copias
+3. findOne: buscar por el ID asignado
+{
+  _id: ObjectId('6ae192a3020e267e3a544ca7'),
+  candidate_unit: null,
+  catalog_version: 'madrid-draft-v2',
+  channel_id: 'channel:841fc1c44a8bf6c8c15e049b05636e516e8d9f35fd5bca3a7d5e8f355ba573e8',
+  data_origin: 'observed',
+  element_type: 'URB',
+  integration_sample_count: 15,
+  interval_minutes: 15,
+  measurement_id: 'measurement:000012b39ddbc7d2e069ea8ca07299366d8be0ea52270a12706139733ef280b2',
+  measurement_type: 'MAD-TRAFFIC:intensidad',
+  measurements: {
+    carga: {
+      data_origin: 'observed',
+      raw_value: '16',
+      status: 'valid',
+      unit: 'index',
+      value: 16
+    },
+    ocupacion: {
+      data_origin: 'observed',
+      raw_value: '3',
+      status: 'valid',
+      unit: 'percent',
+      value: 3
+    },
+    vmed: {
+      data_origin: 'observed',
+      raw_value: '0',
+      status: 'not_applicable',
+      unit: 'km/h',
+      value: null
+    }
+  },
+  observed_at: ISODate('2025-01-31T19:15:00.000Z'),
+  original_time: '2025-01-31T20:15:00',
+  original_timezone: 'Europe/Madrid',
+  payload_hash: 'payload:7108bc4f8d5b5a64c371cb1cc60f7aea2874c73f039db33aaf2bc32b844836c3',
+  provenance: {
+    ids: 'derived',
+    observed_at: 'derived',
+    traffic_dictionary_sha256: '17562978ce1b7930c6c720db37f055cb3459e30b8cec50d2a671682b215b9de9',
+    value: 'observed'
+  },
+  quality_flag: 'N',
+  raw_reference: {
+    column: 'intensidad',
+    member: '01-2025.csv',
+    path: 'raw/MAD-TRAFFIC-Jan2025.record89.bin',
+    row: 7842429,
+    sha256: '4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c'
+  },
+  schema_version: 'madrid-draft-v2',
+  sensor_id: null,
+  source_id: 'MAD-TRAFFIC',
+  source_key: [
+    '6400',
+    '2025-01-31 20:15:00',
+    'URB'
+  ],
+  source_version: '4c3aac6c95939995ca6afd3b90c96ac72e59beb8770c34c6da5c92c20d8d167c',
+  station_id: 'station:96e8d7206400cc2c0b4dd06db008bc5f86e24a4c495c22cc9ca655a9f322c2eb',
+  time_error: null,
+  timestamp_role: 'publisher_label',
+  timestamp_status: 'publisher_confirmed_local',
+  transformation_method: 'madrid-normalize',
+  transformation_version: 'madrid-normalize-v3',
+  unit: 'veh/h',
+  unit_status: 'verified_dictionary',
+  value: 450,
+  zone_id: 'madrid:district:20',
+  zone_scope: 'current_inventory_not_historically_verified'
+}
+4. find: ver las tres copias
+[
+  {
+    _id: ObjectId('6ae192a3020e267e3a544ca7'),
+    channel_id: 'channel:841fc1c44a8bf6c8c15e049b05636e516e8d9f35fd5bca3a7d5e8f355ba573e8',
+    unit: 'veh/h',
+    value: 450
+  },
+  {
+    _id: ObjectId('6ae192a3020e267e3a544ca8'),
+    channel_id: 'channel:8e391342195442e39a1a4de8533d1d4f6f04aacf4275736e792971c009ef26e2',
+    unit: 'ug/m3',
+    value: 35
+  },
+  {
+    _id: ObjectId('6ae192a3020e267e3a544ca9'),
+    channel_id: 'channel:491cc3380c5b2e5ef0fe8b17a4f9167d0d608e74aadfb601203eff33cd0e38ce',
+    unit: 'veh/h',
+    value: 166
+  }
+]
+5. updateOne: agregar una marca de revisión a una copia
+6. updateMany: agregar una marca de práctica a las tres copias
+7. deleteOne: eliminar únicamente la primera copia
+CRUD_BASICO_PASS: práctica terminada, sin cambiar readings.
+true

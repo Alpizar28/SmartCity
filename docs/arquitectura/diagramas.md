@@ -1,5 +1,10 @@
 # Diagramas textuales — contrato común `smartcity`
 
+**Modelo PostgreSQL vigente:** [E-R normalizado completo](diagrama_3nf.md),
+con catorce tablas y DTO v2 compatible. Las doce tablas y diagramas siguientes
+corresponden al DDL histórico conservado para reproducir sus evidencias.
+
+
 Formato Mermaid versionable y renderizable en GitHub. Las flechas de flujo expresan transferencia local o propuesta, **no FK ni servicios desplegados**. El E-R refleja las relaciones entre las doce tablas centrales del [DDL `smartcity`](../../research/datasets/scripts/phase5_postgresql.sql); las FK compuestas refuerzan coherencia de fuente y estación. `smartcity_demo.entities` está separado y no tiene FK al núcleo. Los cuatro integrantes deben revisar antes de ratificar. Versión: [contrato común](../equipo/CONTRATO_UNIFICADO.md).
 
 La muestra de 5.000 de estos diagramas describe la validación inicial, no el volumen actual disponible. La [ampliación anual](../equipo/AMPLIACION_REAL_SPRINT1.md) añade una ruta configurable de todo 2025 con 1.076.813 observaciones reales y validación completa en motores locales. Meteorología y tráfico siguen separados, sin afirmar integración temporal validada.

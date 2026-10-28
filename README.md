@@ -26,11 +26,34 @@ los informes PASS de ambos motores, no con el hecho de descargar el ZIP.
 Los datos grandes no van al historial Git. Para reconstruir el ZIP privado:
 `research/datasets/.venv/bin/python scripts/empaquetar_dataset.py --completo`.
 
-**Primer avance, 28 de octubre:** PostgreSQL y MongoDB, modelos, datos,
-10 consultas por motor y documentación. Hadoop, Spark e interfaz quedan para
-la entrega final del 25 de noviembre. Referencia: `Plan_de_trabajo.pdf` del equipo.
+**Primer avance, 28 de octubre:** secciones completas «Uso de PostgreSQL» y
+«Uso de MongoDB» del enunciado, según la aclaración del profesor comunicada por
+Kembly, sin rúbrica independiente. Incluye modelos, 3FN, tablas/relaciones/llaves,
+índices, SQL avanzado, documentos, siete CRUD y Aggregation Framework, además de
+diez consultas por motor. Los mínimos son objetivos de 100.000 registros SQL y
+500.000 documentos MongoDB. Ver [alcance y cobertura](docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md).
+Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos y comparación final
+quedan para noviembre; los aspectos ambiguos se registran como transversales o
+pendientes de confirmación, sin implementarlos por precaución.
 
 ## Ruta de ejecución
+
+**PostgreSQL de entrega normalizado:** [DDL v2](sprint1/postgres/schema_v2_3nf.sql),
+[PG01–PG10](sprint1/postgres/queries_v2_3nf.sql), [prueba de DF e impacto](sprint1/postgres/impacto_3nf.md)
+y [E-R completo](docs/arquitectura/diagrama_3nf.md). Son catorce tablas: doce del
+núcleo y dos auxiliares. La interfaz documental mantiene `madrid-draft-v2`.
+
+Con PostgreSQL 16 nativo y el paquete v2 preparado, en una instancia temporal
+propia sin TCP:
+
+```bash
+python scripts/validar_postgresql_3nf.py --sample 1000
+python scripts/validar_postgresql_3nf.py
+```
+
+Los informes y sus SHA-256 quedan en `sprint1/postgres/evidencias/3nf/`.
+Las rutas siguientes reproducen el modelo histórico y la práctica; no aplican
+el DDL normalizado ni constituyen migraciones para una base existente.
 
 - **SQL canónico:** esquema `smartcity`, contrato `madrid-draft-v1`.
   Las diez consultas están en `sprint1/postgres/queries.sql`; se prueban con

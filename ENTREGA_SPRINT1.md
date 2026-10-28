@@ -25,29 +25,63 @@ descritas abajo. En Windows, ejecutar los comandos Bash en WSL o Git Bash;
 las pruebas de motores requieren el socket Docker local indicado por el harness
 (preferir Linux/WSL con Docker configurado, no una conexión remota).
 
-- **Daniel:** `sprint1/postgres/queries.sql`, DDL común y `contract_v2.sql`.
+- **PostgreSQL de entrega:** `sprint1/postgres/schema_v2_3nf.sql`, `queries_v2_3nf.sql` y [análisis de impacto](sprint1/postgres/impacto_3nf.md). El DDL común y `contract_v2.sql` conservan la reproducción histórica.
 - **Kembly:** `sprint1/basico/consultas_mongodb_v2.js` y `cargar_mongodb_v2.js`.
 - **Fernanda:** `docs/avance_1/main.tex` en Overleaf y la matriz de consultas.
 - **Todos:** leer `docs/equipo/ESTADO_SPRINT1.md`; no subir ZIP, `raw/`,
   `private_results/`, `.env` ni credenciales al repo. Drive restringido al equipo.
 
-**Último resultado masivo confirmado:** PostgreSQL v2 PASS con 748.889 lecturas,
-replay, metadatos y diez consultas. Informe
-`research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json`.
-MongoDB masivo aún no está confirmado como PASS. Las bases de prueba se eliminan:
+**Resultados masivos confirmados:** PostgreSQL v2 PASS con 748.889 filas
+(`execution-0652c6cd8bbc.json`) y MongoDB v2 PASS con 748.889 lecturas
+(`execution-d26e40706dcd.json`), ambos bajo
+`research/datasets/results/expanded-v2-2025-01/`. MongoDB acredita MG01–MG10,
+replay, CRUD aislado, índices/validadores y reconciliación actual contra la
+referencia PostgreSQL; ver [cierre MongoDB](sprint1/mongodb/evidencia_final_mongodb.md).
+Las bases de prueba se eliminan:
 estos comandos no dejan un servidor persistente para presentar ni cargan el compartido.
 
 ## Alcance
 
-Primer avance del 28/10/2026: modelos, datos, índices, **10 consultas SQL y
-10 MongoDB**, CRUD Mongo, vistas/funciones SQL, resultados y documentación.
-El plan del equipo incluye dos fuentes y mínimos de 100.000 registros PostgreSQL
-y 500.000 documentos MongoDB. Spark, Hadoop e interfaz quedan para noviembre.
+La aclaración del profesor comunicada por Kembly fija la **«Sección de PostgreSQL
+y MongoDB»**, sin rúbrica independiente. El
+[alcance documentado](docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md) toma como referencia
+principal «Uso de PostgreSQL» y «Uso de MongoDB» del enunciado (pp. 8–12): modelos,
+justificación, 3FN, tablas/relaciones/llaves, índices, SQL básico/relacional/analítico
+y avanzado, diez consultas por motor, documentos, siete operaciones CRUD y
+Aggregation Framework. Incluye información dinámica no estructurada, cuya
+cobertura debe justificarse; no basta ejecutar las veinte consultas.
+
+Los mínimos de **100.000 registros PostgreSQL y 500.000 documentos MongoDB** se
+consideran objetivos del avance y están acreditados por las cargas v2. La corrección normalizada separa las dependencias de fuente, reloj y contrato;
+la prueba formal y las nuevas ejecuciones se registran separadamente de los PASS
+históricos. Se conservan las limitaciones semánticas de dispositivos físicos. Los aspectos ambiguos se marcan como
+**transversales o pendientes de confirmación**.
+
+No implementar ahora Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos,
+comparación final entre cuatro motores ni funcionalidades exclusivas de noviembre.
 
 La ruta siguiente prueba las diez consultas SQL con fixtures controladas y añade
 una demostración complementaria SQL/Mongo de tres ejemplos. No sustituye todos
 los requisitos. El [estado](docs/equipo/ESTADO_SPRINT1.md) y la
 [matriz de consultas](docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md) indican lo pendiente.
+
+## PostgreSQL normalizado de entrega
+
+El [E-R completo](docs/arquitectura/diagrama_3nf.md) incluye catorce tablas,
+con tipos de dispositivo independientes de magnitudes y asignaciones sensor–canal
+separadas. La [matriz de atributos](docs/avance_1/secciones/06-equivalencias.tex)
+representa los 17 atributos mínimos. La instancia nativa es temporal, propia,
+sin TCP ni conexión a bases compartidas:
+
+```bash
+python scripts/validar_postgresql_3nf.py --sample 1000
+python scripts/validar_postgresql_3nf.py
+```
+
+Requiere los binarios ya instalados de PostgreSQL 16 y el entorno Python de
+investigación. [Evidencias nuevas](sprint1/postgres/evidencias/3nf/): cada informe
+lleva su SHA-256. Las siguientes entradas conservan la reproducción anterior;
+`--datos` no sustituye esta validación normalizada.
 
 ## Una entrada de ejecución
 
@@ -80,8 +114,9 @@ y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticaci
 
 ## Archivos para explicar en clase
 
-- PostgreSQL canónico: DDL `research/datasets/scripts/phase5_postgresql.sql`
-  y consultas `sprint1/postgres/queries.sql`, ambos para el esquema `smartcity`.
+- PostgreSQL de entrega: `sprint1/postgres/schema_v2_3nf.sql` y `queries_v2_3nf.sql`.
+- PostgreSQL histórico: `research/datasets/scripts/phase5_postgresql.sql`,
+  `sprint1/postgres/queries.sql` y `contract_v2.sql`, conservados para reproducibilidad.
 - SQL de práctica: `schema_proposal.sql`, `staging_queries.sql` y `staging.sql`
   dentro de `sprint1/postgres/`; solo para el esquema `sprint1`.
 - MongoDB: `sprint1/mongodb/validator.js`, `indexes.js`, `queries.js` y `staging.js`.

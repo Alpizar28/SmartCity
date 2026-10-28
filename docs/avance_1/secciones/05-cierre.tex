@@ -1,57 +1,40 @@
-\section{Limitaciones y tareas de cierre}
-No se declara el avance completo. La demostración local valida funcionalidad
-de ambos motores; la carga anual aporta volumen y trazabilidad de aire. Ninguna
-de las dos, por separado o sumando sus resultados, resuelve automáticamente
-todas las preguntas del enunciado.
+\section{Dictamen y limitaciones}
+El modelo PostgreSQL representa las cinco entidades mínimas y sus 17 atributos,
+mediante columnas directas o relaciones normalizadas. Las dependencias de
+fuente, reloj, contrato, tipo y categoría se separan del hecho observado.
+Las catorce relaciones satisfacen 3FN respecto de la cobertura funcional
+documentada y los dominios SQL tipados. Las dos tablas auxiliares son parte del
+modelo definitivo y se incluyen en el E--R completo.
 
-\begin{enumerate}
-\item Mantener la ruta canónica SQL y reunir evidencia anual actualizada; las
-consultas anuales y de staging ya están separadas y probadas.
-\item Acreditar los datos observados para PG07. MG04/MG05/MG08 ya tienen
-implementación v2: confirmar su ejecución y la aceptación académica de la regla
-demo, replay local y accidentes de otro año, sin presentarlos como datos oficiales de 2025.
-\item Confirmar la aceptación académica de alternativas por canal lógico y datos demo.
-\item Verificar los informes de ambas fuentes v2 y la interpretación geográfica;
-no mezclar su conteo con la generación anual v1.
-\item Confirmar la ejecución remota del CI, que ya invoca la suite offline,
-y repetir las pruebas sobre la versión candidata.
-\item Revisar modelos, evidencias, referencias y redacción entre todos los integrantes.
-\end{enumerate}
+Los tipos administrativos y categorías demo no representan aparatos acreditados
+del inventario municipal. Las fechas, estados, responsables y usuarios
+sintéticos permanecen identificados. Los vínculos físicos desconocidos no se
+completan por inferencia; PG07 conserva esa distinción. Las coordenadas y
+asignaciones territoriales no acreditan vigencia histórica individual.
 
-La recuperación histórica conserva un checkpoint de 83/85 pruebas con dos
-SQLite no idénticos y trece respuestas históricas faltantes. Ese pendiente se
-mantiene separado de las pruebas nuevas y no se transforma en PASS al aprobarlas.
-No impide escribir y probar código independiente.
+MongoDB conserva su contrato y sus evidencias nativas: lecturas reales, eventos
+por regla académica, alertas de replay local e incidentes anonimizados de 2026.
+Las consultas por canal o variable no se presentan como identificación de un
+dispositivo físico. No se atribuyen alertas oficiales ni causalidad entre períodos.
+La información variable se representa con objetos anidados y atributos opcionales.
+La evidencia disponible describe una cobertura parcial del requisito de información
+dinámica no estructurada; no demuestra su cumplimiento académico completo.
+La aceptación de las equivalencias entre canal y sensor, tipos lógicos y físicos,
+y períodos diferentes tampoco queda acreditada por la ejecución de los pipelines.
 
-\section{Organización y revisión del informe}
-\begin{description}
-\item[José:] fuentes, preparación, población de datos, acceso y respaldos.
-\item[Daniel:] modelo relacional, justificación de normalización y consultas SQL.
-\item[Kembly:] modelo documental, CRUD, pipelines y consultas MongoDB.
-\item[Fernanda:] edición del informe, diagramas, referencias y matriz de evidencia.
-\end{description}
-La asignación procede del plan del equipo; no demuestra que cada integrante
-haya revisado o aprobado todavía su sección. Los nombres completos y datos de
-portada deben ser confirmados, no inferidos.
+\section{Conclusiones}
+La separación entre almacenamiento relacional y vista contractual permite
+normalizar PostgreSQL y conservar la identidad compartida con MongoDB. Las
+restricciones interrelacionales se mantienen mediante FK y triggers sin repetir
+atributos determinados por catálogos. La verificación combina prueba formal de
+DF, ejecución nativa, comparación independiente y reconciliación de identidades.
 
-\section{Conclusiones parciales}
-PostgreSQL permite representar relaciones y validar coherencia mediante claves,
-restricciones y consultas SQL. MongoDB permite conservar lecturas con metadatos
-variables y procesarlas mediante filtros y pipelines. La integración depende
-de un contrato compartido y validaciones de aplicación, no de una FK entre motores.
-
-La ruta SQL canónica quedó restaurada y diferenciada del núcleo de práctica.
-El principal trabajo pendiente es acreditar los datos y las consultas faltantes.
-La evidencia de volumen y las pruebas locales son
-avances verificables, pero no deben presentarse como cierre de todos los requisitos.
-El procesamiento distribuido y la interfaz se abordarán en la entrega final.
-
-\section*{Declaración de asistencia automatizada}
-\addcontentsline{toc}{section}{Declaración de asistencia automatizada}
-Este borrador se preparó con asistencia de IA para revisar el repositorio,
-resumir documentación y redactar la estructura LaTeX. No se atribuyen firmas,
-validaciones humanas ni aprobaciones docentes no registradas. El equipo debe
-revisar y adaptar la declaración a la normativa del curso antes de entregar.
+Los mínimos de volumen se evalúan por motor y por generación, sin sumar replay
+ni datos administrativos. La ejecución local no acredita el estado de servidores
+compartidos. Hadoop/HDFS, Spark, dashboard completo, análisis distribuidos y la
+comparación final entre cuatro motores corresponden a la continuación de
+noviembre. Los componentes transversales sin alcance confirmado para octubre se
+identifican como tales, sin desarrollar funcionalidades adicionales.
 
 \begin{thebibliography}{99}
 \bibitem{enunciado} Instituto Tecnológico de Costa Rica.
@@ -80,7 +63,7 @@ Snapshot verificado de 2026; datos personales excluidos de la exportación.
 \emph{Evidencia de autorización para datos sintéticos administrativos}.
 \archivo{docs/equipo/EVIDENCIA_AUTORIZACION_DATOS_SINTETICOS.md}.
 \bibitem{v2} Repositorio SmartCity.
-\emph{Propuesta Madrid draft v2, pendiente de aprobación}.
+\emph{Contrato local Madrid draft v2}.
 \archivo{docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md}.
 \bibitem{cierre} Repositorio SmartCity.
 \emph{Cierre de validación local del contrato madrid-draft-v1}.
@@ -91,4 +74,11 @@ Snapshot verificado de 2026; datos personales excluidos de la exportación.
 \bibitem{respaldos} Repositorio SmartCity.
 \emph{Respaldos y restauración del núcleo local}.
 \archivo{sprint1/RESPALDOS.md}.
+\bibitem{alcance} Equipo SmartCity.
+\emph{Alcance confirmado del Sprint 1, aclaración comunicada por Kembly el 28/10/2026}.
+\archivo{docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md}.
+\bibitem{mongocierre} Equipo SmartCity, Kembly.
+\emph{Cierre técnico nativo MongoDB Madrid v2 y resultados verificables}.
+\archivo{sprint1/mongodb/evidencia_final_mongodb.md};
+\archivo{sprint1/mongodb/evidencias/20261028T055755-3fea400d/RESUMEN_FERNANDA.md}.
 \end{thebibliography}

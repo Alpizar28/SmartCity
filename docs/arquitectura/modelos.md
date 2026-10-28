@@ -1,5 +1,10 @@
 # Modelos y pruebas técnicas — preliminares de Fase 5
 
+**Modelo PostgreSQL vigente:** [E-R normalizado completo](diagrama_3nf.md),
+con catorce tablas y DTO v2 compatible. Las doce tablas y diagramas siguientes
+corresponden al DDL histórico conservado para reproducir sus evidencias.
+
+
 Contrato histórico de los diagramas y DDL: [`madrid-draft-v1`](../../research/datasets/05_data_contract.md), pendiente de revisión conjunta. El contrato provisional vigente para desarrollo es [`madrid-draft-v1-frozen`](../../CONTRATO_PROVISIONAL_DATASET.md); no reinterpreta ni modifica la evidencia histórica. El [diccionario](../../research/datasets/05_data_dictionary.csv) define tipos SQL/BSON, origen, disponibilidad y nulos. Los [diagramas](diagramas.md) representan el DDL real de prueba y el flujo propuesto, no un despliegue definitivo.
 
 **Alcance histórico de las secciones de muestra:** las cifras y estados de Fase 5

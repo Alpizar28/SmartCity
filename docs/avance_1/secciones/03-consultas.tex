@@ -1,44 +1,32 @@
-\section{Consultas obligatorias y cobertura}
-Las siguientes tablas resumen la evidencia anual, las pruebas controladas y la
-ruta local v2, diferenciadas por fila. Una implementación nueva se acredita con
-su informe de ejecución, no solo con que el archivo exista.
-``Demo'' significa entidades
-administrativas sintéticas autorizadas; no inventario físico observado.
-``Registrada'' no equivale a aceptación académica ni reproducibilidad actual.
-
+\section{Consultas obligatorias y operaciones}
 \subsection{PostgreSQL}
-\begin{longtable}{p{0.08\textwidth}p{0.39\textwidth}p{0.43\textwidth}}
-\toprule ID & Consulta exigida & Evidencia y límite \\
+Las consultas del modelo normalizado se encuentran en
+\archivo{sprint1/postgres/queries_v2_3nf.sql}. La versión anterior se conserva
+como antecedente reproducible, sin sustituir sus resultados por nuevas salidas.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.45\textwidth}>{\raggedright\arraybackslash}p{0.36\textwidth}}
+\toprule ID & Operación & Interpretación \\
 \midrule\endhead
-PG01 & Sensores por tipo. & Registrada sobre sensores demo. \\
-PG02 & Sensores por ubicación. & Registrada sobre sensores demo y catálogo. \\
-PG03 & Cantidad de activos e inactivos. & Registrada con estados administrativos demo. \\
-PG04 & Sensores por organismo responsable. & Registrada con organismos asignados a sensores demo. \\
-PG05 & Ubicaciones con más sensores. & Ranking registrado sobre sensores demo. \\
-PG06 & Sensores instalados por año. & Registrada con fechas sintéticas. \\
-PG07 & Sensores sin actividad registrada. & Funcional en prueba controlada; bloqueada en el lote observado por falta de relación sensor--canal. \\
-PG08 & Ranking de zonas monitoreadas. & Registrada sobre sensores demo; revisar alcance geográfico. \\
-PG09 & Consulta utilizando vistas. & Vista anual de actividad por canal. \\
-PG10 & Procedimiento o función. & Función anual que cuenta canales de una estación. \\
+PG01 & Sensores por tipo de dispositivo. & Doce grupos sintéticos; separado de magnitudes. \\
+PG02 & Sensores por ubicación. & Inventario administrativo y sitios del catálogo. \\
+PG03 & Cantidad de activos e inactivos. & Estado administrativo sintético. \\
+PG04 & Sensores por organismo. & Organismo demo; LEFT JOIN incluye ausencia de sensores. \\
+PG05 & Ubicaciones con más sensores. & Ranking administrativo. \\
+PG06 & Instalaciones por año. & Fechas sintéticas; no primera lectura. \\
+PG07 & Sensores vinculados sin lecturas en enero. & Cero en datos preparados; prueba controlada de los límites. \\
+PG08 & Ranking de zonas. & Distritos con nombres publicados y sensores demo. \\
+PG09 & Consulta sobre vista. & Actividad real por canal y fechas UTC. \\
+PG10 & Función de conteo. & Canales por estación; no dispositivos físicos. \\
 \bottomrule
 \end{longtable}
 
-La regresión de integración fue corregida: el archivo
-\archivo{sprint1/postgres/queries.sql} vuelve a contener PG01--PG10 para
-\archivo{smartcity}; el núcleo local usa \archivo{staging_queries.sql}.
-El parser anual reconoce las diez consultas y tiene pruebas de regresión.
-Una nueva prueba PostgreSQL ejecuta el archivo canónico y contrasta las filas
-de cada consulta con resultados esperados sobre fixtures revertidas al finalizar.
-
-PG07 requiere una relación conocida sensor--canal antes de evaluar ausencia
-de lecturas en enero. Excluye relaciones desconocidas y usa una ventana
-semiabierta en hora de Madrid. La prueba ampliada ejecuta el SQL canónico exacto:
-inicio incluido, fin excluido, instantes adyacentes, varios canales con uno
-activo, varios canales vacíos sin duplicados y estado administrativo independiente.
-Las fixtures se revierten; no acreditan identidad física observada. La revisión
-del paquete v2 confirma cero vínculos físicos y catálogos de canales derivados
-de observaciones. La solicitud de inventario independiente fechado para José
-queda en \archivo{sprint1/postgres/pg07_limite_evidencia.md}.
+PG07 exige una asignación conocida y usa la ventana
+$[2025\text{-}01\text{-}01\;00{:}00{+}01,
+2025\text{-}02\text{-}01\;00{:}00{+}01)$.
+Se comprobaron inicio incluido, fin excluido, instantes adyacentes, ausencia de
+lecturas, relación desconocida y varios canales de un sensor. Las fixtures
+identificadas como sintéticas se revierten. El lote público no permite atribuir
+actividad a dispositivos físicos individuales.
 
 \begin{center}
 \begin{tabular}{lr@{\qquad}lr}
@@ -52,27 +40,29 @@ PG05 & 5.133 & PG10 & 5.133 \\
 \bottomrule
 \end{tabular}
 \end{center}
-Estas cantidades proceden del PASS masivo v2, no del benchmark anual v1.
-La auditoría actual verificó hashes, todas las identidades y referencias del
-archivo, y contrastó independientemente cantidades y muestras de PG01--PG10.
-PG01--PG06 y PG08 usan administración sintética, PG09 lecturas reales y PG10
-canales de catálogo. Sus fichas, muestras y limitaciones académicas están en
-\archivo{sprint1/postgres/evidencia_final_postgresql.md}.
 
-Se demostró además CTE y DENSE\_RANK sobre canales con lecturas reales, sin
-depender de sensores demo: \archivo{sprint1/postgres/sql_avanzado_observado.sql}.
-La prueba v2 local cargó solo 2.907 lecturas auténticas seleccionadas (2.843 aire
-del primer día local y 64 tráfico), no todo enero. El ranking devuelve cinco
-filas y preserva empates; las once agregaciones de aire por magnitud/unidad
-demuestran SUM, AVG, MIN y MAX sin mezclar unidades. Son evidencia de operaciones,
-no un ranking representativo de toda la red física.
+PG01 clasifica tipos administrativos explícitos. PG08 cambia las etiquetas de
+zona y conserva cantidades y ranking. Las demás consultas mantienen sus
+resultados anteriores. La comparación independiente de la ejecución normalizada
+abarca todas las filas de cada consulta, además de los conteos y muestras de la
+referencia histórica.
 
-El núcleo demuestra SELECT, filtros, ordenamiento, DISTINCT, JOIN, GROUP BY,
-HAVING, agregaciones, CTE, ventanas, subconsultas y fechas en distintos archivos.
-Esa variedad técnica no reemplaza las preguntas obligatorias sobre sensores.
+Las consultas incluyen SELECT, WHERE, ORDER BY, JOIN, LEFT JOIN, COUNT DISTINCT,
+GROUP BY, HAVING, subconsultas correlacionadas, CTE, DENSE\_RANK y fechas.
+La vista contractual permite las agregaciones SUM, AVG, MIN y MAX por magnitud
+y unidad documentadas en la evidencia PostgreSQL. El complemento
+\archivo{sprint1/postgres/sql_avanzado_observado.sql} presenta un ranking de
+canales observados independiente de los sensores administrativos. Los planes
+se interpretan dentro de su tamaño de muestra y configuración, sin afirmar
+superioridad de rendimiento entre motores.
 
 \subsection{MongoDB}
-\begin{longtable}{p{0.08\textwidth}p{0.39\textwidth}p{0.43\textwidth}}
+La ejecución nativa \archivo{execution-d26e40706dcd.json} acredita PASS técnico
+de MG01--MG10 con 748.889 lecturas; sus resultados se contrastaron con Python y
+se preservaron con hashes. No sustituye la aceptación de las adaptaciones de
+sensor/canal, reglas demo o períodos distintos \cite{mongocierre}.
+
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.08\textwidth}>{\raggedright\arraybackslash}p{0.39\textwidth}>{\raggedright\arraybackslash}p{0.43\textwidth}}
 \toprule ID & Consulta exigida & Evidencia y límite \\
 \midrule\endhead
 MG01 & Lecturas de un sensor específico. & Búsqueda registrada por canal lógico, no dispositivo físico. \\
@@ -88,13 +78,9 @@ MG10 & Consulta con filtros múltiples. & V2: fecha, fuente, flag, valor y zona;
 \bottomrule
 \end{longtable}
 
-El harness anual contiene algunas afirmaciones constantes en
-\archivo{query_evidence}; su verificador controla estructura y procedencia,
-no ejecuta cada pipeline. Por ello, no se declaran siete consultas anuales
-completamente acreditadas solo por esas banderas. Agrupar una zona nula tampoco
-demuestra un análisis por zona geográfica.
-
-La ruta nueva no reutiliza esas banderas como prueba. El archivo
+La evidencia v2 corresponde a la ejecución de las consultas y a su comparación
+independiente; las banderas del verificador anual v1 se conservan únicamente
+como antecedentes. El archivo
 \archivo{sprint1/basico/consultas_mongodb_v2.js} contiene los diez pipelines y
 filtros. \archivo{scripts/validar_v2.py} compara cantidades, extremos y promedios
 con cálculos independientes sobre el JSONL verificado. Los informes nuevos
@@ -107,18 +93,15 @@ ni envía notificaciones externas. El uso de distritos del inventario se declara
 como \archivo{current_inventory_not_historically_verified}.
 
 Las operaciones insertOne, insertMany, find, findOne, updateOne, updateMany y
-deleteOne se prueban en la integración con colecciones de demostración aisladas.
-Las actualizaciones y borrados no deben aplicarse a las observaciones originales.
+deleteOne se ejecutaron en la prueba actual sobre \archivo{practica_crud}, con
+copias de tres lecturas. El log y las comprobaciones acreditan las siete
+operaciones, eliminación de la colección de práctica y conservación de 748.889
+documentos en \archivo{readings}. No se alteraron los archivos privados.
 
-\subsection{Ficha mínima para completar cada consulta}
-Las fichas PostgreSQL de Daniel están adjuntas en el documento técnico citado.
-Para MongoDB, Kembly debe completar o cotejar, para cada ID:
-\begin{enumerate}
-\item Pregunta, contrato, esquema/colección y generación utilizada.
-\item Archivo y SQL o pipeline exacto, con sus parámetros.
-\item Resultado obtenido y comprobación independiente del valor esperado.
-\item Índice/plan cuando corresponda, fecha, entorno y responsable de revisión.
-\item Origen observado, derivado o sintético y limitaciones de interpretación.
-\end{enumerate}
-La matriz editable del repositorio está en
-\archivo{docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md}.
+
+\subsection{Trazabilidad de resultados}
+Cada ejecución registra contrato, generación, hashes del código e insumos,
+resultados contrastados y condiciones de limpieza. Las evidencias MongoDB
+selladas y los informes PostgreSQL históricos se conservan junto a la nueva
+evidencia normalizada. Los hashes permiten distinguir código y resultados de
+cada versión; un resultado histórico no certifica por sí solo el código nuevo.

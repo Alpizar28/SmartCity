@@ -1,0 +1,33 @@
+{
+  "status": "FAIL",
+  "started_at": "2026-10-28T07:10:42.914678+00:00",
+  "scope": "sample",
+  "sample_limit": 1000,
+  "contract": "madrid-draft-v2",
+  "shared_server_modified": false,
+  "tcp_enabled": false,
+  "postgresql_stopped": false,
+  "private_files_unchanged": false,
+  "source_hashes": {
+    "scripts/validar_postgresql_3nf.py": "e36c589ed9e3e994a388befd237993d785c5ca225965f2bce7a21fda6a7dede4",
+    "sprint1/postgres/schema_v2_3nf.sql": "1d34b91a20c499bb5d2b273678bc29514c573d72aea6c26dfe7b7e9ee6294771",
+    "sprint1/postgres/queries_v2_3nf.sql": "b344309fbbaad24a0f05fe1f3fa5a6f94e959f50083d4cdd7a4d9978c0e2acb0",
+    "sprint1/postgres/dependencias_3nf.json": "7f853f7235b99712a4405b48f3164cf2ece2884f415195dafedbb4079a837233"
+  },
+  "input_hashes": {
+    "accepted.extjsonl": "842052ca68b331121cc843bb6dd8273465c6442b1d99955d46f461a8af06daae",
+    "quarantine.extjsonl": "a87e16d402e82234038343def4067d155110f3102979e129402f1f6c902131f2",
+    "incidents.extjsonl": "53e76b0762da4e04c6415231fbc43aa20df1f452e883e721e0b28cd41dfe0563",
+    "catalogs.json": "1c9b79d4386eb4dc79452f217ba7ff3c9f7ca7a389024283d69c70e8bce0874b",
+    "administrative_seed.json": "550b349e3b26b73e2f82963c3abaeb327d39fe4b2eae92a2c6dfd30399d0bfa2",
+    "identities.sqlite": "b50c1db33f21e4dcfde4142d675821ed49b67d4656cf1f4df1e3f2f2f2a11f81"
+  },
+  "historical_report_hashes": {
+    "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json": "6800775f103b5dd50da838ff8a7e461cec113fb275a82ed6e6f73363d09a52b3",
+    "research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585"
+  },
+  "error": "Private PostgreSQL startup failed: pg_ctl: could not start server\nExamine the log output.\n",
+  "protected_diagnostics": "/home/kemgarro/TEC/Bases/SmartCity/.cache/pg3nf-alvppo69",
+  "temporary_database_removed": false,
+  "finished_at": "2026-10-28T07:10:51.534470+00:00"
+}

@@ -1,134 +1,115 @@
-\section{Validación y resultados disponibles}
-\subsection{Resultado masivo confirmado de PostgreSQL v2}
-La ejecución \archivo{execution-0652c6cd8bbc.json}, conservada en
-\archivo{research/datasets/results/expanded-v2-2025-01/}, terminó en PASS:
-748.889 lecturas (91.959 aire y 656.930 tráfico), comparación de metadatos,
-reimportación sin duplicados y ejecución de PG01--PG10. El contenedor y sus
-volúmenes fueron eliminados. PG07 devolvió cero porque no existen enlaces
-observados sensor--canal: no acredita actividad de dispositivos físicos.
-La nueva carga masiva MongoDB todavía no tiene PASS confirmado; la prueba
-pequeña corregida no sustituye esa validación.
+\section{Validación y resultados}
+\subsection{Ejecución relacional normalizada}
+La ejecución \archivo{20261028T071812-55791345.json} terminó en PASS con
+PostgreSQL 16.15 nativo. Su intervalo fue de 07:18:12 a 07:38:09 UTC del
+28/10/2026. Se utilizó una instancia temporal propia, con socket Unix privado,
+TCP deshabilitado y sin conexión a servidores compartidos. La instancia se
+detuvo y sus archivos se eliminaron al finalizar.
 
-\subsection{Demostración local del 27 de octubre}
-Esta subsección conserva evidencia histórica del equipo, no reejecutada en el
-cierre PostgreSQL de esta sesión.
-Se ejecutaron 51 pruebas Python y 13 Node, todas aprobadas. La integración
-PostgreSQL 16.6/MongoDB 7.0.16 terminó en PASS con tres ejemplos publicados,
-uno de aire, uno meteorológico y uno de tráfico, adaptados en copias de prueba.
-Los ejemplos de meteo/tráfico en staging no son registros aceptados de la carga anual.
-
-La integración comprobó restricciones SQL/BSON, índices, consultas, replay,
-conflictos en cuarentena, CRUD aislado y respaldo/restauración lógico de ambos
-motores. También probó ocho conexiones PostgreSQL sobre una clave y dos payloads:
-una aceptación, tres duplicados y cuatro cuarentenas. No es estrés sostenido ni
-prueba de concurrencia MongoDB entre procesos \cite{integracion,respaldos}.
-
-Los contenedores fueron locales, sin puertos publicados y con red deshabilitada.
-Se eliminaron al finalizar. Los informes se generan como
-\archivo{/tmp/opencode/smartcity-s1-integration-*.json}; son artefactos
-locales, no archivos disponibles en cualquier clon.
-
-Además, \archivo{scripts/test_sprint1_sql.py} ejecutó las diez consultas
-canónicas con resultados comprobados en \archivo{smartcity}, incluyendo estados
-NULL, organismos vacíos, empates de ranking y los límites temporales de PG07.
-Las fixtures son fabricadas exclusivamente para probar SQL, se revierten y nunca
-se presentan como observaciones de la fuente pública. El informe nuevo queda en
-\archivo{/tmp/opencode/smartcity-s1-sql-*.json}.
-
-\subsection{Cierre verificable del aporte PostgreSQL}
-La evidencia revisable queda en \archivo{sprint1/postgres/evidencias/}:
-\archivo{cierre_auditoria_v2.json}, \archivo{cierre_pg07_controlado.json} y
-\archivo{cierre_subconjunto_v2.json}. La primera valida los seis derivados v2,
-sus originales referenciados, 748.889 identidades, payloads y referencias, sin
-duplicados ni atribuciones a sensores demo. Conserva la huella de identidades
-del PASS masivo previo; no representa una nueva carga masiva.
-
-La segunda ejecuta PG01--PG10 y los casos ampliados de PG07 con ROLLBACK.
-La tercera ejecuta el contrato v2 sobre un subconjunto real explícito, coteja
-las diez consultas con Python, agrega aire y prueba CTE/ventanas, inventaría
-restricciones e índices y guarda EXPLAIN ANALYZE en transacciones READ ONLY.
-El filtro selectivo utiliza el índice natural canal/fecha/rol; el ranking
-recorre el subconjunto con Seq Scan y WindowAgg. Estos planes no son un benchmark
-de las 748.889 filas. Los tiempos anuales de
-\archivo{sprint1/postgres/performance_real_2025.md} siguen etiquetados v1.
-
-Se aprobaron 59 pruebas Python y la prueba SQL canónica ampliada en PostgreSQL
-16.15, usando la imagen local identificada por hash. La entrada unificada
-offline se detuvo por ausencia de Node.js; no se declara PASS completo de esa
-entrada ni se instaló software. No se repitieron MongoDB, la integración
-\archivo{--engines} completa ni la carga \archivo{--datos}: faltan sus imágenes
-fijadas y dependencias de preparación. No se modificaron servidores compartidos.
-Los contenedores PostgreSQL propios fueron eliminados.
-
-No hay distribución LaTeX disponible: se realizaron controles estáticos, pero
-\textbf{no se compiló ni se declara un PDF verificado}. Fernanda debe compilar
-en su entorno y revisar maquetación y referencias antes de entregar.
-
-\subsection{Carga anual: evidencia previa, no reejecución de hoy}
-El mínimo es de 100.000 registros PostgreSQL y 500.000 documentos MongoDB
-según el enunciado y el plan del equipo \cite{enunciado,plan}.
-\begin{longtable}{p{0.48\textwidth}p{0.2\textwidth}p{0.2\textwidth}}
-\toprule Control registrado & PostgreSQL & MongoDB \\
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.57\textwidth}>{\raggedright\arraybackslash}p{0.32\textwidth}}
+\toprule Comprobación & Resultado \\
 \midrule\endhead
-Lecturas/documentos aceptados & 1.076.813 & 1.076.813 \\
-Metadatos y valores comparados & 1.076.813 & 1.076.813 \\
-Replay del lote completo & Sin aumento & Sin aumento \\
-Mediciones sintéticas & 0 & 0 \\
-Mínimo de volumen del motor & Superado localmente & Superado localmente \\
-Segunda fuente de mediciones aceptada & No & No \\
+Lecturas cargadas & 748.889 \\
+Lecturas de aire / tráfico & 91.959 / 656.930 \\
+Diferencias del DTO reconstruido & 0 \\
+Replay del lote completo & Mismo conteo y contenido \\
+PG01--PG10 & Diez resultados completos iguales a Python \\
+Sensores / usuarios / organismos demo & 5.133 / 5.133 / 1 \\
+Asignaciones físicas inventadas & 0 \\
+PK / FK / UNIQUE / CHECK & 14 / 17 / 5 / 22 \\
+Índices & 25 \\
+Operaciones negativas rechazadas & 8 \\
+Prueba controlada de PG07 & Tres sensores esperados; rollback \\
+Relaciones con prueba de DF & 14 en 3FN \\
+Archivos privados & Hashes conservados \\
+Instancia temporal & Detenida y eliminada \\
 \bottomrule
 \end{longtable}
 
-Estos resultados proceden de los manifiestos
-\archivo{research/datasets/results/expanded-2025/postgresql_full.json} y
-\archivo{mongodb_full.json}, y del cierre documentado \cite{cierre}.
-La revisión actual contrastó los hashes de sus cuatro scripts registrados con
-el código disponible; no repitió la carga masiva ni verificó todos los insumos privados.
+Los ocho controles negativos acreditan rechazo de operaciones. El ejecutor
+captura cualquier excepción y no registra el SQLSTATE ni el nombre de la
+restricción. Los casos de fuente, estación y padre territorial alcanzan triggers
+de integridad; los cambios de catálogo y payload alcanzan la inmutabilidad.
+Las actualizaciones de localizador y versión también se rechazan por
+inmutabilidad antes de comprobar su CHECK o FK. La inserción duplicada está
+dirigida a la clave natural UNIQUE, pero su informe tampoco identifica la causa
+exacta del error. Por tanto, ninguna de estas ocho pruebas aísla un CHECK o una
+FK específicos. El inventario de restricciones acredita su existencia, no una
+prueba negativa individual de todas ellas.
 
-Los mínimos locales no prueban que el servidor compartido tenga esos datos.
-Tampoco constituyen una comparación de rendimiento entre motores: almacenamiento,
-configuración y operaciones deben ser equivalentes antes de comparar tiempos.
+Las pruebas positivas verifican zona local--distrito
+y una asignación de la misma estación, con rollback. Las pruebas controladas
+no se suman a las observaciones reales.
 
-\subsection{Reproducción del núcleo}
-Desde la raíz del repositorio, con Python 3.10+ y Node.js 18+:
-\begin{lstlisting}
-bash scripts/validate_sprint1.sh
-\end{lstlisting}
-Para integrar motores se requiere Docker local y las imágenes ya descargadas
-\archivo{postgres:16.6-alpine} y \archivo{mongo:7.0.16}:
-\begin{lstlisting}
-bash scripts/validate_sprint1.sh --engines
-\end{lstlisting}
-La entrada unificada ejecuta unidades, consultas canónicas e integración complementaria.
-Los harnesses no descargan imágenes. Las instrucciones completas y su alcance están
-en \archivo{ENTREGA_SPRINT1.md}. Los clientes básicos psycopg/PyMongo aún
-necesitan prueba de extremo a extremo con autenticación real.
+El informe conserva el catálogo real de restricciones e índices y un plan
+EXPLAIN ANALYZE con buffers. Las comparaciones históricas se mantienen para las
+métricas de PG02--PG10; PG01 tiene una definición explícita de tipo de dispositivo
+y PG08 nombres publicados de distritos. Los resultados completos de las diez
+consultas se contrastan con cálculos independientes sobre catálogos y lecturas.
 
-Para agregar preparación y carga de las dos fuentes v2 con los snapshots
-privados verificados y el entorno de investigación disponible:
-\begin{lstlisting}
-bash scripts/validate_sprint1.sh --datos
-\end{lstlisting}
-El paquete preparado contiene 748.889 observaciones, 10.841 candidatos de eventos
-de intensidad alta bajo la regla demo y 14.388 accidentes separados de 2026.
-La ejecución nativa debe confirmar esos conteos, metadatos, replay, igualdad
-entre motores y limpieza. Sus resultados quedan en
-\archivo{research/datasets/results/expanded-v2-2025-01/execution-*.json};
-un informe con error no debe presentarse como validación aprobada.
+\subsection{SQL avanzado y pruebas automatizadas}
+La evidencia \archivo{advanced-20261028T073507-abef9831.json} acredita PASS de
+consultas de solo lectura sobre la generación completa normalizada: DISTINCT,
+SUM, AVG, MIN, MAX, COUNT, filtros, agrupación, HAVING, CTE, DENSE\_RANK y orden.
+Las once agregaciones de aire del primer día local y el ranking de cinco canales
+se compararon con Python, sin mezclar magnitudes o unidades.
 
-\subsection{Respaldo y restauración}
-La prueba usa pg\_dump/pg\_restore y mongodump/mongorestore, restaura en otra
-base desechable y compara contenido y estructura. Esto acredita el caso
-controlado, no una política de respaldo productiva, recuperación tras caída,
-retención externa o restauración del servidor compartido.
+La suite automatizada aprobó 65 pruebas Python. Incluye contraejemplos que
+reintroducen una dependencia parcial y una constante no prima: el verificador
+formal rechaza ambas. Los dos archivos de pruebas Node finalizaron correctamente.
+Las pruebas históricas PostgreSQL conservan sus hashes de código e informes.
 
-\subsection{Qué evidencia falta adjuntar}
-\begin{itemize}
-\item Completar las salidas MongoDB y la revisión cruzada de las veinte consultas;
-PostgreSQL ya tiene matriz, muestras y comprobación independiente adjuntas.
-\item Aprobar con el equipo la excepción de normalización identificada por Daniel
-y la propuesta de descomposición; el E--R completo está enlazado.
-\item Modelo documental final, ejemplos BSON y revisión de Kembly.
-\item Capturas legibles y registro de revisión cruzada, sin credenciales ni hosts privados.
-\item Comprobación de acceso, conteos y respaldo compartidos si se usan en la entrega.
-\end{itemize}
+\subsection{Compatibilidad y reconciliación con MongoDB}
+La huella ordenada de pares identidad/payload se conserva:
+\begin{center}
+\small\archivo{9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0}
+\end{center}
+Coincide con la ejecución PostgreSQL anterior y con el informe MongoDB nativo
+\archivo{execution-d26e40706dcd.json}. La comparación contractual abarca los
+748.889 documentos de entrada. El modelo relacional cambia su almacenamiento,
+pero conserva los campos de lectura, identificadores, valores, referencias,
+fechas y hashes exigidos por \archivo{madrid-draft-v2}.
+
+No se repitió la carga MongoDB durante la normalización PostgreSQL. Se conservaron
+sus documentos, scripts, validadores, índices y evidencias selladas. Los tipos de
+dispositivo y etiquetas administrativas incorporados al modelo SQL no se atribuyen
+a las lecturas MongoDB ni a dispositivos físicos observados.
+
+\subsection{Resultados nativos MongoDB conservados}
+La ejecución \archivo{execution-20261028T055755-3fea400d} acredita 748.889 lecturas,
+MG01--MG10 contrastadas con Python, replay sin duplicados y siete operaciones
+CRUD sobre \archivo{practica_crud}. Se conservaron las lecturas fuente y se
+eliminó la colección de práctica. El contenedor y sus volúmenes propios también
+se eliminaron \cite{mongocierre}.
+
+El catálogo comprende siete colecciones, 13 índices y validadores de lecturas,
+incidentes, eventos y alertas; las tres colecciones administrativas no tienen
+validador. Los planes capturados incluyen MG01 con IXSCAN y MG10 con IXSCAN más
+SORT. MG10 examinó 656.930 documentos en 6.470 ms en esa ejecución; no se declara
+optimización completa ni comparación de rendimiento entre motores.
+
+Se conservaron 10.841 eventos y 10.841 alertas demo, además de 14.388 incidentes
+anonimizados de 2026. Los eventos siguen una regla académica y las alertas son
+replay local, sin emisiones oficiales retrospectivas ni notificaciones externas.
+
+\subsection{Integridad y alcance de la evidencia}
+Cada informe normalizado tiene nombre único y SHA-256. El informe masivo tiene
+la huella:
+\begin{center}
+\small\archivo{111881d7b699a00ff0a890157e8e5cbadea8c1e715ac270c30b93f137994614a}
+\end{center}
+Los originales MongoDB y las ejecuciones PostgreSQL anteriores permanecen
+inalterados. La tentativa \archivo{20261028T071042-3f9f038f.json} falló al iniciar
+el socket local. Las muestras de 1.000 lecturas
+\archivo{20261028T071112-8aeb341f.json} y
+\archivo{20261028T071356-04a8cc67.json} finalizaron en PASS con versiones
+anteriores del validador. Sus huellas identifican esas versiones; no certifican
+el script actual ni sustituyen el lote completo. El informe masivo
+\archivo{20261028T071812-55791345.json} coincide con el DDL, consultas,
+dependencias y validador actuales. La evidencia de SQL avanzado conserva
+además las huellas de su recolector y consultas.
+
+Cada revisión del documento se identifica con un PDF y un manifiesto nuevos.
+Los manifiestos anteriores describen las fuentes de su propia revisión y se
+conservan sin actualizar sus huellas. Los directorios de evidencia no incluyen
+datasets ni credenciales.

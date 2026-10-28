@@ -1,0 +1,1439 @@
+{
+  "kind": "documentary_closeout_snapshot",
+  "branch": "fix/sprint1-postgresql-3nf",
+  "base_main_commit": "804d6a551dc84e22d901b64554c30a712b951f77",
+  "generated_at": "2026-10-28T08:14:59.652082+00:00",
+  "scope": "Documentary and presentation corrections only; no native engine execution, database mutation or academic acceptance implied.",
+  "pdf": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T080911.pdf",
+  "internal_audit": "docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md",
+  "supersedes_document_snapshot": {
+    "path": "sprint1/postgres/evidencias/3nf/MANIFIESTO_ENTREGA_3NF.json",
+    "sha256": "648717cb11c1a6a587b39136a08069e7c5d177c49247f1ed3fddadafa1ef2b36",
+    "previous_pdf": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T075148.pdf",
+    "previous_pdf_sha256": "0066ecf5d2327cc0da6e042ecc64222c7f5a021f4c36a7f4ad4815131a4f4e89",
+    "note": "Previous manifest and PDF remain immutable historical records; documentary hashes there refer to the previous revision."
+  },
+  "modified_files_this_revision": [
+    "docs/README.md",
+    "docs/avance_1/main.tex",
+    "docs/avance_1/secciones/01-alcance-datos.tex",
+    "docs/avance_1/secciones/02-modelos.tex",
+    "docs/avance_1/secciones/03-consultas.tex",
+    "docs/avance_1/secciones/04-validacion.tex",
+    "docs/avance_1/secciones/05-cierre.tex",
+    "docs/avance_1/secciones/06-equivalencias.tex",
+    "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
+    "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+    "docs/equipo/ESTADO_SPRINT1.md",
+    "sprint1/postgres/cierre_3nf.md",
+    "tests/sprint1/test_modelo_3nf.py"
+  ],
+  "added_files_this_revision": [
+    "docs/avance_1/SmartCity_Sprint1_3NF_20261028T080911.pdf",
+    "docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md",
+    "sprint1/postgres/evidencias/3nf/MANIFIESTO_CIERRE_DOCUMENTAL_20261028T080911.json",
+    "sprint1/postgres/evidencias/3nf/MANIFIESTO_CIERRE_DOCUMENTAL_20261028T080911.sha256"
+  ],
+  "validation": {
+    "offline": {
+      "python_tests_passed": 65,
+      "node_test_files_passed": 2,
+      "documentation_tests_passed": 6,
+      "executions": [
+        {
+          "command": [
+            "bash",
+            "scripts/validate_sprint1.sh"
+          ],
+          "exit_code": 0
+        },
+        {
+          "command": [
+            "/tmp/smartcity-official-check-pvqjt4ht/bin/python",
+            "-m",
+            "pytest",
+            "-p",
+            "no:cacheprovider",
+            "-q",
+            "research/datasets/tests/test_phase6_docs.py"
+          ],
+          "exit_code": 0
+        }
+      ]
+    },
+    "pdf": {
+      "pages": 14,
+      "unprocessed_latex": [],
+      "undefined_markers": false,
+      "editorial_markers": [],
+      "layout_errors": [],
+      "warnings": [
+        "Package epstopdf Warning: Shell escape feature is not enabled."
+      ],
+      "visually_reviewed_pages": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14
+      ],
+      "words_outside_page": [],
+      "pdf_sha256": "f395185c81d9cb976fad974ade012bcabbb174b308f7a8f04f66c86baa803a95",
+      "final_raster_change_reviewed_pages": [
+        7
+      ]
+    },
+    "latex": {
+      "exit_codes_last_two_passes": [
+        0,
+        0
+      ],
+      "auxiliary_files_stable": true,
+      "command": [
+        "pdflatex",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "main.tex"
+      ]
+    },
+    "integrity": {
+      "protected_files_verified": 274,
+      "protected_snapshot": [
+        {
+          "path": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T075148.pdf",
+          "sha256": "0066ecf5d2327cc0da6e042ecc64222c7f5a021f4c36a7f4ad4815131a4f4e89"
+        },
+        {
+          "path": "docs/decisiones/ADR-001-madrid.md",
+          "sha256": "d6189998a8dae36aed59da1b77f9acca1fd8e16ef98ba0755e7f56a3e1dc2ce0"
+        },
+        {
+          "path": "docs/decisiones/PROPUESTA_MADRID_DRAFT_V2.md",
+          "sha256": "ad9644871498fd3c08ec9460e1f57f59e2ff4a299be61a7257de69dc400ca46f"
+        },
+        {
+          "path": "docs/decisiones/unified-v1.json",
+          "sha256": "a3a864e56466183e04975b6cb39047ec4e081e6a04ab1cf467016a45f727d153"
+        },
+        {
+          "path": "research/datasets/results/LCL-expanded_counts.json",
+          "sha256": "1f26b877fe48689326f41077511f604575d38b7cd1b1d9099b190481b5c88347"
+        },
+        {
+          "path": "research/datasets/results/LCL-members.json",
+          "sha256": "0617b385f67318bab7b279562b9af86a18fea76238950cfdb31170907febe41a"
+        },
+        {
+          "path": "research/datasets/results/LON-AIR-META-schema_quality.json",
+          "sha256": "9d5aa3462857a1858c30ccba557dc273b1a4c8cc0802e331b29e06524167e83d"
+        },
+        {
+          "path": "research/datasets/results/LON-AIR-coverage.csv",
+          "sha256": "e3b038488d073ec3f85337eaebff34e7e148499a40bab8ad0a9264daf5fe90c6"
+        },
+        {
+          "path": "research/datasets/results/LON-AIR-schema_quality.json",
+          "sha256": "fc453a65aa34b2bf353eaea9f890e2c3c96c821ed95fd0a528c935023aaf40b7"
+        },
+        {
+          "path": "research/datasets/results/LON-AIR-summary.json",
+          "sha256": "087ec10a85244fc1f888a2950336ecdc99a31cf60649806403e9e349f02b6a5f"
+        },
+        {
+          "path": "research/datasets/results/LON-COUNTS-schema_quality.json",
+          "sha256": "5c23bc099748c5f2aeb4af37f3711be2e87f4ef696fb7526386c92928448fc55"
+        },
+        {
+          "path": "research/datasets/results/LON-ENERGY-coverage.csv",
+          "sha256": "ce92c3d6f0b37d1580d5c1c70b90392259c34c0062df7ac18f515c1b6d65f515"
+        },
+        {
+          "path": "research/datasets/results/LON-ENERGY-schema_quality.json",
+          "sha256": "3e45fe5c23a50e645b94f3bb5823cf1c895920336d4d76e7f9bc36ae8f6e83aa"
+        },
+        {
+          "path": "research/datasets/results/LON-ENERGY-summary.json",
+          "sha256": "e54acf2ddc37052fddc4b4baec06797bdcec9ac77602a50a04f3932066d8f501"
+        },
+        {
+          "path": "research/datasets/results/London-integration.json",
+          "sha256": "d58ba8ea3ceb6436a7590db504730921f71e3fe96c7136062acfdf9fff7459f5"
+        },
+        {
+          "path": "research/datasets/results/MAD-AIR-META-schema_quality.json",
+          "sha256": "f4752f53bff1c0ecd57ad36f681be0cbd78974913e862892d6da24bd6cd9c43c"
+        },
+        {
+          "path": "research/datasets/results/MAD-AIR-annual_counts.json",
+          "sha256": "71dd51899566f4746ec527ecae4c34675f1f7058bb3806584137bce7542034f1"
+        },
+        {
+          "path": "research/datasets/results/MAD-AIR-coverage.csv",
+          "sha256": "b45cc055b8eb54cae41be5375e3059fca2bc1afb2f2e2e356ed8ee80ffebd2e0"
+        },
+        {
+          "path": "research/datasets/results/MAD-AIR-schema_quality.json",
+          "sha256": "d8847b9f5b6fa5a6ec29154eaa075e7901b4d590dc3831cafccc415919fe94fa"
+        },
+        {
+          "path": "research/datasets/results/MAD-AIR-summary.json",
+          "sha256": "0213a035a9bdf83e6d6d90ad205792c8b2214cab111e7ad7514e090269b337cf"
+        },
+        {
+          "path": "research/datasets/results/MAD-CRASH-incidents.json",
+          "sha256": "99739efae3b474f9c1f3ef66a3484100dbee4125787ed7357184612d32091b49"
+        },
+        {
+          "path": "research/datasets/results/MAD-CRASH-schema_quality.json",
+          "sha256": "25d6692cb19d7ec57d06ee2a8a7e69df34cb6726293deed0f7bea19e8d38b3f6"
+        },
+        {
+          "path": "research/datasets/results/MAD-ENERGY-schema_quality.json",
+          "sha256": "aa29c541a5d0399d26babd9e9d01532071b86d8693e1bb72cf617838190d3280"
+        },
+        {
+          "path": "research/datasets/results/MAD-METEO-META-schema_quality.json",
+          "sha256": "b4fe8a6f460fe9c0ce904b5bc61156f76ea0b70a6bb9c4fe90a94aa8645f712a"
+        },
+        {
+          "path": "research/datasets/results/MAD-METEO-annual_counts.json",
+          "sha256": "4b8343732c747874e72543933e606b7de6d099887e2d26cbde5329ea8f967fe9"
+        },
+        {
+          "path": "research/datasets/results/MAD-METEO-coverage.csv",
+          "sha256": "c3091243a0095241339d7791bc85f0e87659b1a46827117ab3f8337ec45f2cf7"
+        },
+        {
+          "path": "research/datasets/results/MAD-METEO-schema_quality.json",
+          "sha256": "dd08da68791b419da13c0881ca38dc3c827bda510260615d70d01b28af13736d"
+        },
+        {
+          "path": "research/datasets/results/MAD-METEO-summary.json",
+          "sha256": "9dd903193083466b990ad64ebfe7b8a4e32e7cc2a05df6c53e2d4e33c9418e37"
+        },
+        {
+          "path": "research/datasets/results/MAD-TRAFFIC-META-schema_quality.json",
+          "sha256": "a88afd9fbc99b95b9f087c50e5f2f87ed01a7d98de21d041ccf60a3f10a903a2"
+        },
+        {
+          "path": "research/datasets/results/MAD-TRAFFIC-coverage.csv",
+          "sha256": "b258b83b646eef9c65c725cf9f32f2aae363cfa3c4b33f5fa8ccc02ead739f15"
+        },
+        {
+          "path": "research/datasets/results/MAD-TRAFFIC-full_counts.json",
+          "sha256": "4be6513891853ab9709c251a9527cb800e57dfff5e0e077d76f8517f86a00560"
+        },
+        {
+          "path": "research/datasets/results/MAD-TRAFFIC-schema_quality.json",
+          "sha256": "6b108aba201899f2f3b7e8cb6c9c97c1334527f138e155fd43a6d3149c106ae4"
+        },
+        {
+          "path": "research/datasets/results/MAD-TRAFFIC-summary.json",
+          "sha256": "56d055936414c9d5c2f1fe6e0c9b5f12949e7277bf1713b2eac74c95ae65f354"
+        },
+        {
+          "path": "research/datasets/results/MAD-colocated_sites.csv",
+          "sha256": "69f1eb4a1bb35bb7088cd76282ce8e153b25fb0b6fc6275136fcf36fe1faf6ad"
+        },
+        {
+          "path": "research/datasets/results/MAD-coordinate_correspondence.json",
+          "sha256": "1923c90b3356bc23723e0a8da30680812bd4c176fe937119c506b69eb705d523"
+        },
+        {
+          "path": "research/datasets/results/MAD-traffic_near_sites.csv",
+          "sha256": "3c65ca2d10cdc5d6f95f2465ada562fd0c59320d1a08e1e3d4daf5337991d9ba"
+        },
+        {
+          "path": "research/datasets/results/Madrid-integration.json",
+          "sha256": "1ecc129e5ec13ce749b5005d178a2d4d051b54d2eb75d09deab408825813fe3f"
+        },
+        {
+          "path": "research/datasets/results/NYC-311-categories.json",
+          "sha256": "15ec07ba82e8313f9c871af3fb516cce2d988d66ce10d1bddbb0ce76668592f9"
+        },
+        {
+          "path": "research/datasets/results/NYC-311-coverage.csv",
+          "sha256": "92aebea2a0e0f43018248bcda7d27c1dc7bd98f26ecfc781fdd132e5174c8035"
+        },
+        {
+          "path": "research/datasets/results/NYC-311-schema_quality.json",
+          "sha256": "57afdb934e2b4efc48e9c92eb3ba05d5f6945ff5d9883cc74371b8a92972f62b"
+        },
+        {
+          "path": "research/datasets/results/NYC-311-summary.json",
+          "sha256": "eb637001cda871f0161b559bf42bcea90bb4b2e879ac66fc21a4f9061c47496e"
+        },
+        {
+          "path": "research/datasets/results/NYC-AIR-coverage.csv",
+          "sha256": "abfda92f044fdf74ecd2001e129d90c36fb008180659fb9e8e4af45c6ae52ac2"
+        },
+        {
+          "path": "research/datasets/results/NYC-AIR-full_counts.json",
+          "sha256": "6ea0ff189573e7e73b46d203cec2090b547537c7ea14a103096382970c0820c2"
+        },
+        {
+          "path": "research/datasets/results/NYC-AIR-schema_quality.json",
+          "sha256": "969738a26cdc8f7579b7a851a0a00832b15bf7bd10562ad7a9ab5527c1d89b44"
+        },
+        {
+          "path": "research/datasets/results/NYC-AIR-summary.json",
+          "sha256": "747a527f1ca7038795fcf36140fb485f64532e3137d015ee082224318fca1871"
+        },
+        {
+          "path": "research/datasets/results/NYC-COUNTS-campaigns.json",
+          "sha256": "1423120ce7b1002946239df93e9213c6b8e365349bed7386d17d46fc66c4ade9"
+        },
+        {
+          "path": "research/datasets/results/NYC-COUNTS-coverage.csv",
+          "sha256": "f40ccfd6ddc207bf99bae698377a010137d86268c6819866545a014ce7072c1a"
+        },
+        {
+          "path": "research/datasets/results/NYC-COUNTS-schema_quality.json",
+          "sha256": "e812738f10f08abeb6ca82bd7761d021f28576156964779352899a1ce6b97a42"
+        },
+        {
+          "path": "research/datasets/results/NYC-COUNTS-summary.json",
+          "sha256": "ab2397f61de40267f00c30fc747e134971aa5214a913e29c35a6922c621e95d6"
+        },
+        {
+          "path": "research/datasets/results/NYC-ENERGY-schema_quality.json",
+          "sha256": "1f17b2f4446615148ff506548d626a131a321174524e022de1056d64b264ab72"
+        },
+        {
+          "path": "research/datasets/results/NYC-integration.json",
+          "sha256": "03d23587b1c173f997a52615bcf250a0a4fabe9817ea77ab75c498ce8d177237"
+        },
+        {
+          "path": "research/datasets/results/download.log",
+          "sha256": "b9babd0142c8f923aa78f2365ed9924e74b592f5b22efed8a4791a8cc39bbd69"
+        },
+        {
+          "path": "research/datasets/results/environment.json",
+          "sha256": "dc6028fd429f627cb05ec38019912f629a9b4652271796b733bb0fed84671cb7"
+        },
+        {
+          "path": "research/datasets/results/epa_assembly.json",
+          "sha256": "8e3c937164268af9b95c748cf37ae141accf6b5b308f6a2bd01c2b382f431d86"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/README.md",
+          "sha256": "e8ba9af5b292fcec65ef553ad42dc8004a0e856661778aca2dce5e5af364ec65"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/administrative_manifest.json",
+          "sha256": "72567593767123bc35b00230e547338076c295782f0397c5cda6fd94359a51c0"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/audit.json",
+          "sha256": "4b5f7f1bcb3ce64b4e4b67690cc6889c092620db5f278666e1352ebae0c982be"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/mongodb_full.json",
+          "sha256": "0e2c4bb94ae1cc651184ff2fd07a455ddaa0d11a69a43219d00e1282b7374a51"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/postgresql_full.json",
+          "sha256": "60064775a77600b990f26f126d9c8a834863da0bfba56da56bcfd838821a1b6e"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/preparation.json",
+          "sha256": "2486029db9ef3a3e275be4f92276b2aff0fb6abd04697ad54aa62a2a11a0a215"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/repository_validation.txt",
+          "sha256": "7d0f1e848dae7eb50436404867c66c242955ae8415949449f5fd7fd6ec7d46ca"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/research_sources.json",
+          "sha256": "6fd131d464c387a7bf498c666ca58f1179d4f2ce7469ba92f01a4a38dc7e4636"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/tests.xml",
+          "sha256": "f1d769cc0de39461ec1641808983308d5d542dfd63533eae67d19b9704644d0e"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/traffic_v2_assessment.json",
+          "sha256": "723e5f5cc8a56067215c981104151cd4ce8d476a464d4c3cb146e1b32080f844"
+        },
+        {
+          "path": "research/datasets/results/expanded-2025/verification.json",
+          "sha256": "3fe7ec0360657d3cb7a3d3c85c41589a6ad29508c4e0f90b44e175639afc6b8a"
+        },
+        {
+          "path": "research/datasets/results/expanded-v2-2025-01/execution-0652c6cd8bbc.json",
+          "sha256": "6800775f103b5dd50da838ff8a7e461cec113fb275a82ed6e6f73363d09a52b3"
+        },
+        {
+          "path": "research/datasets/results/expanded-v2-2025-01/execution-4ad733d734ab.json",
+          "sha256": "2161668d2a39cee12b190591e4f5f6d4658f906c4d6b157aa25acf24a481d459"
+        },
+        {
+          "path": "research/datasets/results/expanded-v2-2025-01/execution-5153d59831f7.json",
+          "sha256": "e0121d6a660f05f0b8548f2bd28cacbe479e3257e8aef0b9c9bc3efff915b25f"
+        },
+        {
+          "path": "research/datasets/results/expanded-v2-2025-01/execution-d26e40706dcd.json",
+          "sha256": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585"
+        },
+        {
+          "path": "research/datasets/results/offline_run.log",
+          "sha256": "fc0a62bdca8444308dcf4ed717d14e49fce004ca082d1f0ccf2bf4d36a4a01f9"
+        },
+        {
+          "path": "research/datasets/results/phase2_summary.json",
+          "sha256": "9dc3c9610c7d1b5826486bea3baf7d5a5cbc4bd81387223329ccc74b27bb50b6"
+        },
+        {
+          "path": "research/datasets/results/phase3/London_expected_sql.json",
+          "sha256": "b652171b87a618d12e14c8a036fb3adddb35fb894238a2cc281ebb031b7e47a2"
+        },
+        {
+          "path": "research/datasets/results/phase3/London_python_aggregates.csv",
+          "sha256": "fc10a4044e15c3cbb243d85a1892110c90860def1092c0b7e864a43dc1acd173"
+        },
+        {
+          "path": "research/datasets/results/phase3/Madrid_expected_sql.json",
+          "sha256": "fc7d189ce7abc560760c0d5c2f787d85e176eb9d563bdb5aa25563ea1e1561c1"
+        },
+        {
+          "path": "research/datasets/results/phase3/Madrid_python_aggregates.csv",
+          "sha256": "e277a1089970c01c1b42a62249d287697352e0a4c1b6e3d5aa8b29026f16b650"
+        },
+        {
+          "path": "research/datasets/results/phase3/NYC_expected_sql.json",
+          "sha256": "4ca9ed4aa15f2d3fdc6ad1b77fbcda07b254ec4278f9f0a040b00565e80392bf"
+        },
+        {
+          "path": "research/datasets/results/phase3/NYC_python_aggregates.csv",
+          "sha256": "6f7677c6503ec6bb0948f175626d82fb62ecc4fd6a775e52ece323e138e7def3"
+        },
+        {
+          "path": "research/datasets/results/phase3/academic_evidence.json",
+          "sha256": "09f0179df339c83af12b44b1200dd2c4a3b31cacda2412d984c926296b6e640e"
+        },
+        {
+          "path": "research/datasets/results/phase3/catalog_activity.csv",
+          "sha256": "dc6f2a66486d53f27e4e6d75d0af9ef1b089c0f128025fc29f3e14c958a82de7"
+        },
+        {
+          "path": "research/datasets/results/phase3/dot_conflicts.json",
+          "sha256": "32701efbc8a2e323c7c36e55354558908e66da99ff740c679e6d36f18a330d73"
+        },
+        {
+          "path": "research/datasets/results/phase3/final_checks.json",
+          "sha256": "0f48625953b08462b5c5d2a454b1fa5f4bfe38b69f8b6aa0bf11ff9619e635d2"
+        },
+        {
+          "path": "research/datasets/results/phase3/incident_checks.json",
+          "sha256": "75de841a2f38a6681ae88e5193c8cfa14090abe19e3d83a4e3574acb51c02537"
+        },
+        {
+          "path": "research/datasets/results/phase3/inputs_manifest.csv",
+          "sha256": "a03c6cdb5f4dce86e0f4bad0a99c4892939df2b68e9096420f4593671956b02b"
+        },
+        {
+          "path": "research/datasets/results/phase3/legacy_tests.xml",
+          "sha256": "f5649ad641930b9088bca9694b9c2b5c7a97280f4e845ce5a871f6776371a60a"
+        },
+        {
+          "path": "research/datasets/results/phase3/madrid_air_dictionary.txt",
+          "sha256": "469cadabbbe8e1c98a8850c1c2ca292e6eca6fc80e3ed9c69103f20ae817a15b"
+        },
+        {
+          "path": "research/datasets/results/phase3/madrid_dictionary_provenance.json",
+          "sha256": "7130fd86eddc76718dd9a91c882a4547aa8c886af2eddf51c09f9574c5e69739"
+        },
+        {
+          "path": "research/datasets/results/phase3/madrid_no2_losses.csv",
+          "sha256": "71f5a8ab9df8dd1085805b585f65f5b2a181bef64347b2a218b61322a9d0234a"
+        },
+        {
+          "path": "research/datasets/results/phase3/nyc_borough_day_matches.csv",
+          "sha256": "5ef606827756e8e87d26466d0827b083a3ca8f10b9405fd4ddcea5eb2db49702"
+        },
+        {
+          "path": "research/datasets/results/phase3/outputs_manifest.csv",
+          "sha256": "d2602089ae4968e64e4aa900039464b6606bbcd69f7a2a07bd33219f7135ff52"
+        },
+        {
+          "path": "research/datasets/results/phase3/postgres_execution.json",
+          "sha256": "aefd7293e1a44ccde4ee3bada4b7fae11221666a05cd0bc51c9b95dce8ed02fd"
+        },
+        {
+          "path": "research/datasets/results/phase3/postgres_execution.log",
+          "sha256": "71baf7401d1396291c6e5e810f6af2277f6eb4a19b028a09fe812481ab910d05"
+        },
+        {
+          "path": "research/datasets/results/phase3/prepared_data.json",
+          "sha256": "41ae2ad393ed179e3256227447f14c49df06680b7d143d7712beeec269ce8bfe"
+        },
+        {
+          "path": "research/datasets/results/phase3/proof_queries.sql",
+          "sha256": "b4b0c0fbb8d7773a61d12b62b5b0299cae149ca2cb1654f413d8584fa1cfd634"
+        },
+        {
+          "path": "research/datasets/results/phase3/run.log",
+          "sha256": "d063ab7506b39b3a89f0f4feb762e42e5fb24644ed8c9c8f3efdf9ffd4e8284d"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-0312c95cf8.json",
+          "sha256": "06b1aa69b25445a32d217f9f0191cff1a89381fb1a55f775dfdd7de824804176"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-0312c95cf8.log",
+          "sha256": "c6a39668287c1726b19758ad1386108fd57dc8742c731b8af254a81d672b6b93"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-0c7789d6bb.json",
+          "sha256": "aefd7293e1a44ccde4ee3bada4b7fae11221666a05cd0bc51c9b95dce8ed02fd"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-0c7789d6bb.log",
+          "sha256": "71baf7401d1396291c6e5e810f6af2277f6eb4a19b028a09fe812481ab910d05"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-1c9485d894.json",
+          "sha256": "e5e72564c0726b8eb85816b577c2938f68a56940f1ca5f59d2b8fe8a207bcce8"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-1c9485d894.log",
+          "sha256": "775c2e69ab4d2967f215b6cdb1f13109b8e3481158b49e5c003fe8511ce94cd4"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-98037d38a4.json",
+          "sha256": "2d3acfa042e11c37faa2208ec50ad98bee56fbe80a67d66fb6de11bda6fca47d"
+        },
+        {
+          "path": "research/datasets/results/phase3/smartcity-phase3-proof-98037d38a4.log",
+          "sha256": "33db49dd7d33a18a171ab7350c816759b715171c082b8d4de9677ab076ae3428"
+        },
+        {
+          "path": "research/datasets/results/phase3/summary.json",
+          "sha256": "aa719137ffba2e97cd84c8a64d046e169d1ba4b77a32a7ccc5bafcccecc7fe8c"
+        },
+        {
+          "path": "research/datasets/results/phase3/tests.xml",
+          "sha256": "d5dc3b7fe0f24e4901b26943b1a2c4dc827a0bd8738dae18607a58da82ffb026"
+        },
+        {
+          "path": "research/datasets/results/phase3/unit_history_checks.json",
+          "sha256": "a4adb195038c67ad709192c83afe2cd16dcb416ac30b2d3fae95be55afce9e7e"
+        },
+        {
+          "path": "research/datasets/results/phase3/validation.json",
+          "sha256": "f2be43e50a05b6baa3fd57bfc3d96fc660f652c97952b523be9832ae5a6c0881"
+        },
+        {
+          "path": "research/datasets/results/phase4/evidence_checks.json",
+          "sha256": "302b9b917fa78b04b8ffe563bd3d3173321badc078e1c28e95871dd028c9916b"
+        },
+        {
+          "path": "research/datasets/results/phase4/final_checks.json",
+          "sha256": "2e8347b03aa2668084664df005f8b7e5af241b6d1c424a32910dbc28d057a2f7"
+        },
+        {
+          "path": "research/datasets/results/phase4/nyc_311_api_count_evidence.json",
+          "sha256": "8b751d6f124dc90849673d29177a962f24f27a724a13c54b330405f8bd702762"
+        },
+        {
+          "path": "research/datasets/results/phase4/outputs_manifest.csv",
+          "sha256": "cf3a1102c00677bd6c2f2f02a1f051dce2fe33a1a7dd60fdcb09c1633722e4ce"
+        },
+        {
+          "path": "research/datasets/results/phase4/reviewed_csv_artifacts.json",
+          "sha256": "c23b3c21a440530480ea49900c884d8ecbf80e30d82b0a47cd8423111374ce5f"
+        },
+        {
+          "path": "research/datasets/results/phase4/scores_summary.json",
+          "sha256": "3e4f4ca17c6581e72ceaa93579187b7d7226fe9a2b4771b58cb7cf015622a8e9"
+        },
+        {
+          "path": "research/datasets/results/phase4/selected_source_snapshots.csv",
+          "sha256": "43f16fdeb84eba9a961746c49e769c8f29c20b9a31a61f5c0f3a7974732bd4ae"
+        },
+        {
+          "path": "research/datasets/results/phase4/selected_storage_evidence.json",
+          "sha256": "73f51ac6d8dceec3c7927b131d048f74db3e1c7a48fe0cf6482e02c1161e4070"
+        },
+        {
+          "path": "research/datasets/results/phase4/sensitivity.json",
+          "sha256": "35e7ae0b8559ec347910f94958f2633c365257038eae9833aeafb7c958872879"
+        },
+        {
+          "path": "research/datasets/results/phase4/subscores.csv",
+          "sha256": "188eca6734681aaa7d27997545e0c34cb90f2733a4f71c26372cb8ee4a8e78ff"
+        },
+        {
+          "path": "research/datasets/results/phase4/tests.xml",
+          "sha256": "f24f7b5b908eaf2afd61641b511dd23ea284c3ac86a28b71fbea62fd4fc5376e"
+        },
+        {
+          "path": "research/datasets/results/phase5/baseline_tests.xml",
+          "sha256": "42c01b52279f7eb1b5c82db49f3c7d7472c48f11e3e28bd5a5fcf9870cf22365"
+        },
+        {
+          "path": "research/datasets/results/phase5/examples.extjson",
+          "sha256": "189404ea6cc41a28368910929dc922ad6948c87c11b1a4e5f6dc1ced064f0554"
+        },
+        {
+          "path": "research/datasets/results/phase5/final_checks.json",
+          "sha256": "94f813fffae325967371e4e899e46ead330f49401256ff61ec11f3b1f29c58d4"
+        },
+        {
+          "path": "research/datasets/results/phase5/mongodb8_server.log",
+          "sha256": "e8b89b8a1297b16d9de7a09f3a8c8d4fb5c1760bfcc01f3d01a94186caa153da"
+        },
+        {
+          "path": "research/datasets/results/phase5/mongodb8_startup_failure.json",
+          "sha256": "c5929ed2f7d11a9b856a1b95fe29c21c8001770f0843647dd1d19c3ff340d753"
+        },
+        {
+          "path": "research/datasets/results/phase5/mongodb_execution.json",
+          "sha256": "faaabc912e3ab5435ce2783b8228148f010386fefe2698b8b65a9173ff4fa21c"
+        },
+        {
+          "path": "research/datasets/results/phase5/mongodb_execution.log",
+          "sha256": "75c320489adf488d8ff822b439dffc8e93e3ce57d7ba24ccf02b30b3195a5816"
+        },
+        {
+          "path": "research/datasets/results/phase5/mongodb_server.log",
+          "sha256": "bca7012e547068b4942feaba0f04b55ac251ca9aed2f5c1c8431cf7dab34d04e"
+        },
+        {
+          "path": "research/datasets/results/phase5/outputs_manifest.csv",
+          "sha256": "e9505ce8c8c13af8cd445e66e8479ed318bd36d8545f7f6aef1095f87e1fab22"
+        },
+        {
+          "path": "research/datasets/results/phase5/postgresql_sample.json",
+          "sha256": "6d01ba068f8512e75dad3d5248d8782ac83005499ff495e397c69089791f7fd3"
+        },
+        {
+          "path": "research/datasets/results/phase5/preflight.json",
+          "sha256": "7d5d9993de2a20b1a6f3560161522d7daa33da3f91747046ed3e1c33e908ec48"
+        },
+        {
+          "path": "research/datasets/results/phase5/preparation.json",
+          "sha256": "7a4055241a281a31a5dd6b6fa559f3bb2a27b7df134b24c453aee50046f76bde"
+        },
+        {
+          "path": "research/datasets/results/phase5/preparation_before_provenance_refinement.json",
+          "sha256": "cf65d7ff68d6527245789a88c27d2bb13cd11dc27a0d673d63a37fddbad4f055"
+        },
+        {
+          "path": "research/datasets/results/phase5/prepare.log",
+          "sha256": "a4918fbc4f7786373bbde837cda7dd6b06504451e90a5bb026810999bc65c03c"
+        },
+        {
+          "path": "research/datasets/results/phase5/previous_files.json",
+          "sha256": "aee4bf6d79357e9b656ff05a40ca1a54fccd6283f4edc55f7f8f2942138722b7"
+        },
+        {
+          "path": "research/datasets/results/phase5/sample_reference.json",
+          "sha256": "52eddcbe644a69f48e3354fc97b8c7563c82932c0693babe41fcf700da7a2e33"
+        },
+        {
+          "path": "research/datasets/results/phase5/storage.json",
+          "sha256": "81cb0d19073c11f50e77dd778f7f07bb432b74968c2bf028b99b66b841123f01"
+        },
+        {
+          "path": "research/datasets/results/phase5/superseded_type_filter.json",
+          "sha256": "87a4a1808be5c0ebe11e8da2494d935b94c8292e377feac9494c3c7e6962b2c4"
+        },
+        {
+          "path": "research/datasets/results/phase5/tests.xml",
+          "sha256": "83de5a0dcd3d3af3f420fa054380821bae45acfd2eaf4e920c75e8ef780e77e1"
+        },
+        {
+          "path": "research/datasets/results/phase6/candidate_inventory.csv",
+          "sha256": "56a65ae9adca48c02383b3c3066bd64da40ca4aeee0d35518b16a553d741f8ba"
+        },
+        {
+          "path": "research/datasets/results/phase6/outputs_manifest.csv",
+          "sha256": "e74dd9726aa2ea129626b8aa6c955e82ff218db4f948998ac448dbbd2eb61150"
+        },
+        {
+          "path": "research/datasets/results/phase6/tests.xml",
+          "sha256": "c53f6dc96d71b3fd9276c4c3914604df2ae1d9f9de70d080a82eb5606a28de34"
+        },
+        {
+          "path": "research/datasets/results/phase6/validation.json",
+          "sha256": "6c462ed40ae09085c7e8303f75b889af5ba959ed6a12a04a1d0800bfddc9d161"
+        },
+        {
+          "path": "research/datasets/results/phase6_review/approved_paths.txt",
+          "sha256": "7b55b262accf166b0d64c88713d91f4b0e2cac401e7ba2c22da7edd227a18e64"
+        },
+        {
+          "path": "research/datasets/results/phase6_review/excluded_paths.txt",
+          "sha256": "a250fc0644f7a38932627ea68bd439abec7b1e5ef4e3ff7082f46130dd9cd92a"
+        },
+        {
+          "path": "research/datasets/results/phase6_review/mermaid_render.json",
+          "sha256": "4b39678bb6208bb57636a78721da36e0f941e4924e0473a46008627d21ec9b99"
+        },
+        {
+          "path": "research/datasets/results/phase6_review/review.json",
+          "sha256": "15d0a9d231341d4d67145ef411ab0cc562813a98fc0d1e55e480986866515926"
+        },
+        {
+          "path": "research/datasets/results/phase6_review/tests.xml",
+          "sha256": "c53f6dc96d71b3fd9276c4c3914604df2ae1d9f9de70d080a82eb5606a28de34"
+        },
+        {
+          "path": "research/datasets/results/prior_files_hashes.json",
+          "sha256": "d280a23b47dabc59f92515e9a4d8caaa3f1db5d2323ae40ee8dde7ff4d8c3ca0"
+        },
+        {
+          "path": "research/datasets/results/runtime.json",
+          "sha256": "11138dbf53f21900d96f91209fff36f1316963b907f4e35c1366c28aed1e221d"
+        },
+        {
+          "path": "research/datasets/results/storage_estimates.csv",
+          "sha256": "2b876fa3c8a2d2e43fde1534a38e51d1be0c3dc7f7bf9ed52f27ce08096dc698"
+        },
+        {
+          "path": "research/datasets/results/tests.xml",
+          "sha256": "b94dc7c7ccb9ea14ac14ec7ee8c4ced866f7d6dad82ef0d06e60f82f5563c6fb"
+        },
+        {
+          "path": "research/datasets/results/unified-v1/README.md",
+          "sha256": "5a269c0779e322a4f1a69084a0a5dd616b7e56e1e96675836a97711f2e60a4ab"
+        },
+        {
+          "path": "research/datasets/results/unified-v1/mongodb_execution.json",
+          "sha256": "f7491aa5523a16c91d448c040d8c22248f2f835a2bf645735a42e762ae7a503a"
+        },
+        {
+          "path": "research/datasets/results/unified-v1/postgresql_sample.json",
+          "sha256": "d1da48e7dfa11236a188986405c17a3ff7b341c47b1c7f514da90660dff7f86d"
+        },
+        {
+          "path": "research/datasets/results/unified-v1/preparation.json",
+          "sha256": "f3ea009e44894718e346c33669c33b7373494565c77e8991934606b1d7f5f705"
+        },
+        {
+          "path": "research/datasets/results/unified-v1/sample_reference.json",
+          "sha256": "1656d2d59677837b95e0d7e00e4a551b58b10375f192bd1c45dd417a4c50da79"
+        },
+        {
+          "path": "research/datasets/results/verification.json",
+          "sha256": "c041479f6c3d8573cd0c5ada11735391c0b118c57e868cb8d9381742a2d4a5fb"
+        },
+        {
+          "path": "research/datasets/scripts/audit.py",
+          "sha256": "78eb0c7ddb15ebf927aadd6b985dd77de730809d059695bbbf1eeae785db13a0"
+        },
+        {
+          "path": "research/datasets/scripts/build_reports.py",
+          "sha256": "2388b74afc3d4224a4916d606fd669c42400581015f96b1426d853846ef3bbbf"
+        },
+        {
+          "path": "research/datasets/scripts/download.py",
+          "sha256": "345364d6975163c1ca3bbebda818830ca58d02d5c3c891b1db04808b3041c31c"
+        },
+        {
+          "path": "research/datasets/scripts/integrate.py",
+          "sha256": "d181b33818865a8e415ee2ea4f66270d075170ddc66b8d7f578da1413c233c20"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_enrich.py",
+          "sha256": "753e1db936f0b31199ef17aa09000308d11b42c6a4787029e6a65679eb3b1058"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_finalize.py",
+          "sha256": "2be80e7e96d49b0d36f77e757f779538ce48ceeb45c2bd7fb9549fe88a377819"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_mongo_queries.js",
+          "sha256": "44efc436978158a6434975f3a05c1618b87dabaa3060ff466ebba015eb7c29a3"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_postgres.py",
+          "sha256": "4daed5f48965edf7cf70261cf7765d2056fcfd293a1adef1883a3beefb9b88be"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_report_texts.py",
+          "sha256": "87194438bfa53b389e9cf04a46d74505b94cf203614f0a1deca3c02d45c7b2aa"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_reports.py",
+          "sha256": "285a233f00f67f5c536119dc7efc55968f98be70835aac0aa73e9a1901d10945"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_run.py",
+          "sha256": "630fd129baea16c846dc0ac9b5110bb5b7e754cfab0fc8df734f56ac2bbd7ab8"
+        },
+        {
+          "path": "research/datasets/scripts/phase3_validate.py",
+          "sha256": "6afcebcc45211461b1735acf6af215505ec69898737329666dd895fc6922a677"
+        },
+        {
+          "path": "research/datasets/scripts/phase4_evaluate.py",
+          "sha256": "c752d11efa3f028823a42fc174bce426eb173124863f7349b8ba7ead59dc0222"
+        },
+        {
+          "path": "research/datasets/scripts/phase4_finalize.py",
+          "sha256": "89ea9958b9f676d2055d51cbcab2c852ad4ecb4cf4bbe79f7f24408e8e3799a8"
+        },
+        {
+          "path": "research/datasets/scripts/phase4_reports.py",
+          "sha256": "c27d217ee52dd26543265fccdfd19b3155dd2097c39dcfddc055c8addaaa86ff"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_contract.py",
+          "sha256": "dd78dbcee3ad7d08cab3a257624d0fbf39b37fced33314c560ca01e3c2771be0"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_legacy_contract.py",
+          "sha256": "5c01778fc5285b5e1ced4390c19a4d41d84c2ee9082ba762e745c12968870e41"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_mongo_test.js",
+          "sha256": "a21f2ec85ac2b7a6a3e9d6e2bca9564416d47e777d9aa053f4a1111b0fc9b270"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_native.py",
+          "sha256": "1b43e68b7ad83dc2a5566c04900452a0f730a84dd8fefcc83c152e6be53a63f8"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_postgres_sample.py",
+          "sha256": "28240f370be3f311125c444782329f018df68eb8050714cdfadd3a8b6284e9ab"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_postgresql.sql",
+          "sha256": "e2f9f0f5218547441fe2924710f487a18826f75752118968b1c26d53af860315"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_postgresql_queries.sql",
+          "sha256": "9440cf52282b3142594c34aeff92383080c83958faff035594679aaa1bd5e12e"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_prepare.py",
+          "sha256": "df1eeb17c701554f0cfc66a4f75079841afe52bf0f3c088b7ce08477bc92c6a4"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_reports.py",
+          "sha256": "c1921a15749e8c68fb2c957c2cd8483c42d05f919fbc69d68b4383cdae2ab93a"
+        },
+        {
+          "path": "research/datasets/scripts/phase5_verify.py",
+          "sha256": "d4d9ffbc802dcb830a0c85669998017a35473a6fc32d6d4aec5abb6e7350e6ce"
+        },
+        {
+          "path": "research/datasets/scripts/phase6_validate_docs.py",
+          "sha256": "d2bf5e151b19dd7e0aa6ee3ec5bd42ef6533cf6f28862b52ef2d3581e67b5240"
+        },
+        {
+          "path": "research/datasets/scripts/quality.py",
+          "sha256": "fc3a890bb875fd46e3fe210c14a06d6df22fb77645deacdc357ca85019f727bb"
+        },
+        {
+          "path": "research/datasets/scripts/readers.py",
+          "sha256": "374e912132c55dfa113891ae42364d3df2369459bf5a8b3a9d630ae3f9c96464"
+        },
+        {
+          "path": "research/datasets/scripts/requirements.lock",
+          "sha256": "9d7bdc7b67a58af36307129995b6ff5ef534b3925fc5688e61a8032115002d01"
+        },
+        {
+          "path": "research/datasets/scripts/requirements.txt",
+          "sha256": "f646a5932833a3ae4481ec323b58382e4cf56b70be3826cf64aab4cc61abfaf6"
+        },
+        {
+          "path": "research/datasets/scripts/run_offline.py",
+          "sha256": "d04beaf1c500f6a81d5290b45eb29fc8709f8660e9683ebd4143eef3233dc84d"
+        },
+        {
+          "path": "research/datasets/scripts/traffic_v2_assessment.py",
+          "sha256": "49e0598a6365a9eba9def7be312e010ddbb36791a3c6d7e65d0573b80017a1d7"
+        },
+        {
+          "path": "research/datasets/scripts/unified_audit.py",
+          "sha256": "4cc9da331478ef96379d7a820ad314b1c9f957d06670069ba6fcc3346b4c43ec"
+        },
+        {
+          "path": "research/datasets/scripts/unified_expand.py",
+          "sha256": "16d8f9c907daba9c08000b52b4bfc4eab5e2822a6630898523db648ba21ce73b"
+        },
+        {
+          "path": "research/datasets/scripts/unified_full_load.py",
+          "sha256": "f64d70a478169a429ef27a95f13560694787ab8fb6486e05010be2323ec80214"
+        },
+        {
+          "path": "research/datasets/scripts/unified_full_mongo.js",
+          "sha256": "680e14106b0cfd8ef615400d7508bb8654def9a008fa9adff6dbf55deca1d83f"
+        },
+        {
+          "path": "research/datasets/scripts/unified_full_verify.py",
+          "sha256": "c9d94be71abd5c0021cb81eb2c937341624b97782a16acbbf891355432671920"
+        },
+        {
+          "path": "research/datasets/scripts/unified_research.py",
+          "sha256": "ff7b3e4a2ed44acb709b752a87de5bf5995f1507e57671fd482b2d6a2168ec51"
+        },
+        {
+          "path": "research/datasets/scripts/unified_synthetic.py",
+          "sha256": "1c9728258894f65f1866c90ceb4e910f5a1550b5e49d2534cbdde438a84cb911"
+        },
+        {
+          "path": "research/datasets/scripts/unified_verify.py",
+          "sha256": "107349ff923f2a79bd926a36da2cbc01283f7f144552f62b6d476de3e5e64626"
+        },
+        {
+          "path": "research/datasets/scripts/verify.py",
+          "sha256": "4edc8b591285fc9aecf2f723cac40f9cf1cbe07d67443a2eaa9942603b4879c7"
+        },
+        {
+          "path": "scripts/capturar_sql_avanzado_3nf.py",
+          "sha256": "6251e604ecf6e83451f385929e44cbf7659f617ea1c8749a73682dcf21455857"
+        },
+        {
+          "path": "scripts/validar_postgresql_3nf.py",
+          "sha256": "217ee35b632acbdb1df6e20f72190b55d11b854d2342cbbbe277a5bd3eee6da1"
+        },
+        {
+          "path": "sprint1/basico/README.md",
+          "sha256": "f15611bcc99012f52e36abb4c667fcc095b6ad2cc2c3924cec62ef27d388c551"
+        },
+        {
+          "path": "sprint1/basico/__init__.py",
+          "sha256": "30cd821d2c34bd27b3b9450f1ba7757fe83b82de343a5eb05f767febb3916665"
+        },
+        {
+          "path": "sprint1/basico/archivos.py",
+          "sha256": "92c70a190ddf53646cee058c0cedd4060a67d10ce28701808eba9a18a464a2cb"
+        },
+        {
+          "path": "sprint1/basico/cargar_mongodb.py",
+          "sha256": "d6be8885a3cb40be477868130cf4852c13c43cc980840e1b656b1b1c4659d822"
+        },
+        {
+          "path": "sprint1/basico/cargar_mongodb_v2.js",
+          "sha256": "7ad98da86e8cf2c97f8ecd7d9c9fc90c31b4101d573247def5c0204cd68c16b0"
+        },
+        {
+          "path": "sprint1/basico/cargar_postgres.py",
+          "sha256": "45c83a5b74a7daf885b5b1461715934ac96684fca16b13ced3f6ee7cf51ceb90"
+        },
+        {
+          "path": "sprint1/basico/consultas_mongodb.js",
+          "sha256": "adbe541401aae6efdd11527560a7b2bd43590586b13f1e33f720eaff300aab4a"
+        },
+        {
+          "path": "sprint1/basico/consultas_mongodb_v2.js",
+          "sha256": "f5a8ab9041be4611b91b3bfb3cf5f179b108b0afb3bb9ec0799ea99d6351a2d0"
+        },
+        {
+          "path": "sprint1/basico/consultas_postgres.sql",
+          "sha256": "8366c5621726f71ec487160aafaf4c3f4fb2b7f625ba60129469c16a1f0bf28c"
+        },
+        {
+          "path": "sprint1/basico/crud_mongodb.js",
+          "sha256": "89a0201abfdceb503ac70667cd5bcecd6a28da15633f77f56d9f6df15fa0b0f9"
+        },
+        {
+          "path": "sprint1/basico/preparar_v2.py",
+          "sha256": "c1eea65c2ca0eb1aecbfbe0d5a216985e14b265cd22ed05c2cc3b165f0b4f556"
+        },
+        {
+          "path": "sprint1/basico/requirements.txt",
+          "sha256": "65d1bac3af74bebefab509526fab1ffb74742896a96b974ccb35dc2e5b006b02"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/CODIGO_OFICIAL.json",
+          "sha256": "2910fec6e004c4b1f88c82cdb60e874c30bef0f799d0f7b22774b811e6fa1ee1"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/CODIGO_OFICIAL_SHA256SUMS.txt",
+          "sha256": "0195148df158cf502c29a0de1aa1e0cb25c3182a69ca76290bff86a39137a99e"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/MANIFIESTO_ORIGEN.json",
+          "sha256": "61b4c4a17c1e32be4743f5aa8874e7892eb3674c1d1ba1908d1b33c29721ef7c"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/README.md",
+          "sha256": "3bf8b7fe936656d7912d40d0556338fe688e7c57eb1e492d28d7c89986ab8dbd"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/RESUMEN_FERNANDA.md",
+          "sha256": "bf88c79f717741237a8009fe91a202cc7370a84081f3040a797602ebe47d7a8f"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/SHA256SUMS",
+          "sha256": "63e106c6f069e067d6a577a60e9f5915bfc1c0e6d99c0cf8df38e1293b109976"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/auxiliares/capture_metadata.js",
+          "sha256": "52b6075aab996f7b85f8ab610f8baec4e4ec163f05ce9a8d37fa61648cf21369"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/auxiliares/config.json",
+          "sha256": "a6d5f18be5bc32876bd0bdd79b74f86d1e0d3e8d25af3f6a56dcea47e291d776"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/auxiliares/run_validation.py",
+          "sha256": "6fbae8368648666631d3597e03f04414c1f3bcbf6d8bcf2a9d89422892404002"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/comprobacion_cierre.json",
+          "sha256": "eca7c10b4fc3e8e3b4134da9eb2a8c4aca8dd76e6a38e6e97a2d7d6389570961"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/INFORME.md",
+          "sha256": "0f1c173a4ac84f1d282b167724540ea5664840eea57cc397f135898cb3951abe"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/SHA256SUMS_ORIGINALES.txt",
+          "sha256": "bc2952b8a773e245b123ed2aad280d023bb90ff8e52e89691fed27019bc9662f"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/docker-info.txt",
+          "sha256": "39061b8b325e1e481df6b4d827c1400aba170bcd496f30b7530e20d6109ba615"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/evidence-helper-hashes.json",
+          "sha256": "9942e96dc0f7b36ec564a0b92531a7acab3a74d3a46cf25bb63e88df5ddae47a"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/execution-d26e40706dcd.json",
+          "sha256": "639a295191a8321c0eb40505842435e70d53bb6ca5de9a81c2f149f36862b585"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/image-inspection.json",
+          "sha256": "b9e0f040d333035433720be056778ad93ac3f3461a2fc5908fb90ea314c809db"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/image-inspection.txt",
+          "sha256": "2ecb8bbe95063eede0285a9cc574564c6f77c88d4fd10aebd7151f5fd759bd50"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/image-pull.txt",
+          "sha256": "b21ff4942a98ce3f525dc7ca853ae729380910582f51396d0848dc205b7fe745"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/massive-validation.txt",
+          "sha256": "376136e9edf33efbb28e1359f26df2d21260f5a188624cb89f66fc4068c4a59d"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/native-crud.json",
+          "sha256": "cf1ede829cdb2b65180d3f419fba4bb371a3de77eb6d38446137a3f9245a3aa7"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/native-crud.txt",
+          "sha256": "44bdfa7a126348a7dda5a092fd27dbe055c219be53f310f15eafd558690023f9"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/native-metadata.json",
+          "sha256": "4c4284648b7fdf05bc67a448d6bd65c6d5913e45f79f26dd52529ec4257c9109"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/native-metadata.txt",
+          "sha256": "94f7832f424b63ec63a4edc500b3202582d909220dea52eb3c64c13902b12a6f"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/native-sample.txt",
+          "sha256": "e90b8444540eaab45b1334ff4bd5b8377627309a522bb50b4a80ab7172722c48"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/package-before.json",
+          "sha256": "21d017f5331b1330d0c718d10c6d7efe89c67bfe922e37ce2a76e2c5146a39d0"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/python-environment.json",
+          "sha256": "5c75be85ca8b1bb4d4c722b62b2d12332132eae489b162ace6360e07fd1f3bf0"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/reconciliation.json",
+          "sha256": "f83456082bc9357d499a19f964d3420dd392331ba44d16a4853f2793337e0087"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/reconciliation.txt",
+          "sha256": "f83456082bc9357d499a19f964d3420dd392331ba44d16a4853f2793337e0087"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/originales/status.json",
+          "sha256": "16405515edc0db47e53b1399a7044b4a0855c9b1d36ed6528e23da0ffdc61938"
+        },
+        {
+          "path": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/verificacion_independiente.json",
+          "sha256": "fa6966d6656832b5a84c4490f076a5e29f567402c0cc0f174d12f8b02f1a1cc6"
+        },
+        {
+          "path": "sprint1/postgres/contract_v2.sql",
+          "sha256": "4caa9bf9cdb225f502770322960da02420039ffccead465f15f332229900d10a"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.json",
+          "sha256": "1fa7a04200f5f3299a71daf823df5a0420fea8b8ff6fcff27494a076df8b76d1"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.sha256",
+          "sha256": "6e28705a27893c06cb1e8dc1444662c900641148fb11780bc831821298ae2940"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.json",
+          "sha256": "f61b0079143d3b515e31b00600e51414d5bf87a2dea7f63e3ea8bc7d79c57e37"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.sha256",
+          "sha256": "30e7f89d633a0831e1ae5980d55e4ab29c87698ec934f0e402b9d921666aa549"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.json",
+          "sha256": "07f791b355f0331b61ae2f657e52138cfc5354d1e3a259cbea10dbccac3ee875"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.sha256",
+          "sha256": "a2b0ca7a593db6f3ea7aa1072f4b286b49bd025e834f7135eec14a19f901e3f5"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json",
+          "sha256": "111881d7b699a00ff0a890157e8e5cbadea8c1e715ac270c30b93f137994614a"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.sha256",
+          "sha256": "e0cd524cfcc30260dd1bfe3a9a62799ed361cc627defbff1e792b6f42e361101"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/MANIFIESTO_ENTREGA_3NF.json",
+          "sha256": "648717cb11c1a6a587b39136a08069e7c5d177c49247f1ed3fddadafa1ef2b36"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/MANIFIESTO_ENTREGA_3NF.sha256",
+          "sha256": "c10e6ac0b8bd30b4e3f3526f714a4893004da61cec81ea986b46fd69fb6a1022"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.json",
+          "sha256": "3d4e57d8baaf1cc78241c244befe6a7cdcef6e21fe2e1801e7426ffe137141f7"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.sha256",
+          "sha256": "48d1c46a207e8e7f0f843fac6124c92c4acfa710fd80a4d173abecf3d5070e5c"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/README.md",
+          "sha256": "df286958a6419a7d5cc016800abc5eae86d131488e0f4669b110f1c8226a6c1d"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/cierre_auditoria_v2.json",
+          "sha256": "fbe5e1ca2463b6dd72c203e411ea6ae93fe9f9a1c857612d707ed2355571ee82"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/cierre_pg07_controlado.json",
+          "sha256": "081403aee7c62c12d85c6d9a1906bbf057ad91c4e5977f8998ebb38766159928"
+        },
+        {
+          "path": "sprint1/postgres/evidencias/cierre_subconjunto_v2.json",
+          "sha256": "87fb2d69e681f98d5915340d18a84436fce00c09a9f6c5e0e201512f86bf392f"
+        },
+        {
+          "path": "sprint1/postgres/queries.sql",
+          "sha256": "e0944eb54a777aa22714a9dbd23b23a112a6d34eb906622cdb37c3feb89eaed9"
+        },
+        {
+          "path": "sprint1/postgres/queries_v2_3nf.sql",
+          "sha256": "b344309fbbaad24a0f05fe1f3fa5a6f94e959f50083d4cdd7a4d9978c0e2acb0"
+        },
+        {
+          "path": "sprint1/postgres/schema_proposal.sql",
+          "sha256": "959d663598bfaed464403583d8d4bfbe7545a53ec640cdcfe2b89e658b8502d2"
+        },
+        {
+          "path": "sprint1/postgres/schema_v2_3nf.sql",
+          "sha256": "1d34b91a20c499bb5d2b273678bc29514c573d72aea6c26dfe7b7e9ee6294771"
+        },
+        {
+          "path": "sprint1/postgres/sql_avanzado_observado.sql",
+          "sha256": "88a2330d86b8aba69e60e22c4b5ef5c1618672bcd733a3987c0fc4fa96e51ff4"
+        },
+        {
+          "path": "sprint1/postgres/staging.sql",
+          "sha256": "42f9750bb338cc8cad267518495e9c229e3eee2965cc9202196c66295c962382"
+        },
+        {
+          "path": "sprint1/postgres/staging_queries.sql",
+          "sha256": "98e4afa5843b2f567f56dc6b48376ae25f1c8b328bd73619dd33769f5afffc9b"
+        },
+        {
+          "path": "tests/integration/postgres.sql",
+          "sha256": "50b5d3c82d782c157e0dcf7e518d2e9e2f4aec9fc0cfbbac34ee22e78e7b4809"
+        },
+        {
+          "path": "tests/integration/postgres_3nf.sql",
+          "sha256": "37952e58ce56c4e9fcb977d875dfe18d71e98341e6f57af9cc139abdb6752512"
+        },
+        {
+          "path": "tests/integration/postgres_canonical_fixture.sql",
+          "sha256": "4cb6380d5237c259e0ce680af8da109559505f60415602b45ba3d1306786f569"
+        },
+        {
+          "path": "tests/integration/postgres_pg07_cases.sql",
+          "sha256": "df69efb64dd17d352458a653e536d86ad430172350663bf8564495fa5ad84de9"
+        },
+        {
+          "path": "tests/integration/postgres_restored.sql",
+          "sha256": "b841901a5d5bc150a17f0d289d1f831e6da798017c629267326b8f3e22d6b947"
+        },
+        {
+          "path": "tests/integration/postgres_snapshot.sql",
+          "sha256": "cf73b53927788f23b816cf823ee2593600298d291f8b15aa76073470774edf92"
+        },
+        {
+          "path": "tests/integration/postgres_v2_limitations.sql",
+          "sha256": "5e4dd407bc70b9a7d12e1acfefd0d174372222b113c3778ba885d62bbc5fd2cd"
+        },
+        {
+          "path": "tests/sprint1/test_queries.sql",
+          "sha256": "bd47a86babf231f726e2592b5fbe093c32415164cda8766a3390799d7bea6afc"
+        },
+        {
+          "path": "tests/sprint1/test_real_data.sql",
+          "sha256": "365fea3d13bb893e8091692638717db8a26087535afd23cf913f22d8a2d5a586"
+        },
+        {
+          "path": "tests/sprint1/test_schema.sql",
+          "sha256": "7317c5dc71dd0167b7839e226841c3a33757d8e051bc3efdde6b04b6925f6e89"
+        }
+      ],
+      "postgresql_historical_checksums": [
+        "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.sha256",
+        "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.sha256",
+        "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.sha256",
+        "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.sha256",
+        "sprint1/postgres/evidencias/3nf/MANIFIESTO_ENTREGA_3NF.sha256",
+        "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.sha256"
+      ],
+      "native_full_code_files_verified": 8,
+      "advanced_code_files_verified": 3,
+      "private_input_hashes_verified": 6,
+      "mongodb": [
+        {
+          "manifest": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/SHA256SUMS",
+          "files_verified": 29,
+          "exit_code": 0
+        },
+        {
+          "manifest": "sprint1/mongodb/evidencias/20261028T055755-3fea400d/CODIGO_OFICIAL_SHA256SUMS.txt",
+          "files_verified": 19,
+          "exit_code": 0
+        }
+      ]
+    },
+    "git_diff_check_passed": true,
+    "git_index_empty": true,
+    "markdown_internal_links_checked": 124
+  },
+  "files": [
+    {
+      "path": "ENTREGA_SPRINT1.md",
+      "sha256": "3b6b02d627a822a7cdeccc1e602394af54d3f8c1f26b483aa601631166a49703",
+      "bytes": 12035
+    },
+    {
+      "path": "README.md",
+      "sha256": "bc5d9e5df3aec5a5c4d3a40f1cc0f7fa598161c728fe03aa0a0d7439a584196d",
+      "bytes": 5259
+    },
+    {
+      "path": "docs/README.md",
+      "sha256": "3b49790d2e66873ef8c982beb51bfb75cc9b02ee02b4845c7b151eb9e5b59825",
+      "bytes": 3615
+    },
+    {
+      "path": "docs/arquitectura/diagrama_3nf.md",
+      "sha256": "fe7a3745cc347b7fe6ba305b93c53c2857e59821d12024dd5da4b6f7f7164584",
+      "bytes": 4604
+    },
+    {
+      "path": "docs/arquitectura/diagramas.md",
+      "sha256": "faa2888d89977a5a2203d53ef7661dc17b577992b1df9b57c0a556e200e4b4ba",
+      "bytes": 8824
+    },
+    {
+      "path": "docs/arquitectura/modelos.md",
+      "sha256": "0f64bf2e765eddc0df5b8602942ae8df4638fac90de78e4e4ae03eca549c238f",
+      "bytes": 12006
+    },
+    {
+      "path": "docs/avance_1/SmartCity_Sprint1_3NF_20261028T080911.pdf",
+      "sha256": "f395185c81d9cb976fad974ade012bcabbb174b308f7a8f04f66c86baa803a95",
+      "bytes": 278916
+    },
+    {
+      "path": "docs/avance_1/main.tex",
+      "sha256": "f0123e35d116f23c74a252dacbac4f82d61c40662c19adad2c3ed8a859e5abc9",
+      "bytes": 2028
+    },
+    {
+      "path": "docs/avance_1/secciones/01-alcance-datos.tex",
+      "sha256": "69ba4fa8a42cd7b5e360c4e25aac1c8cea2368dc612f31462533e24a797d8653",
+      "bytes": 6884
+    },
+    {
+      "path": "docs/avance_1/secciones/02-modelos.tex",
+      "sha256": "3c50b3317caaf1ef32a05e1cd312d5fdb6ed14f1208d3a8e62f1d2f7885ffbad",
+      "bytes": 6980
+    },
+    {
+      "path": "docs/avance_1/secciones/03-consultas.tex",
+      "sha256": "c52e3d0edf49993f20331b65ee639f95c2e945e0f3d64cf8a4331eac24178e11",
+      "bytes": 6367
+    },
+    {
+      "path": "docs/avance_1/secciones/04-validacion.tex",
+      "sha256": "4de2e0794f5173aeaa9c741f2bbd6baf58c6cdaa2da93598b55b78d128fb7d0b",
+      "bytes": 6472
+    },
+    {
+      "path": "docs/avance_1/secciones/05-cierre.tex",
+      "sha256": "b0309cdb3ef4b98ec540ba5da8c74a519fdea0b2f9e4151b73c297685600ff40",
+      "bytes": 4922
+    },
+    {
+      "path": "docs/avance_1/secciones/06-equivalencias.tex",
+      "sha256": "a23c9162be1814e2138322c28dd5f36bca13d8a45467c0c6b5a6c0acf4a3ca9f",
+      "bytes": 3107
+    },
+    {
+      "path": "docs/equipo/ALCANCE_CONFIRMADO_SPRINT1.md",
+      "sha256": "391754d334e90bd10d5b221a79b60b8639d870fc17e1ad587984846ce5415912",
+      "bytes": 10637
+    },
+    {
+      "path": "docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md",
+      "sha256": "1c6161c6bb975eee8816ecf2e6a05945cbf8c9cb163cabf40fe855b7671595d3",
+      "bytes": 9507
+    },
+    {
+      "path": "docs/equipo/CHECKLIST_CIERRE_SPRINT1.md",
+      "sha256": "acc768bdffb8a9ca3c247f3a2a1d1ec441e9b9f0a47f45daa66a9e7fef6a3b03",
+      "bytes": 4217
+    },
+    {
+      "path": "docs/equipo/ESTADO_SPRINT1.md",
+      "sha256": "fddee1206635131d04aae036a36f7980d777489fe20db42000d87363ab01d159",
+      "bytes": 5812
+    },
+    {
+      "path": "docs/equipo/MATRIZ_CONSULTAS_SPRINT1.md",
+      "sha256": "4e6b020ccd6831f33d9494bc00339794ed1ea2df4caba4f489f4627563b911e9",
+      "bytes": 5158
+    },
+    {
+      "path": "scripts/capturar_sql_avanzado_3nf.py",
+      "sha256": "6251e604ecf6e83451f385929e44cbf7659f617ea1c8749a73682dcf21455857",
+      "bytes": 4923
+    },
+    {
+      "path": "scripts/validar_postgresql_3nf.py",
+      "sha256": "217ee35b632acbdb1df6e20f72190b55d11b854d2342cbbbe277a5bd3eee6da1",
+      "bytes": 24739
+    },
+    {
+      "path": "sprint1/postgres/README.md",
+      "sha256": "98c1fce2acb983e6ecaa9147173953e01e53e3b121ba1a94a5b5ebd86d62d173",
+      "bytes": 4542
+    },
+    {
+      "path": "sprint1/postgres/cierre_3nf.md",
+      "sha256": "156af500c2034da7653123f5f17edcbae97186834be949d94b39fb5f428ca155",
+      "bytes": 7828
+    },
+    {
+      "path": "sprint1/postgres/dependencias_3nf.json",
+      "sha256": "7f853f7235b99712a4405b48f3164cf2ece2884f415195dafedbb4079a837233",
+      "bytes": 9329
+    },
+    {
+      "path": "sprint1/postgres/distritos_madrid.json",
+      "sha256": "aaf64100065cf943ee5fd130bb2fbcc4f9399b31bd3cd2a2bad75fe717db3e3d",
+      "bytes": 1144
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.json",
+      "sha256": "1fa7a04200f5f3299a71daf823df5a0420fea8b8ff6fcff27494a076df8b76d1",
+      "bytes": 1956
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071042-3f9f038f.sha256",
+      "sha256": "6e28705a27893c06cb1e8dc1444662c900641148fb11780bc831821298ae2940",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.json",
+      "sha256": "f61b0079143d3b515e31b00600e51414d5bf87a2dea7f63e3ea8bc7d79c57e37",
+      "bytes": 28972
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071112-8aeb341f.sha256",
+      "sha256": "30e7f89d633a0831e1ae5980d55e4ab29c87698ec934f0e402b9d921666aa549",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.json",
+      "sha256": "07f791b355f0331b61ae2f657e52138cfc5354d1e3a259cbea10dbccac3ee875",
+      "bytes": 29717
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071356-04a8cc67.sha256",
+      "sha256": "a2b0ca7a593db6f3ea7aa1072f4b286b49bd025e834f7135eec14a19f901e3f5",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.json",
+      "sha256": "111881d7b699a00ff0a890157e8e5cbadea8c1e715ac270c30b93f137994614a",
+      "bytes": 30671
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/20261028T071812-55791345.sha256",
+      "sha256": "e0cd524cfcc30260dd1bfe3a9a62799ed361cc627defbff1e792b6f42e361101",
+      "bytes": 96
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.json",
+      "sha256": "3d4e57d8baaf1cc78241c244befe6a7cdcef6e21fe2e1801e7426ffe137141f7",
+      "bytes": 4447
+    },
+    {
+      "path": "sprint1/postgres/evidencias/3nf/advanced-20261028T073507-abef9831.sha256",
+      "sha256": "48d1c46a207e8e7f0f843fac6124c92c4acfa710fd80a4d173abecf3d5070e5c",
+      "bytes": 105
+    },
+    {
+      "path": "sprint1/postgres/impacto_3nf.md",
+      "sha256": "33c8eec0bff1c9e94d9a787a4921898bd702ba51a287dba6823a7910e44b0924",
+      "bytes": 8774
+    },
+    {
+      "path": "sprint1/postgres/queries_v2_3nf.sql",
+      "sha256": "b344309fbbaad24a0f05fe1f3fa5a6f94e959f50083d4cdd7a4d9978c0e2acb0",
+      "bytes": 6963
+    },
+    {
+      "path": "sprint1/postgres/schema_v2_3nf.sql",
+      "sha256": "1d34b91a20c499bb5d2b273678bc29514c573d72aea6c26dfe7b7e9ee6294771",
+      "bytes": 12393
+    },
+    {
+      "path": "tests/integration/postgres_3nf.sql",
+      "sha256": "37952e58ce56c4e9fcb977d875dfe18d71e98341e6f57af9cc139abdb6752512",
+      "bytes": 2295
+    },
+    {
+      "path": "tests/sprint1/test_modelo_3nf.py",
+      "sha256": "61388097439f6fef6047a82372fe1fd21b3f929941eda85de1782c74e3a67f46",
+      "bytes": 4295
+    }
+  ]
+}
