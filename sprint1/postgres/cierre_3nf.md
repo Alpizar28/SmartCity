@@ -90,7 +90,7 @@ inmutabilidad antes de alcanzar el CHECK del localizador o la FK de versión.
 el error capturado. **Ninguna de estas pruebas aísla específicamente un CHECK o
 una FK.** El catálogo demuestra su definición; los ocho rechazos no equivalen a
 ocho restricciones declarativas verificadas individualmente. La clasificación
-y los límites se detallan en la [auditoría interna](../../docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md).
+y los límites se detallan en la [auditoría interna](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AUDITORIA_DOCUMENTAL_SPRINT1.md).
 
 Huella ordenada identidad/payload reconciliada:
 `9e8a6b6b7e1aa527693aa9c71ca8dc44123e2d4602f8b94f2ba2afa4b54c69a0`.
@@ -112,7 +112,7 @@ servidor compartido. No se implementan componentes de noviembre.
 
 - `schema_v2_3nf.sql`, `queries_v2_3nf.sql`, `dependencias_3nf.json` y
   `distritos_madrid.json`.
-- `scripts/validar_postgresql_3nf.py` y `scripts/capturar_sql_avanzado_3nf.py`.
+- `scripts/validar_postgresql_3nf.py` y el [capturador histórico de SQL avanzado](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/scripts/capturar_sql_avanzado_3nf.py).
 - `tests/integration/postgres_3nf.sql` y `tests/sprint1/test_modelo_3nf.py`.
 - E-R completo, informe LaTeX con equivalencias y evidencias nuevas con SHA-256.
 - Código e informes anteriores conservados para reproducir su contexto histórico.

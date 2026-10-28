@@ -1,6 +1,7 @@
--- Logical snapshot excludes physical OIDs, statistics and database name.
--- It includes every persistent application table plus sequence positions,
--- indexes, view/function definitions and constraints, with deterministic order.
+-- psql -v snapshot=true: estado lógico; snapshot=false: verificar restauración.
+-- El ejecutor selecciona la base: la verificación nunca se aplica al origen.
+\if :snapshot
+-- Sin OID, estadísticas ni nombre de base; orden estable para comparar.
 SELECT jsonb_build_object(
     'sources', (SELECT coalesce(jsonb_agg(to_jsonb(t) ORDER BY source_id), '[]') FROM sprint1.sources t),
     'versions', (SELECT coalesce(jsonb_agg(to_jsonb(t) ORDER BY source_version), '[]') FROM sprint1.source_versions t),
@@ -21,3 +22,34 @@ SELECT jsonb_build_object(
         FROM pg_constraint k JOIN pg_class c ON c.oid = k.conrelid
         JOIN pg_namespace n ON n.oid = c.relnamespace WHERE n.nspname = 'sprint1')
 );
+\else
+DO $verify$
+DECLARE row_record record; original bigint; result record;
+BEGIN
+    IF current_database() <> 'sprint1_restore' THEN
+        RAISE EXCEPTION 'Restore checks require the disposable restore target';
+    END IF;
+    IF (SELECT count(*) FROM sprint1.readings) <> 3 OR
+       (SELECT count(*) FROM sprint1.quarantine) <> 1 THEN
+        RAISE EXCEPTION 'Restore counts differ';
+    END IF;
+    IF (SELECT sum(reading_count) FROM sprint1.quality_summary) <> 3 THEN
+        RAISE EXCEPTION 'Restored view failed';
+    END IF;
+    SELECT * INTO STRICT row_record FROM sprint1.readings WHERE source_id = 'MAD-AIR';
+    SELECT * INTO STRICT result FROM sprint1.air_statistics(row_record.channel_id,
+        row_record.source_version, '2025-01-01Z', '2025-02-01Z');
+    IF result.n <> 1 OR result.average <> row_record.value THEN
+        RAISE EXCEPTION 'Restored function failed';
+    END IF;
+    IF sprint1.stage_reading(to_jsonb(row_record)) <> 'duplicate' THEN
+        RAISE EXCEPTION 'Restored reconciliation failed';
+    END IF;
+    SELECT max(storage_id) INTO original FROM sprint1.quarantine;
+    INSERT INTO sprint1.quarantine(reason, document) VALUES ('restore_sequence_probe', '{}')
+    RETURNING storage_id INTO original;
+    IF original <= 1 THEN RAISE EXCEPTION 'Identity sequence was not restored'; END IF;
+END;
+$verify$;
+SELECT 'POSTGRES_RESTORE_PASS';
+\endif

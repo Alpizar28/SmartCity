@@ -7,7 +7,7 @@ corresponden al DDL histórico conservado para reproducir sus evidencias.
 
 Formato Mermaid versionable y renderizable en GitHub. Las flechas de flujo expresan transferencia local o propuesta, **no FK ni servicios desplegados**. El E-R histórico refleja las relaciones entre las doce tablas centrales del [DDL `smartcity`](../../research/datasets/scripts/phase5_postgresql.sql); las FK compuestas refuerzan coherencia de fuente y estación. `smartcity_demo.entities` está separado y no tiene FK al núcleo. Versión histórica: [contrato común](../equipo/CONTRATO_UNIFICADO.md).
 
-La muestra de 5.000 de estos diagramas describe la validación inicial, no el volumen actual disponible. La [ampliación anual](../equipo/AMPLIACION_REAL_SPRINT1.md) añade una ruta configurable de todo 2025 con 1.076.813 observaciones reales y validación completa en motores locales. Meteorología y tráfico siguen separados, sin afirmar integración temporal validada.
+La muestra de 5.000 de estos diagramas describe la validación inicial, no el volumen actual disponible. La [ampliación anual](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AMPLIACION_REAL_SPRINT1.md) añade una ruta configurable de todo 2025 con 1.076.813 observaciones reales y validación completa en motores locales. Meteorología y tráfico siguen separados, sin afirmar integración temporal validada.
 
 ## 1. Arquitectura de datos
 
@@ -53,7 +53,7 @@ Reanudación actual: reutilizar cache completa/hash válido o reconstruir determ
 
 Revisión PostgreSQL v2: se mantienen las mismas doce tablas y FK. La extensión
 `sprint1/postgres/contract_v2.sql` añade dos atributos de observación y cambia
-CHECK, no cardinalidades. [Auditoría formal](../../sprint1/postgres/normalizacion_3fn.md):
+CHECK, no cardinalidades. [Auditoría formal](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/normalizacion_3fn.md):
 `channels` y `observations` **no cumplen 3FN estricta**; el diagrama refleja el
 DDL implementado, no la descomposición propuesta.
 

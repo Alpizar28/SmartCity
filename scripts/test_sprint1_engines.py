@@ -52,9 +52,9 @@ def wait_ready(name, args):
 
 
 def pg_snapshot(name, database):
-    sql = (ROOT / 'tests/integration/postgres_snapshot.sql').read_text()
+    sql = (ROOT / 'tests/integration/postgres_backup.sql').read_text()
     output = docker('exec', '-i', name, 'psql', '--no-psqlrc', '-U', 'postgres',
-                    '-d', database, '-v', 'ON_ERROR_STOP=1', '-tA', stdin=sql)
+                    '-d', database, '-v', 'ON_ERROR_STOP=1', '-v', 'snapshot=true', '-tA', stdin=sql)
     return json.dumps(json.loads(output), sort_keys=True, separators=(',', ':'))
 
 
@@ -71,9 +71,9 @@ def postgres_backup_restore(name):
     restored = pg_snapshot(name, 'sprint1_restore')
     if restored != original:
         raise RuntimeError('PostgreSQL logical snapshot differs after restore')
-    sql = (ROOT / 'tests/integration/postgres_restored.sql').read_text()
+    sql = (ROOT / 'tests/integration/postgres_backup.sql').read_text()
     output = docker('exec', '-i', name, 'psql', '--no-psqlrc', '-U', 'postgres',
-                    '-d', 'sprint1_restore', '-v', 'ON_ERROR_STOP=1', stdin=sql)
+                    '-d', 'sprint1_restore', '-v', 'ON_ERROR_STOP=1', '-v', 'snapshot=false', stdin=sql)
     if 'POSTGRES_RESTORE_PASS' not in output:
         raise RuntimeError('PostgreSQL restore completion marker absent')
     if pg_snapshot(name, 'sprint1_test') != original:
@@ -90,8 +90,8 @@ def mongodb_backup_restore(name):
     # Target is new. Never --drop, never overwrite a source/shared database.
     docker('exec', name, 'mongorestore', '--archive=' + archive, '--gzip', '--stopOnError',
            '--nsInclude=sprint1_test.*', '--nsFrom=sprint1_test.*', '--nsTo=sprint1_restore.*')
-    docker('cp', str(ROOT / 'tests/integration/mongodb_restored.js'), name + ':/tmp/restored.js')
-    output = docker('exec', name, 'mongosh', '--quiet', '/tmp/restored.js')
+    output = docker('exec', '--env', 'SMARTCITY_TEST_PHASE=restore', name,
+                    'mongosh', '--quiet', '/tmp/integration.js')
     if 'MONGODB_RESTORE_PASS' not in output:
         raise RuntimeError('MongoDB restore completion marker absent')
     return {'status': 'PASS', 'archive_sha256': archive_hash, 'output': output}

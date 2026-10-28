@@ -13,7 +13,7 @@ if ! command -v node >/dev/null 2>&1; then
   echo 'Node.js >=18 is required for the MongoDB builder tests.' >&2
   exit 1
 fi
-node --test tests/sprint1/test_mongodb.js tests/sprint1/test_mongodb_v2.js
+node --test tests/sprint1/test_mongodb.js
 git diff --check
 echo 'New Sprint 1 offline suite passed. No engine or historical reproduction PASS implied.'
 if [[ "${1:-}" == "--engines" || "${1:-}" == "--datos" ]]; then

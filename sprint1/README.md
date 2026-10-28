@@ -1,5 +1,24 @@
 # Código del Sprint 1 y núcleo de práctica
 
+## Orden para estudiar
+
+1. Leer una consulta SQL y señalar sus entradas, filtros, agrupación y resultado.
+2. Repetir el recorrido en `basico/consultas_mongodb_estudio.js`: cada consulta
+   tiene una función propia. Es una ayuda de lectura, no un reemplazo de evidencias.
+3. Revisar `basico/crud_mongodb.js` para seguir una escritura paso a paso.
+4. Entender cómo `basico/preparar_v2.py` transforma filas en documentos y cómo
+   `basico/cargar_mongodb_v2.js` carga lotes, valida e incorpora índices.
+5. Dejar `core/`, los ejecutores y la investigación para explicar validación y
+   reproducción, después de entender las consultas.
+
+Una estación es un sitio lógico; un canal es una serie de una magnitud; una
+observación es su valor en un instante. Un sensor físico es otra entidad y su
+relación con el canal no debe inventarse. En MongoDB, `$match` filtra documentos,
+`$group` calcula por grupo y `$sort` ordena el resultado. Nunca promediar juntos
+valores de magnitudes o unidades distintas.
+
+## Qué versión mostrar
+
 El modelo PostgreSQL de entrega utiliza `smartcity` con el
 [DDL normalizado](postgres/schema_v2_3nf.sql) y las diez consultas de
 [queries_v2_3nf.sql](postgres/queries_v2_3nf.sql). Su evidencia comprende 748.889

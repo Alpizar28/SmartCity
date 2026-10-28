@@ -42,7 +42,7 @@ Se requieren Python 3.10+, el binario local `mongod` 7.0.16 y `mongosh`.
 Desde la raíz del repositorio:
 
 ```bash
-node --test tests/sprint1/test_mongodb_academico.js
+node --test tests/sprint1/test_mongodb.js
 python3 scripts/validar_mongodb_academico.py
 ```
 

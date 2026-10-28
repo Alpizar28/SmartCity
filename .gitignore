@@ -5,7 +5,7 @@
 
 # Local persistent-data workspace (Docker uses named volumes)
 data/*
-!data/.gitkeep
+!data/README.md
 
 # Editor and OS files
 .vscode/

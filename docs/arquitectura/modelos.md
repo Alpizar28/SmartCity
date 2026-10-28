@@ -17,7 +17,7 @@ los antecedentes no se atribuyen al nuevo DDL ni a su generación verificada.
 
 ## PostgreSQL: doce tablas en `smartcity`
 
-Autoridad: [phase5_postgresql.sql](../../research/datasets/scripts/phase5_postgresql.sql). Se ejecutó únicamente en una base local desechable; `postgres/init/` continúa sin inicializadores.
+Autoridad: [phase5_postgresql.sql](../../research/datasets/scripts/phase5_postgresql.sql). Se ejecutó únicamente en una base local desechable; no hay inicializadores automáticos en la raíz. El código SQL de entrega está en `sprint1/postgres/`.
 
 | Tabla | PK | FK y función |
 |---|---|---|
@@ -40,7 +40,7 @@ Una fuente puede tener cero o muchas versiones, sitios y tipos; cada hijo con FK
 
 El diseño separa catálogos, pero **sí mantiene source_id redundante** en `channels` y `observations` para validar coherencia con FK compuestas. No son relaciones en 3FN estricta: estación/canal y versión determinan fuente sin ser superclaves de la relación hija. `observations` no repite sitio, zona, tipo ni unidad: `observation_contract` los reconstruye mediante joins. El JSONB `measurements` conserva variables opcionales del mismo intervalo de tráfico, no otro conjunto de filas ni un modelo puramente escalar de todos los campos.
 
-La [auditoría formal de Daniel](../../sprint1/postgres/normalizacion_3fn.md) evalúa las doce tablas y los campos v2: diez satisfacen las DF justificadas, con salvedades de dominios SQL/NULL/JSONB; canales y observaciones presentan excepciones de 2FN/3FN. Incluye propuesta sin pérdida y sus controles interrelacionales, no una migración aplicada. El DDL no tiene historial temporal de ubicación/organismo. `inventory_version` y `historical_location_verified=false` hacen visible la limitación. Las afirmaciones históricas de ausencia de source_id en `research/datasets/05_postgresql_design.md` están superadas por este DDL/auditoría; no se reutilizan como prueba de 3FN.
+La [auditoría formal de Daniel](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/normalizacion_3fn.md) evalúa las doce tablas y los campos v2: diez satisfacen las DF justificadas, con salvedades de dominios SQL/NULL/JSONB; canales y observaciones presentan excepciones de 2FN/3FN. Incluye propuesta sin pérdida y sus controles interrelacionales, no una migración aplicada. El DDL no tiene historial temporal de ubicación/organismo. `inventory_version` y `historical_location_verified=false` hacen visible la limitación. Las afirmaciones históricas de ausencia de source_id en `research/datasets/05_postgresql_design.md` están superadas por este DDL/auditoría; no se reutilizan como prueba de 3FN.
 
 - PK y UNIQUE: `(source_id,source_key)` en estaciones; `(source_id,code)` en tipos; `(station_id,source_key)` en canales; `(channel_id,observed_at,timestamp_role)` en observaciones. `source_versions` también declara UNIQUE de versión/fuente.
 - CHECK: coordenadas en rango y lat/lon ambas presentes o ambas NULL; valor finito; duración 1–30; origen y enums; zona original y versión de contrato.

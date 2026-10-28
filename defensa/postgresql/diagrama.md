@@ -1,0 +1,1 @@
+../../docs/arquitectura/diagrama_3nf.md

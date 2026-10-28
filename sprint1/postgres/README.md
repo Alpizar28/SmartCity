@@ -22,11 +22,11 @@ excepciones, preservadas para reproducir los resultados anteriores.
 
 ## Antecedentes del modelo de doce tablas
 
-- [Auditoría formal 3FN de las doce tablas](normalizacion_3fn.md): excepciones
+- [Auditoría formal 3FN de las doce tablas](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/normalizacion_3fn.md): excepciones
   reales en `channels` y `observations`; no se modificó el DDL común.
-- [PG07: prueba exacta y límite de evidencia física](pg07_limite_evidencia.md).
-- [Matriz PG01–PG10, muestras y trazabilidad SQL](evidencia_final_postgresql.md).
-- [Reproducción y prerrequisitos reales](reproduccion_cierre.md).
+- [PG07: prueba exacta y límite de evidencia física](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/pg07_limite_evidencia.md).
+- [Matriz PG01–PG10, muestras y trazabilidad SQL](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/evidencia_final_postgresql.md).
+- [Reproducción y prerrequisitos reales](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/reproduccion_cierre.md).
 - [Tres reportes acotados verificables](evidencias/README.md).
 
 En la reproducción histórica v2, `contract_v2.sql` se aplica después del DDL común

@@ -86,11 +86,11 @@ No se rellenan mínimos con cuarentena, duplicados, entidades administrativas o 
 - PostgreSQL: FK, ID duplicado, clave lógica duplicada y payload modificado rechazados; PG01–PG10 ejecutadas, sin convertir resultados vacíos en cumplimiento.
 - MongoDB: fecha string, identidad inconsistente, hash de fuente inválido, valor no finito, fuente desconocida y duplicados rechazados. Payload alterado conservando hash antiguo fue rechazado y registrado.
 - Los fallos esperados de integridad pertenecen a pruebas negativas; **no son errores del lote real**.
-- Las incidencias de certificados, bibliotecas de `pdftotext`, alcance de enero, conteo provisional y validación histórica se describen en [el informe anual](AMPLIACION_REAL_SPRINT1.md). No se alteraron originales para resolverlas.
+- Las incidencias de certificados, bibliotecas de `pdftotext`, alcance de enero, conteo provisional y validación histórica se describen en [el informe anual](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AMPLIACION_REAL_SPRINT1.md). No se alteraron originales para resolverlas.
 
 ## 6. Equipo, revisión y Git
 
-Instrucciones completas: [ENTREGA_TECNICA_SPRINT1.md](ENTREGA_TECNICA_SPRINT1.md).
+Instrucciones completas: [ENTREGA_TECNICA_SPRINT1.md](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/ENTREGA_TECNICA_SPRINT1.md).
 
 - **Daniel:** adaptar sus consultas y pruebas al DDL `smartcity`, `measurement_id`, relación de ubicaciones y vistas/funciones documentadas. Puede medir consultas sobre más de un millón de lecturas reales; no se modificaron arbitrariamente sus archivos.
 - **Kembly:** usar catálogos y JSONL EJSON del mismo lote, conservar IDs y BSON Date, aplicar política idempotente y conflictos en su implementación. El harness no sustituye su trabajo.

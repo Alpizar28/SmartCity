@@ -2,6 +2,15 @@
 
 Proyecto académico de Bases de Datos — II Semestre 2026.
 
+## Empezar por aquí
+
+- **Para defender:** [guía corta y accesos al código](defensa/README.md).
+- **PostgreSQL:** [tablas](sprint1/postgres/schema_v2_3nf.sql),
+  [consultas](sprint1/postgres/queries_v2_3nf.sql) y
+  [diagrama](docs/arquitectura/diagrama_3nf.md).
+- **MongoDB:** [consultas oficiales](sprint1/basico/consultas_mongodb_v2.js).
+  Para entenderlas una por una: [versión de estudio](sprint1/basico/consultas_mongodb_estudio.js).
+
 ## Documentación de la entrega
 
 1. [Sprint 1: alcance y ejecución](ENTREGA_SPRINT1.md).
@@ -99,13 +108,23 @@ El código sencillo de esa ruta está en `sprint1/basico/*v2*` y usa `smartcity`
 en una base local nueva. Las veinte consultas no equivalen a aceptación docente:
 canal no es sensor físico y las alertas son replay local, no avisos oficiales.
 
-## Carpetas
+## Qué contiene cada carpeta
 
-- `sprint1/`: código local y consultas de práctica; `tests/`: sus pruebas.
-- `research/datasets/scripts/`: ETL y validación de la carga anual e investigación.
-- `research/datasets/results/`: evidencia de ejecuciones anteriores, no datos actuales del servidor.
-- `docs/`: [documentación técnica y archivo histórico](docs/README.md).
-- `compose.yaml`: infraestructura local; no instala automáticamente el esquema del dataset.
+- `defensa/`: recorrido corto; sus accesos apuntan a los originales.
+- `sprint1/postgres/`: modelo normalizado y consultas; los SQL históricos y de
+  práctica están identificados en su README.
+- `sprint1/basico/`: preparación/carga v2, consultas y ejemplos de práctica.
+- `sprint1/mongodb/academico/`: laboratorio sintético, separado de Madrid v2.
+- `sprint1/mongodb/`: también conserva validadores y consultas del núcleo de práctica.
+- `sprint1/core/`: validación de ese núcleo; no es necesario empezar por aquí.
+- `scripts/`: ejecutores; [cuál usar](scripts/README.md).
+- `tests/sprint1/`: pruebas offline; `tests/integration/`: pruebas para bases temporales.
+- `docs/`: informe, diagramas, requisitos y resultados, con sus antecedentes identificados.
+- `data/`: [paquete privado e instrucciones](data/README.md), no datos publicados en Git.
+- `research/datasets/`: investigación, ETL y evidencias. El código actual todavía
+  importa utilidades de aquí; no es una carpeta descartable.
+- `.github/`: comprobaciones automáticas. `compose.yaml` define motores locales,
+  pero no instala el esquema ni carga datos por sí solo.
 
 No subir credenciales, `.env`, claves, dumps ni datos privados. El acceso al servidor
 se coordina con el administrador. No aplicar cargas o migraciones compartidas sin autorización.

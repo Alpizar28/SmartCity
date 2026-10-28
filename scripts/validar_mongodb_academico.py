@@ -122,7 +122,7 @@ def run(mongod, mongosh):
     output = ROOT / 'sprint1/mongodb/evidencias/academico' / run_id
     output.mkdir(parents=True, exist_ok=False)
     sources = [Path(__file__), *DEMO.glob('*.js'), DEMO / 'fixtures.json',
-               ROOT / 'tests/sprint1/test_mongodb_academico.js']
+               ROOT / 'tests/sprint1/test_mongodb.js']
     report = {'status': 'FAIL', 'run_id': run_id, 'scope': 'synthetic_academic_only',
               'topology': 'standalone', 'distributed_storage_demonstrated': False,
               'public_data_loaded': False, 'shared_server_modified': False,

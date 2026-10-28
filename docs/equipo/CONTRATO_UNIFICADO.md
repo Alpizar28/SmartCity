@@ -63,7 +63,7 @@ Se cargan en las tablas/colecciones administrativas de entrega (`organizations`,
 
 ## Reproducción local
 
-Para el lote anual de más de un millón de observaciones, usar [AMPLIACION_REAL_SPRINT1.md](AMPLIACION_REAL_SPRINT1.md) y los scripts `unified_expand.py`, `unified_full_load.py` y `unified_full_verify.py`. El alcance y comandos de esta sección conservan la prueba inicial acotada. La nueva documentación oficial de tráfico descubre una interpretación incorrecta de `periodo_integracion`; esa fuente continúa bloqueada y su corrección incompatible requiere revisión contractual, no un cambio de estado.
+Para el lote anual de más de un millón de observaciones, usar [AMPLIACION_REAL_SPRINT1.md](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AMPLIACION_REAL_SPRINT1.md) y los scripts `unified_expand.py`, `unified_full_load.py` y `unified_full_verify.py`. El alcance y comandos de esta sección conservan la prueba inicial acotada. La nueva documentación oficial de tráfico descubre una interpretación incorrecta de `periodo_integracion`; esa fuente continúa bloqueada y su corrección incompatible requiere revisión contractual, no un cambio de estado.
 
 Desde la raíz del repositorio, con las dependencias Python y snapshots locales verificados:
 

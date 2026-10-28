@@ -22,6 +22,6 @@ los dos FAIL históricos tampoco se alteraron. Los intentos fallidos durante
 desarrollo y las ejecuciones previas permanecen en `/tmp/opencode` y se resumen
 en la entrega; no se los presenta como PASS.
 
-Interpretación y comandos: [entrega técnica](../evidencia_final_postgresql.md),
-[reproducción](../reproduccion_cierre.md), [3FN](../normalizacion_3fn.md),
-[PG07](../pg07_limite_evidencia.md).
+Interpretación y comandos: [entrega técnica](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/evidencia_final_postgresql.md),
+[reproducción](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/reproduccion_cierre.md), [3FN](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/normalizacion_3fn.md),
+[PG07](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/pg07_limite_evidencia.md).

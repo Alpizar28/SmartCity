@@ -36,4 +36,4 @@ La segunda ejecución de preparación devolvió `idempotent_reuse=true`, 1.076.8
 
 Spark/Hadoop **no se implementaron ni ejecutaron**. Tener más de un millón de entradas disponibles no acredita procesamiento Spark. No hay despliegue compartido ni equivalencia entre canales y sensores físicos. Las 14 entidades administrativas de demo anteriores permanecen fuera de estos conteos y de las cargas anuales.
 
-Reproducción y entrega a Daniel, Kembly y Fernanda: [AMPLIACION_REAL_SPRINT1.md](../../../../docs/equipo/AMPLIACION_REAL_SPRINT1.md).
+Reproducción y entrega a Daniel, Kembly y Fernanda: [AMPLIACION_REAL_SPRINT1.md](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AMPLIACION_REAL_SPRINT1.md).

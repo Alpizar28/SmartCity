@@ -2,9 +2,9 @@
 
 **Actualización de integración:** el usuario autoriza integrar y publicar la consolidación documental en `main` aunque la reproducción siga incompleta. Esto no convierte los 83/85 tests en PASS ni modifica la evidencia. Las referencias a «sin merge/push» y «Listo para PR: NO» más abajo describen los checkpoints previos, no una prohibición vigente de integrar documentación.
 
-**Pendiente, sin bloquear el desarrollo nuevo:** los dos SQLite regenerados y las 13 respuestas históricas siguen sin recuperación exacta acreditada. No se relajan los controles ni se declara reproducción completa. Este pendiente no invalida `madrid-draft-v1-frozen`: el [plan de implementación](PLAN_IMPLEMENTACION_SPRINT1.md) permite trabajo nuevo local sobre campos congelados, con pruebas separadas y sin cargas autorizadas. La consolidación documental y sus pendientes se conservan en `main` tras la integración autorizada.
+**Pendiente, sin bloquear el desarrollo nuevo:** los dos SQLite regenerados y las 13 respuestas históricas siguen sin recuperación exacta acreditada. No se relajan los controles ni se declara reproducción completa. Este pendiente no invalida `madrid-draft-v1-frozen`: el [plan de implementación](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/PLAN_IMPLEMENTACION_SPRINT1.md) permite trabajo nuevo local sobre campos congelados, con pruebas separadas y sin cargas autorizadas. La consolidación documental y sus pendientes se conservan en `main` tras la integración autorizada.
 
-La [auditoría lógica posterior de SQLite](AUDITORIA_LOGICA_SQLITE.md) compara todas las filas contra fuentes verificadas y documenta qué puede acreditarse sin disponer de las bases históricas.
+La [auditoría lógica posterior de SQLite](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/docs/equipo/AUDITORIA_LOGICA_SQLITE.md) compara todas las filas contra fuentes verificadas y documenta qué puede acreditarse sin disponer de las bases históricas.
 
 Trabajo local en `fix/repo-consolidation`. No se modifica la suite, el contrato, los modelos, los manifiestos históricos ni los servicios compartidos. Las descargas son únicamente de fuentes públicas originales; una respuesta nueva no se acepta como snapshot histórico sin igualdad exacta de SHA-256 y tamaño.
 

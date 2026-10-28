@@ -176,7 +176,7 @@ def check_ignores(failures):
                "research/datasets/.venv/probe", "volumes/probe", "tmp/probe", "probe.dump",
                "probe.sqlite", "probe.parquet", "probe.key", "probe.log",
                "research/datasets/results/phase4/E_original.txt"]
-    kept = [".env.example", "data/.gitkeep", "research/datasets/.gitignore",
+    kept = [".env.example", "data/README.md", "research/datasets/.gitignore",
             "research/datasets/05_data_dictionary.csv", "research/datasets/04_scores.csv",
             "research/datasets/00_query_matrix.csv", "research/datasets/scripts/phase5_postgresql.sql",
             "research/datasets/scripts/phase5_prepare.py", "research/datasets/results/phase5/mongodb_server.log"]
@@ -286,7 +286,10 @@ def main():
             failures.append(f"Required documentation missing: {name}")
     # Documentation integrity is branch-independent. This permits maintenance branches
     # to validate a proposed consolidation before it is merged into main.
-    if git("diff", "--", "compose.yaml", ".env.example", "postgres", "mongodb"):
+    infrastructure_changes = git("diff", "--name-status", "--", "compose.yaml", ".env.example", "postgres", "mongodb")
+    # Cleanup may delete only the two unused directory markers, not infrastructure.
+    allowed_deletions = {"D\tpostgres/init/.gitkeep", "D\tmongodb/init/.gitkeep"}
+    if any(line not in allowed_deletions for line in infrastructure_changes.splitlines()):
         failures.append("Protected infrastructure diff detected")
     if git("diff", "--cached", "--name-only"):
         failures.append("Staged changes detected; Phase 6 prepares no staging")

@@ -21,7 +21,7 @@ simular un nivel de experiencia.
 ## Comparar el comportamiento sin conectar a MongoDB
 
 ```bash
-node --test tests/sprint1/test_mongodb_estudio.js
+node --test tests/sprint1/test_mongodb.js
 ```
 
 La prueba compara los resultados y la secuencia completa de llamadas a una base
@@ -29,7 +29,7 @@ simulada: filtros, proyecciones, orden, límite y etapas de agregación. Incluye
 operaciones síncronas y asíncronas, y el rechazo cuando falta tráfico.
 No sustituye una prueba sobre un motor real.
 
-Esta muestra no está conectada al cargador ni a la suite principal. El código
+Esta muestra no está conectada al cargador; sus pruebas forman parte de la suite principal. El código
 oficial y sus evidencias no se modificaron. Adoptarla requiere actualizar los
 imports, integrar sus pruebas y volver a validar el código nuevo; no cambiar
 los hashes de reportes antiguos para hacerlos pasar por ejecuciones nuevas.

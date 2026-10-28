@@ -19,9 +19,9 @@ para reproducir sus informes. [Cierre normalizado](../../sprint1/postgres/cierre
 PG01–PG10 completas contra Python, 748.889 lecturas y reconciliación. Mongo: `sprint1/basico/consultas_mongodb_v2.js`.
 Las consultas no equivalen automáticamente a aceptación académica del alcance.
 
-**Antecedente PostgreSQL:** [fichas PG01–PG10 y resultados v2](../../sprint1/postgres/evidencia_final_postgresql.md),
-[normalización formal](../../sprint1/postgres/normalizacion_3fn.md) y
-[PG07: pruebas y evidencia física requerida](../../sprint1/postgres/pg07_limite_evidencia.md).
+**Antecedente PostgreSQL:** [fichas PG01–PG10 y resultados v2](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/evidencia_final_postgresql.md),
+[normalización formal](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/normalizacion_3fn.md) y
+[PG07: pruebas y evidencia física requerida](https://github.com/Alpizar28/SmartCity/blob/9d84a34e529a72b316c540bff549080c906b0126/sprint1/postgres/pg07_limite_evidencia.md).
 El PASS masivo PostgreSQL se cotejó con el paquete privado y un cálculo Python
 independiente; tres reportes separan auditoría completa, SQL controlado y
 subconjunto observado v2. Esos tres informes históricos no certifican el DDL
