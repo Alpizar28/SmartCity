@@ -36,7 +36,7 @@ Solo crea y elimina contenedores propios, sin puertos ni bases persistentes.
 Los informes nuevos quedan en `/tmp/opencode/smartcity-s1-sql-*.json` y
 `/tmp/opencode/smartcity-s1-integration-*.json`; incluyen resultados, hashes y limpieza.
 
-**Verificado localmente:** 51 pruebas Python, 12 Node y las diez consultas SQL
+**Verificado localmente:** 51 pruebas Python, 13 Node y las diez consultas SQL
 con resultados esperados e integración SQL/Mongo PASS.
 Se comprobaron consultas, índices, replay, cuarentena, CRUD, respaldo/restauración
 y concurrencia PostgreSQL acotada. No prueba los clientes Python con autenticación real.
@@ -114,6 +114,11 @@ research/datasets/.venv/bin/python scripts/verificar_v2.py
 
 Exige resultados de ambas cargas, igualdad de IDs/payloads, código sin cambios,
 replay y limpieza. Si falta un motor o solo hay ejecuciones fallidas, rechaza PASS.
+
+Antes de la carga masiva, `--datos` ejecuta `scripts/test_mongo_v2_sample.py`:
+prueba las diez consultas y eventos/alertas con tres lecturas reales en MongoDB.
+Este control detectó y corrigió el uso de cursores asíncronos desde módulos
+`require`; no equivale a validar el volumen completo.
 
 El intérprete por defecto es `research/datasets/.venv/bin/python` (con las
 dependencias de `requirements.lock`); se puede elegir otro mediante `PYTHON_DATOS`.

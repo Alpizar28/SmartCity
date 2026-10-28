@@ -157,7 +157,9 @@ comprobar(eventos > 0 && alertas > 0, 'La demostración no tiene eventos/alertas
 db.derived_events.createIndex({ rule_version: 1, observed_at: 1 });
 db.alerts.createIndex({ zone_id: 1, emitted_at: 1 });
 
-const resultados = consultar(db, regla);
+// Await explícito dentro de una función: compatible con el modo --file de mongosh.
+async function terminar() {
+const resultados = await consultar(db, regla);
 comprobar(Object.keys(resultados).length === 10, 'Faltan consultas MG01-MG10');
 const hash = crypto.createHash('sha256');
 for (const d of db.readings.find({}, { measurement_id: 1, payload_hash: 1 }).sort({ _id: 1 })) {
@@ -169,3 +171,5 @@ print('V2_MONGO_RESULT=' + JSON.stringify({ count: leidas,
   events: eventos, alerts: alertas, replay_verified: true,
   results: resultados, zone_scope: informe.zone_scope,
   notice: 'Events and alerts are a derived classroom replay, not official warnings. Incident year: 2026.' }));
+}
+terminar();

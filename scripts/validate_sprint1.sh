@@ -28,6 +28,7 @@ if [[ "${1:-}" == "--datos" ]]; then
     exit 2
   fi
   "$python_datos" -m sprint1.basico.preparar_v2
+  "$python_datos" scripts/test_mongo_v2_sample.py
   "$python_datos" scripts/validar_v2.py
   "$python_datos" scripts/verificar_v2.py
 fi

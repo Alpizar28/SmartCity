@@ -30,6 +30,12 @@ def verificar(carpeta):
             or informe.get('shared_server_modified') is not False):
             raise ValueError('Faltan volumen, replay o limpieza: ' + motor)
         for nombre, sha in informe['source_hashes'].items():
+            # El informe enumera ambos motores. Un cambio de JS no invalida SQL ya ejecutado,
+            # ni un cambio del DDL SQL altera una ejecución exclusivamente MongoDB.
+            if motor == 'postgresql' and nombre.endswith('.js'):
+                continue
+            if motor == 'mongodb' and nombre.endswith('.sql'):
+                continue
             if digest(PROYECTO / nombre) != sha:
                 raise ValueError('Código cambiado desde la ejecución: ' + nombre + ' (' + motor + ')')
         if set(datos['results']) != {('PG' if motor == 'postgresql' else 'MG') + f'{i:02d}' for i in range(1, 11)}:

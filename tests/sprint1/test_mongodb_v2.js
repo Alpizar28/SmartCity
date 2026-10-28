@@ -3,10 +3,10 @@ const test = require('node:test');
 const assert = require('node:assert/strict');
 const { consultar } = require('../../sprint1/basico/consultas_mongodb_v2');
 
-function baseSimulada() {
+function baseSimulada(asincrona = false) {
   const llamadas = [];
   function coleccion(nombre) {
-    return {
+    const operaciones = {
       findOne: () => ({ channel_id: 'canal-real-del-test', source_version: 'version-del-test' }),
       countDocuments: filtro => { llamadas.push({ nombre, tipo: 'count', filtro }); return 1; },
       find: filtro => {
@@ -18,21 +18,35 @@ function baseSimulada() {
         return { toArray: () => [] };
       },
     };
+    if (asincrona) {
+      for (const nombreOperacion of ['findOne', 'countDocuments', 'find', 'aggregate']) {
+        const original = operaciones[nombreOperacion];
+        operaciones[nombreOperacion] = async (...argumentos) => original(...argumentos);
+      }
+    }
+    return operaciones;
   }
   return { llamadas, readings: coleccion('readings'), derived_events: coleccion('events'),
     alerts: coleccion('alerts'), incidents: coleccion('incidents') };
 }
 const regla = { threshold: 2000, version: 'traffic-intensity-demo-v1', official_rule: false };
 
-test('v2 ejecuta diez consultas de lectura y exige la segunda fuente', () => {
-  const base = baseSimulada();
-  assert.equal(Object.keys(consultar(base, regla)).length, 10);
-  base.readings.findOne = () => null;
-  assert.throws(() => consultar(base, regla), /Falta la segunda fuente/);
+test('v2 espera operaciones asíncronas reales del módulo mongosh', async () => {
+  const resultados = await consultar(baseSimulada(true), regla);
+  assert.equal(Object.keys(resultados).length, 10);
+  assert.equal(resultados.MG01.total, 1);
+  assert.ok(Array.isArray(resultados.MG03));
 });
 
-test('v2 usa ventana semiabierta de Madrid y filtros múltiples explícitos', () => {
-  const resultados = consultar(baseSimulada(), regla);
+test('v2 ejecuta diez consultas de lectura y exige la segunda fuente', async () => {
+  const base = baseSimulada();
+  assert.equal(Object.keys(await consultar(base, regla)).length, 10);
+  base.readings.findOne = () => null;
+  await assert.rejects(() => consultar(base, regla), /Falta la segunda fuente/);
+});
+
+test('v2 usa ventana semiabierta de Madrid y filtros múltiples explícitos', async () => {
+  const resultados = await consultar(baseSimulada(), regla);
   const fechas = resultados.MG02.parametros.observed_at;
   assert.equal(fechas.$gte.toISOString(), '2024-12-31T23:00:00.000Z');
   assert.equal(fechas.$lt.toISOString(), '2025-01-31T23:00:00.000Z');
@@ -41,9 +55,9 @@ test('v2 usa ventana semiabierta de Madrid y filtros múltiples explícitos', ()
   assert.deepEqual(resultados.MG10.parametros.zone_id, { $ne: null });
 });
 
-test('v2 separa fuentes/unidades y no promedia zonas desconocidas', () => {
+test('v2 separa fuentes/unidades y no promedia zonas desconocidas', async () => {
   const base = baseSimulada();
-  consultar(base, regla);
+  await consultar(base, regla);
   const pipelines = base.llamadas.filter(l => l.tipo === 'aggregate' && l.nombre === 'readings');
   const promedioZona = pipelines.find(l => l.pipeline[0].$match?.zone_id);
   assert.deepEqual(promedioZona.pipeline[0].$match.zone_id, { $ne: null });
@@ -54,9 +68,9 @@ test('v2 separa fuentes/unidades y no promedia zonas desconocidas', () => {
   }
 });
 
-test('v2 consulta accidentes aparte y alertas desde la colección emitida', () => {
+test('v2 consulta accidentes aparte y alertas desde la colección emitida', async () => {
   const base = baseSimulada();
-  consultar(base, regla);
+  await consultar(base, regla);
   const accidentes = base.llamadas.find(l => l.nombre === 'incidents');
   assert.equal(accidentes.pipeline[0].$group._id, '$category');
   const alertas = base.llamadas.find(l => l.nombre === 'alerts');

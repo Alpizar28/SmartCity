@@ -5,7 +5,7 @@ Instrucciones: [ENTREGA_SPRINT1.md](../../ENTREGA_SPRINT1.md).
 
 ## Comprobado
 
-- Suite unificada: 51 pruebas Python y 12 Node aprobadas; diez consultas SQL
+- Suite unificada: 51 pruebas Python y 13 Node aprobadas; diez consultas SQL
   `smartcity` ejecutadas con resultados comprobados y fixtures revertidas.
   El parser anual vuelve a reconocer PG01–PG10. SQL de práctica separado en
   `staging_queries.sql`; PG07 excluye relaciones sensor–canal desconocidas.
