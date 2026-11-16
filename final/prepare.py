@@ -100,3 +100,110 @@ def air_documents(stream, sha, catalogs, units):
                         'unit': doc['unit'], 'unit_status': 'verified_dictionary'}
                 validate_document(doc, catalogs)
             yield doc, reason, day
+
+
+def prepare(archive_path, v2, output):
+    if output.exists():
+        raise ValueError('Output must be NEW: existing generations are never overwritten')
+    preparation = json.loads((v2 / 'preparation.json').read_text())
+    for name in ('accepted.extjsonl', 'catalogs.json'):
+        if digest(v2 / name) != preparation['output_hashes'][name]:
+            raise ValueError('Changed v2 input: ' + name)
+    catalogs = json.loads((v2 / 'catalogs.json').read_text())
+    dictionary = ROOT / 'research/datasets/results/phase3/madrid_dictionary_provenance.json'
+    units = json.loads(dictionary.read_text())['unit_codes_extracted']
+    raw_name = 'raw/MAD-AIR-file.attempt1.bin'
+    raw_sha = preparation['source_hashes'][raw_name]
+    member = 'research/datasets/' + raw_name
+    with zipfile.ZipFile(archive_path) as archive:
+        with archive.open(member) as stream:
+            h = hashlib.sha256()
+            while True:
+                chunk = stream.read(1024 * 1024)
+                if not chunk:
+                    break
+                h.update(chunk)
+            if h.hexdigest() != raw_sha:
+                raise ValueError('Changed raw air source')
+        output.mkdir(parents=True)
+        output.chmod(0o700)
+        counts, rejects, references = Counter(), Counter(), {}
+        with sqlite3.connect(output / 'identities.sqlite') as ledger, \
+                (output / 'observations.jsonl.partial').open('x') as accepted, \
+                (output / 'quarantine.jsonl').open('x') as quarantine:
+            ledger.execute('CREATE TABLE records (id TEXT PRIMARY KEY, channel TEXT NOT NULL, '
+                           'time TEXT NOT NULL, hash TEXT NOT NULL, UNIQUE(channel,time))')
+
+            def emit(doc, day):
+                row = flatten(doc, catalogs, day)
+                ledger.execute('INSERT INTO records VALUES (?,?,?,?)',
+                               (row['_id'], row['channel_id'], row['observed_at'], row['record_hash']))
+                accepted.write(canonical(row) + '\n')
+                counts[row['source_id'] + ':' + str(row['source_year'])] += 1
+                ref = references.setdefault(row['measurement_type'], {'count': 0, 'sum': 0.0,
+                    'min': row['value'], 'max': row['value'], 'unit': row['unit']})
+                if ref['unit'] != row['unit']:
+                    raise ValueError('Inconsistent measurement units')
+                ref['count'] += 1
+                ref['sum'] += row['value']
+                ref['min'] = min(ref['min'], row['value'])
+                ref['max'] = max(ref['max'], row['value'])
+                if sum(counts.values()) % 100000 == 0:
+                    ledger.commit()
+                    print('Accepted:', sum(counts.values()), flush=True)
+
+            with archive.open(member) as stream:
+                for doc, reason, day in air_documents(stream, raw_sha, catalogs, units):
+                    if reason != 'accepted':
+                        rejects[str(day[:4]) + ':' + reason] += 1
+                        quarantine.write(canonical({'reason': reason, 'raw_reference': doc['raw_reference']}) + '\n')
+                        continue
+                    emit(doc, day)
+            skipped_air = 0
+            with (v2 / 'accepted.extjsonl').open() as stream:
+                for line in stream:
+                    doc = json.loads(line)
+                    if doc['source_id'] == 'MAD-AIR':
+                        skipped_air += 1
+                        continue
+                    if doc['source_id'] != 'MAD-TRAFFIC' or doc['schema_version'] != 'madrid-draft-v2':
+                        raise ValueError('Unexpected v2 source/contract')
+                    if doc['payload_hash'] != payload_hash(doc):
+                        raise ValueError('Changed traffic payload')
+                    if doc['_id'] != stable_id('measurement', doc['channel_id'],
+                                              doc['observed_at']['$date'], doc['timestamp_role']):
+                        raise ValueError('Changed traffic identity')
+                    emit(doc, doc['original_time'][:10])
+            if skipped_air != preparation['by_source']['MAD-AIR']['accepted']:
+                raise ValueError('Unexpected excluded January air count')
+            if counts['MAD-TRAFFIC:2025'] != preparation['by_source']['MAD-TRAFFIC']['accepted']:
+                raise ValueError('Traffic count mismatch')
+            ledger.commit()
+        (output / 'observations.jsonl.partial').rename(output / 'observations.jsonl')
+    seal(output / 'catalogs.json', catalogs)
+    manifest = {'status': 'PREPARED', 'contract': CONTRACT,
+        'created_at_utc': datetime.now(timezone.utc).isoformat(), 'count': sum(counts.values()),
+        'counts': dict(counts), 'rejections': dict(rejects), 'excluded_v2_air_overlap': skipped_air,
+        'reference_by_measurement': references, 'synthetic_measurements': 0,
+        'physical_sensor_links': 0, 'spark_executed': False,
+        'input_hashes': {'raw_air': raw_sha, 'v2_accepted': preparation['output_hashes']['accepted.extjsonl'],
+                         'v2_catalogs': preparation['output_hashes']['catalogs.json'], 'dictionary': digest(dictionary)},
+        'code_hashes': {str(p.relative_to(ROOT)): digest(p) for p in
+                        (Path(__file__), ROOT / 'research/datasets/scripts/phase5_contract.py')},
+        'output_hashes': {name: digest(output / name) for name in
+                          ('observations.jsonl', 'catalogs.json', 'quarantine.jsonl', 'identities.sqlite')},
+        'limits': ['Current inventory, historical geography unverified',
+                   'Air has no district mapping', 'Traffic only January 2025 id%20==0',
+                   'Events intensity >2000 veh/h are demo, not official alerts',
+                   'Analytics projection is not the full madrid-draft-v2 DTO']}
+    seal(output / 'manifest.json', manifest)
+    return manifest
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--archive', type=Path, required=True)
+    parser.add_argument('--v2', type=Path, required=True)
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    print(json.dumps(prepare(args.archive, args.v2, args.output), indent=2))
