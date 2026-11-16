@@ -55,3 +55,48 @@ def flatten(doc, catalogs, source_day):
         row['demo_event'] = doc['value'] > 2000
     row['record_hash'] = hashlib.sha256(canonical(row).encode()).hexdigest()
     return row
+
+
+def air_documents(stream, sha, catalogs, units):
+    reader = csv.DictReader(io.TextIOWrapper(stream, encoding='utf-8-sig'), delimiter=';')
+    required = {'PROVINCIA', 'MUNICIPIO', 'ESTACION', 'MAGNITUD', 'PUNTO_MUESTREO', 'ANO', 'MES', 'DIA'}
+    required.update(f'{prefix}{hour:02d}' for prefix in ('H', 'V') for hour in range(1, 25))
+    if set(reader.fieldnames or []) != required:
+        raise ValueError('Unexpected raw air schema')
+    for position, row in enumerate(reader, 2):
+        day = datetime(int(row['ANO']), int(row['MES']), int(row['DIA'])).date().isoformat()
+        key = [row['ESTACION'], row['MAGNITUD'], row['PUNTO_MUESTREO'] or None]
+        for hour in range(1, 25):
+            doc = base_document('MAD-AIR', sha, row['ESTACION'], key,
+                                hourly_endpoint(day, hour), 'hour_end', 'documented_local')
+            doc.update(measurement_type='MAD-AIR:' + row['MAGNITUD'],
+                       value=numeric(row[f'H{hour:02d}']), unit=units.get(row['MAGNITUD']),
+                       unit_status='verified_dictionary', candidate_unit=None,
+                       quality_flag=row[f'V{hour:02d}'], source_key=[*key, day, f'H{hour:02d}'],
+                       raw_reference={'path': 'raw/MAD-AIR-file.attempt1.bin', 'sha256': sha,
+                                      'row': position, 'column': f'H{hour:02d}'},
+                       provenance={'value': 'observed', 'observed_at': 'derived', 'ids': 'derived',
+                                   'unit': 'derived', 'unit_availability': 'available'})
+            if doc['station_id'] not in catalogs['stations']:
+                raise ValueError('Air station missing from verified catalog')
+            doc['zone_id'] = catalogs['stations'][doc['station_id']]['zone_id']
+            reason = 'accepted'
+            if doc['time_error']:
+                reason = doc['time_error']
+            elif doc['quality_flag'] != 'V':
+                reason = 'provider_flag'
+            elif doc['value'] is None or doc['unit'] is None:
+                reason = 'value_or_unit'
+            doc['payload_hash'] = payload_hash(doc)
+            if reason == 'accepted':
+                if doc['channel_id'] not in catalogs['channels']:
+                    catalogs['channels'][doc['channel_id']] = {
+                        'channel_id': doc['channel_id'], 'station_id': doc['station_id'],
+                        'sensor_id': None, 'source_id': 'MAD-AIR', 'source_key': key,
+                        'measurement_type': doc['measurement_type'], 'catalog_basis': 'observations'}
+                typ = doc['measurement_type']
+                if typ not in catalogs['measurement_types']:
+                    catalogs['measurement_types'][typ] = {'source_id': 'MAD-AIR',
+                        'unit': doc['unit'], 'unit_status': 'verified_dictionary'}
+                validate_document(doc, catalogs)
+            yield doc, reason, day
