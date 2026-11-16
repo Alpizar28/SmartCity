@@ -83,3 +83,66 @@ def profile_air(stream):
             stats['counts']['candidate_slots'] += 1
             stats['months'][day[:7]] += 1
     return years
+
+
+def audit(archive_path, dataset_root):
+    preparation_path = dataset_root / 'private_results/expanded-v2-2025-01/preparation.json'
+    preparation = json.loads(preparation_path.read_text())
+    report = {
+        'generated_at_utc': datetime.now(timezone.utc).isoformat(),
+        'scope': 'Read-only input audit; no ETL export, database, HDFS or Spark execution',
+        'v2_expected_readings': preparation['accepted'],
+        'v2_outputs': {}, 'raw_sources': {},
+        'historical_annual_export_present': (dataset_root / 'private_results/expanded-2025/accepted.extjsonl').is_file(),
+        'spark_executed': False,
+    }
+    for name, expected in preparation['output_hashes'].items():
+        path = preparation_path.parent / name
+        result = {'present': path.is_file(), 'matches': False}
+        if result['present']:
+            with path.open('rb') as stream:
+                actual = sha256_stream(stream)
+            result.update(bytes=path.stat().st_size, sha256=actual, matches=actual == expected)
+        report['v2_outputs'][name] = result
+    with zipfile.ZipFile(archive_path) as archive:
+        for name, expected in preparation['source_hashes'].items():
+            member = 'research/datasets/' + name
+            result = {'present': member in archive.namelist(), 'matches': False}
+            if result['present']:
+                with archive.open(member) as stream:
+                    actual = sha256_stream(stream)
+                result.update(bytes=archive.getinfo(member).file_size,
+                              sha256=actual, matches=actual == expected)
+            report['raw_sources'][name] = result
+        air = 'raw/MAD-AIR-file.attempt1.bin'
+        if report['raw_sources'][air]['matches']:
+            with archive.open('research/datasets/' + air) as stream:
+                report['air_raw_profile'] = profile_air(stream)
+    report['input_hashes_verified'] = all(
+        result['matches'] for section in ('v2_outputs', 'raw_sources')
+        for result in report[section].values())
+    return report
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--archive', type=Path, required=True)
+    parser.add_argument('--dataset-root', type=Path, required=True,
+                        help='Directorio extraído research/datasets, no la raíz del repo')
+    parser.add_argument('--output', type=Path, required=True)
+    args = parser.parse_args()
+    if args.output.exists():
+        parser.error('El informe ya existe; elegir otra ruta para conservar la evidencia')
+    report = audit(args.archive, args.dataset_root)
+    # Exclusive create: never overwrite an existing report, including a racing writer.
+    with args.output.open('x', encoding='utf-8') as stream:
+        json.dump(report, stream, ensure_ascii=False, indent=2)
+        stream.write('\n')
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    if not report['input_hashes_verified']:
+        return 1
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())
