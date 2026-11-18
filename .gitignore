@@ -22,6 +22,7 @@ raw/
 private_results/
 .venv/
 .venv-basico/
+.venv-final/
 __pycache__/
 .pytest_cache/
 *.pyc
