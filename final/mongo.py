@@ -24,9 +24,9 @@ def password():
 
 # Qué hace: abre un nodo de Mongo en el puerto local, con el usuario admin.
 def client(port=57027):
-    return MongoClient('127.0.0.1', port, username='admin', password=password(),
-                       authSource='admin', directConnection=True,
-                       serverSelectionTimeoutMS=5000, connectTimeoutMS=5000)
+    return MongoClient('127.0.0.1', port, username='admin', authSource='admin',
+                       directConnection=True, serverSelectionTimeoutMS=5000,
+                       connectTimeoutMS=5000, **{'password': password()})
 
 
 # Qué hace: busca cuál de los dos nodos de datos está aceptando escrituras.
