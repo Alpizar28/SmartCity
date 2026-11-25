@@ -9,7 +9,6 @@ import json
 import sys
 
 
-# Qué hace: lee cada observación y suelta la llave fuente|tipo|unidad con un 1.
 def mapper(lines):
     for line in lines:
         row = json.loads(line)
@@ -17,8 +16,16 @@ def mapper(lines):
         print(key + '\t1')
 
 
-# Qué hace: suma los 1 de cada llave. Ocupa que las líneas ya vengan ordenadas.
+def activity_mapper(lines):
+    for line in lines:
+        row = json.loads(line)
+        print('channel|%s|%s\t1' % (row['channel_id'], row['source_day'][:7]))
+        if row['demo_event'] and row['zone_id']:
+            print('event|%s\t1' % row['zone_id'])
+
+
 def reducer(lines):
+    """Streaming entrega las claves ordenadas."""
     previous = None
     total = 0
     for line in lines:
@@ -33,9 +40,11 @@ def reducer(lines):
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2 or sys.argv[1] not in ('map', 'reduce'):
-        raise SystemExit('Usage: batch.py map|reduce')
+    if len(sys.argv) != 2 or sys.argv[1] not in ('map', 'map-activity', 'reduce'):
+        raise SystemExit('Usage: batch.py map|map-activity|reduce')
     if sys.argv[1] == 'map':
         mapper(sys.stdin)
+    elif sys.argv[1] == 'map-activity':
+        activity_mapper(sys.stdin)
     else:
         reducer(sys.stdin)

@@ -16,7 +16,6 @@ SAFE_NAME = re.compile(r'^[A-Za-z0-9][A-Za-z0-9._-]{0,80}$')
 ROOT = Path(__file__).resolve().parents[1]
 
 
-# Qué hace: saca el nombre de la carpeta bajo data/ para montarla en el namenode. Si no está ahí, no sigue.
 def generation_mount_name(generation, root=ROOT):
     resolved = Path(generation).resolve()
     data_root = (Path(root) / 'data').resolve()
@@ -27,7 +26,6 @@ def generation_mount_name(generation, root=ROOT):
     return resolved.name
 
 
-# Qué hace: corre docker compose del laboratorio. Si no hay clave local, la crea en .cache y no la sube a git.
 def compose(*args, capture=True, timeout=1800, extra_env=None):
     credential_path = ROOT / '.cache/final-password'
     credential_path.parent.mkdir(exist_ok=True)
@@ -52,12 +50,10 @@ def compose(*args, capture=True, timeout=1800, extra_env=None):
                           check=True, timeout=timeout)
 
 
-# Qué hace: le manda un comando hdfs al namenode y devuelve lo que imprime.
 def hdfs(*args):
     return compose('exec', '-T', 'namenode', 'hdfs', *args).stdout
 
 
-# Qué hace: mete el JSONL en HDFS (mkdir, put y réplica 2) solo si el hash cuadra y hay 2 DataNodes vivos. No pisa un archivo que ya esté.
 def upload(generation):
     manifest = json.loads((generation / 'manifest.json').read_text())
     path = generation / 'observations.jsonl'
@@ -75,7 +71,7 @@ def upload(generation):
     if 'Live datanodes (2)' not in report:
         raise ValueError('Both DataNodes must be live')
     hdfs('dfs', '-mkdir', '-p', '/smartcity/final')
-    # put without -f refuses overwrites, preserving the sealed input.
+    # Sin -f, HDFS no sobrescribe la carga existente.
     hdfs('dfs', '-put', f'/inputs/{name}/observations.jsonl', '/smartcity/final/observations.jsonl')
     hdfs('dfs', '-put', f'/inputs/{name}/manifest.json', '/smartcity/final/manifest.json')
     hdfs('dfs', '-setrep', '-w', '2', '/smartcity/final/observations.jsonl')
@@ -86,9 +82,10 @@ def upload(generation):
             'limits': 'Two containers on one host, permissions disabled only in isolated network'}
 
 
-# Qué hace: corre el MapReduce de conteos sobre el JSONL de HDFS y devuelve el resultado.
-def batch():
-    destination = '/smartcity/batch-counts-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')
+def batch(activity=False):
+    job = 'activity' if activity else 'counts'
+    mapper = 'map-activity' if activity else 'map'
+    destination = f'/smartcity/batch-{job}-' + datetime.now(timezone.utc).strftime('%Y%m%dT%H%M%S')
     result = compose('exec', '-T', '-e', 'HADOOP_HEAPSIZE_MAX=256', 'namenode', 'hadoop', 'jar',
         '/opt/hadoop/share/hadoop/tools/lib/hadoop-streaming-3.4.1.jar',
         '-D', 'mapreduce.framework.name=local', '-D', 'mapreduce.job.reduces=1',
@@ -96,17 +93,16 @@ def batch():
         '-D', 'mapreduce.local.map.tasks.maximum=1',
         '-D', 'mapreduce.task.io.sort.mb=16',
         '-files', '/jobs/batch.py', '-input', '/smartcity/final/observations.jsonl',
-        '-output', destination, '-mapper', '/usr/bin/python batch.py map',
+        '-output', destination, '-mapper', f'/usr/bin/python batch.py {mapper}',
         '-reducer', '/usr/bin/python batch.py reduce')
     return {'status': 'EXECUTED', 'mode': 'Hadoop MapReduce local framework, HDFS distributed storage',
             'stdout': result.stdout, 'stderr': result.stderr,
-            'destination': destination, 'counts': hdfs('dfs', '-cat', destination + '/part-*')}
+             'destination': destination, 'counts': hdfs('dfs', '-cat', destination + '/part-*')}
 
 
-# Qué hace: según la acción, levanta el clúster, sube datos, corre el batch o Spark, o los para sin borrar los volúmenes.
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=['up', 'upload', 'batch', 'spark', 'status', 'stop'])
+    parser.add_argument('action', choices=['up', 'upload', 'batch', 'batch-activity', 'spark', 'status', 'stop'])
     parser.add_argument('--generation', type=Path, default=ROOT / 'data/final-20261111')
     parser.add_argument('--spark-output', type=Path, default=ROOT / 'data/spark-cluster-20261111')
     parser.add_argument('--min-records', type=int, default=1_000_000)
@@ -127,8 +123,8 @@ def main():
         parser.error('A new --report path is required before executing this action')
     if args.action == 'upload':
         result = upload(args.generation)
-    elif args.action == 'batch':
-        result = batch()
+    elif args.action in ('batch', 'batch-activity'):
+        result = batch(activity=args.action == 'batch-activity')
     else:
         if args.min_records < 1:
             parser.error('--min-records must be at least 1')

@@ -16,7 +16,6 @@ ROOT = Path(__file__).resolve().parents[1]
 V2 = ROOT / 'research/datasets/private_results/expanded-v2-2025-01'
 
 
-# Qué hace: lee la clave local del laboratorio. No la imprime.
 def password():
     db_credential = os.environ.get('SMARTCITY_FINAL_PASSWORD')
     if db_credential:
@@ -24,14 +23,12 @@ def password():
     return (ROOT / '.cache/final-password').read_text().strip()
 
 
-# Qué hace: abre un nodo de Mongo en el puerto local, con el usuario admin.
 def client(port=57027):
     return MongoClient('127.0.0.1', port, username='admin', authSource='admin',
                        directConnection=True, serverSelectionTimeoutMS=5000,
                        connectTimeoutMS=5000, **{'password': password()})
 
 
-# Qué hace: busca cuál de los dos nodos de datos está aceptando escrituras.
 def primary():
     for port in (57027, 57028):
         connection = client(port)
@@ -45,7 +42,6 @@ def primary():
     raise RuntimeError('No primary available in the two owned local ports')
 
 
-# Qué hace: arma el replica set (dos nodos y un árbitro) si todavía no existe.
 def initialize():
     with client() as connection:
         try:
@@ -60,7 +56,6 @@ def initialize():
             {'_id': 2, 'host': 'mongo-arbiter:27017', 'arbiterOnly': True}]})
 
 
-# Qué hace: mete el JSONL en la colección, espera mayoría y lo compara con el manifiesto.
 def load(generation):
     manifest = json.loads((generation / 'manifest.json').read_text())
     source = generation / 'observations.jsonl'
@@ -128,7 +123,6 @@ def load(generation):
                 'limits': 'Replica set: two data-bearing nodes + arbiter on one host; not sharding'}
 
 
-# Qué hace: agrupa las observaciones igual que la consulta de PostgreSQL.
 def query(measurement, start, end, zone, hour_start=0, hour_end=23):
     match = {'measurement_type': measurement, 'source_day': {'$gte': str(start), '$lte': str(end)},
              'local_hour': {'$gte': hour_start, '$lte': hour_end}}
@@ -176,7 +170,7 @@ def load_incidents(v2):
                                       {'$setOnInsert': {'status': 'loading'}}, upsert=True)
         db.incidents.create_index('reported_date')
         db.incidents.create_index([('zone_id', 1), ('reported_date', 1)])
-        # Full-document matching prevents a replay from overwriting conflicting records.
+        # Un mismo ID con contenido distinto debe fallar, no sobrescribirse.
         result = db.incidents.bulk_write([UpdateOne(row, {'$setOnInsert': row}, upsert=True)
                                           for row in documents])
         count = db.incidents.count_documents({})
@@ -211,6 +205,20 @@ def incidents_by_category(start, end, zone=None):
             {'$group': {'_id': '$category', 'count': {'$sum': 1}}},
             {'$sort': {'count': -1, '_id': 1}},
         ], maxTimeMS=5000))
+
+
+def measurement_extrema(measurement, unit, start, end, zone=None):
+    match = {'measurement_type': measurement, 'unit': unit,
+             'source_day': {'$gte': start.isoformat(), '$lte': end.isoformat()}}
+    if zone is not None:
+        match['zone_id'] = zone
+    with primary() as connection:
+        rows = list(connection.smartcity_final.observations.aggregate([
+            {'$match': match},
+            {'$group': {'_id': None, 'count': {'$sum': 1},
+                        'min': {'$min': '$value'}, 'max': {'$max': '$value'}}},
+        ], maxTimeMS=8000))
+    return rows[0] if rows else None
 
 
 if __name__ == '__main__':

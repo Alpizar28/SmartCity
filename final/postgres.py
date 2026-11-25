@@ -14,20 +14,20 @@ import pyarrow.parquet as pq
 ROOT = Path(__file__).resolve().parents[1]
 
 
-# Qué hace: abre la base del laboratorio en el puerto local. No acepta otro servidor.
-def connection(readonly=False):
+def connection(readonly=False, *, normalized=False, autocommit=False):
     db_credential = os.environ.get('SMARTCITY_FINAL_PASSWORD')
     if not db_credential:
         db_credential = (ROOT / '.cache/final-password').read_text().strip()
     options = {'host': '127.0.0.1', 'port': 55446, 'dbname': 'smartcity_final',
                'user': 'smartcity', 'password': db_credential.strip(), 'connect_timeout': 5}
-    conn = psycopg.connect(**options)
+    if normalized:
+        options['dbname'] = 'smartcity_normalized'
+    conn = psycopg.connect(**options, autocommit=autocommit)
     if readonly:
         conn.read_only = True
     return conn
 
 
-# Qué hace: copia la serie horaria de Spark a tablas por mes y arma la vista diaria. Si ya está esa misma corrida, no la pisa.
 def materialize(output):
     summary = json.loads((output / 'summary.json').read_text())
     if summary['status'] != 'PASS':
@@ -85,7 +85,6 @@ def materialize(output):
                 'elapsed_seconds': time.perf_counter() - started, 'fingerprint': fingerprint, 'plan': plan}
 
 
-# Qué hace: suma por día y zona la medición pedida, entre dos fechas y un rango de horas.
 def query(measurement, start, end, zone, hour_start=0, hour_end=23):
     with connection(readonly=True) as conn:
         conn.execute("SET LOCAL statement_timeout='8000ms'")
