@@ -1,6 +1,7 @@
 """Colección analítica en el replica set local. No es sharding."""
 import argparse
-from datetime import datetime
+from collections import Counter
+from datetime import date, datetime
 import hashlib
 import json
 import math
@@ -8,10 +9,11 @@ import os
 from pathlib import Path
 import time
 
-from pymongo import MongoClient, InsertOne
+from pymongo import MongoClient, InsertOne, UpdateOne
 from pymongo.write_concern import WriteConcern
 
 ROOT = Path(__file__).resolve().parents[1]
+V2 = ROOT / 'research/datasets/private_results/expanded-v2-2025-01'
 
 
 # Qué hace: lee la clave local del laboratorio. No la imprime.
@@ -141,16 +143,89 @@ def query(measurement, start, end, zone, hour_start=0, hour_end=23):
         return [{**row['_id'], **{key: value for key, value in row.items() if key != '_id'}} for row in rows]
 
 
+def incident_documents(v2):
+    manifest = json.loads((v2 / 'preparation.json').read_text())
+    raw = (v2 / 'incidents.extjsonl').read_bytes()
+    fingerprint = hashlib.sha256(raw).hexdigest()
+    if fingerprint != manifest['output_hashes']['incidents.extjsonl']:
+        raise ValueError('Changed incident file')
+    documents = []
+    for line in raw.splitlines():
+        row = json.loads(line)
+        day = date.fromisoformat(row['reported_date'])
+        if (row['source_id'] != 'MAD-CRASH' or row['data_origin'] != 'observed'
+                or row['person_fields_removed'] is not True or day.year != manifest['incident_year']):
+            raise ValueError('Unexpected incident provenance or year')
+        documents.append({'_id': row['_id'], 'reported_date': day.isoformat(),
+                          'category': row['category'], 'zone_id': row['zone_id']})
+    if (not documents or len({row['_id'] for row in documents}) != len(documents)
+            or len(documents) != manifest['incidents']
+            or Counter(row['category'] for row in documents) != manifest['incident_categories']):
+        raise ValueError('Incident counts do not match the manifest')
+    return fingerprint, documents
+
+
+def load_incidents(v2):
+    fingerprint, documents = incident_documents(v2)
+    with primary() as connection:
+        db = connection.get_database('smartcity_final', write_concern=WriteConcern('majority', wtimeout=60000))
+        previous = db.incident_import.find_one({'_id': 'v2'})
+        if previous and previous['sha256'] != fingerprint:
+            raise ValueError('Another incident generation is already registered')
+        db.incident_import.update_one({'_id': 'v2', 'sha256': fingerprint},
+                                      {'$setOnInsert': {'status': 'loading'}}, upsert=True)
+        db.incidents.create_index('reported_date')
+        db.incidents.create_index([('zone_id', 1), ('reported_date', 1)])
+        # Full-document matching prevents a replay from overwriting conflicting records.
+        result = db.incidents.bulk_write([UpdateOne(row, {'$setOnInsert': row}, upsert=True)
+                                          for row in documents])
+        count = db.incidents.count_documents({})
+        if count != len(documents):
+            raise ValueError('Unexpected documents in the incidents collection')
+        db.incident_import.update_one({'_id': 'v2', 'sha256': fingerprint},
+                                      {'$set': {'status': 'PASS', 'count': count}})
+    return {'status': 'PASS', 'count': count, 'inserted': result.upserted_count, 'sha256': fingerprint}
+
+
+def incident_coverage():
+    with primary() as connection:
+        db = connection.smartcity_final
+        if not db.incident_import.find_one({'_id': 'v2', 'status': 'PASS'}):
+            return None
+        rows = list(db.incidents.aggregate([{'$group': {'_id': None,
+            'first': {'$min': '$reported_date'}, 'last': {'$max': '$reported_date'},
+            'zones': {'$addToSet': '$zone_id'}}}], maxTimeMS=5000))
+    if not rows:
+        return None
+    row = rows[0]
+    return date.fromisoformat(row['first']), date.fromisoformat(row['last']), row['zones']
+
+
+def incidents_by_category(start, end, zone=None):
+    match = {'reported_date': {'$gte': start.isoformat(), '$lte': end.isoformat()}}
+    if zone is not None:
+        match['zone_id'] = zone
+    with primary() as connection:
+        return list(connection.smartcity_final.incidents.aggregate([
+            {'$match': match},
+            {'$group': {'_id': '$category', 'count': {'$sum': 1}}},
+            {'$sort': {'count': -1, '_id': 1}},
+        ], maxTimeMS=5000))
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('action', choices=['init', 'load'])
+    parser.add_argument('action', choices=['init', 'load', 'load-incidents'])
     parser.add_argument('--generation', type=Path, default=ROOT / 'data/final-20261111')
     parser.add_argument('--report', type=Path, required=True)
+    parser.add_argument('--v2', type=Path, default=V2, help='Source folder for load-incidents')
     args = parser.parse_args()
     if args.report.exists():
         parser.error('Use a new evidence path')
     if args.action == 'init':
         result = initialize()
+    elif args.action == 'load-incidents':
+        result = load_incidents(args.v2)
     else:
         result = load(args.generation)
     with args.report.open('x') as stream:

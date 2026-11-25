@@ -1,4 +1,5 @@
 """Explorador de las mediciones de aire y tráfico de Madrid."""
+from html import escape
 import json
 import logging
 import os
@@ -11,7 +12,7 @@ import streamlit as st
 from psycopg import Error as PostgresError
 from pymongo.errors import PyMongoError
 
-from final.mongo import query as mongo_query
+from final.mongo import incident_coverage, incidents_by_category, query as mongo_query
 from final.postgres import query as postgres_query
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -33,6 +34,7 @@ MEASUREMENTS = {
 }
 UNITS = {'ug/m3': 'µg/m³', 'mg/m3': 'mg/m³'}
 ENGINES = {'PostgreSQL': postgres_query, 'MongoDB': mongo_query}
+ACCIDENTS = ('accidents', '')
 DAILY_COLUMNS = ['source_day', 'measurement_type', 'unit', 'zone_id', 'count', 'total_value']
 AIR_COLOR = '#2451c6'
 TRAFFIC_COLOR = '#bc4530'
@@ -63,6 +65,12 @@ STYLE = """
 .daily-table th, .daily-table td { padding: 0.5rem; text-align: right; border-bottom: 1px solid #dfded7; }
 .daily-table th:first-child, .daily-table td:first-child { text-align: left; }
 .daily-table td { font-family: monospace; }
+.incident-bars { list-style: none; margin: 0; padding: 0; }
+.incident-bars li { padding: 0 0 0.75rem; }
+.incident-bars .label { display: flex; justify-content: space-between; gap: 0.75rem; }
+.incident-bars .label span:last-child { font-family: monospace; }
+.incident-bars .track { height: 0.375rem; margin-top: 0.25rem; background: #f2e9e5; border-radius: 4px; }
+.incident-bars .bar { display: block; height: 100%; background: #bc4530; border-radius: inherit; }
 @media (max-width: 640px) {
     .stMainBlockContainer { padding: 4.5rem 1rem 2rem; }
     .st-key-metrics [data-testid="stHorizontalBlock"] {
@@ -164,14 +172,67 @@ def show_results(rows, measurement, unit, start, end, engine):
             st.html(table.to_html(index=False, border=0, classes='daily-table'))
 
 
-def main():
-    st.set_page_config(page_title='SmartCity · Madrid', layout='wide')
-    st.html(STYLE)
-    with st.container(key='intro'):
-        st.html('<p class="city">Madrid, España</p>')
-        st.title('SmartCity', anchor=False)
-        st.caption('Explora las lecturas históricas de calidad del aire y tráfico')
+@st.cache_data(ttl=60, max_entries=32, show_spinner=False)
+def incident_counts(start, end, zone):
+    return incidents_by_category(start, end, zone)
 
+
+def district_select(widget, zones, key):
+    names = json.loads(DISTRICTS.read_text(encoding='utf-8'))['names']
+
+    def label(zone):
+        return 'Todos los distritos' if zone is None else names.get(zone, zone).title()
+
+    return widget.selectbox('Distrito', [None, *sorted(zones, key=label)], format_func=label, key=key)
+
+
+def show_accidents():
+    try:
+        coverage = incident_coverage()
+    except (OSError, RuntimeError, PyMongoError):
+        logging.exception('Error al consultar la cobertura de accidentes')
+        st.error('No se pudo conectar con MongoDB. Comprueba que el servicio esté en marcha.')
+        return
+    if coverage is None:
+        st.info('Todavía no hay un conjunto de accidentes cargado en MongoDB.')
+        return
+
+    first, last, zones = coverage
+    with st.container(key='filters'):
+        period, district = st.columns([2, 1])
+        dates = period.date_input('Periodo', (first, last), min_value=first, max_value=last,
+                                  format='DD/MM/YYYY', key='incident_period')
+        zone = district_select(district, [zone for zone in zones if zone is not None], 'incident_district')
+    if len(dates) != 2:
+        st.info('Selecciona la fecha final para ver los accidentes.')
+        return
+    try:
+        rows = incident_counts(*dates, zone)
+    except (OSError, RuntimeError, PyMongoError):
+        logging.exception('Error al agrupar accidentes por categoría')
+        st.error('No se pudo consultar el recuento en MongoDB. Intenta de nuevo.')
+        return
+    with st.container(border=True, key='results'):
+        st.header('Accidentes por categoría', anchor=False)
+        st.caption(f'{date_label(dates[0])}–{date_label(dates[1])} · Un registro por accidente, no por persona')
+        with st.container(key='metrics'):
+            st.metric('Accidentes registrados', number(sum(row['count'] for row in rows)))
+        if rows:
+            largest = rows[0]['count']
+            items = []
+            for row in rows:
+                category = 'Sin categoría' if row['_id'] == 'sin_categoria' else escape(row['_id'])
+                count = row['count']
+                items.append(f'<li><div class="label"><span>{category}</span><span>{number(count)}</span></div>'
+                             f'<div class="track" aria-hidden="true"><span class="bar" '
+                             f'style="width:{count / largest:.2%}"></span></div></li>')
+            st.html('<ul class="incident-bars">' + ''.join(items) + '</ul>')
+        else:
+            st.info('No hay accidentes registrados para este periodo y distrito.')
+        st.caption('Fuente: MongoDB · Incidentes registrados por categoría (MG08)')
+
+
+def load_measurements():
     try:
         summary_file = OUTPUT / 'summary.json'
         summary = json.loads(summary_file.read_text(encoding='utf-8'))
@@ -179,38 +240,25 @@ def main():
                  if summary.get('status') in ('PASS', 'PASS_SAMPLE') else pd.DataFrame())
     except (OSError, ValueError):
         daily = pd.DataFrame()
-    if daily.empty:
-        st.info('Todavía no hay lecturas para mostrar. Recarga el panel cuando termine Spark.')
-        return
-    if summary['status'] == 'PASS_SAMPLE':
-        st.info('Estás viendo una muestra del conjunto de datos')
-    options = list(daily[['measurement_type', 'unit']].drop_duplicates()
-                   .itertuples(index=False, name=None))
-    order = {measurement: i for i, measurement in enumerate(MEASUREMENTS)}
-    options.sort(key=lambda option: (order.get(option[0], len(order)), *option))
+    return daily, not daily.empty and summary['status'] == 'PASS_SAMPLE'
 
-    def option_label(option):
-        measurement, unit = option
-        return f'{MEASUREMENTS.get(measurement, measurement)} · {UNITS.get(unit, unit)}'
 
+def option_label(option):
+    if option == ACCIDENTS:
+        return 'Accidentes'
+    measurement, unit = option
+    return f'{MEASUREMENTS.get(measurement, measurement)} · {UNITS.get(unit, unit)}'
+
+
+def show_measurements(daily, measurement, unit, engine):
     with st.container(key='filters'):
-        measure, source = st.columns([2, 1])
-        measurement, unit = measure.selectbox('Medición', options, format_func=option_label)
-        engine = source.selectbox('Fuente', ('Spark', *ENGINES),
-                                  help='Spark usa resultados ya calculados; PostgreSQL y MongoDB consultan el motor local.')
         selected = daily[daily['measurement_type'].eq(measurement) & daily['unit'].eq(unit)]
         first = selected['source_day'].min().date()
         last = selected['source_day'].max().date()
         zones = selected['zone_id'].dropna().unique()
         if len(zones):
-            names = json.loads(DISTRICTS.read_text(encoding='utf-8'))['names']
-
-            def zone_label(zone):
-                return names.get(zone, zone).title() if zone is not None else 'Todos los distritos'
-
             period, district = st.columns([2, 1])
-            zone = district.selectbox('Distrito', [None, *sorted(zones, key=zone_label)],
-                                      format_func=zone_label, key='district')
+            zone = district_select(district, zones, 'district')
         else:
             period, zone = st.container(), None
         dates = period.date_input('Periodo', (first, last), min_value=first, max_value=last,
@@ -234,6 +282,40 @@ def main():
     show_results(rows, measurement, UNITS.get(unit, unit), start, end, engine)
     if not len(zones):
         st.caption('Esta medición no tiene distritos asignados en el conjunto de datos.')
+
+
+def main():
+    st.set_page_config(page_title='SmartCity · Madrid', layout='wide')
+    st.html(STYLE)
+    with st.container(key='intro'):
+        st.html('<p class="city">Madrid, España</p>')
+        st.title('SmartCity', anchor=False)
+        st.caption('Explora las lecturas de aire, tráfico y los accidentes registrados')
+
+    daily, sample = load_measurements()
+    options = []
+    if not daily.empty:
+        options = list(daily[['measurement_type', 'unit']].drop_duplicates().itertuples(index=False, name=None))
+        order = {measurement: i for i, measurement in enumerate(MEASUREMENTS)}
+        options.sort(key=lambda option: (order.get(option[0], len(order)), *option))
+
+    source, measure = st.columns([1, 2])
+    engine = source.selectbox('Fuente', ('Spark', *ENGINES),
+                              help='Spark usa resultados ya calculados; PostgreSQL y MongoDB consultan el motor local.')
+    if engine == 'MongoDB':
+        options.append(ACCIDENTS)
+    if st.session_state.get('measurement') not in options:
+        st.session_state['measurement'] = options[0] if options else None
+    selection = measure.selectbox('Medición', options, format_func=option_label,
+                                  key='measurement', disabled=not options)
+    if selection == ACCIDENTS:
+        show_accidents()
+    elif selection is None:
+        st.info('Todavía no hay lecturas para mostrar. Recarga el panel cuando termine Spark.')
+    else:
+        if sample:
+            st.info('Estás viendo una muestra del conjunto de datos')
+        show_measurements(daily, *selection, engine)
 
 
 if __name__ == '__main__':
