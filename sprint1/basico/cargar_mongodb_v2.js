@@ -1,6 +1,6 @@
 'use strict';
 
-// Solo lo invoca validar_v2.py en su contenedor aislado. Sin conexiones remotas.
+// Base local desechable y archivos en /inputs. Sin conexiones remotas.
 if (!/^smartcity_v2_[a-f0-9]{12}$/.test(db.getName())) throw new Error('Base desechable requerida');
 const fs = require('fs');
 const crypto = require('crypto');

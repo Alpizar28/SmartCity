@@ -1,6 +1,6 @@
 #!/bin/bash
 set -euo pipefail
-# Qué hace: deja la llave del replica set en un archivo temporal y arranca mongod. El secreto viene del entorno, no del repo.
+# Llave del replica set en un archivo temporal. El secreto viene del entorno.
 umask 077
 rm -f /tmp/sc-key
 printf '%s' "$MONGO_REPL_KEY" > /tmp/sc-key

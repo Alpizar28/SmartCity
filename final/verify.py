@@ -15,7 +15,6 @@ from final.mongo import query as mongo_query, primary
 ROOT = Path(__file__).resolve().parents[1]
 
 
-# Qué hace: deja las filas en un diccionario para poder compararlas.
 def normalized(rows):
     result = {}
     for row in rows:
@@ -24,7 +23,7 @@ def normalized(rows):
     return result
 
 
-# Qué hace: dice si dos resultados son el mismo, con tolerancia en los decimales.
+# Misma clave y mismos valores, con tolerancia en los decimales.
 def equivalent(expected, actual):
     if expected.keys() != actual.keys():
         raise ValueError('Result group keys mismatch')
@@ -34,14 +33,12 @@ def equivalent(expected, actual):
                 raise ValueError('Result values mismatch: ' + name)
 
 
-# Qué hace: saca del parquet diario de Spark la medición y el rango pedidos.
 def spark_materialized(output, measurement, start, end):
     frame = pq.read_table(output / 'SP03_daily').to_pandas()
     mask = (frame['measurement_type'] == measurement) & (frame['source_day'] >= str(start)) & (frame['source_day'] <= str(end))
     return frame[mask].to_dict('records')
 
 
-# Qué hace: comprueba conteos, roles del replica set y que enero cuadre en los tres motores.
 def verify(generation, output, batch_report):
     manifest = json.loads((generation / 'manifest.json').read_text())
     summary = json.loads((output / 'summary.json').read_text())
