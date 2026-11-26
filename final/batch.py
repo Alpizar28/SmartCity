@@ -1,9 +1,6 @@
 #!/usr/bin/python
 # coding: utf-8
-"""Hadoop Streaming: conteos por fuente/tipo/unidad, Python 2/3 compatible.
-
-El modo MapReduce local sigue siendo MapReduce real, no YARN distribuido.
-"""
+"""Hadoop Streaming: conteos por fuente, tipo y unidad. Compatible con Python 2 y 3."""
 from __future__ import print_function
 import json
 import sys

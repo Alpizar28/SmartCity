@@ -1,1 +1,0 @@
-../../sprint1/postgres/schema_v2_3nf.sql

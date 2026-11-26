@@ -23,14 +23,14 @@ from phase5_contract import (base_document, canonical, digest, hourly_endpoint,
 CONTRACT = 'smartcity-analytics-v1'
 
 
-# Qué hace: escribe un JSON nuevo. Si el archivo ya existe, se cae a propósito para no pisarlo.
+# Falla si el archivo ya existe.
 def seal(path, data):
     with path.open('x', encoding='utf-8') as stream:
         json.dump(data, stream, ensure_ascii=False, indent=2, allow_nan=False)
         stream.write('\n')
 
 
-# Qué hace: aplana el documento al contrato analítico y le pone el hash. En tráfico copia velocidad, ocupación y carga si vienen válidas.
+# Aplana al contrato analítico. En tráfico copia velocidad, ocupación y carga si son válidas.
 def flatten(doc, catalogs, source_day):
     station = catalogs['stations'][doc['station_id']]
     row = {'_id': doc['measurement_id'], 'channel_id': doc['channel_id'],
@@ -59,7 +59,7 @@ def flatten(doc, catalogs, source_day):
     return row
 
 
-# Qué hace: recorre el CSV horario de aire y dice si cada hora se acepta o se va a cuarentena.
+# Recorre el CSV horario y separa cada hora aceptada de la cuarentena.
 def air_documents(stream, sha, catalogs, units):
     reader = csv.DictReader(io.TextIOWrapper(stream, encoding='utf-8-sig'), delimiter=';')
     required = {'PROVINCIA', 'MUNICIPIO', 'ESTACION', 'MAGNITUD', 'PUNTO_MUESTREO', 'ANO', 'MES', 'DIA'}
@@ -105,7 +105,6 @@ def air_documents(stream, sha, catalogs, units):
             yield doc, reason, day
 
 
-# Qué hace: arma la generación nueva (aire del ZIP más tráfico v2, sin repetir el aire de enero) y deja el manifiesto con conteos y hashes.
 def prepare(archive_path, v2, output):
     if output.exists():
         raise ValueError('Output must be NEW: existing generations are never overwritten')
@@ -138,7 +137,6 @@ def prepare(archive_path, v2, output):
             ledger.execute('CREATE TABLE records (id TEXT PRIMARY KEY, channel TEXT NOT NULL, '
                            'time TEXT NOT NULL, hash TEXT NOT NULL, UNIQUE(channel,time))')
 
-            # Qué hace: mete una fila aceptada en el JSONL, en el libro de identidades y en los totales de referencia.
             def emit(doc, day):
                 row = flatten(doc, catalogs, day)
                 ledger.execute('INSERT INTO records VALUES (?,?,?,?)',

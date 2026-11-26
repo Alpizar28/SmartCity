@@ -19,6 +19,7 @@ services:
   namenode:
     <<: *hadoop
     hostname: namenode
+    networks: [analytics, local_access]
     environment:
       <<: *hadoop-env
       ENSURE_NAMENODE_DIR: /data/name
@@ -47,7 +48,7 @@ services:
     image: apache/spark:3.5.6
     hostname: spark-master
     command: ['/opt/spark/bin/spark-class', 'org.apache.spark.deploy.master.Master', '--host', 'spark-master']
-    networks: [analytics]
+    networks: [analytics, local_access]
     mem_limit: 768m
     ports: ['127.0.0.1:18080:8080']
   spark-worker1: &worker
@@ -73,7 +74,7 @@ services:
     user: '${SMARTCITY_UID:-1000}:${SMARTCITY_GID:-1000}'
     profiles: [jobs]
     hostname: spark-driver
-    command: ['/opt/spark/bin/spark-submit', '--master', 'spark://spark-master:7077', '--driver-memory', '1536m', '--executor-memory', '1g', '--conf', 'spark.cores.max=2', '--conf', 'spark.driver.host=spark-driver', '/jobs/spark_job.py', '--input', 'hdfs://namenode:9000/smartcity/final/observations.jsonl', '--manifest', '/outputs/${SMARTCITY_GENERATION_NAME:-final-20261111}/manifest.json', '--output', '/outputs/${SMARTCITY_SPARK_OUTPUT_NAME:-spark-cluster-20261111}', '--min-records', '${SMARTCITY_MIN_RECORDS:-1000000}']
+    command: ['/opt/spark/bin/spark-submit', '--master', 'spark://spark-master:7077', '--driver-memory', '1536m', '--executor-memory', '1g', '--conf', 'spark.cores.max=2', '--conf', 'spark.driver.host=spark-driver', '/jobs/spark_job.py', '--input', 'hdfs://namenode:9000/smartcity/final/observations.jsonl', '--manifest', '/outputs/${SMARTCITY_GENERATION_NAME:-final}/manifest.json', '--output', '/outputs/${SMARTCITY_SPARK_OUTPUT_NAME:-spark-cluster}', '--min-records', '${SMARTCITY_MIN_RECORDS:-1000000}']
     networks: [analytics]
     mem_limit: 3g
     volumes:

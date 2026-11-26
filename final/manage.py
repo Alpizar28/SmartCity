@@ -14,6 +14,10 @@ import subprocess
 SAFE_NAME = re.compile(r'^[A-Za-z0-9][A-Za-z0-9._-]{0,80}$')
 
 ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_GENERATION = ROOT / 'data/final'
+DEFAULT_SPARK_OUTPUT = ROOT / 'data/spark-cluster'
+DEFAULT_BATCH_REPORT = ROOT / 'data/reportes-local/batch.json'
+DEFAULT_ACTIVITY_REPORT = ROOT / 'data/reportes-local/batch-activity.json'
 
 
 def generation_mount_name(generation, root=ROOT):
@@ -103,8 +107,8 @@ def batch(activity=False):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['up', 'upload', 'batch', 'batch-activity', 'spark', 'status', 'stop'])
-    parser.add_argument('--generation', type=Path, default=ROOT / 'data/final-20261111')
-    parser.add_argument('--spark-output', type=Path, default=ROOT / 'data/spark-cluster-20261111')
+    parser.add_argument('--generation', type=Path, default=DEFAULT_GENERATION)
+    parser.add_argument('--spark-output', type=Path, default=DEFAULT_SPARK_OUTPUT)
     parser.add_argument('--min-records', type=int, default=1_000_000)
     parser.add_argument('--report', type=Path)
     args = parser.parse_args()
