@@ -14,7 +14,7 @@ import time
 from pyspark.sql import SparkSession, Window, functions as F, types as T
 
 
-# Qué hace: arma el esquema fijo del JSONL para que Spark no adivine los tipos.
+# Esquema fijo: Spark no infiere los tipos.
 def schema():
     strings = ('_id', 'channel_id', 'station_id', 'station_name', 'source_id', 'source_version',
                'measurement_type', 'unit', 'observed_at', 'original_time', 'source_day', 'zone_id',
@@ -28,7 +28,7 @@ def schema():
     return T.StructType(fields)
 
 
-# Qué hace: calcula SP01 a SP10 y la serie horaria: conteos, promedios, zonas, anomalías, correlación NO2–ozono y la comparación entre años.
+# SP01–SP10 y la serie horaria.
 def products(df):
     keys = ['source_id', 'measurement_type', 'unit']
     daily = df.groupBy(*keys, 'source_day', 'source_year', 'source_month', 'zone_id').agg(
@@ -80,7 +80,7 @@ def products(df):
             'SP09_comparison': comparison, 'SP10_stations': stations, 'hourly': hourly}
 
 
-# Qué hace: lee el JSONL, exige el mínimo de registros (1 millón en la entrega), guarda los parquet y el resumen. Si la carpeta de salida ya existe, no la toca.
+# Exige el mínimo de registros y no reescribe una carpeta de salida existente.
 def run(input_path, manifest_path, output, master=None, min_records=1_000_000):
     if output.exists():
         raise ValueError('Use a new output directory; previous evidence is immutable')
@@ -121,7 +121,6 @@ def run(input_path, manifest_path, output, master=None, min_records=1_000_000):
                 raise ValueError('Independent count/extrema reference mismatch')
             if not math.isclose(row['total_value'], reference['sum'], rel_tol=1e-9, abs_tol=1e-6):
                 raise ValueError('Independent sum reference mismatch')
-        # Physical plan is preserved; it is evidence, not a claim of optimal performance.
         (output / 'daily-plan.txt').write_text(frames['SP03_daily']._jdf.queryExecution().toString())
         executors = str(spark.sparkContext._jsc.sc().getExecutorMemoryStatus().toString())
         academic = min_records >= 1_000_000 and count >= 1_000_000

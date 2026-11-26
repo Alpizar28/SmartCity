@@ -1,5 +1,4 @@
 -- Ruta normalizada v2. Ejecutar después de schema_v2_3nf.sql.
--- El SQL histórico permanece en queries.sql para reproducir sus evidencias.
 -- Solo lectura. Los resultados administrativos pueden ser sintéticos:
 -- no acreditan dispositivos físicos ni productores de las lecturas públicas.
 
