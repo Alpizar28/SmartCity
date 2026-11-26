@@ -11,6 +11,8 @@ import psycopg
 from psycopg import sql
 import pyarrow.parquet as pq
 
+from final.manage import DEFAULT_SPARK_OUTPUT
+
 ROOT = Path(__file__).resolve().parents[1]
 
 
@@ -101,7 +103,7 @@ def query(measurement, start, end, zone, hour_start=0, hour_end=23):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--spark-output', type=Path, default=ROOT / 'data/spark-cluster-20261122')
+    parser.add_argument('--spark-output', type=Path, default=DEFAULT_SPARK_OUTPUT)
     parser.add_argument('--report', type=Path)
     args = parser.parse_args()
     if args.report is not None and args.report.exists():

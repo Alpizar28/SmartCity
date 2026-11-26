@@ -9,10 +9,9 @@ import statistics
 import time
 
 import pyarrow.parquet as pq
+from final.manage import DEFAULT_BATCH_REPORT, DEFAULT_GENERATION, DEFAULT_SPARK_OUTPUT
 from final.postgres import query as postgres_query, materialize
 from final.mongo import query as mongo_query, primary
-
-ROOT = Path(__file__).resolve().parents[1]
 
 
 def normalized(rows):
@@ -92,9 +91,9 @@ def verify(generation, output, batch_report):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--generation', type=Path, default=ROOT / 'data/final-20261111')
-    parser.add_argument('--spark-output', type=Path, default=ROOT / 'data/spark-cluster-20261122')
-    parser.add_argument('--batch-report', type=Path, default=ROOT / 'data/hadoop-batch-20261122.json')
+    parser.add_argument('--generation', type=Path, default=DEFAULT_GENERATION)
+    parser.add_argument('--spark-output', type=Path, default=DEFAULT_SPARK_OUTPUT)
+    parser.add_argument('--batch-report', type=Path, default=DEFAULT_BATCH_REPORT)
     parser.add_argument('--report', type=Path, required=True)
     args = parser.parse_args()
     if args.report.exists():

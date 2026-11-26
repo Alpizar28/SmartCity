@@ -17,17 +17,16 @@ from psycopg import Error as PostgresError
 from psycopg.errors import InvalidCatalogName, UndefinedTable
 from pymongo.errors import PyMongoError
 
-from final.manage import hdfs
+from final.manage import DEFAULT_ACTIVITY_REPORT, DEFAULT_BATCH_REPORT, DEFAULT_SPARK_OUTPUT, hdfs
 from final.mongo import incident_coverage, incidents_by_category, measurement_extrema, query as mongo_query
 from final import mongo_queries
 from final.postgres import query as postgres_query
 from final.postgres_normalized import TITLES as PG_TITLES, query as postgres_normalized_query
 
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = Path(os.environ.get('SMARTCITY_SPARK_OUTPUT', ROOT / 'data/spark-cluster-20261111'))
-BATCH_REPORT = Path(os.environ.get('SMARTCITY_BATCH_REPORT', ROOT / 'data/reportes-local/batch.json'))
-ACTIVITY_REPORT = Path(os.environ.get('SMARTCITY_HADOOP_ACTIVITY_REPORT',
-                                      ROOT / 'data/reportes-local/batch-activity.json'))
+OUTPUT = Path(os.environ.get('SMARTCITY_SPARK_OUTPUT', DEFAULT_SPARK_OUTPUT))
+BATCH_REPORT = Path(os.environ.get('SMARTCITY_BATCH_REPORT', DEFAULT_BATCH_REPORT))
+ACTIVITY_REPORT = Path(os.environ.get('SMARTCITY_HADOOP_ACTIVITY_REPORT', DEFAULT_ACTIVITY_REPORT))
 DISTRICTS = ROOT / 'sprint1/postgres/distritos_madrid.json'
 MEASUREMENTS = {
     'MAD-AIR:8': 'Dióxido de nitrógeno (NO₂)',

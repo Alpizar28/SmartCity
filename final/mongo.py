@@ -12,6 +12,8 @@ import time
 from pymongo import MongoClient, InsertOne, UpdateOne
 from pymongo.write_concern import WriteConcern
 
+from final.manage import DEFAULT_GENERATION
+
 ROOT = Path(__file__).resolve().parents[1]
 V2 = ROOT / 'research/datasets/private_results/expanded-v2-2025-01'
 
@@ -224,7 +226,7 @@ def measurement_extrema(measurement, unit, start, end, zone=None):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('action', choices=['init', 'load', 'load-incidents'])
-    parser.add_argument('--generation', type=Path, default=ROOT / 'data/final-20261111')
+    parser.add_argument('--generation', type=Path, default=DEFAULT_GENERATION)
     parser.add_argument('--report', type=Path, required=True)
     parser.add_argument('--v2', type=Path, default=V2, help='Source folder for load-incidents')
     args = parser.parse_args()

@@ -1,0 +1,496 @@
+{
+  "scope": "v2 base relations; foreign attributes reconstructed in views; SQL typed domains",
+  "relations": {
+    "sources": {
+      "attributes": [
+        "source_id",
+        "name",
+        "publisher"
+      ],
+      "candidate_keys": [
+        [
+          "source_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "source_id"
+          ],
+          [
+            "name",
+            "publisher"
+          ]
+        ]
+      ]
+    },
+    "source_versions": {
+      "attributes": [
+        "source_version",
+        "source_id",
+        "original_path",
+        "acquired_at"
+      ],
+      "candidate_keys": [
+        [
+          "source_version"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "source_version"
+          ],
+          [
+            "source_id",
+            "original_path",
+            "acquired_at"
+          ]
+        ]
+      ]
+    },
+    "zones": {
+      "attributes": [
+        "zone_id",
+        "name",
+        "level",
+        "parent_zone_id"
+      ],
+      "candidate_keys": [
+        [
+          "zone_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "zone_id"
+          ],
+          [
+            "name",
+            "level",
+            "parent_zone_id"
+          ]
+        ]
+      ]
+    },
+    "locations": {
+      "attributes": [
+        "location_id",
+        "zone_id",
+        "name",
+        "latitude",
+        "longitude",
+        "coordinate_crs",
+        "historical_location_verified",
+        "inventory_version"
+      ],
+      "candidate_keys": [
+        [
+          "location_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "location_id"
+          ],
+          [
+            "zone_id",
+            "name",
+            "latitude",
+            "longitude",
+            "coordinate_crs",
+            "historical_location_verified",
+            "inventory_version"
+          ]
+        ]
+      ]
+    },
+    "stations": {
+      "attributes": [
+        "station_id",
+        "source_id",
+        "source_key",
+        "name",
+        "location_id",
+        "inventory_present"
+      ],
+      "candidate_keys": [
+        [
+          "station_id"
+        ],
+        [
+          "source_id",
+          "source_key"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "station_id"
+          ],
+          [
+            "source_id",
+            "source_key",
+            "name",
+            "location_id",
+            "inventory_present"
+          ]
+        ],
+        [
+          [
+            "source_id",
+            "source_key"
+          ],
+          [
+            "station_id",
+            "name",
+            "location_id",
+            "inventory_present"
+          ]
+        ]
+      ]
+    },
+    "sensor_categories": {
+      "attributes": [
+        "category_id",
+        "name"
+      ],
+      "candidate_keys": [
+        [
+          "category_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "category_id"
+          ],
+          [
+            "name"
+          ]
+        ]
+      ]
+    },
+    "measurement_types": {
+      "attributes": [
+        "measurement_type",
+        "source_id",
+        "code",
+        "unit",
+        "candidate_unit",
+        "unit_status"
+      ],
+      "candidate_keys": [
+        [
+          "measurement_type"
+        ],
+        [
+          "source_id",
+          "code"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "measurement_type"
+          ],
+          [
+            "source_id",
+            "code",
+            "unit",
+            "candidate_unit",
+            "unit_status"
+          ]
+        ],
+        [
+          [
+            "source_id",
+            "code"
+          ],
+          [
+            "measurement_type",
+            "unit",
+            "candidate_unit",
+            "unit_status"
+          ]
+        ]
+      ]
+    },
+    "organizations": {
+      "attributes": [
+        "organization_id",
+        "name",
+        "responsible_person_or_role",
+        "evidence_reference",
+        "data_origin",
+        "provenance"
+      ],
+      "candidate_keys": [
+        [
+          "organization_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "organization_id"
+          ],
+          [
+            "name",
+            "responsible_person_or_role",
+            "evidence_reference",
+            "data_origin",
+            "provenance"
+          ]
+        ]
+      ]
+    },
+    "users": {
+      "attributes": [
+        "user_id",
+        "name",
+        "email",
+        "consent_reference",
+        "demo_only",
+        "data_origin"
+      ],
+      "candidate_keys": [
+        [
+          "user_id"
+        ],
+        [
+          "email"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "user_id"
+          ],
+          [
+            "name",
+            "email",
+            "consent_reference",
+            "demo_only",
+            "data_origin"
+          ]
+        ],
+        [
+          [
+            "email"
+          ],
+          [
+            "user_id",
+            "name",
+            "consent_reference",
+            "demo_only",
+            "data_origin"
+          ]
+        ]
+      ]
+    },
+    "sensor_types": {
+      "attributes": [
+        "sensor_type",
+        "name",
+        "category_id",
+        "data_origin",
+        "evidence_reference"
+      ],
+      "candidate_keys": [
+        [
+          "sensor_type"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "sensor_type"
+          ],
+          [
+            "name",
+            "category_id",
+            "data_origin",
+            "evidence_reference"
+          ]
+        ]
+      ]
+    },
+    "sensors": {
+      "attributes": [
+        "sensor_id",
+        "name",
+        "sensor_type",
+        "station_id",
+        "installation_date",
+        "administrative_status",
+        "status_effective_at",
+        "organization_id",
+        "identity_evidence_reference",
+        "data_origin",
+        "provenance"
+      ],
+      "candidate_keys": [
+        [
+          "sensor_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "sensor_id"
+          ],
+          [
+            "name",
+            "sensor_type",
+            "station_id",
+            "installation_date",
+            "administrative_status",
+            "status_effective_at",
+            "organization_id",
+            "identity_evidence_reference",
+            "data_origin",
+            "provenance"
+          ]
+        ]
+      ]
+    },
+    "channels": {
+      "attributes": [
+        "channel_id",
+        "station_id",
+        "source_key",
+        "measurement_type",
+        "catalog_basis"
+      ],
+      "candidate_keys": [
+        [
+          "channel_id"
+        ],
+        [
+          "station_id",
+          "source_key"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "channel_id"
+          ],
+          [
+            "station_id",
+            "source_key",
+            "measurement_type",
+            "catalog_basis"
+          ]
+        ],
+        [
+          [
+            "station_id",
+            "source_key"
+          ],
+          [
+            "channel_id",
+            "measurement_type",
+            "catalog_basis"
+          ]
+        ]
+      ]
+    },
+    "channel_sensors": {
+      "attributes": [
+        "channel_id",
+        "sensor_id"
+      ],
+      "candidate_keys": [
+        [
+          "channel_id"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "channel_id"
+          ],
+          [
+            "sensor_id"
+          ]
+        ]
+      ]
+    },
+    "observations": {
+      "attributes": [
+        "measurement_id",
+        "channel_id",
+        "observed_at",
+        "value",
+        "source_version",
+        "payload_hash",
+        "transformation_method",
+        "transformation_version",
+        "raw_locator",
+        "source_key",
+        "provenance",
+        "element_type",
+        "measurements",
+        "integration_sample_count",
+        "zone_scope"
+      ],
+      "candidate_keys": [
+        [
+          "measurement_id"
+        ],
+        [
+          "channel_id",
+          "observed_at"
+        ]
+      ],
+      "dependencies": [
+        [
+          [
+            "measurement_id"
+          ],
+          [
+            "channel_id",
+            "observed_at",
+            "value",
+            "source_version",
+            "payload_hash",
+            "transformation_method",
+            "transformation_version",
+            "raw_locator",
+            "source_key",
+            "provenance",
+            "element_type",
+            "measurements",
+            "integration_sample_count",
+            "zone_scope"
+          ]
+        ],
+        [
+          [
+            "channel_id",
+            "observed_at"
+          ],
+          [
+            "measurement_id",
+            "value",
+            "source_version",
+            "payload_hash",
+            "transformation_method",
+            "transformation_version",
+            "raw_locator",
+            "source_key",
+            "provenance",
+            "element_type",
+            "measurements",
+            "integration_sample_count",
+            "zone_scope"
+          ]
+        ]
+      ]
+    }
+  }
+}
